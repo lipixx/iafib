@@ -19,13 +19,10 @@ public class Global {
 
     /*Vector de peticions, conté N_CENTRES vectors, on
      a cada vector hi ha les peticions del centre*/
-    public static Vector<Vector> PETICIONS;
-    
+    public static Matriu PETICIONS;
+
     public Global()
     {
-	for (int i=0; i<N_CENTRES; i++)
-	    {
-		PETICIONS.add(new Vector());
-	    }
+	PETICIONS = new Matriu(HORES_SERVEI,N_CENTRES);
     }
 }
