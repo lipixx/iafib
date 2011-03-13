@@ -37,14 +37,35 @@ public class Main
 	    }
     }
     
-    private static void TransportsHillClimbingSearch() {
-	System.out.println("\nNQueensDemo HillClimbing  -->");
+    private static void TransportsHillClimbingSearchMaxGuanys() {
+	System.out.println("\nTransports HillClimbing  -->");
 	try {
 		Problem problem = new Problem(
 			new Global(),
 			new TransportsSuccessorFunction(),
 			new TransportsGoalTest(),
 			new TransportsMaxGuanysHeuristicFunction());
+		HillClimbingSearch search = new HillClimbingSearch();
+		SearchAgent agent = new SearchAgent(problem, search);
+
+		System.out.println();
+// 		printActions(agent.getActions());
+		System.out.println("Search Outcome=" + search.getOutcome());
+		System.out.println("Final State=\n" + search.getLastSearchState());
+// 		printInstrumentation(agent.getInstrumentation());
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	}
+	
+	private static void TransportsHillClimbingSearchMinDifHora() {
+	System.out.println("\nTransports HillClimbing  -->");
+	try {
+		Problem problem = new Problem(
+			new Global(),
+			new TransportsSuccessorFunction(),
+			new TransportsGoalTest(),
+			new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
 		HillClimbingSearch search = new HillClimbingSearch();
 		SearchAgent agent = new SearchAgent(problem, search);
 
