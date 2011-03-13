@@ -2,6 +2,11 @@ package Transports;
 
 import java.util.*;
 
+import aima.search.framework.Problem;
+import aima.search.informed.HillClimbingSearch;
+import aima.search.framework.SearchAgent;
+
+
 @SuppressWarnings ("unchecked")
 public class Main
 {
@@ -31,4 +36,26 @@ public class Main
 		System.out.println(llista.get(i).getQuantitat());
 	    }
     }
+    
+    private static void TransportsHillClimbingSearch() {
+	System.out.println("\nNQueensDemo HillClimbing  -->");
+	try {
+		Problem problem = new Problem(
+			new Global(),
+			new TransportsSuccessorFunction(),
+			new TransportsGoalTest(),
+			new TransportsMaxGuanysHeuristicFunction());
+		HillClimbingSearch search = new HillClimbingSearch();
+		SearchAgent agent = new SearchAgent(problem, search);
+
+		System.out.println();
+// 		printActions(agent.getActions());
+		System.out.println("Search Outcome=" + search.getOutcome());
+		System.out.println("Final State=\n" + search.getLastSearchState());
+// 		printInstrumentation(agent.getInstrumentation());
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	}
+
 }
