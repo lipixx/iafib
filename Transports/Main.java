@@ -37,11 +37,11 @@ public class Main
 	    }
     }
     
-    private static void TransportsHillClimbingSearchMaxGuanys() {
+    private static void TransportsHillClimbingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3) {
 	System.out.println("\nTransports HillClimbing  -->");
 	try {
 		Problem problem = new Problem(
-			new Estat(),
+			new Estat(peticions, n1, n2, n3),
 			new TransportsSuccessorFunction(),
 			new TransportsGoalTest(),
 			new TransportsMaxGuanysHeuristicFunction());
@@ -58,11 +58,11 @@ public class Main
 	}
 	}
 	
-	private static void TransportsHillClimbingSearchMinDifHora() {
+	private static void TransportsHillClimbingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3) {
 	System.out.println("\nTransports HillClimbing  -->");
 	try {
 		Problem problem = new Problem(
-			new Estat(),
+			new Estat(peticions, n1, n2, n3),
 			new TransportsSuccessorFunction(),
 			new TransportsGoalTest(),
 			new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
