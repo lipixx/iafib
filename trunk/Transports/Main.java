@@ -41,7 +41,7 @@ public class Main
 	System.out.println("\nTransports HillClimbing  -->");
 	try {
 		Problem problem = new Problem(
-			new Global(),
+			new Estat(),
 			new TransportsSuccessorFunction(),
 			new TransportsGoalTest(),
 			new TransportsMaxGuanysHeuristicFunction());
@@ -62,7 +62,7 @@ public class Main
 	System.out.println("\nTransports HillClimbing  -->");
 	try {
 		Problem problem = new Problem(
-			new Global(),
+			new Estat(),
 			new TransportsSuccessorFunction(),
 			new TransportsGoalTest(),
 			new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
