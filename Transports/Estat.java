@@ -34,9 +34,24 @@ public class Estat {
 					for(int hHCP=0; hHCP < Global.HORES_SERVEI; hHCP++)
 					{
 						Camio camio = (Camio) camionsHCP.getObj(hHCP,ncp);
-						//Si no hi ha tipus de camio assignat, o sigui carrega=0
-						if(camio == null) {
-							Camio camioActual = new Camio(555*Global.T1, actual.getQuantitat(), actual);
+						//Si no hi ha tipus de camio assignat (no serà carrega=0 pq els eliminarem abans)
+						if(camio == null ) {
+							Camio camioActual;
+							if(n1 > 0)
+							{
+								n1--;
+								camioActual = new Camio(Global.T1, actual.getQuantitat(), actual);
+							} else if (n2 > 0)
+							{
+								n2--;
+								camioActual = new Camio(Global.T2, actual.getQuantitat(), actual);
+							} else if(n3 > 0)
+							{
+								n3--;
+								camioActual = new Camio(Global.T3, actual.getQuantitat(), actual);
+							} else {
+								return;
+							}
 							camionsHCP.add(hHCP,ncp,camioActual);
 						}
 						//Si la carrega de la peticio cap dins el camió
@@ -62,5 +77,21 @@ public class Estat {
 	public void afegirNouTransport(Camio c, int hora, int cp)
 	{
 		camionsHCP.add(hora, cp, c);
+	}
+	
+	//Quan s'elimina un transport s'ha de fer un remove (Matriu.java) del camio
+	public void treureTransport()
+	{
+		
+	}
+	
+	public Matriu getCamionsHCP()
+	{
+		return camionsHCP;
+	}
+	
+	public Matriu getEndarrerits()
+	{
+		return endarrerits;
 	}
 }
