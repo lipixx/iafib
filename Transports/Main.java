@@ -39,12 +39,14 @@ public class Main
 		System.out.println(llista.get(i).getQuantitat());
 	    }
     }
-    
-    private static void TransportsHillClimbingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3) {
+    /**Creacio problema amb HC amb funcio heuristica Max Guanys
+	 * @param gen1 Es true si fem servir estragia num 1 de generacio d'estat inicial, false si num 2
+	 */
+    private static void TransportsHillClimbingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, boolean gen1) {
 	System.out.println("\nTransports HillClimbing  -->");
 	try {
 		Problem problem = new Problem(
-			new Estat(peticions, n1, n2, n3),
+			new Estat(peticions, n1, n2, n3, gen1),
 			new TransportsSuccessorFunction(),
 			new TransportsGoalTest(),
 			new TransportsMaxGuanysHeuristicFunction());
@@ -61,11 +63,11 @@ public class Main
 	}
 	}
 	
-	private static void TransportsHillClimbingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3) {
+	private static void TransportsHillClimbingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3, boolean gen1) {
 	System.out.println("\nTransports HillClimbing  -->");
 	try {
 		Problem problem = new Problem(
-			new Estat(peticions, n1, n2, n3),
+			new Estat(peticions, n1, n2, n3, gen1),
 			new TransportsSuccessorFunction(),
 			new TransportsGoalTest(),
 			new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
