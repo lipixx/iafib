@@ -1,94 +1,45 @@
 package Transports;
 
 import aima.search.framework.HeuristicFunction;
+import java.util.*;
 
-public class TransportsMaxGuanysHeuristicFunction implements HeuristicFunction {
+@SuppressWarnings ("unchecked")
+public class TransportsMaxGuanysHeuristicFunction implements HeuristicFunction 
+{
+    public double getHeuristicValue(Object st) 
+    {
+	Estat state = (Estat) st;
+	int nc = 0;
+	int beneficis = 0;
+	Matriu camionsHCP = state.getCamionsHCP();
+	Matriu endarrerits = state.getEndarrerits();
+
+	/*Explorem tota la graella HCP, i per cada casella, obtenim el valor
+	  que ens aporta el transport que hi ha associat*/	
+	while (nc < Global.N_CENTRES)
+	    {
+		for (int h = 0; h < Global.HORES_SERVEI; h++)
+		    {
+			Camio c = (Camio) camionsHCP.getObj(h,nc);
+			beneficis += c.getBeneficis(h);
+		    }
+		
+		//El vector endarrerits només té una fila, la 0.
+		ArrayList<Peticio> llistaEndar = endarrerits.get(0,nc);
+		
+		for (int pet = 0; pet < llistaEndar.size(); pet++)
+		    {
+			Peticio p = llistaEndar.get(pet);
+			
+			beneficis -= Global.preus_transport[p.getQuantitat()/100 -1] * (17 - p.getHoraLimit()) * 0.2;
+			beneficis -= Global.preus_transport[p.getQuantitat()/100 -1];
+		    }
+	    }	
+	return beneficis;
 	
-	public double getHeuristicValue(Object state) {
-// 		TODO
-		return 0.0;
-	}
+    }
 }
 
-
-
-// /*
-// 
-// /*Graella HCP*/
-// Transport HCP[HORES_SERVEI][N_CENTRES];
-// 
-// /*Graella Peticions, dins cada casella, hi ha un vector de Peticions.*/
-// Vector <Vector<Peticio>> PETICIONS[HORES_SERVEI][N_CENTRES];
-// 
-// /*Aquesta funció ens calcula l'heurística
-//  * h: Hora d'inici (per defecte les 08h)
-//  * nc: Nombre de centres
-//  */
-// public int heuristica()
-// {
-//   int h = H_INIC;
-//   int nc = 0;
-//   int beneficis = 0;
-// 
-// /*Explorem tota la graella HCP, i per cada casella, obtenim el valor
-// que ens aporta el transport que hi ha associat*/
-// while (nc < N_CENTRES)
-// {
-//  while (h < HORES_SERVEI)
-//  {
-//    Transport t = HCP[h][nc];
-//    beneficis += t.getBeneficis(h);
-//   }
-//  }
-// 
-// 
-// while (nc < N_CENTRES)
-// {
-//  while (h < HORES_SERVEI)
-//  {
-//    Vector<Peticio> pet = PETICIONS[h][nc];
-//    for (int i = 0; i<pet.size(); i++)
-//       beneficis -= preus_transport[pet[i].pes/100 - 1]; //Resta als beneficis, el preu de transport de la petició
-//   }
-//  }
-// 
-//  return beneficis;
-// }
-// 
-// 
-// 
-// public class Peticio {
-// 
-//   	int pes;
-//   	int hora_limit;
-// 
-// 	public Peticio()
-// 	{
-// 	   pes = 0;
-// 	   hora_limit = 0;
-// 	}
-// };
-// 
-// 
-// public class Transport {
-// 
-// 	/*Aquesta classe representa un Transport, que pot ser de T1=500, T2=1000 o T3=2000.*/
-// 	private Vector<Peticio> peticions;
-// 	private int tipus;
-// 
-// 	public Transport()
-// 	{
-// 	  peticions = new Vector<Peticio>;
-// 	  tipus = 0;
-// 	}
-// 
-// 	/**
-// 	 * Retorna els beneficis que dona un Transport carregat de peticions
-// 	 * a una determinada hora d'entrega.
-// 	 * @pre El Transport ha d'estar carregat de peticions.
-// 	 * @param hora_entrega Hora d'entrega d'aquest transport.
-// 	 * @return benefici El benefici que aportarà aquest transport.
-// 	 */
 // 	public int get_beneficis(int hora_entrega)
 // 	{
 // 	  int benefici = 0;
