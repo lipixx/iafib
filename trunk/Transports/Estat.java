@@ -2,34 +2,54 @@ package Transports;
 
 import java.util.*;
 
+@SuppressWarnings ("unchecked")
 public class Estat {
 	
 	//Graella per assignar camions a una hora i un c.p. determinat
-	private static Matriu Camions_HCP;
-	//Numero de camions de cada tipus que tenim (ens ho diu l'usuari
-	private int nT1, nT2, nT3;
+	private Matriu camionsHCP;
+	private Matriu endarrerits;
 	
 	//Generació de l'estat inicial
 	public Estat(Matriu peticions, int n1, int n2, int n3)
 	{
-		Camions_HCP = new Matriu(Global.HORES_SERVEI, Global.N_CENTRES);
-		nT1 = n1; nT2 = n2; nT3 = n3;
+		camionsHCP = new Matriu(Global.HORES_SERVEI, Global.N_CENTRES);
+		endarrerits = new Matriu(1,Global.N_CENTRES);
 		
-		for(int i=0; i<Global.HORES_SERVEI; i++)
+		for(int h=0; h<Global.HORES_SERVEI; h++)
 		{
-			for(int j=0; j<Global.N_CENTRES; j++)
+			for(int ncp=0; ncp<Global.N_CENTRES; ncp++)
 			{
 				//Agafem llista de peticions per:
-				//	Hora limit i
-				//	Centre de producció j
+				//	Hora limit h
+				//	Centre de producció ncp
 				
-				//aqui dona warning al compilar, amb i sense casting...
-				ArrayList<Peticio> llista = peticions.get(i,j);
+				ArrayList<Peticio> llista = peticions.get(h,ncp);
 				
-				for (int k=0; k<llista.size(); k++)
+				for (int peticioActual=0; peticioActual<llista.size(); peticioActual++)
 				{
-					//On possem cada petició?
+					Peticio actual = llista.get(peticioActual);
+					//Recorrem les hores de camionsHCP amb:
+					//hora hHCP 
+					//c.p. ncp
+					for(int hHCP=0; hHCP < Global.HORES_SERVEI; hHCP++)
+					{
+						//Si no hi ha tipus de camio assignat, o sigui carrega=0
+						if(camionsHCP.get(hHCP,ncp) == null) {
+							
+						}
+						//Si la carrega de la peticio cap dins el camió
+						if(actual.getQuantitat() < camionsHCP.get(hHCP,ncp))
+						{
+							
+						}
+						//Si la carrega de la peticio NO CAP dins el camio
+						else
+						{
+							
+						}
+					}
 					
+					//si no s'ha pogut assignar el fotem a vector endarrerits
 				}
 			}
 		}
@@ -39,6 +59,6 @@ public class Estat {
 	//mateix cp desti)  a hora hora  i c.p. cp
 	public void afegirNouTransport(Camio c, int hora, int cp)
 	{
-		Camions_HCP.add(hora, cp, c);
+		camionsHCP.add(hora, cp, c);
 	}
 }
