@@ -24,10 +24,10 @@ public class Main
 	Peticio p3 = new Peticio (500,17);
 	
 	//PETICIONS.add(Hora_limit,Centre,Peticio)
-	P.PETICIONS.add(p2.getHoraLimit(),5,p2);
-	P.PETICIONS.add(p1.getHoraLimit(),5,p1);
-	P.PETICIONS.add(p.getHoraLimit(),5,p);
-	P.PETICIONS.add(p3.getHoraLimit(),5,p3);	
+	P.PETICIONS.add(p2.getHoraLimit()-8,5,p2);
+	P.PETICIONS.add(p1.getHoraLimit()-8,5,p1);
+	P.PETICIONS.add(p.getHoraLimit()-8,5,p);
+	P.PETICIONS.add(p3.getHoraLimit()-8,5,p3);	
 	P.PETICIONS.print();	
 	
 	//Agafar llista de peticions d'una Hora i un Centre

@@ -33,14 +33,16 @@ public class Estat {
 					//c.p. ncp
 					for(int hHCP=0; hHCP < Global.HORES_SERVEI; hHCP++)
 					{
+						Camio camio = (Camio) camionsHCP.getObj(hHCP,ncp);
 						//Si no hi ha tipus de camio assignat, o sigui carrega=0
-						if(camionsHCP.get(hHCP,ncp) == null) {
-							
+						if(camio == null) {
+							Camio camioActual = new Camio(555*Global.T1, actual.getQuantitat(), actual);
+							camionsHCP.add(hHCP,ncp,camioActual);
 						}
 						//Si la carrega de la peticio cap dins el camió
-						if(actual.getQuantitat() < camionsHCP.get(hHCP,ncp))
+						if(actual.getQuantitat() < camio.getCarrega())
 						{
-							
+							camio.addPeticio(actual);
 						}
 						//Si la carrega de la peticio NO CAP dins el camio
 						else
