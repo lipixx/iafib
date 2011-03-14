@@ -34,6 +34,13 @@ public class Matriu {
 	return (ArrayList) fila.get(col);
     }
 
+    public Object getObj(int fil, int col)
+    {	
+	if (fil < 0 || fil > files || col < 0 || col > columnes) return null;
+	ArrayList fila = matriu.get(fil);
+	return fila.get(col);
+    }
+
     public void add(int fila, int col, Object o)
     {
 	if (!(fila < 0 || fila > files || col < 0 || col > columnes))
