@@ -14,7 +14,10 @@ public class Main
     {
 	//Init del problema
 	Global P = new Global();
-	
+
+	//Hem de fer inputs d'usuari per definir el problema?
+	//Per defecte a la clase Global tenim tot l'enunciat i uns
+	//valors per defecte
 	Peticio p = new Peticio(100);
 	Peticio p1 = new Peticio(200);
 	Peticio p2 = new Peticio (1000);
