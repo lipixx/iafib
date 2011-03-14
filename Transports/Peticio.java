@@ -6,14 +6,21 @@ package Transports;
 
 public class Peticio {
     private int quantitat;
-    
-    public Peticio(int qtt)
+    private int hora_limit;
+
+    public Peticio(int qtt, int h)
     {
 	quantitat = qtt;
+	hora_limit = h;
     }
     
     public int getQuantitat()
     {
 	return quantitat;
+    }
+
+    public int getHoraLimit()
+    {
+	return hora_limit;
     }
 }

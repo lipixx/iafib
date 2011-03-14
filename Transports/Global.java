@@ -10,11 +10,15 @@ public class Global {
     public static int H_FI = 17;
     public static int HORES_SERVEI = H_FI - H_INI + 1;
     public static int N_CENTRES = 6;
-
-    /*Tipus de Transports*/
+    
+    /*Tipus i nombre de Transports*/
     public static int T1 = 500;
     public static int T2 = 1000;
-    public static int T3 = 2000;
+    public static int T3 = 2000;    
+    public static int nT1 = 20;
+    public static int nT2 = 20;
+    public static int nT3 = 20;
+
     public static double preus_transport[] = { 100, 200, 300*1.5, 400*1.5, 500*2 };
 
     /*Vector de peticions, conté N_CENTRES vectors, on
