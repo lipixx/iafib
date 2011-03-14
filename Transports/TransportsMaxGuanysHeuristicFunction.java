@@ -9,14 +9,13 @@ public class TransportsMaxGuanysHeuristicFunction implements HeuristicFunction
     public double getHeuristicValue(Object st) 
     {
 	Estat state = (Estat) st;
-	int nc = 0;
 	int beneficis = 0;
 	Matriu camionsHCP = state.getCamionsHCP();
 	Matriu endarrerits = state.getEndarrerits();
 
 	/*Explorem tota la graella HCP, i per cada casella, obtenim el valor
 	  que ens aporta el transport que hi ha associat*/	
-	while (nc < Global.N_CENTRES)
+	for (int nc = 0; nc < Global.N_CENTRES; nc++)
 	    {
 		for (int h = 0; h < Global.HORES_SERVEI; h++)
 		    {
