@@ -16,6 +16,17 @@ public class Camio {
 		llista = new ArrayList<Peticio>();
 		llista.add(p);
 	}
+	//Creacio d'un camio amb un tipus i una llista de peticions
+	public Camio (int t, ArrayList<Peticio> llp)
+	{
+		tipus = t;
+		llista = llp;
+		
+		for(int i=0;i<llp.size();i++)
+		{
+			carrega += llp.get(i).getQuantitat();
+		}
+	}
 	
 	public int getTipus()
 	{

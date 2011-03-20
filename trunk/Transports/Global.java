@@ -12,9 +12,9 @@ public class Global {
     public static int N_CENTRES = 6;
     
     /*Tipus i nombre de Transports*/
-    public static int T1 = 500;
-    public static int T2 = 1000;
-    public static int T3 = 2000;    
+    public static final int T1 = 500;
+    public static final int T2 = 1000;
+    public static final int T3 = 2000;    
     public static int nT1 = 20;
     public static int nT2 = 20;
     public static int nT3 = 20;
