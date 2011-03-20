@@ -31,10 +31,12 @@ public class Estat {
 					for (int peticioActual=0; peticioActual<llistaPeticions.size(); peticioActual++)
 					{
 						Peticio petActual = llistaPeticions.get(peticioActual);
+						boolean peticioColocada = false;
+						
 						//Recorrem les hores de cada cp (matriu camionsHCP) amb:
 						//hora hHCP 
 						//c.p. ncp
-						for(int hHCP=0; hHCP < Global.HORES_SERVEI; hHCP++)
+						for(int hHCP=0; hHCP < Global.HORES_SERVEI && !peticioColocada; hHCP++)
 						{
 							Camio camioActual = (Camio) camionsHCP.getObj(hHCP,ncp);
 							
@@ -46,27 +48,34 @@ public class Estat {
 									n1--;
 									camioActual = new Camio(Global.T1, petActual);
 									camionsHCP.add(hHCP,ncp,camioActual);
-									return;
+									peticioColocada = true;
 								}
 								else if (n2 > 0)
 								{
 									n2--;
 									camioActual = new Camio(Global.T2, petActual);
 									camionsHCP.add(hHCP,ncp,camioActual);
-									return;
+									peticioColocada = true;
 								}
 								else if(n3 > 0)
 								{
 									n3--;
 									camioActual = new Camio(Global.T3, petActual);
 									camionsHCP.add(hHCP,ncp,camioActual);
-									return;
+									peticioColocada = true;
+								}
+								else
+								{
+									//No s'hauria d'entrar mai aquí, ja que si hi ha un forat
+									//a la graella (null) significa que algun tipus de camió
+									//no ha estat assignat, n1, n2 o n3 > 0
 								}
 							}
 							//Si hi havia camio assignat i si la carrega de la peticio cap dins el camió
 							else if(petActual.getQuantitat() < camioActual.getCarrega())
 							{
 								camioActual.addPeticio(petActual);
+								peticioColocada = true;
 							}
 							//Si la carrega de la peticio NO CAP dins el camio
 							else
@@ -85,6 +94,8 @@ public class Estat {
 											camioMesGranTemp.addPeticio(petActual);
 											camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
 											camionsHCP.add(hHCP, ncp, camioMesGranTemp);
+											
+											peticioColocada = true;
 											n1++;
 											n2--;
 										}
@@ -95,6 +106,8 @@ public class Estat {
 											camioMesGranTemp.addPeticio(petActual);
 											camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
 											camionsHCP.add(hHCP, ncp, camioMesGranTemp);
+											
+											peticioColocada = true;
 											n1++;
 											n3--;
 										}
@@ -107,9 +120,13 @@ public class Estat {
 											camioMesGranTemp.addPeticio(petActual);
 											camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
 											camionsHCP.add(hHCP, ncp, camioMesGranTemp);
+											
+											peticioColocada = true;
 											n2++;
 											n3--;
 										}
+										break;
+									default:
 										break;
 								}
 							}
