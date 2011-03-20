@@ -26,11 +26,11 @@ public class Estat {
 					//	Hora limit h
 					//	Centre de producció ncp
 					
-					ArrayList<Peticio> llista = peticions.get(h,ncp);
+					ArrayList<Peticio> llistaPeticions = peticions.get(h,ncp);
 					
-					for (int peticioActual=0; peticioActual<llista.size(); peticioActual++)
+					for (int peticioActual=0; peticioActual<llistaPeticions.size(); peticioActual++)
 					{
-						Peticio petActual = llista.get(peticioActual);
+						Peticio petActual = llistaPeticions.get(peticioActual);
 						//Recorrem les hores de cada cp (matriu camionsHCP) amb:
 						//hora hHCP 
 						//c.p. ncp
@@ -71,15 +71,63 @@ public class Estat {
 							//Si la carrega de la peticio NO CAP dins el camio
 							else
 							{
-								//TODO:
-								//si queden camions de capacitat superior, eliminar camio actual
+								//Si queden camions de capacitat superior lliures, eliminar camio actual
 								//crear camio nou i possar la petició (junt amb les peticions que ja tenia
-								//el camio. SINO queden camions de capacitat superior
+								//el camio. SINO queden camions de capacitat superior lliures seguim buscant
+								//dins les hores del dia del c.p. ncp
+								switch (camioActual.getTipus())
+								{
+									case Global.T1:
+										if(n2 > 0)
+										{
+											ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
+											Camio camioMesGranTemp = new Camio(Global.T2, llistaPeticionsTemp);
+											camioMesGranTemp.addPeticio(petActual);
+											camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
+											camionsHCP.add(hHCP, ncp, camioMesGranTemp);
+											n1++;
+											n2--;
+										}
+										else if(n3 > 0)
+										{
+											ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
+											Camio camioMesGranTemp = new Camio(Global.T3, llistaPeticionsTemp);
+											camioMesGranTemp.addPeticio(petActual);
+											camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
+											camionsHCP.add(hHCP, ncp, camioMesGranTemp);
+											n1++;
+											n3--;
+										}
+										break;
+									case Global.T2:
+										if(n3 > 0)
+										{
+											ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
+											Camio camioMesGranTemp = new Camio(Global.T3, llistaPeticionsTemp);
+											camioMesGranTemp.addPeticio(petActual);
+											camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
+											camionsHCP.add(hHCP, ncp, camioMesGranTemp);
+											n2++;
+											n3--;
+										}
+										break;
+								}
 							}
 						}
-						//TODO:
-						//si arribem aquí (sortim del bucle) vol que no s'ha pogut assignar peticio, per tant
-						//la possem avector endarrerits
+						//Si arribem aquí (sortim del bucle) vol que no s'ha pogut assignar peticio,
+						//per tant la possem al vector endarrerits, fent servir un camio virtual
+						Camio camioVirtualEndarrerits = (Camio) endarrerits.getObj(0, ncp);
+						if(camioVirtualEndarrerits == null)
+						{
+							camioVirtualEndarrerits = new Camio(0, petActual);
+							endarrerits.add(0, ncp, camioVirtualEndarrerits);
+						}
+						else
+						{
+							camioVirtualEndarrerits.addPeticio(petActual);
+							endarrerits.add(0, ncp, camioVirtualEndarrerits);
+						}
+						
 					}
 				}
 			}
