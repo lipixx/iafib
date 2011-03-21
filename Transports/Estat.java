@@ -173,7 +173,7 @@ public class Estat {
 		
 		for(int cpend=0; cpend<Global.N_CENTRES; cpend++)
 		{
-			ArrayList<Peticio> llPetEndarOrig = endarreritsOrig.get(0,cpend)
+			ArrayList<Peticio> llPetEndarOrig = endarreritsOrig.get(0,cpend);
 			for(int pet = 0; pet < llPetEndarOrig.size(); pet++)
 			{
 				//TODO: revisar...
