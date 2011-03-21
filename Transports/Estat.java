@@ -18,7 +18,8 @@ public class Estat {
 		//Estrageia 1 de generacio d'estat inicial
 		if(gen1)
 		{
-			for(int h=0; h<Global.HORES_SERVEI; h++)
+			//Recorrem la matriu de peticions que ens passem
+			for(int hl=0; hl<Global.HORES_SERVEI; hl++)
 			{
 				for(int ncp=0; ncp<Global.N_CENTRES; ncp++)
 				{
@@ -26,7 +27,7 @@ public class Estat {
 					//	Hora limit h
 					//	Centre de producció ncp
 					
-					ArrayList<Peticio> llistaPeticions = peticions.get(h,ncp);
+					ArrayList<Peticio> llistaPeticions = peticions.get(hl,ncp);
 					
 					for (int peticioActual=0; peticioActual<llistaPeticions.size(); peticioActual++)
 					{
@@ -144,6 +145,41 @@ public class Estat {
 		{
 			//TODO:
 			//un voraz!
+		}
+	}
+	
+	//Constructora d'estat per copia
+	public Estat(Estat st)
+	{
+		camionsHCP = new Matriu(Global.HORES_SERVEI, Global.N_CENTRES);
+		endarrerits = new Matriu(1,Global.N_CENTRES);
+		Matriu camionsHCPOrig = st.getCamionsHCP();
+		Matriu endarreritsOrig = st.getEndarrerits();
+		
+		for(int h=0; h<Global.HORES_SERVEI; h++)
+		{
+			for(int ncp=0; ncp<Global.N_CENTRES; ncp++)
+			{
+				Camio camioActual = (Camio) camionsHCPOrig.getObj(h,ncp);
+				ArrayList<Peticio> llistaPetOrig = camioActual.getLlistaPeticions();
+				ArrayList<Peticio> llistaPetDesti = new ArrayList<Peticio>();
+				for(int pet = 0; pet < llistaPetOrig.size(); pet++)
+				{
+					llistaPetDesti.add(llistaPetOrig.get(pet));
+				}
+				//TODO: falta afegir peticions a camio i afegir camio a matriu
+			}
+		}
+		
+		for(int cpend=0; cpend<Global.N_CENTRES; cpend++)
+		{
+			ArrayList<Peticio> llPetEndarOrig = endarreritsOrig.get(0,cpend)
+			for(int pet = 0; pet < llPetEndarOrig.size(); pet++)
+			{
+				//TODO: revisar...
+				endarrerits.add(0, cpend, endarreritsOrig.get(0,cpend));
+			}
+			
 		}
 	}
 	
