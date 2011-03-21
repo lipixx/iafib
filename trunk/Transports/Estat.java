@@ -132,18 +132,9 @@ public class Estat {
 							}
 						}
 						//Si arribem aquí (sortim del bucle) vol que no s'ha pogut assignar peticio,
-						//per tant la possem al vector endarrerits, fent servir un camio virtual
-						Camio camioVirtualEndarrerits = (Camio) endarrerits.getObj(0, ncp);
-						if(camioVirtualEndarrerits == null)
-						{
-							camioVirtualEndarrerits = new Camio(0, petActual);
-							endarrerits.add(0, ncp, camioVirtualEndarrerits);
-						}
-						else
-						{
-							camioVirtualEndarrerits.addPeticio(petActual);
-							endarrerits.add(0, ncp, camioVirtualEndarrerits);
-						}
+						//per tant la possem al vector endarrerits
+						ArrayList <Peticio> peticionsEndarrerides = (Camio) endarrerits.getObj(0, ncp);
+						endarrerits.add(petActual);
 						
 					}
 				}
@@ -157,15 +148,14 @@ public class Estat {
 		}
 	}
 	
-	//Operador per assignar un camio (que conté una llista de peticions amb el
-	//mateix cp desti)  a hora hora  i c.p. cp
-	public void afegirNouTransport(Camio c, int hora, int cp)
+	//Operador per assignar una peticio a hora hora  i c.p. cp
+	public void afegirPeticio(int hora, int cp)
 	{
 		camionsHCP.add(hora, cp, c);
 	}
 	
 	//Quan s'elimina un transport s'ha de fer un remove (Matriu.java) del camio
-	public void treureTransport(int hora, int cp)
+	public void treurePeticio(int hora, int cp)
 	{
 		//TODO
 	}
