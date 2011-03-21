@@ -3,13 +3,37 @@ package Transports;
 import aima.search.framework.HeuristicFunction;
 
 public class TransportsMinDifHoraLimitHoraEntregaHeuristicFunction implements HeuristicFunction {
-	
-	public double getHeuristicValue(Object state) {
-// 		TODO
-		return 0.0;
-	}
+    
+    public double getHeuristicValue(Object state)
+    {
+	Estat state = (Estat) st;
+	Matriu camionsHCP = state.getCamionsHCP();
+	Matriu endarrerits = state.getEndarrerits();
+	int horesPerdudes = 0;
+		
+	/*Explorem tota la graella HCP, i per cada casella, obtenim el valor
+	  que ens aporta el transport que hi ha associat*/	
+	for (int nc = 0; nc < Global.N_CENTRES; nc++)
+	    {
+		for (int h = 0; h < Global.HORES_SERVEI; h++)
+		    {
+			Camio c = (Camio) camionsHCP.getObj(h,nc);
+			if (c!=null)
+			    horesPerdudes += c.getHoresPerdudes(h);
+		    }
+		
+		//El vector endarrerits només té una fila, la 0.
+		ArrayList<Peticio> llistaEndar = endarrerits.get(0,nc);
+		
+		for (int pet = 0; pet < llistaEndar.size(); pet++)
+		    {
+			Peticio p = llistaEndar.get(pet);
+			horesPerdudes += 14 + (17 - p.getHoraLimit());
+	    }	
+	return horesPerdudes;
+    }
+    }
 }
-
 
 
 // /*
@@ -28,7 +52,7 @@ public class TransportsMinDifHoraLimitHoraEntregaHeuristicFunction implements He
 // {
 //   int h = H_INIC;
 //   int nc = 0;
-//   int beneficis = 0;
+//   int horesPerdudes = 0;
 // 
 // /*Explorem tota la graella HCP, i per cada casella, obtenim el valor
 // que ens aporta el transport que hi ha associat*/
@@ -37,7 +61,7 @@ public class TransportsMinDifHoraLimitHoraEntregaHeuristicFunction implements He
 //  while (h < HORES_SERVEI)
 //  {
 //    Transport t = HCP[h][nc];
-//    beneficis += t.getBeneficis(h);
+//    horesPerdudes += t.getHoresPerdudes(h);
 //   }
 //  }
 // 
@@ -48,11 +72,11 @@ public class TransportsMinDifHoraLimitHoraEntregaHeuristicFunction implements He
 //  {
 //    Vector<Peticio> pet = PETICIONS[h][nc];
 //    for (int i = 0; i<pet.size(); i++)
-//       beneficis -= preus_transport[pet[i].pes/100 - 1]; //Resta als beneficis, el preu de transport de la petició
+//       horesPerdudes -= preus_transport[pet[i].pes/100 - 1]; //Resta als horesPerdudes, el preu de transport de la petició
 //   }
 //  }
 // 
-//  return beneficis;
+//  return horesPerdudes;
 // }
 // 
 // 
@@ -83,13 +107,13 @@ public class TransportsMinDifHoraLimitHoraEntregaHeuristicFunction implements He
 // 	}
 // 
 // 	/**
-// 	 * Retorna els beneficis que dona un Transport carregat de peticions
+// 	 * Retorna els horesPerdudes que dona un Transport carregat de peticions
 // 	 * a una determinada hora d'entrega.
 // 	 * @pre El Transport ha d'estar carregat de peticions.
 // 	 * @param hora_entrega Hora d'entrega d'aquest transport.
 // 	 * @return benefici El benefici que aportarà aquest transport.
 // 	 */
-// 	public int get_beneficis(int hora_entrega)
+// 	public int get_horesPerdudes(int hora_entrega)
 // 	{
 // 	  int benefici = 0;
 // 	  /*Explorem totes les peticions que porta el Transport*/
