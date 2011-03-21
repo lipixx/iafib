@@ -68,5 +68,9 @@ public class Camio {
 		}
 		
 		return benefici_total;
-	}   
+	}
+	public double getHoresPerdudes(int horaCamio)
+	{
+	  return 0.0;
+	}
 }

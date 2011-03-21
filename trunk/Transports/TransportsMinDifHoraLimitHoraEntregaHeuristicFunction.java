@@ -1,16 +1,18 @@
 package Transports;
 
 import aima.search.framework.HeuristicFunction;
+import java.util.*;
 
+@SuppressWarnings ("unchecked")
 public class TransportsMinDifHoraLimitHoraEntregaHeuristicFunction implements HeuristicFunction {
     
-    public double getHeuristicValue(Object state)
-    {
+	public double getHeuristicValue(Object st)
+	{
 	Estat state = (Estat) st;
 	Matriu camionsHCP = state.getCamionsHCP();
 	Matriu endarrerits = state.getEndarrerits();
 	int horesPerdudes = 0;
-		
+
 	/*Explorem tota la graella HCP, i per cada casella, obtenim el valor
 	  que ens aporta el transport que hi ha associat*/	
 	for (int nc = 0; nc < Global.N_CENTRES; nc++)
@@ -30,8 +32,8 @@ public class TransportsMinDifHoraLimitHoraEntregaHeuristicFunction implements He
 			Peticio p = llistaEndar.get(pet);
 			horesPerdudes += 14 + (17 - p.getHoraLimit());
 	    }	
+	}
 	return horesPerdudes;
-    }
     }
 }
 
