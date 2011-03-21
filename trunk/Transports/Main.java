@@ -18,10 +18,10 @@ public class Main
 	//Hem de fer inputs d'usuari per definir el problema?
 	//Per defecte a la clase Global tenim tot l'enunciat i uns
 	//valors per defecte
-	Peticio p = new Peticio(100, 9);
-	Peticio p1 = new Peticio(200, 10);
-	Peticio p2 = new Peticio (1000, 12);
-	Peticio p3 = new Peticio (500,17);
+	Peticio p = new Peticio(1, 100, 9);
+	Peticio p1 = new Peticio(2, 200, 10);
+	Peticio p2 = new Peticio (3, 1000, 12);
+	Peticio p3 = new Peticio (4, 500,17);
 	
 	//PETICIONS.add(Hora_limit,Centre,Peticio)
 	P.PETICIONS.add(p2.getHoraLimit()-8,5,p2);

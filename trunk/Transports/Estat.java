@@ -133,8 +133,7 @@ public class Estat {
 						}
 						//Si arribem aquí (sortim del bucle) vol que no s'ha pogut assignar peticio,
 						//per tant la possem al vector endarrerits
-						ArrayList <Peticio> peticionsEndarrerides = (Camio) endarrerits.getObj(0, ncp);
-						endarrerits.add(petActual);
+						endarrerits.add(0, ncp, petActual);
 						
 					}
 				}
@@ -151,7 +150,8 @@ public class Estat {
 	//Operador per assignar una peticio a hora hora  i c.p. cp
 	public void afegirPeticio(int hora, int cp)
 	{
-		camionsHCP.add(hora, cp, c);
+// 	  TODO
+// 		camionsHCP.add(hora, cp, c);
 	}
 	
 	//Quan s'elimina un transport s'ha de fer un remove (Matriu.java) del camio
