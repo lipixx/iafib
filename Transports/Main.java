@@ -14,9 +14,18 @@ public class Main
     {
 	//Init del problema
 	Global P = new Global();
-	P.iniciaProblemaDefault(-1,false);
+	P.iniciaProblemaDefault(6,false);
 	
 	P.PETICIONS.printPeticions();	      
+	
+	Estat e = new Estat(P.PETICIONS,P.nT1,P.nT2,P.nT3,true);
+	Matriu chcp = e.getCamionsHCP();
+	System.out.println("\n#############ESTAT (Graella HCP)#############");
+	chcp.printGraellaHCP();
+	System.out.println("\n~~~~Endarrerits~~~~");
+	Matriu endar = e.getEndarrerits();
+	endar.printEndarrerits();
+
     }
    
     /**Creacio problema amb HC amb funcio heuristica Max Guanys
