@@ -71,6 +71,14 @@ public class Camio {
 	}
 	public double getHoresPerdudes(int horaCamio)
 	{
-	  return 0.0;
+	    int nHoresRetras = 0;
+	    for (int i = 0 ; i < llista.size(); i++)
+		{
+		    Peticio actual = llista.get(i);
+		    int h = horaCamio - actual.getHoraLimit();
+		    if (h > 0)
+			nHoresRetras += horaCamio - actual.getHoraLimit();		    
+		}
+	  return nHoresRetras;
 	}
 }
