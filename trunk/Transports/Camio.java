@@ -16,15 +16,28 @@ public class Camio {
 		llista = new ArrayList<Peticio>();
 		llista.add(p);
 	}
+	//Constructora per copia
+	public Camio (Camio camioOrig)
+	{
+		tipus = camioOrig.getTipus();
+		carrega = camioOrig.getCarrega();
+		llista = new ArrayList<Peticio>();
+		
+		ArrayList<Peticio> llistaPetOrig = camioOrig.getLlistaPeticions();
+		for(int pet = 0; pet < llistaPetOrig.size(); pet++)
+		{
+			llista.add(llistaPetOrig.get(pet));
+		}
+	}
 	//Creacio d'un camio amb un tipus i una llista de peticions
 	public Camio (int t, ArrayList<Peticio> llp)
 	{
 		tipus = t;
-		llista = llp;
-		
-		for(int i=0;i<llp.size();i++)
+		llista = new ArrayList<Peticio>();
+		for(int pet = 0; pet < llp.size(); pet++)
 		{
-			carrega += llp.get(i).getQuantitat();
+			llista.add(llp.get(pet));
+			carrega += llp.get(pet).getQuantitat();
 		}
 	}
 	

@@ -156,21 +156,18 @@ public class Estat {
 		Matriu camionsHCPOrig = st.getCamionsHCP();
 		Matriu endarreritsOrig = st.getEndarrerits();
 		
+		//Copia de la graella camionsHCP
 		for(int h=0; h<Global.HORES_SERVEI; h++)
 		{
 			for(int ncp=0; ncp<Global.N_CENTRES; ncp++)
 			{
-				Camio camioActual = (Camio) camionsHCPOrig.getObj(h,ncp);
-				ArrayList<Peticio> llistaPetOrig = camioActual.getLlistaPeticions();
-				ArrayList<Peticio> llistaPetDesti = new ArrayList<Peticio>();
-				for(int pet = 0; pet < llistaPetOrig.size(); pet++)
-				{
-					llistaPetDesti.add(llistaPetOrig.get(pet));
-				}
-				//TODO: falta afegir peticions a camio i afegir camio a matriu
+				Camio camioActual = new Camio((Camio) camionsHCPOrig.getObj(h,ncp));
+				//TODO: afegir camio a matriu				
+				camionsHCP.add(h,ncp,camioActual);
 			}
 		}
 		
+		//Copia de les peticions endarrerides
 		for(int cpend=0; cpend<Global.N_CENTRES; cpend++)
 		{
 			ArrayList<Peticio> llPetEndarOrig = endarreritsOrig.get(0,cpend);
