@@ -18,7 +18,7 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 		int centreProduccio=0;
 		int hora=0;
 		int pesPeticio=0;
-		Estat estatFill = possarPeticioA(centreProduccio, hora);
+		Estat estatFill = possarPeticioA(estat, centreProduccio, hora);
 		successors.add(new Successor("possar Peticio A " + centreProduccio + " " + hora + " " + pesPeticio, estatFill));
 		successors.add(new Successor("treure Peticio De " + centreProduccio + " " + hora + " " + pesPeticio, estatFill));
 		
@@ -35,8 +35,16 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 		return successors;
 	}
 	
-	private Estat possarPeticioA(int cp, int hora)
+	private Estat possarPeticioA(Estat estatPare, int cp, int hora)
 	{
+		Estat estatFill = new Estat(estatPare);
+// 		TODO, placeholder return
+		return new Estat(new Matriu(0,0), 1,2,3, true);
+	}
+	
+	private Estat treurePeticioDe(Estat estatPare, int cp, int hora, int horaLimitPeticio)
+	{
+		Estat estatFill = new Estat(estatPare);
 // 		TODO, placeholder return
 		return new Estat(new Matriu(0,0), 1,2,3, true);
 	}
