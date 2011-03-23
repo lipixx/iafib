@@ -79,4 +79,25 @@ public class Matriu {
 	    }
     }
 
+    public void printPeticions()
+    {
+	for (int nc=0; nc < Global.N_CENTRES; nc++)
+	    {
+		System.out.println("CENTRE: "+(nc+1));
+		System.out.println("--------------");
+		for (int hs=0; hs < Global.HORES_SERVEI; hs++)
+		    {
+			ArrayList peticions = this.get(hs,nc);
+			System.out.println("  ->Hora:" + (hs+8));
+			for (int j = 0; j<peticions.size(); j++)
+			    {
+				Peticio p = (Peticio) peticions.get(j);
+				int id,qtt,h;
+				id = p.getIdProducte(); qtt = p.getQuantitat(); h = p.getHoraLimit();   
+				System.out.println("      ->@Pet. id: "+id+" , Qtt: "+qtt+" , Hl: "+h);
+			    }	
+		    }
+	    }
+    }
+
 }
