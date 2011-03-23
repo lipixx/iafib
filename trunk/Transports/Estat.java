@@ -162,7 +162,6 @@ public class Estat {
 			for(int ncp=0; ncp<Global.N_CENTRES; ncp++)
 			{
 				Camio camioActual = new Camio((Camio) camionsHCPOrig.getObj(h,ncp));
-				//TODO: afegir camio a matriu				
 				camionsHCP.add(h,ncp,camioActual);
 			}
 		}
@@ -173,7 +172,6 @@ public class Estat {
 			ArrayList<Peticio> llPetEndarOrig = endarreritsOrig.get(0,cpend);
 			for(int pet = 0; pet < llPetEndarOrig.size(); pet++)
 			{
-				//TODO: revisar...
 				endarrerits.add(0, cpend, endarreritsOrig.get(0,cpend));
 			}
 			
