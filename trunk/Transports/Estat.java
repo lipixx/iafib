@@ -43,7 +43,7 @@ public class Estat {
 					Peticio petActual = llistaPeticions.get(peticioActual);
 					boolean peticioColocada = false; 
 					
-					System.out.println("Quantitat peticio actual: " + petActual.getQuantitat());
+					//System.out.println("Quantitat peticio actual: " + petActual.getQuantitat());
 					
 					/*Recorrem les hores de cada cp (matriu camionsHCP) amb:
 					 *hora hHCP 

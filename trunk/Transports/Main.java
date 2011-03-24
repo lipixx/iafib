@@ -14,7 +14,7 @@ public class Main
     {
 	//Init del problema
 	Global P = new Global();
-	P.iniciaProblemaDefault(6,false);
+	P.iniciaProblemaDefault(20,false);
 	
 	System.out.println("\n#############PETICIONS#############");
 	P.PETICIONS.printPeticions();
@@ -27,6 +27,12 @@ public class Main
 	Matriu endar = e.getEndarrerits();
 	endar.printEndarrerits();
 
+	TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
+	TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
+
+	System.out.println("\n############# Heurístiques #############");
+	System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(e));
+	System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(e));
     }
    
     /**Creacio problema amb HC amb funcio heuristica Max Guanys
