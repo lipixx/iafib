@@ -16,7 +16,8 @@ public class Main
 	Global P = new Global();
 	P.iniciaProblemaDefault(6,false);
 	
-	P.PETICIONS.printPeticions();	      
+	System.out.println("\n#############PETICIONS#############");
+	P.PETICIONS.printPeticions();
 	
 	Estat e = new Estat(P.PETICIONS,P.nT1,P.nT2,P.nT3,true);
 	Matriu chcp = e.getCamionsHCP();

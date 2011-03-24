@@ -41,13 +41,15 @@ public class Estat {
 				for (int peticioActual=0; peticioActual<llistaPeticions.size(); peticioActual++)
 				    {
 					Peticio petActual = llistaPeticions.get(peticioActual);
-					boolean peticioColocada = false;
+					boolean peticioColocada = false; 
+					
+					System.out.println("Quantitat peticio actual: " + petActual.getQuantitat());
 					
 					/*Recorrem les hores de cada cp (matriu camionsHCP) amb:
 					 *hora hHCP 
 					 *c.p. ncp
 					 */
-					for(int hHCP=0; hHCP < Global.HORES_SERVEI && !peticioColocada; hHCP++)
+					for(int hHCP=0; (hHCP < Global.HORES_SERVEI) && (peticioColocada==false); hHCP++)
 					    {
 						
 						Camio camioActual = (Camio) camionsHCP.getObj(hHCP,ncp);
@@ -144,10 +146,12 @@ public class Estat {
 								}
 							}
 						}
-						/*Si arribem aquí (sortim del bucle) vol que no s'ha pogut assignar peticio,
+						/*Si arribem aquí (sortim del bucle) i no s'ha pogut assignar peticio,
 						  per tant la possem al vector endarrerits*/
-						endarrerits.add(0, ncp, petActual);
-						
+						if(peticioColocada == false)
+						{
+							endarrerits.add(0, ncp, petActual);
+						}
 					}
 				}
 			}
