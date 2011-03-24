@@ -86,7 +86,7 @@ public class Estat {
 								}
 							}
 							//Si hi havia camio assignat i si la carrega de la peticio cap dins el camió
-							else if(petActual.getQuantitat() < camioActual.getCarrega())
+							else if(petActual.getQuantitat()+camioActual.getCarrega() <= camioActual.getTipus())
 							{
 								camioActual.addPeticio(petActual);
 								peticioColocada = true;
