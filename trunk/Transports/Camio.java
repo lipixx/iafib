@@ -88,9 +88,8 @@ public class Camio {
 	    for (int i = 0 ; i < llista.size(); i++)
 		{
 		    Peticio actual = llista.get(i);
-		    int h = horaCamio - actual.getHoraLimit();
-		    if (h > 0)
-			nHoresRetras += horaCamio - actual.getHoraLimit();		    
+		    int h = horaCamio - actual.getHoraLimit();// - horaCamio;
+			nHoresRetras += ((h >0) ? h : -h);
 		}
 	  return nHoresRetras;
 	}

@@ -29,7 +29,7 @@ public class TransportsMinDifHoraLimitHoraEntregaHeuristicFunction implements He
 		for (int pet = 0; pet < llistaEndar.size(); pet++)
 		    {
 			Peticio p = llistaEndar.get(pet);			
-			horesPerdudes += 14 + (17 - p.getHoraLimit());
+			horesPerdudes += (14 + (17 - p.getHoraLimit()));
 		    }	
 	    }
 	return horesPerdudes;
