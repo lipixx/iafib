@@ -40,6 +40,7 @@ public class Main
 	Estat estat2 = new Estat(estat1);
 	estat2.treurePeticio(8  -8,1  -1,1  -1);
 	estat2.treurePeticio(12  -8,6  -1,1  -1);
+	estat2.treurePeticio(9  -8,6  -1,4  -1);
 	Matriu chcp2 = estat2.getCamionsHCP();
 	System.out.println("\n#############      ESTAT (Graella HCP)      #############");
 	chcp2.printGraellaHCP();

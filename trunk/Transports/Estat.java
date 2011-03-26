@@ -4,34 +4,40 @@ import java.util.*;
 
 @SuppressWarnings ("unchecked")
 public class Estat {
-    /*@params camionsHCP:Graella per assignar camions a una hora i un c.p. determinat
-     * @params endarrerits: Graella amb una fila i N_CENTRES columnes, on es guarden llistes de peticions
-     *endarrerides més d'un dia
-     */
-    private Matriu camionsHCP;
-    private Matriu endarrerits;
-    
-    /*Constructora que genera l'estat inicial. Els paràmetres que se li passen són únicament aquells que l'usuari pot variar.
-     *@params peticions Matriu de peticions. Aquestes peticions són la llista que ens passen els Centres de Producció
-     * a final de dia.
-     *@params n1 Nombre de camions de tipus 1 dels que disposem.
-     *@params n2 Nombre de camions de tipus 2 dels que disposem.
-     *@params n3 Nombre de camions de tipus 3 dels que disposem.
-     *@params gen1 Estratègia 0 i estratègia 1 de generació de l'estat inicial.
-     */
-    public Estat(Matriu peticions, int n1, int n2, int n3, boolean gen1)
-    {
+	/**@params camionsHCP:Graella per assignar camions a una hora i un c.p. determinat
+	* @params endarrerits: Graella amb una fila i N_CENTRES columnes, on es guarden llistes de peticions
+	*endarrerides més d'un dia
+	*/
+	private Matriu camionsHCP;
+	private Matriu endarrerits;
+	private int numCamionsTipus1;
+	private int numCamionsTipus2;
+	private int numCamionsTipus3;
+	
+	/**Constructora que genera l'estat inicial. Els paràmetres que se li passen són únicament aquells que l'usuari pot variar.
+	*@params peticions Matriu de peticions. Aquestes peticions són la llista que ens passen els Centres de Producció
+	* a final de dia.
+	*@params n1 Nombre de camions de tipus 1 dels que disposem.
+	*@params n2 Nombre de camions de tipus 2 dels que disposem.
+	*@params n3 Nombre de camions de tipus 3 dels que disposem.
+	*@params gen1 Estratègia 0 i estratègia 1 de generació de l'estat inicial.
+	*/
+	public Estat(Matriu peticions, int n1, int n2, int n3, boolean gen1)
+	{
 	camionsHCP = new Matriu(Global.HORES_SERVEI, Global.N_CENTRES);
 	endarrerits = new Matriu(1,Global.N_CENTRES);
+	numCamionsTipus1 = n1;
+	numCamionsTipus2 = n2;
+	numCamionsTipus3 = n3;
 	
 	//Estratègia 1 de generació d'estat inicial
 	if(gen1)
-	    {
+	{
 		//Recorrem la matriu de peticions que ens passem
 		for(int hl=0; hl<Global.HORES_SERVEI; hl++)
-		    {
+		{
 			for(int ncp=0; ncp<Global.N_CENTRES; ncp++)
-			    {
+			{
 				/*Agafem llista de peticions per:
 				 *	Hora limit h
 				 *	Centre de producció ncp
@@ -39,40 +45,37 @@ public class Estat {
 				ArrayList<Peticio> llistaPeticions = peticions.get(hl,ncp);
 				
 				for (int peticioActual=0; peticioActual<llistaPeticions.size(); peticioActual++)
-				    {
+				{
 					Peticio petActual = llistaPeticions.get(peticioActual);
 					boolean peticioColocada = false; 
-					
-					//System.out.println("Quantitat peticio actual: " + petActual.getQuantitat());
-					
 					/*Recorrem les hores de cada cp (matriu camionsHCP) amb:
 					 *hora hHCP 
 					 *c.p. ncp
 					 */
 					for(int hHCP=0; (hHCP < Global.HORES_SERVEI) && (peticioColocada==false); hHCP++)
-					    {
-						
+					{
 						Camio camioActual = (Camio) camionsHCP.getObj(hHCP,ncp);
 						/*Si no hi ha tipus de camio assignat (no serà carrega=0 pq els eliminarem abans)
 							  es crea un nou camio i se li assigna la peticio i el tipus*/
-							if(camioActual == null ) {
-								if(n1 > 0)
+							if(camioActual == null )
+							{
+								if(numCamionsTipus1 > 0)
 								{
-									n1--;
+									numCamionsTipus1--;
 									camioActual = new Camio(Global.T1, petActual);
 									camionsHCP.add(hHCP,ncp,camioActual);
 									peticioColocada = true;
 								}
-								else if (n2 > 0)
+								else if (numCamionsTipus2 > 0)
 								{
-									n2--;
+									numCamionsTipus2--;
 									camioActual = new Camio(Global.T2, petActual);
 									camionsHCP.add(hHCP,ncp,camioActual);
 									peticioColocada = true;
 								}
-								else if(n3 > 0)
+								else if(numCamionsTipus3 > 0)
 								{
-									n3--;
+									numCamionsTipus3--;
 									camioActual = new Camio(Global.T3, petActual);
 									camionsHCP.add(hHCP,ncp,camioActual);
 									peticioColocada = true;
@@ -102,7 +105,7 @@ public class Estat {
 								switch (camioActual.getTipus())
 								{
 									case Global.T1:
-										if(n2 > 0)
+										if(numCamionsTipus2 > 0)
 										{
 											ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
 											Camio camioMesGranTemp = new Camio(Global.T2, llistaPeticionsTemp);
@@ -111,10 +114,10 @@ public class Estat {
 											camionsHCP.add(hHCP, ncp, camioMesGranTemp);
 											
 											peticioColocada = true;
-											n1++;
-											n2--;
+											numCamionsTipus1++;
+											numCamionsTipus2--;
 										}
-										else if(n3 > 0)
+										else if(numCamionsTipus3 > 0)
 										{
 											ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
 											Camio camioMesGranTemp = new Camio(Global.T3, llistaPeticionsTemp);
@@ -123,12 +126,12 @@ public class Estat {
 											camionsHCP.add(hHCP, ncp, camioMesGranTemp);
 											
 											peticioColocada = true;
-											n1++;
-											n3--;
+											numCamionsTipus1++;
+											numCamionsTipus3--;
 										}
 										break;
 									case Global.T2:
-										if(n3 > 0)
+										if(numCamionsTipus3 > 0)
 										{
 											ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
 											Camio camioMesGranTemp = new Camio(Global.T3, llistaPeticionsTemp);
@@ -137,8 +140,8 @@ public class Estat {
 											camionsHCP.add(hHCP, ncp, camioMesGranTemp);
 											
 											peticioColocada = true;
-											n2++;
-											n3--;
+											numCamionsTipus2++;
+											numCamionsTipus3--;
 										}
 										break;
 									default:
@@ -204,19 +207,38 @@ public class Estat {
 // 		camionsHCP.add(hora, cp, c);
 	}
 	
-	/**Eliminem petició del camió assignat a hora hora i cp cp
+	/**Operador per eliminar petició del camió assignat a hora hora i cp cp
 	 * de la posicio posicioPeticio dins la llista de peticions
 	 */
 	public void treurePeticio(int hora, int cp, int posicioPeticio)
 	{
 		Camio camioActual = (Camio) camionsHCP.getObj(hora,cp);
-		if(camioActual == null) return;
+		//supossem hora i cp correctes
+		//if(camioActual == null) return;
 		ArrayList<Peticio> llistaPeticions = camioActual.getLlistaPeticions();
 		
 		Peticio peticioPerEsborrar = llistaPeticions.get(posicioPeticio);
 		endarrerits.add(0, cp, peticioPerEsborrar);
 		
+		//supossem posicio dins dels limits de la llista
 		llistaPeticions.remove(posicioPeticio);
+		
+		if(llistaPeticions.isEmpty())
+		{
+			camionsHCP.remove(hora, cp, camioActual);
+			switch (camioActual.getTipus())
+			{
+				case Global.T1:
+					numCamionsTipus1++;
+					break;
+				case Global.T2:
+					numCamionsTipus2++;
+					break;
+				case Global.T3:
+					numCamionsTipus3++;
+					break;
+			}
+		}
 	}
 	
 	public Matriu getCamionsHCP()
