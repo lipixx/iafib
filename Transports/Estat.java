@@ -177,8 +177,12 @@ public class Estat {
 		{
 			for(int ncp=0; ncp<Global.N_CENTRES; ncp++)
 			{
-				Camio camioActual = new Camio((Camio) camionsHCPOrig.getObj(h,ncp));
-				camionsHCP.add(h,ncp,camioActual);
+				Camio camioOrig = (Camio) camionsHCPOrig.getObj(h,ncp);
+				if(camioOrig != null)
+				{
+					Camio camioActual = new Camio(camioOrig);
+					camionsHCP.add(h,ncp,camioActual);
+				}
 			}
 		}
 		

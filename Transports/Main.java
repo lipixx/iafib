@@ -16,23 +16,39 @@ public class Main
 	Global P = new Global();
 	P.iniciaProblemaDefault(20,false);
 	
-	System.out.println("\n#############PETICIONS#############");
+	System.out.println("\n#############      PETICIONS      #############");
 	P.PETICIONS.printPeticions();
 	
-	Estat e = new Estat(P.PETICIONS,P.nT1,P.nT2,P.nT3,true);
-	Matriu chcp = e.getCamionsHCP();
-	System.out.println("\n#############ESTAT (Graella HCP)#############");
-	chcp.printGraellaHCP();
+	//creem estat1
+	Estat estat1 = new Estat(P.PETICIONS,P.nT1,P.nT2,P.nT3,true);
+	Matriu chcp1 = estat1.getCamionsHCP();
+	System.out.println("\n#############      ESTAT (Graella HCP)      #############");
+	chcp1.printGraellaHCP();
 	System.out.println("\n~~~~Endarrerits~~~~");
-	Matriu endar = e.getEndarrerits();
-	endar.printEndarrerits();
-
+	Matriu endar1 = estat1.getEndarrerits();
+	endar1.printEndarrerits();
+	
 	TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
 	TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
 
-	System.out.println("\n############# Heurístiques #############");
-	System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(e));
-	System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(e));
+	System.out.println("\n#############      Heurístiques      #############");
+	System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estat1));
+	System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estat1));
+	
+	//Dupliquem estat1 a estat2
+	System.out.println("\n=================   ESTAT 2   ==========================");
+	Estat estat2 = new Estat(estat1);
+	Matriu chcp2 = estat2.getCamionsHCP();
+	System.out.println("\n#############      ESTAT (Graella HCP)      #############");
+	chcp2.printGraellaHCP();
+	System.out.println("\n~~~~Endarrerits~~~~");
+	Matriu endar2 = estat2.getEndarrerits();
+	endar2.printEndarrerits();
+	
+
+	System.out.println("\n#############      Heurístiques ESTAT 2      #############");
+	System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estat2));
+	System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estat2));
     }
    
     /**Creacio problema amb HC amb funcio heuristica Max Guanys
