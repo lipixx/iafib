@@ -192,7 +192,7 @@ public class Estat {
 			ArrayList<Peticio> llPetEndarOrig = endarreritsOrig.get(0,cpend);
 			for(int pet = 0; pet < llPetEndarOrig.size(); pet++)
 			{
-				endarrerits.add(0, cpend, endarreritsOrig.get(0,cpend));
+				endarrerits.add(0, cpend, llPetEndarOrig.get(pet));
 			}
 			
 		}
@@ -206,9 +206,10 @@ public class Estat {
 	}
 	
 	//Quan s'elimina un transport s'ha de fer un remove (Matriu.java) del camio
-	public void treurePeticio(int hora, int cp)
+	public void treurePeticio(int hora, int cp, int posicioPeticio)
 	{
 		//TODO
+		
 	}
 	
 	public Matriu getCamionsHCP()
