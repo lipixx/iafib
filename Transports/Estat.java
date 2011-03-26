@@ -194,7 +194,6 @@ public class Estat {
 			{
 				endarrerits.add(0, cpend, llPetEndarOrig.get(pet));
 			}
-			
 		}
 	}
 	
@@ -205,11 +204,19 @@ public class Estat {
 // 		camionsHCP.add(hora, cp, c);
 	}
 	
-	//Quan s'elimina un transport s'ha de fer un remove (Matriu.java) del camio
+	/**Eliminem petició del camió assignat a hora hora i cp cp
+	 * de la posicio posicioPeticio dins la llista de peticions
+	 */
 	public void treurePeticio(int hora, int cp, int posicioPeticio)
 	{
-		//TODO
+		Camio camioActual = (Camio) camionsHCP.getObj(hora,cp);
+		if(camioActual == null) return;
+		ArrayList<Peticio> llistaPeticions = camioActual.getLlistaPeticions();
 		
+		Peticio peticioPerEsborrar = llistaPeticions.get(posicioPeticio);
+		endarrerits.add(0, cp, peticioPerEsborrar);
+		
+		llistaPeticions.remove(posicioPeticio);
 	}
 	
 	public Matriu getCamionsHCP()
