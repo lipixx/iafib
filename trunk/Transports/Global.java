@@ -85,6 +85,61 @@ public class Global {
 		this.PETICIONS.add(8,0,new Peticio(12,500,16));
 		this.PETICIONS.add(8,0,new Peticio(13,200,16));
 		this.PETICIONS.add(9,0,new Peticio(14,400,17));
+		
+		
+		
+		this.PETICIONS.add(0,0,new Peticio(111,500,8));
+		this.PETICIONS.add(0,0,new Peticio(112,500,8));
+		this.PETICIONS.add(0,0,new Peticio(113,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(112,500,8));
+		this.PETICIONS.add(0,0,new Peticio(113,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(112,500,8));
+		this.PETICIONS.add(0,0,new Peticio(113,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(112,500,8));
+		this.PETICIONS.add(0,0,new Peticio(113,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(112,500,8));
+		this.PETICIONS.add(0,0,new Peticio(113,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(112,500,8));
+		this.PETICIONS.add(0,0,new Peticio(113,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(112,500,8));
+		this.PETICIONS.add(0,0,new Peticio(113,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(112,500,8));
+		this.PETICIONS.add(0,0,new Peticio(113,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		this.PETICIONS.add(0,0,new Peticio(114,500,8));
+		
+		
+		
 		this.PETICIONS.add(0,1,new Peticio(15,300,8));
 		this.PETICIONS.add(3,1,new Peticio(16,300,11));
 		this.PETICIONS.add(4,1,new Peticio(17,300,12));
