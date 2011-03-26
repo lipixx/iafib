@@ -138,7 +138,7 @@ public class Matriu {
 				System.out.println("      ->Camió: "+c.getTipus()+"kg , carregat amb: "+c.getCarrega()+"kg");
 				for (int l=0;l<llista.size();l++)
 				    {
-					Peticio p = (Peticio) llista.get(l);
+					Peticio p = llista.get(l);
 					int id,qtt,h;
 					id = p.getIdProducte(); qtt = p.getQuantitat(); h = p.getHoraLimit();   
 					System.out.println("           ->@Pet. id: "+id+" , Qtt: "+qtt+" , Hl: "+h);
