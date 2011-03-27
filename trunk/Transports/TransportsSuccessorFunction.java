@@ -15,15 +15,6 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 		Matriu endarrerits = estatPare.getEndarrerits();
 		List<Successor> successors = new ArrayList<Successor>();
 		
-		//TODO, placeholder variables
-		int centreProduccio=0;
-		int hora=0;
-		int pesPeticio=0;
-		Estat estatFillProva = possarPeticioA(estatPare, centreProduccio, hora);
-		successors.add(new Successor("possar Peticio A " + centreProduccio + " " + hora + " " + pesPeticio, estatFillProva));
-		successors.add(new Successor("treure Peticio De " + centreProduccio + " " + hora + " " + pesPeticio, estatFillProva));
-		//final placeholder
-		
 		//Generacio de successors: eliminar peticions, afegir peticions on capiguen, etc
 		//Generem estats treient peticions una a una
 		for (int cp = 0; cp < Global.N_CENTRES; cp++)
@@ -37,7 +28,8 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 					for(int pet = 0; pet < llistaPeticions.size(); pet++)
 					{
 						Estat estatFill = treurePeticioDe(estatPare, h, cp, pet);
-						int pesPet = llistaPeticions.get(pet).getQuantitat();
+						Peticio petActual = llistaPeticions.get(pet);
+						int pesPet = petActual.getQuantitat();
 						Successor suc = new Successor("treure Peticio de CP: " +
 								cp + " hora: " + h + " pes: " + pesPet, estatFill);
 						successors.add(suc);
@@ -45,7 +37,7 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 				}
 			}
 		}
-		//TODO: Generem estats afegint peticions no assignades (= endarrerides)
+		//Generem estats afegint peticions no assignades (= endarrerides)
 		//únicament a camions on hi capiguen
 		Matriu peticionsEndarrerides = estatPare.getEndarrerits();
 		for(int cpEnd = 0; cpEnd < Global.N_CENTRES; cpEnd++)
@@ -53,23 +45,38 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 			ArrayList<Peticio> llistaPeticions = Global.PETICIONS.get(0,cpEnd);
 			for (int pet = 0; pet < llistaPeticions.size(); pet++)
 			{
+				Peticio petActual = llistaPeticions.get(pet);
 				for(int hl = 0; hl < Global.HORES_SERVEI; hl++)
 				{
-					
+					Camio camioActual = (Camio) camionsHCP.getObj(hl,cpEnd);
+					if(petActual.getQuantitat()+camioActual.getCarrega() <= camioActual.getTipus())
+					{
+						Estat estatFill = possarPeticioA(estatPare, hl, cpEnd, petActual);
+						int pesPet = llistaPeticions.get(pet).getQuantitat();
+						Successor suc = new Successor("possar Peticio a CP: " +
+								cpEnd + " hora: " + hl + " pes: " + pesPet, estatFill);
+						successors.add(suc);
+					}
+					//Generem estats afegint peticions modificant el tipus de camió si fa falta
+					else
+					{
+						
+					}
 				}
 			}
 		}
 		
-		//TODO: Generem estats afegint peticions modificant el tipus de camió si fa falta
+		
 		
 		return successors;
 	}
 	
 	//TODO, placeholder return
-	private Estat possarPeticioA(Estat estatPare, int cp, int hora)
+	private Estat possarPeticioA(Estat estatPare, int hora, int cp, Peticio pet)
 	{
 		Estat estatFill = new Estat(estatPare);
-		return new Estat(new Matriu(0,0), 1,2,3, true);
+		estatFill.afegirPeticio(hora, cp, pet);
+		return estatFill;
 	}
 	
 	private Estat treurePeticioDe(Estat estatPare, int hora, int cp, int posicioPeticio)
