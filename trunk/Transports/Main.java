@@ -16,28 +16,28 @@ public class Main
     public static void main (String args[])
     {
 		Global P = new Global();
-		P.iniciaProblemaDefault(20,false);
+		P.iniciaProblemaDefault(6,false);
 		
-		TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, true);
-		TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, true);
+		TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.LINEAL);
+		TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.LINEAL);
 		
-		/*
+
 		//Init del problema
-		Global P = new Global();
-		P.iniciaProblemaDefault(20,false);
-		
+		//Global P = new Global();
+		//P.iniciaProblemaDefault(20,false);
+		/*
 		System.out.println("\n#############      PETICIONS      #############");
 		P.PETICIONS.printPeticions();
 		
 		//creem estat1
-		Estat estat1 = new Estat(P.PETICIONS,P.nT1,P.nT2,P.nT3,true);
+		Estat estat1 = new Estat(P.PETICIONS,P.nT1,P.nT2,P.nT3,Global.MAX_COMPACT);
 		Matriu chcp1 = estat1.getCamionsHCP();
 		System.out.println("\n#############      ESTAT (Graella HCP)      #############");
 		chcp1.printGraellaHCP();
 		System.out.println("\n~~~~Endarrerits~~~~");
 		Matriu endar1 = estat1.getEndarrerits();
 		endar1.printEndarrerits();
-		
+				
 		TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
 		TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
 
@@ -70,14 +70,13 @@ public class Main
     }
    
     /**Creacio problema amb HillClimbing amb funcio heuristica Max Guanys
-     * @param gen1 Es true si fem servir estragia num 1 de generació
-	 * d'estat inicial, false si num 2
+     * @param gen Tipus d'estratègia a utilitzar (Global.LINEAL, Global.MAX_COMPACT)
      */
-    private static void TransportsHillClimbingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, boolean gen1) {
+    private static void TransportsHillClimbingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, int gen) {
 		System.out.println("\nTransports HillClimbing Maximitzar Beneficis -->");
 		try {
 			Problem problem = new Problem(
-				new Estat(peticions, n1, n2, n3, gen1),
+				new Estat(peticions, n1, n2, n3, gen),
 				new TransportsSuccessorFunction(),
 				new TransportsGoalTest(),
 				new TransportsMaxGuanysHeuristicFunction());
@@ -111,15 +110,14 @@ public class Main
 		}
 	}
 	
-	/**Creacio problema amb HillClimbing amb funcio heuristica Min Dif Hora
-     * @param gen1 Es true si fem servir estragia num 1 de generació
-	 * d'estat inicial, false si num 2
+    /**Creacio problema amb HillClimbing amb funcio heuristica Min Dif Hora
+     * @param gen Tipus d'estratègia a utilitzar (Global.LINEAL, Global.MAX_COMPACT)     
      */
-	private static void TransportsHillClimbingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3, boolean gen1) {
+	private static void TransportsHillClimbingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3, int gen) {
 		System.out.println("\nTransports HillClimbing Min Dif Hora  -->");
 		try {
 			Problem problem = new Problem(
-				new Estat(peticions, n1, n2, n3, gen1),
+				new Estat(peticions, n1, n2, n3, gen),
 				new TransportsSuccessorFunction(),
 				new TransportsGoalTest(),
 				new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
@@ -140,6 +138,11 @@ public class Main
 			Matriu endarrerits = estatFinal.getEndarrerits();
 			endarrerits.printEndarrerits();
 
+			TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
+			TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
+			System.out.println("\n#############      Heurístiques ESTAT FINAL      #############");
+			System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal) * -1);
+			System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));
 
 			printInstrumentation(agent.getInstrumentation());
 		} catch (Exception e) {
