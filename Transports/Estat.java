@@ -200,11 +200,17 @@ public class Estat {
 		}
 	}
 	
-	//Operador per assignar una peticio a hora hora  i c.p. cp
-	public void afegirPeticio(int hora, int cp)
+	/**Operador per assignar una peticio pet a hora hora  i c.p. cp
+	 * només si cap a dins del camió
+	 */
+	public void afegirPeticio(int hora, int cp, Peticio pet)
 	{
-// 	  TODO
-// 		camionsHCP.add(hora, cp, c);
+		Camio camioActual = (Camio) camionsHCP.getObj(hora,cp);
+		
+		if(pet.getQuantitat()+camioActual.getCarrega() <= camioActual.getTipus())
+		{
+			camioActual.addPeticio(pet);
+		}
 	}
 	
 	/**Operador per eliminar petició del camió assignat a hora hora i cp cp
@@ -221,9 +227,9 @@ public class Estat {
 		endarrerits.add(0, cp, peticioPerEsborrar);
 		
 		//supossem posicio dins dels limits de la llista
-		llistaPeticions.remove(posicioPeticio);
+		camioActual.removePeticio(posicioPeticio);
 		
-		if(llistaPeticions.isEmpty())
+		if(camioActual.getLlistaPeticions().isEmpty())
 		{
 			camionsHCP.remove(hora, cp, camioActual);
 			switch (camioActual.getTipus())

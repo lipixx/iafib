@@ -66,6 +66,14 @@ public class Camio {
 		llista.add(p);
 		carrega += p.getQuantitat();
 	}
+	
+	public void removePeticio(int posicioPeticio)
+	{
+		Peticio peticioPerEsborrar = llista.get(posicioPeticio);
+		carrega -= peticioPerEsborrar.getQuantitat();
+		llista.remove(posicioPeticio);
+	}
+	
 	public double getBeneficis(int horaCamio)
 	{
 		double benefici_total = 0;
