@@ -31,7 +31,8 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 						Peticio petActual = llistaPeticions.get(pet);
 						int pesPet = petActual.getQuantitat();
 						Successor suc = new Successor("treure Peticio de CP: " +
-								cp + " hora: " + h + " pes: " + pesPet, estatFill);
+								cp + " hora: " + h + " pes: " + pesPet +
+								estatFill.getValorsHeuristics(), estatFill);
 						successors.add(suc);
 					}
 				}
@@ -49,18 +50,27 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 				for(int hl = 0; hl < Global.HORES_SERVEI; hl++)
 				{
 					Camio camioActual = (Camio) camionsHCP.getObj(hl,cpEnd);
-					if(petActual.getQuantitat()+camioActual.getCarrega() <= camioActual.getTipus())
+					//Si no hi havia camió
+					if(camioActual == null)
 					{
-						Estat estatFill = possarPeticioA(estatPare, hl, cpEnd, petActual);
-						int pesPet = llistaPeticions.get(pet).getQuantitat();
-						Successor suc = new Successor("possar Peticio a CP: " +
-								cpEnd + " hora: " + hl + " pes: " + pesPet, estatFill);
-						successors.add(suc);
+						//TODO
 					}
-					//Generem estats afegint peticions modificant el tipus de camió si fa falta
-					else
-					{
-						
+					//Si  hi havia camió
+					else {
+						if(petActual.getQuantitat()+camioActual.getCarrega() <= camioActual.getTipus())
+						{
+							Estat estatFill = possarPeticioA(estatPare, hl, cpEnd, petActual);
+							int pesPet = llistaPeticions.get(pet).getQuantitat();
+							Successor suc = new Successor("possar Peticio a CP: " +
+									cpEnd + " hora: " + hl + " pes: " + pesPet +
+									estatFill.getValorsHeuristics(), estatFill);
+							successors.add(suc);
+						}
+						//Generem estats afegint peticions modificant el tipus de camió si fa falta
+						else
+						{
+							//TODO
+						}
 					}
 				}
 			}
@@ -71,7 +81,6 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 		return successors;
 	}
 	
-	//TODO, placeholder return
 	private Estat possarPeticioA(Estat estatPare, int hora, int cp, Peticio pet)
 	{
 		Estat estatFill = new Estat(estatPare);
