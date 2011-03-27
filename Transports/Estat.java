@@ -247,6 +247,16 @@ public class Estat {
 		}
 	}
 	
+	public String getValorsHeuristics()
+	{
+		TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
+		TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
+		
+		String valor = " || Max Guanys H: " + htmg.getHeuristicValue(this) +
+						" || Min dif hora H: " + htdif.getHeuristicValue(this);
+		return valor;
+	}
+	
 	public Matriu getCamionsHCP()
 	{
 		return camionsHCP;

@@ -5,71 +5,71 @@ import java.util.*;
 
 public class Global {
 
-    /*Enunciat del problema*/
-    public static int H_INI = 8;
-    public static int H_FI = 17;
-    public static int HORES_SERVEI = H_FI - H_INI + 1;
-    public static int N_CENTRES = 6;
-    
-    /*Tipus i nombre de Transports*/
-    public static final int T1 = 500;
-    public static final int T2 = 1000;
-    public static final int T3 = 2000;    
-    public static int nT1 = 20;
-    public static int nT2 = 20;
-    public static int nT3 = 20;
+	/*Enunciat del problema*/
+	public static int H_INI = 8;
+	public static int H_FI = 17;
+	public static int HORES_SERVEI = H_FI - H_INI + 1;
+	public static int N_CENTRES = 6;
+	
+	/*Tipus i nombre de Transports*/
+	public static final int T1 = 500;
+	public static final int T2 = 1000;
+	public static final int T3 = 2000;    
+	public static int nT1 = 20;
+	public static int nT2 = 20;
+	public static int nT3 = 20;
 
-    public static double preus_transport[] = { 100, 200, 300*1.5, 400*1.5, 500*2 };
+	public static double preus_transport[] = { 100, 200, 300*1.5, 400*1.5, 500*2 };
 
-    /*Vector de peticions, conté N_CENTRES vectors, on
-     a cada vector hi ha les peticions del centre*/
-    public static Matriu PETICIONS;
+	/*Vector de peticions, conté N_CENTRES vectors, on
+	a cada vector hi ha les peticions del centre*/
+	public static Matriu PETICIONS;
 
-    public Global()
-    {
-	PETICIONS = new Matriu(HORES_SERVEI,N_CENTRES);
-    }
+	public Global()
+	{
+		PETICIONS = new Matriu(HORES_SERVEI,N_CENTRES);
+	}
 
-    /*@descr Genera peticions i les inserta dins la matriu PETICIONS.
-     *@params numPeticions Nombre de peticions a generar de forma aleatoria per cada centre
-     i hora límit. Si no és aleatoria, es genera un problema predeterminat.
-     *@params aleatori Determina si es genera el problema de forma aleatoria o predeterminada.     
-     *@post S'ha omplert la matriu PETICIONS amb peticions.
-     */
-    public void iniciaProblemaDefault(int numPeticions,boolean aleatori)
-    {
+	/*@descr Genera peticions i les inserta dins la matriu PETICIONS.
+	*@params numPeticions Nombre de peticions a generar de forma aleatoria per cada centre
+	i hora límit. Si no és aleatoria, es genera un problema predeterminat.
+	*@params aleatori Determina si es genera el problema de forma aleatoria o predeterminada.     
+	*@post S'ha omplert la matriu PETICIONS amb peticions.
+	*/
+	public void iniciaProblemaDefault(int numPeticions,boolean aleatori)
+	{
 	Random generator = new Random(System.currentTimeMillis());
 	int g = generator.nextInt();
 	
 	if (aleatori)
-	    {
+		{
 		//Problema generat de manera aleatoria amb numPeticions
 		/*
-		 * En aquest cas les HORES_SERVEI de la graella PETICIONS venen a ser
-		 * les hores límit. La info està duplicada a la graella i a la petició,
-		 * però ja ens va bé perquè així podem accedir de forma directe a la graella
-		 * i a la vegada quan tenim una petició a un altre lloc, saber on està.
-		 */
+		* En aquest cas les HORES_SERVEI de la graella PETICIONS venen a ser
+		* les hores límit. La info està duplicada a la graella i a la petició,
+		* però ja ens va bé perquè així podem accedir de forma directe a la graella
+		* i a la vegada quan tenim una petició a un altre lloc, saber on està.
+		*/
 		int id = 0;
 		for (int nc = 0; nc < N_CENTRES; nc++)
-		    for (int hslimit = 0; hslimit < HORES_SERVEI; hslimit++)
+			for (int hslimit = 0; hslimit < HORES_SERVEI; hslimit++)
 			{
-			    //Definim el num. de peticions que generarem per aquest centre i hora limit
-			    int numPetCentre = generator.nextInt()%numPeticions + 1;
-			    //Les generem
-			    for (int numP = 0; numP < numPetCentre; numP++)
+				//Definim el num. de peticions que generarem per aquest centre i hora limit
+				int numPetCentre = generator.nextInt()%numPeticions + 1;
+				//Les generem
+				for (int numP = 0; numP < numPetCentre; numP++)
 				{				    
-				    int pes = ((generator.nextInt()%500 + 100) / 100) * 100;
-				    if (pes < 0) pes = pes*-1;
-				    if (pes == 0) pes = 500;
-				    Peticio pi = new Peticio(++id,pes,hslimit+8);
-				    //PETICIONS.add(Hora_limit,Centre,Peticio)
-				    this.PETICIONS.add(hslimit,nc,pi);
+					int pes = ((generator.nextInt()%500 + 100) / 100) * 100;
+					if (pes < 0) pes = pes*-1;
+					if (pes == 0) pes = 500;
+					Peticio pi = new Peticio(++id,pes,hslimit+8);
+					//PETICIONS.add(Hora_limit,Centre,Peticio)
+					this.PETICIONS.add(hslimit,nc,pi);
 				}
 			}
-	    }
+		}
 	else
-	    {
+		{
 		//Problema generat de forma estàtica i per defecte
 		this.PETICIONS.add(0,0,new Peticio(1,500,8));
 		this.PETICIONS.add(0,0,new Peticio(2,300,8));
@@ -87,7 +87,7 @@ public class Global {
 		this.PETICIONS.add(9,0,new Peticio(14,400,17));
 		
 		
-		
+		/*
 		this.PETICIONS.add(0,0,new Peticio(111,500,8));
 		this.PETICIONS.add(0,0,new Peticio(112,500,8));
 		this.PETICIONS.add(0,0,new Peticio(113,500,8));
@@ -137,7 +137,7 @@ public class Global {
 		this.PETICIONS.add(0,0,new Peticio(114,500,8));
 		this.PETICIONS.add(0,0,new Peticio(114,500,8));
 		this.PETICIONS.add(0,0,new Peticio(114,500,8));
-		
+		*/
 		
 		
 		this.PETICIONS.add(0,1,new Peticio(15,300,8));
@@ -194,6 +194,6 @@ public class Global {
 		this.PETICIONS.add(6,5,new Peticio(66,400,14));
 		this.PETICIONS.add(8,5,new Peticio(67,500,16));
 		this.PETICIONS.add(9,5,new Peticio(68,300,17));
-	    }
-    }
+		}
+	}
 }
