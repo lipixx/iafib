@@ -19,6 +19,7 @@ public class Main
 		P.iniciaProblemaDefault(20,false);
 		
 		TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, true);
+		TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, true);
 		
 		/*
 		//Init del problema
@@ -73,7 +74,7 @@ public class Main
 	 * d'estat inicial, false si num 2
      */
     private static void TransportsHillClimbingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, boolean gen1) {
-		System.out.println("\nTransports HillClimbing  -->");
+		System.out.println("\nTransports HillClimbing Maximitzar Beneficis -->");
 		try {
 			Problem problem = new Problem(
 				new Estat(peticions, n1, n2, n3, gen1),
@@ -101,7 +102,7 @@ public class Main
 			TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
 			TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
 			System.out.println("\n#############      Heurístiques ESTAT FINAL      #############");
-			System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal));
+			System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal) * -1);
 			System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));
 			
 			
@@ -115,7 +116,7 @@ public class Main
 	 * d'estat inicial, false si num 2
      */
 	private static void TransportsHillClimbingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3, boolean gen1) {
-		System.out.println("\nTransports HillClimbing  -->");
+		System.out.println("\nTransports HillClimbing Min Dif Hora  -->");
 		try {
 			Problem problem = new Problem(
 				new Estat(peticions, n1, n2, n3, gen1),
@@ -129,6 +130,17 @@ public class Main
 			printActions(agent.getActions());
 			System.out.println("Search Outcome=" + search.getOutcome());
 			System.out.println("Final State=\n" + search.getLastSearchState());
+
+
+			Estat estatFinal = (Estat) search.getLastSearchState();
+			Matriu chcp = estatFinal.getCamionsHCP();
+			System.out.println("\n#############      ESTAT FINAL (Graella Hores-CP)      #############");
+			chcp.printGraellaHCP();
+			System.out.println("\nn#############      Endarrerits      #############");
+			Matriu endarrerits = estatFinal.getEndarrerits();
+			endarrerits.printEndarrerits();
+
+
 			printInstrumentation(agent.getInstrumentation());
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -35,7 +35,7 @@ public class TransportsMaxGuanysHeuristicFunction implements HeuristicFunction
 			beneficis -= Global.preus_transport[p.getQuantitat()/100 -1];
 		    }
 	    }	
-	return beneficis;
+	return beneficis*-1;
 	
     }
 }
