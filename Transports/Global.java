@@ -21,6 +21,11 @@ public class Global {
 
 	public static double preus_transport[] = { 100, 200, 300*1.5, 400*1.5, 500*2 };
 
+        /*Tipus d'estratègies de generació inicial que tenim*/    
+    public static final int LINEAL = 0;
+    public static final int MAX_COMPACT = 1;
+    
+
 	/*Vector de peticions, conté N_CENTRES vectors, on
 	a cada vector hi ha les peticions del centre*/
 	public static Matriu PETICIONS;

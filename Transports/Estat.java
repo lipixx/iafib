@@ -22,7 +22,7 @@ public class Estat {
 	*@params n3 Nombre de camions de tipus 3 dels que disposem.
 	*@params gen1 Estratègia 0 i estratègia 1 de generació de l'estat inicial.
 	*/
-	public Estat(Matriu peticions, int n1, int n2, int n3, boolean gen1)
+	public Estat(Matriu peticions, int n1, int n2, int n3, int gen)
 	{
 	camionsHCP = new Matriu(Global.HORES_SERVEI, Global.N_CENTRES);
 	endarrerits = new Matriu(1,Global.N_CENTRES);
@@ -31,7 +31,7 @@ public class Estat {
 	numCamionsTipus3 = n3;
 	
 	//Estratègia 1 de generació d'estat inicial
-	if(gen1)
+	if(gen == Global.LINEAL)
 	{
 		//Recorrem la matriu de peticions que ens passem
 		for(int hl=0; hl<Global.HORES_SERVEI; hl++)
@@ -160,15 +160,111 @@ public class Estat {
 			}
 		}
 		//Estrageia 2 de generacio d'estat inicial
-		else
+	else 
+	    if (gen == Global.MAX_COMPACT)
 		{
-			//TODO:
-			//un voraz!
-		}
+		    for(int hl=0; hl<Global.HORES_SERVEI; hl++)
+			{
+			    for(int ncp=0; ncp<Global.N_CENTRES; ncp++)
+				{
+				    ArrayList<Peticio> llistaPeticions = peticions.get(hl,ncp);
+				    
+				    for (int peticioActual=0; peticioActual<llistaPeticions.size(); peticioActual++)
+					{
+					    Peticio petActual = llistaPeticions.get(peticioActual);
+					    boolean peticioColocada = false; 
+					    
+					    int hHCP = hl;
+					    
+					    Camio camioActual = (Camio) camionsHCP.getObj(hHCP,ncp);			    
+					    if(camioActual == null )
+						{
+						    if(numCamionsTipus1 > 0)
+							{
+							    numCamionsTipus1--;
+							    camioActual = new Camio(Global.T1, petActual);
+							    camionsHCP.add(hHCP,ncp,camioActual);
+							    peticioColocada = true;
+							}
+						    else if (numCamionsTipus2 > 0)
+							{
+							    numCamionsTipus2--;
+							    camioActual = new Camio(Global.T2, petActual);
+							    camionsHCP.add(hHCP,ncp,camioActual);
+							    peticioColocada = true;
+							}
+						    else if(numCamionsTipus3 > 0)
+							{
+							    numCamionsTipus3--;
+							    camioActual = new Camio(Global.T3, petActual);
+							    camionsHCP.add(hHCP,ncp,camioActual);
+							    peticioColocada = true;
+							}
+						}						    
+					    else
+						if(petActual.getQuantitat()+camioActual.getCarrega() <= camioActual.getTipus())
+						    {
+							camioActual.addPeticio(petActual);
+							peticioColocada = true;
+						    }						    
+						else
+						    {
+							switch (camioActual.getTipus())
+							    {
+							    case Global.T1:
+								if(numCamionsTipus2 > 0)
+								    {
+									ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
+									Camio camioMesGranTemp = new Camio(Global.T2, llistaPeticionsTemp);
+									camioMesGranTemp.addPeticio(petActual);
+									camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
+									camionsHCP.add(hHCP, ncp, camioMesGranTemp);
+									peticioColocada = true;
+									numCamionsTipus1++;
+									numCamionsTipus2--;
+								    }
+								else if(numCamionsTipus3 > 0)
+								    {
+									ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
+									Camio camioMesGranTemp = new Camio(Global.T3, llistaPeticionsTemp);
+									camioMesGranTemp.addPeticio(petActual);
+									camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
+									camionsHCP.add(hHCP, ncp, camioMesGranTemp);
+									peticioColocada = true;
+									numCamionsTipus1++;
+									numCamionsTipus3--;
+								    }
+								break;
+							    case Global.T2:
+								if(numCamionsTipus3 > 0)
+								    {
+									ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
+									Camio camioMesGranTemp = new Camio(Global.T3, llistaPeticionsTemp);
+									camioMesGranTemp.addPeticio(petActual);
+									camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
+									camionsHCP.add(hHCP, ncp, camioMesGranTemp);
+									peticioColocada = true;
+									numCamionsTipus2++;
+									numCamionsTipus3--;
+								    }
+								break;
+							    default:
+								break;
+							    }
+						    }
+					    
+					    if(peticioColocada == false)
+						{
+						    endarrerits.add(0, ncp, petActual);
+						}
+					}
+				}
+			}
+		}	
 	}
-	
-	//Constructora d'estat per copia
-	public Estat(Estat st)
+    
+    //Constructora d'estat per copia
+    public Estat(Estat st)
 	{
 		camionsHCP = new Matriu(Global.HORES_SERVEI, Global.N_CENTRES);
 		endarrerits = new Matriu(1,Global.N_CENTRES);
