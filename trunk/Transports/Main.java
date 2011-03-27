@@ -38,9 +38,13 @@ public class Main
 	//Dupliquem estat1 a estat2
 	System.out.println("\n=================   ESTAT 2   ==========================");
 	Estat estat2 = new Estat(estat1);
-	estat2.treurePeticio(8  -8,1  -1,1  -1);
-	estat2.treurePeticio(12  -8,6  -1,1  -1);
-	estat2.treurePeticio(9  -8,6  -1,4  -1);
+	estat2.treurePeticio(8  -8, 1  -1, 1  -1);
+	//camio inexistent
+// 	estat2.treurePeticio(12  -8, 6  -1, 1  -1);
+	//petició inexistent
+// 	estat2.treurePeticio(9  -8, 6  -1, 4  -1);
+	estat2.treurePeticio(9  -8, 6  -1, 2  -1);
+	estat2.afegirPeticio(9  -8, 6  -1, new Peticio(666,500,9));
 	Matriu chcp2 = estat2.getCamionsHCP();
 	System.out.println("\n#############      ESTAT (Graella HCP)      #############");
 	chcp2.printGraellaHCP();
@@ -55,7 +59,8 @@ public class Main
     }
    
     /**Creacio problema amb HC amb funcio heuristica Max Guanys
-     * @param gen1 Es true si fem servir estragia num 1 de generacio d'estat inicial, false si num 2
+     * @param gen1 Es true si fem servir estragia num 1 de generació
+	 * d'estat inicial, false si num 2
      */
     private static void TransportsHillClimbingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, boolean gen1) {
 	System.out.println("\nTransports HillClimbing  -->");
@@ -78,6 +83,10 @@ public class Main
 	}
 	}
 	
+	/**Creacio problema amb HC amb funcio heuristica Min Dif Hora
+     * @param gen1 Es true si fem servir estragia num 1 de generació
+	 * d'estat inicial, false si num 2
+     */
 	private static void TransportsHillClimbingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3, boolean gen1) {
 	System.out.println("\nTransports HillClimbing  -->");
 	try {
