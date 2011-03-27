@@ -27,11 +27,11 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 					ArrayList <Peticio> llistaPeticions = camioActual.getLlistaPeticions();
 					for(int pet = 0; pet < llistaPeticions.size(); pet++)
 					{
-						Estat estatFill = treurePeticioDe(estatPare, h, cp, pet);
 						Peticio petActual = llistaPeticions.get(pet);
+						Estat estatFill = treurePeticioDe(estatPare, h, cp, pet);
 						int pesPet = petActual.getQuantitat();
 						Successor suc = new Successor("treure Peticio de CP: " +
-								cp + " hora: " + h + " pes: " + pesPet +
+								(cp+1) + " hora: " + (8-h) + " pes: " + pesPet +
 								estatFill.getValorsHeuristics(), estatFill);
 						successors.add(suc);
 					}
@@ -43,9 +43,10 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 		Matriu peticionsEndarrerides = estatPare.getEndarrerits();
 		for(int cpEnd = 0; cpEnd < Global.N_CENTRES; cpEnd++)
 		{
-			ArrayList<Peticio> llistaPeticions = Global.PETICIONS.get(0,cpEnd);
+			ArrayList<Peticio> llistaPeticions = peticionsEndarrerides.get(0,cpEnd);
 			for (int pet = 0; pet < llistaPeticions.size(); pet++)
 			{
+				System.out.println("BLBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 				Peticio petActual = llistaPeticions.get(pet);
 				for(int hl = 0; hl < Global.HORES_SERVEI; hl++)
 				{
@@ -60,9 +61,9 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 						if(petActual.getQuantitat()+camioActual.getCarrega() <= camioActual.getTipus())
 						{
 							Estat estatFill = possarPeticioA(estatPare, hl, cpEnd, petActual);
-							int pesPet = llistaPeticions.get(pet).getQuantitat();
+							int pesPet = petActual.getQuantitat();
 							Successor suc = new Successor("possar Peticio a CP: " +
-									cpEnd + " hora: " + hl + " pes: " + pesPet +
+									(cpEnd+1) + " hora: " + (8-hl) + " pes: " + pesPet +
 									estatFill.getValorsHeuristics(), estatFill);
 							successors.add(suc);
 						}
