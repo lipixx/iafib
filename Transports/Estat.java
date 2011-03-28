@@ -78,26 +78,19 @@ public class Estat {
                             }
 			    //Si hi havia camió assignat 
 			    else 
-				{
-				    //Si la càrrega de la petició cap dins el camió, afegir-li.
-				    if(petActual.getQuantitat()+camioActual.getCarrega() <= camioActual.getTipus()) {
-					camioActual.addPeticio(petActual);
-					peticioColocada = true; }
-				    //Si la carrega de la peticio NO HI CAP dins el camio
-				    else {
-					/*Si queden camions de capacitat superior lliures, eliminar camio actual
-					 *crear camio nou i possar la petició (junt amb les peticions que ja tenia
-					 *el camio. SINO queden camions de capacitat superior lliures seguim buscant
-					 *dins les hores del dia del c.p. ncp
-					 */
-					peticioColocada = afegeixPeticionsCanviantCamio(petActual,camioActual,hHCP,ncp);
-				    }
+				{				    
+				    /*Intentar afegir la càrrega al camió, i sinó crear-ne un de nou, si es pot.
+				     *Si queden camions de capacitat superior lliures, eliminar camio actual
+				     *crear camio nou i possar la petició (junt amb les peticions que ja tenia
+				     *el camio. SINO queden camions de capacitat superior lliures seguim buscant
+				     *dins les hores del dia del c.p. ncp
+				     */
+				    peticioColocada = afegeixPeticionsCanviantCamio(petActual,camioActual,hHCP,ncp);				    
 				}
-
-			    /*Si arribem aquí (sortim del bucle) i no s'ha pogut assignar peticio,
-			      per tant la possem al vector endarrerits*/			    
-			    if(peticioColocada == false) endarrerits.add(0, ncp, petActual);			  
 			}
+			/*Si arribem aquí (sortim del bucle) i no s'ha pogut assignar peticio,
+			  per tant la possem al vector endarrerits*/			    
+			if(peticioColocada == false) endarrerits.add(0, ncp, petActual);			  
 		    }
 		}
 	    }
@@ -134,17 +127,20 @@ public class Estat {
 				    camionsHCP.add(hHCP,ncp,camioActual);
 				    peticioColocada = true;
 				}
-                        } else if(petActual.getQuantitat()+camioActual.getCarrega() <= camioActual.getTipus()) {
-                            camioActual.addPeticio(petActual);
-                            peticioColocada = true;
-                        } else {
-                            peticioColocada = afegeixPeticionsCanviantCamio(petActual,camioActual,hHCP,ncp);
-                        }
-                        if(peticioColocada == false) {
-                            endarrerits.add(0, ncp, petActual);
-                        }
-                    }
-                }
+                        } 
+			else 
+			    {				    
+				/*Intentar afegir la càrrega al camió, i sinó crear-ne un de nou, si es pot.
+				 *Si queden camions de capacitat superior lliures, eliminar camio actual
+				 *crear camio nou i possar la petició (junt amb les peticions que ja tenia
+				 *el camio. SINO queden camions de capacitat superior lliures seguim buscant
+				 *dins les hores del dia del c.p. ncp
+				 */				
+				peticioColocada = afegeixPeticionsCanviantCamio(petActual,camioActual,hHCP,ncp);				     
+			    }
+			if(peticioColocada == false) endarrerits.add(0, ncp, petActual);		   
+		    }
+		}
             }
         }
     }
