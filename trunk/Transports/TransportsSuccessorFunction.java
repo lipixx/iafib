@@ -1,3 +1,12 @@
+/**
+ * Aquesta classe genera els successors a partir de l'estat passat de la forma següent:
+ * Per cada una de les peticions existents a HCP de l'estat pare:
+ * 1. Eliminem la petició i la posem a endarrerits. Afegim l'estat resultant als successors.
+ * 2. Afegim una petició d'endarrerits on hi càpiga. Afegim l'estat resultant als successors.
+ *
+ * Per tant ens queden el següent nombre d'estats, degut al factor de ramificació:
+ *    Suma de (Num de peticions a HCP + Num de peticions a endarrerits que es puguin afegir a HCP)
+ */
 package Transports;
 
 import java.util.ArrayList;
