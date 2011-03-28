@@ -73,7 +73,11 @@ public class Camio {
 		carrega -= peticioPerEsborrar.getQuantitat();
 		llista.remove(posicioPeticio);
 	}
-	
+
+    /*Recorre la llista de peticions del camió i en calcula els beneficis en funció del retràs i el pes de cada petició.
+     *@params horaCamio Hora en format 24h en que el camió fa el servei.
+     *@return El benefici total que obté aquest camió per la llista de peticions que du.
+     */
 	public double getBeneficis(int horaCamio)
 	{
 		double benefici_total = 0;
@@ -90,6 +94,11 @@ public class Camio {
 		
 		return benefici_total;
 	}
+
+    /*Recorre la llista de peticions del camió i en calcula les hores que es perden per cada petició.
+     *@params horaCamio Hora en format 24h en que el camió fa el servei.
+     *@return La suma de horas perdudes del total de peticions.
+     */
 	public double getHoresPerdudes(int horaCamio)
 	{
 	    int nHoresRetras = 0;

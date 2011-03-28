@@ -1,0 +1,78 @@
+package Transports;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import aima.search.framework.Successor;
+import aima.search.framework.SuccessorFunction;
+
+@SuppressWarnings ("unchecked")
+public class TransportsSuccessorFunction implements SuccessorFunction {
+	
+	public List getSuccessors(Object state) {
+		Estat estatPare = (Estat) state;
+		Matriu camionsHCP = estatPare.getCamionsHCP();
+		Matriu endarrerits = estatPare.getEndarrerits();
+		List<Successor> successors = new ArrayList<Successor>();
+		
+		//Generacio de successors: eliminar peticions, afegir peticions on capiguen, etc
+		//Generem estats treient peticions una a una
+		for (int cp = 0; cp < Global.N_CENTRES; cp++)
+		{
+			for (int h = 0; h < Global.HORES_SERVEI; h++)
+			{
+				Camio camioActual = (Camio) camionsHCP.getObj(h,cp);
+				if(camioActual != null)
+				{
+				    //Anirem camió per camió generant estats diferents.
+				    ArrayList <Peticio> llistaPeticions = camioActual.getLlistaPeticions();
+					
+				    /* Operador d'intercanvi.
+				     * Ordenem endarrerits.
+				     * Eliminem la petició més dolenta.
+				     * Afegim la primera petició d'endarrerit.
+				     */
+				    double pitjorH = 0;
+				    int petPitjor = -1;
+				    Peticio p = null;
+				    for(int pet = 0; pet < llistaPeticions.size(); pet++)
+					{
+					    p = llistaPeticions.get(pet);
+					    
+					    double pseudoHeuristica = Global.preus_transport[p.getQuantitat()/100 -1] -
+						(Global.preus_transport[p.getQuantitat()/100 -1]*(h+Global.H_INI - p.getHoraLimit()));
+					    
+					    if (pseudoHeuristica < pitjorH) pitjorH = pseudoHeuristica; petPitjor = pet;			    
+					}
+				    
+				    
+				    /*Ara que tenim la pitjor petició segons la pseudoHeuristica, l'eliminem i la substituïm per una
+				    altra del vector ordenat d'endarrerits*/
+				    if (petPitjor != -1)
+					{
+					    Estat estatFill = treurePeticioDe(estatPare, h, cp, petPitjor);
+					    estatFill.ordenaEndarrerits(cp);
+					    estatFill.endarreritsACamions(h,cp,p);
+					    Successor suc = new Successor("Nou estat fill.", estatFill);
+					    successors.add(suc);
+					}
+				}
+			}
+		}
+		return successors;
+	}
+	
+	private Estat possarPeticioA(Estat estatPare, int hora, int cp, Peticio pet)
+	{
+		Estat estatFill = new Estat(estatPare);
+		estatFill.afegirPeticio(hora, cp, pet);
+		return estatFill;
+	}
+	
+	private Estat treurePeticioDe(Estat estatPare, int hora, int cp, int posicioPeticio)
+	{
+		Estat estatFill = new Estat(estatPare);
+		estatFill.treurePeticio(hora, cp, posicioPeticio);
+		return estatFill;
+	}
+}

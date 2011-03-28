@@ -20,7 +20,7 @@ public class TransportsMinDifHoraLimitHoraEntregaHeuristicFunction implements He
 		    {
 			Camio c = (Camio) camionsHCP.getObj(h,nc);
 			if (c!=null)
-			    horesPerdudes += c.getHoresPerdudes(h+8);
+			    horesPerdudes += c.getHoresPerdudes(h+Global.H_INI);
 		    }
 		
 		//El vector endarrerits només té una fila, la 0.
@@ -29,7 +29,7 @@ public class TransportsMinDifHoraLimitHoraEntregaHeuristicFunction implements He
 		for (int pet = 0; pet < llistaEndar.size(); pet++)
 		    {
 			Peticio p = llistaEndar.get(pet);			
-			horesPerdudes += (14 + (17 - p.getHoraLimit()));
+			horesPerdudes += (14 + (Global.H_FI - p.getHoraLimit()));
 		    }	
 	    }
 	return horesPerdudes;

@@ -209,48 +209,7 @@ public class Estat {
 						    }						    
 						else
 						    {
-							switch (camioActual.getTipus())
-							    {
-							    case Global.T1:
-								if(numCamionsTipus2 > 0)
-								    {
-									ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
-									Camio camioMesGranTemp = new Camio(Global.T2, llistaPeticionsTemp);
-									camioMesGranTemp.addPeticio(petActual);
-									camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
-									camionsHCP.add(hHCP, ncp, camioMesGranTemp);
-									peticioColocada = true;
-									numCamionsTipus1++;
-									numCamionsTipus2--;
-								    }
-								else if(numCamionsTipus3 > 0)
-								    {
-									ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
-									Camio camioMesGranTemp = new Camio(Global.T3, llistaPeticionsTemp);
-									camioMesGranTemp.addPeticio(petActual);
-									camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
-									camionsHCP.add(hHCP, ncp, camioMesGranTemp);
-									peticioColocada = true;
-									numCamionsTipus1++;
-									numCamionsTipus3--;
-								    }
-								break;
-							    case Global.T2:
-								if(numCamionsTipus3 > 0)
-								    {
-									ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
-									Camio camioMesGranTemp = new Camio(Global.T3, llistaPeticionsTemp);
-									camioMesGranTemp.addPeticio(petActual);
-									camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
-									camionsHCP.add(hHCP, ncp, camioMesGranTemp);
-									peticioColocada = true;
-									numCamionsTipus2++;
-									numCamionsTipus3--;
-								    }
-								break;
-							    default:
-								break;
-							    }
+							peticioColocada = afegeixPeticionsCanviantCamio(petActual,camioActual,hHCP,ncp);
 						    }
 					    
 					    if(peticioColocada == false)
@@ -308,42 +267,129 @@ public class Estat {
 			camioActual.addPeticio(pet);
 		}
 	}
-	
-	/**Operador per eliminar petició del camió assignat a hora hora i cp cp
-	 * de la posicio posicioPeticio dins la llista de peticions
+
+
+    /**
+     * Operador per assignar una peticio d'endarrerits a un camió.
+     * @params ultima Petició que no re-assignarem al camió.
+     */
+    public void endarreritsACamions(int h, int cp, Peticio ultima)
+    {
+	ArrayList<Peticio> llistaEndar = endarrerits.get(0,cp);
+	Camio camioActual = (Camio) camionsHCP.getObj(h,cp);
+	for (int i = 0; i != -1 && i < llistaEndar.size(); i++)
+	    {		
+		Peticio pet = llistaEndar.get(i);
+		if (pet != ultima)
+		    {
+			afegeixPeticionsCanviantCamio(pet,camioActual, h, cp);
+			i = -1;
+		    }
+	    }
+    }
+    
+
+	/**
+	 * Afegeix peticions 
 	 */
-	public void treurePeticio(int hora, int cp, int posicioPeticio)
-	{
-		Camio camioActual = (Camio) camionsHCP.getObj(hora,cp);
-		//supossem hora i cp correctes
-		//if(camioActual == null) return;
-		ArrayList<Peticio> llistaPeticions = camioActual.getLlistaPeticions();
-		
-		Peticio peticioPerEsborrar = llistaPeticions.get(posicioPeticio);
-		endarrerits.add(0, cp, peticioPerEsborrar);
-		
+    public boolean afegeixPeticionsCanviantCamio(Peticio pet, Camio camioActual, int hHCP, int ncp)
+	    {
+		if (pet.getQuantitat()+camioActual.getCarrega() <= camioActual.getTipus())
+		    {
+			camioActual.addPeticio(pet);
+			return true;
+		    }
+		else
+		    {
+			Camio camioMesGranTemp = null;			
+			switch (camioActual.getTipus())
+			    {
+			    case Global.T1:
+				if(numCamionsTipus2 > 0)
+				    {
+					ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
+					camioMesGranTemp = new Camio(Global.T2, llistaPeticionsTemp);
+					numCamionsTipus1++;
+					numCamionsTipus2--;
+				    }
+				else
+				    if(numCamionsTipus3 > 0)
+					{
+					    ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
+					    camioMesGranTemp = new Camio(Global.T3, llistaPeticionsTemp);
+					    numCamionsTipus1++;
+					    numCamionsTipus3--;
+					}
+				break;
+			    case Global.T2:
+				if(numCamionsTipus3 > 0)
+				    {
+					ArrayList <Peticio> llistaPeticionsTemp = camioActual.getLlistaPeticions();
+					camioMesGranTemp = new Camio(Global.T3, llistaPeticionsTemp);			
+					numCamionsTipus2++;
+					numCamionsTipus3--;
+				    }
+				break;
+			    default:
+				break;
+			    }
+			if (camioMesGranTemp != null)
+			    {
+				camioMesGranTemp.addPeticio(pet);
+				camionsHCP.remove(hHCP, ncp, camionsHCP.getObj(hHCP, ncp));
+				camionsHCP.add(hHCP, ncp, camioMesGranTemp);
+				return true;
+			    }
+			else
+			    return false;
+		    }
+	    }
+    
+    /**Ordena el vector d'endarrerits en funció de la <horalimit,pes>*/
+    public void ordenaEndarrerits(int cp)
+    {	
+	ArrayList<Peticio> llistaEndar = endarrerits.get(0,cp);
+	Collections.sort(llistaEndar,new ComparadorPeticions());
+    }
+	
+    /**Operador per eliminar petició del camió assignat a hora hora i centre de producció cp
+     * de la posició posicioPeticio dins la llista de peticions. Es posa la remoguda a "endarrerits"
+     * i si el camió queda buit, s'elimina.
+     * @params hora Hora en format normalitzat (Global.H_INI -> 0, de 0 a 10 a l'enunciat estàndard).
+     * @params cp ID. del centre de producció.
+     * @params posicioPeticio Posició de la petició dins la llista de peticions del camió a HCP(hora,cp).	
+     */
+    public void treurePeticio(int hora, int cp, int posicioPeticio)
+    {
+	Camio camioActual = (Camio) camionsHCP.getObj(hora,cp);
+	if(camioActual == null) return;		
+	ArrayList<Peticio> llistaPeticions = camioActual.getLlistaPeticions();
+	
+	Peticio peticioPerEsborrar = llistaPeticions.get(posicioPeticio);
+	endarrerits.add(0, cp, peticioPerEsborrar);
+	
 		//supossem posicio dins dels limits de la llista
 		camioActual.removePeticio(posicioPeticio);
 		
 		if(camioActual.getLlistaPeticions().isEmpty())
 		{
-			camionsHCP.remove(hora, cp, camioActual);
-			switch (camioActual.getTipus())
+		    camionsHCP.remove(hora, cp, camioActual);
+		    switch (camioActual.getTipus())
 			{
-				case Global.T1:
-					numCamionsTipus1++;
-					break;
-				case Global.T2:
-					numCamionsTipus2++;
-					break;
-				case Global.T3:
-					numCamionsTipus3++;
-					break;
+			case Global.T1:
+			    numCamionsTipus1++;
+			    break;
+			case Global.T2:
+			    numCamionsTipus2++;
+			    break;
+			case Global.T3:
+			    numCamionsTipus3++;
+			    break;
 			}
 		}
 	}
-	
-	public String getValorsHeuristics()
+    
+    public String getValorsHeuristics()
 	{
 		TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
 		TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
