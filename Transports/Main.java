@@ -16,7 +16,7 @@ public class Main {
 
     public static void main (String args[]) {
         Global P = new Global();
-        P.iniciaProblemaDefault(20,true);
+        P.iniciaProblemaDefault(10,false);
 
 	if (args.length > 1)
 	    {
@@ -27,9 +27,21 @@ public class Main {
 	    if (args.length == 1)
 		if (args[0].equals("--html")) HTMLPrint = true;
 
-	 TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.MAX_COMPACT);
+	if (HTMLPrint)
+	    System.out.println("<html>\n<title>Resultats execucio : IA - Practica 1 - Q2 2010-2011</title>\n<body>");	
+	/*--------------------------------Algorismes a executar------------------------------------*/
+
+
+
+	TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.LINEAL);
         TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.MAX_COMPACT);
 
+
+
+	/*------------------------------------------------------------------------------------------*/
+
+	if (HTMLPrint)
+	    System.out.println("</body></html>");
 
         //Init del problema
         //Global P = new Global();
@@ -52,7 +64,7 @@ public class Main {
 
         System.out.println("\n#############      Heurístiques      #############");
         System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estat1));
-        System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estat1));
+        System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estat1));
 
         //Dupliquem estat1 a estat2
         System.out.println("\n=================   ESTAT 2   ==========================");
@@ -74,7 +86,7 @@ public class Main {
 
         System.out.println("\n#############      Heurístiques ESTAT 2      #############");
         System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estat2));
-        System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estat2));
+        System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estat2));
         */
     }
 
@@ -106,7 +118,7 @@ public class Main {
 	    else
 		{
 		    System.out.println("\nTransports HillClimbing Maximitzar Beneficis -->");
-		    System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));
+		    System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));
 		    System.out.println();
 		    printActions(agent.getActions());
 		    System.out.println("Search Outcome=" + search.getOutcome());
@@ -118,7 +130,7 @@ public class Main {
 		{
 		    System.out.println("<p><b>Heuristic 1 - Beneficis (com major millor, pot haver-hi perdues): </b>"
 				       +(htmg.getHeuristicValue(estatFinal)*-1)+"</p>"+
-				       "<p><b>Heuristic 2 - Hores perdudes (com menor millor): </b>"
+				       "<p><b>Heuristic 2 - Hores desfassades (com menor millor): </b>"
 				       +(htdif.getHeuristicValue(estatFinal))+"</p>");
 		    System.out.println(chcp.printGraellaHCPHtml());
 		    System.out.println(endarrerits.printEndarreritsHtml());
@@ -132,7 +144,7 @@ public class Main {
 		       
 		    System.out.println("\n#############      Heurístiques ESTAT FINAL      #############");
 		    System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
-		    System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));		    
+		    System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));		    
 	}	    
         } catch (Exception e) {
             e.printStackTrace();
@@ -169,7 +181,7 @@ public class Main {
 	    else
 		{
 		    System.out.println("\nTransports HillClimbing Min Dif Hora  -->");
-		    System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));
+		    System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));
 		    System.out.println();
 		    printActions(agent.getActions());
 		    System.out.println("Search Outcome=" + search.getOutcome());
@@ -181,7 +193,7 @@ public class Main {
 		{
 		    System.out.println("<p><b>Heuristic 1 - Beneficis (com major millor, pot haver-hi perdues): </b>"
 				       +(htmg.getHeuristicValue(estatFinal)*-1)+"</p>"+
-				       "<p><b>Heuristic 2 - Hores perdudes (com menor millor): </b>"
+				       "<p><b>Heuristic 2 - Hores desfassades (com menor millor): </b>"
 				       +(htdif.getHeuristicValue(estatFinal))+"</p>");
 		    System.out.println(chcp.printGraellaHCPHtml());
 		    System.out.println(endarrerits.printEndarreritsHtml());
@@ -195,7 +207,7 @@ public class Main {
 		       
 		    System.out.println("\n#############      Heurístiques ESTAT FINAL      #############");
 		    System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
-		    System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));		    
+		    System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));		    
 	}	    
         } catch (Exception e) {
             e.printStackTrace();
