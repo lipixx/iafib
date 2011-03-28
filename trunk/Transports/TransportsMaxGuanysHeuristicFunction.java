@@ -21,7 +21,7 @@ public class TransportsMaxGuanysHeuristicFunction implements HeuristicFunction
 		    {
 			Camio c = (Camio) camionsHCP.getObj(h,nc);
 			if (c!=null)
-			    beneficis += c.getBeneficis(h);
+			    beneficis += c.getBeneficis(h+8);
 		    }
 		
 		//El vector endarrerits només té una fila, la 0.
