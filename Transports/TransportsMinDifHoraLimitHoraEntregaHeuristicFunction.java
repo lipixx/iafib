@@ -20,7 +20,7 @@ public class TransportsMinDifHoraLimitHoraEntregaHeuristicFunction implements He
 		    {
 			Camio c = (Camio) camionsHCP.getObj(h,nc);
 			if (c!=null)
-			    horesPerdudes += c.getHoresPerdudes(h);
+			    horesPerdudes += c.getHoresPerdudes(h+8);
 		    }
 		
 		//El vector endarrerits només té una fila, la 0.

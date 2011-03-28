@@ -19,7 +19,7 @@ public class Main
 		P.iniciaProblemaDefault(6,false);
 		
 		TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.LINEAL);
-// 		TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.LINEAL);
+		TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.MAX_COMPACT);
 		
 
 		//Init del problema
@@ -94,7 +94,7 @@ public class Main
 			Matriu chcp = estatFinal.getCamionsHCP();
 			System.out.println("\n#############      ESTAT FINAL (Graella Hores-CP)      #############");
 			chcp.printGraellaHCP();
-			System.out.println("\nn#############      Endarrerits      #############");
+			System.out.println("\n#############      Endarrerits      #############");
 			Matriu endarrerits = estatFinal.getEndarrerits();
 			endarrerits.printEndarrerits();
 			
@@ -128,13 +128,13 @@ public class Main
 			printActions(agent.getActions());
 			System.out.println("Search Outcome=" + search.getOutcome());
 			System.out.println("Final State=\n" + search.getLastSearchState());
-
+			printInstrumentation(agent.getInstrumentation());
 
 			Estat estatFinal = (Estat) search.getLastSearchState();
 			Matriu chcp = estatFinal.getCamionsHCP();
 			System.out.println("\n#############      ESTAT FINAL (Graella Hores-CP)      #############");
 			chcp.printGraellaHCP();
-			System.out.println("\nn#############      Endarrerits      #############");
+			System.out.println("\n#############      Endarrerits      #############");
 			Matriu endarrerits = estatFinal.getEndarrerits();
 			endarrerits.printEndarrerits();
 
@@ -144,7 +144,6 @@ public class Main
 			System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
 			System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));
 
-			printInstrumentation(agent.getInstrumentation());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
