@@ -92,7 +92,7 @@ public class Global {
 		this.PETICIONS.add(9,0,new Peticio(14,400,17));
 		
 		
-		/*
+		
 		this.PETICIONS.add(0,0,new Peticio(111,500,8));
 		this.PETICIONS.add(0,0,new Peticio(112,500,8));
 		this.PETICIONS.add(0,0,new Peticio(113,500,8));
@@ -142,7 +142,7 @@ public class Global {
 		this.PETICIONS.add(0,0,new Peticio(114,500,8));
 		this.PETICIONS.add(0,0,new Peticio(114,500,8));
 		this.PETICIONS.add(0,0,new Peticio(114,500,8));
-		*/
+		
 		
 		
 		this.PETICIONS.add(0,1,new Peticio(15,300,8));

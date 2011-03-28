@@ -85,7 +85,7 @@ public class Camio {
 
 			if (nHoresRetras < 0) nHoresRetras = 0;
 			
-			benefici_total = pMax - pMax *(nHoresRetras*0.2);	    
+			benefici_total += pMax - pMax *(nHoresRetras*0.2);	    
 		}
 		
 		return benefici_total;

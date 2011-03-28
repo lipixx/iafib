@@ -46,7 +46,6 @@ public class TransportsSuccessorFunction implements SuccessorFunction {
 			ArrayList<Peticio> llistaPeticions = peticionsEndarrerides.get(0,cpEnd);
 			for (int pet = 0; pet < llistaPeticions.size(); pet++)
 			{
-				System.out.println("BLBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 				Peticio petActual = llistaPeticions.get(pet);
 				for(int hl = 0; hl < Global.HORES_SERVEI; hl++)
 				{
