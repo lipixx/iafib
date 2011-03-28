@@ -4,9 +4,8 @@ import aima.search.framework.GoalTest;
 
 
 public class TransportsGoalTest implements GoalTest {
-	
-	public boolean isGoalState(Object state) {
-// 		TODO
-		return true;
-	}
+
+    public boolean isGoalState(Object state) {
+        return true;
+    }
 }
