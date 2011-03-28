@@ -16,10 +16,10 @@ public class Main
     public static void main (String args[])
     {
 		Global P = new Global();
-		P.iniciaProblemaDefault(6,false);
+		P.iniciaProblemaDefault(8,true);
 		
 		TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.LINEAL);
-		TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.MAX_COMPACT);
+		//		TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.MAX_COMPACT);
 		
 
 		//Init del problema
