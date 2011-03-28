@@ -108,7 +108,7 @@ public class Matriu {
      problema de IA.*/
     public String printEndarreritsHtml()
     {
-	String html = "<br/><h1>Endarrerits</h1><br/>\n<table border=\"1\">\n";
+	String html = "<br/><h2>Endarrerits</h2><br/>\n<table border=\"1\">\n";
 	int maxPets = 0;
 
 	html = html + "<tr>\n";
@@ -183,7 +183,7 @@ public class Matriu {
 
     public String printGraellaHCPHtml()
     {
-	String html = "<br/><h1>Graella HCP</h1><br/>\n<table border=\"1\">\n";
+	String html = "<br/><h2>Graella HCP</h2><br/>\n<table border=\"1\">\n";
 	int maxPets = 0;
 
 	/*Feim la primera fila, de capçeleres*/
