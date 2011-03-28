@@ -106,6 +106,44 @@ public class Matriu {
 
     /*A continuació funcions específiques per mostrar per pantalla les matrius del
      problema de IA.*/
+    public String printEndarreritsHtml()
+    {
+	String html = "<br/><h1>Endarrerits</h1><br/>\n<table border=\"1\">\n";
+	int maxPets = 0;
+
+	html = html + "<tr>\n";
+	for (int nc=0; nc < Global.N_CENTRES; nc++) 
+	    {
+		html = html + "\t<th>Centre "+ (nc+1)+"</th>\n";		
+		if (this.get(0,nc).size() > maxPets) maxPets = this.get(0,nc).size();
+	    }
+		
+	html = html + "</tr>\n<tr>";
+
+	/*Nombre de files a fer a la taula html*/
+	for (int i = 0; i<maxPets; i++)
+	    {
+		/*Fem la fila i*/
+		for (int j = 0; j < Global.N_CENTRES; j++)
+		    {
+			String tmp;
+			
+			if ((this.get(0,j)).size() <= i)
+			    {
+				tmp = "-";
+			    }
+			else
+			    {
+				Peticio p = (Peticio) (this.get(0,j)).get(i);
+			        tmp = "<small>@Pet.id: "+p.getIdProducte()+" , Qtt: "+p.getQuantitat()+" , Hl: "+p.getHoraLimit()+"</small>\n";
+			    }
+			html = html + "\t<td>"+tmp+"</td>\n";
+		    }
+		html = html + "</tr>\n<tr>\n";
+            }        	
+	return html + "</table>";
+    }
+
     public void printPeticions() {
         for (int nc=0; nc < Global.N_CENTRES; nc++) {
             System.out.println("CENTRE: "+(nc+1));
@@ -143,7 +181,52 @@ public class Matriu {
         }
     }
 
+    public String printGraellaHCPHtml()
+    {
+	String html = "<br/><h1>Graella HCP</h1><br/>\n<table border=\"1\">\n";
+	int maxPets = 0;
 
+	/*Feim la primera fila, de capçeleres*/
+	html = html + "<tr>\n" + "\t<th>HCP</th>\n";
+	for (int nc=0; nc < Global.N_CENTRES; nc++) 
+	    {
+		html = html + "\t<th>Centre "+ (nc+1)+"</th>\n";
+	    }
+	html = html + "</tr>\n";
+
+	/*Feim la resta de files*/
+	for (int files = 0; files < Global.HORES_SERVEI; files++)
+	    {
+		html = html + "<tr>\n";
+		/*Per cada fila, hem de fer totes les columnes, i també la de la hora*/
+		html = html + "\t<td><b>"+(files+8)+"h</b></td>\n";
+		for (int nc=0; nc < Global.N_CENTRES; nc++)
+		    {
+			Camio c = (Camio) this.getObj(files,nc);
+			if (c == null) html = html + "\t<td> - </td>\n";
+			else 
+			    {
+				html = html + "\t<td>\n";
+				/*Crear el codi html per pintar el contingut del camió*/
+				String tmp = "\t<small>";
+				tmp = tmp + "<b>T:</b> "+c.getTipus()+"Kg<br/>"+"<b>Carrega:</b> "+c.getCarrega()+
+				    "Kg<br/><b>Pets:</b><br/>";
+				ArrayList<Peticio> ps = c.getLlistaPeticions();
+				for (int k=0; k<ps.size(); k++)
+				    {
+					Peticio p = ps.get(k);
+					tmp = tmp + "@Pet.id: "+p.getIdProducte()+", Qtt: "
+					    +p.getQuantitat()+" , Hl: "+p.getHoraLimit()+"<br/>";				
+				    }
+				html = html + "\t<small/>\n"+ tmp + "</td>\n";
+			    }
+		    }
+		html = html + "</tr>\n";
+	    }
+       
+	return html + "</table>";
+    }
+    
     public void printGraellaHCP() {
         for (int nc=0; nc < Global.N_CENTRES; nc++) {
             System.out.println("CENTRE: "+(nc+1));

@@ -12,12 +12,23 @@ import aima.search.framework.DefaultHeuristicFunction;
 
 @SuppressWarnings ("unchecked")
 public class Main {
+    public static boolean HTMLPrint = false;
+
     public static void main (String args[]) {
         Global P = new Global();
-        P.iniciaProblemaDefault(8,false);
+        P.iniciaProblemaDefault(20,true);
 
-        TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.MAX_COMPACT);
-        //TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.MAX_COMPACT);
+	if (args.length > 1)
+	    {
+		System.out.println("\tUs: java Transports.Main <options>\n\tOptions: --html  Mostra l'output en format html.");
+		System.exit(0);
+	    }
+	else
+	    if (args.length == 1)
+		if (args[0].equals("--html")) HTMLPrint = true;
+
+	 TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.MAX_COMPACT);
+        TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.MAX_COMPACT);
 
 
         //Init del problema
@@ -71,7 +82,6 @@ public class Main {
      * @param gen Tipus d'estratègia a utilitzar (Global.LINEAL, Global.MAX_COMPACT)
      */
     private static void TransportsHillClimbingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, int gen) {
-        System.out.println("\nTransports HillClimbing Maximitzar Beneficis -->");
         try {
             Problem problem = new Problem(
                 new Estat(peticions, n1, n2, n3, gen),
@@ -81,28 +91,49 @@ public class Main {
             HillClimbingSearch search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
 
-            System.out.println();
-            printActions(agent.getActions());
-            System.out.println("Search Outcome=" + search.getOutcome());
-            System.out.println("Final State=\n" + search.getLastSearchState());
-            printInstrumentation(agent.getInstrumentation());
-
+	    TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
+            TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
+	   	    
             //Mostrem estat final
             Estat estatFinal = (Estat) search.getLastSearchState();
             Matriu chcp = estatFinal.getCamionsHCP();
-            System.out.println("\n#############      ESTAT FINAL (Graella Hores-CP)      #############");
-            chcp.printGraellaHCP();
-            System.out.println("\n#############      Endarrerits      #############");
             Matriu endarrerits = estatFinal.getEndarrerits();
-            endarrerits.printEndarrerits();
 
-            TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
-            TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
-            System.out.println("\n#############      Heurístiques ESTAT FINAL      #############");
-            System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
-            System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));
+	    String outcome = ""+ search.getOutcome();
+	    String lastst = ""+ search.getLastSearchState();
+	    
+	    if (HTMLPrint) printHTML("Transports HillClimbing - Maximitzar Beneficis",outcome,lastst,agent.getInstrumentation());
+	    else
+		{
+		    System.out.println("\nTransports HillClimbing Maximitzar Beneficis -->");
+		    System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));
+		    System.out.println();
+		    printActions(agent.getActions());
+		    System.out.println("Search Outcome=" + search.getOutcome());
+		    System.out.println("Final State=\n" + search.getLastSearchState());
+		    printInstrumentation(agent.getInstrumentation());
+		}
 
-
+	    if (HTMLPrint)
+		{
+		    System.out.println("<p><b>Heuristic 1 - Beneficis (com major millor, pot haver-hi perdues): </b>"
+				       +(htmg.getHeuristicValue(estatFinal)*-1)+"</p>"+
+				       "<p><b>Heuristic 2 - Hores perdudes (com menor millor): </b>"
+				       +(htdif.getHeuristicValue(estatFinal))+"</p>");
+		    System.out.println(chcp.printGraellaHCPHtml());
+		    System.out.println(endarrerits.printEndarreritsHtml());
+		}
+	    else
+		{
+		    System.out.println("\n#############      ESTAT FINAL (Graella Hores-CP)      #############");
+		    chcp.printGraellaHCP();
+		    System.out.println("\n#############      Endarrerits      #############");
+		    endarrerits.printEndarrerits();
+		       
+		    System.out.println("\n#############      Heurístiques ESTAT FINAL      #############");
+		    System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
+		    System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));		    
+	}	    
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -112,7 +143,7 @@ public class Main {
      * @param gen Tipus d'estratègia a utilitzar (Global.LINEAL, Global.MAX_COMPACT)
      */
     private static void TransportsHillClimbingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3, int gen) {
-        System.out.println("\nTransports HillClimbing Min Dif Hora  -->");
+
         try {
             Problem problem = new Problem(
                 new Estat(peticions, n1, n2, n3, gen),
@@ -122,30 +153,56 @@ public class Main {
             HillClimbingSearch search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
 
-            System.out.println();
-            printActions(agent.getActions());
-            System.out.println("Search Outcome=" + search.getOutcome());
-            System.out.println("Final State=\n" + search.getLastSearchState());
-            printInstrumentation(agent.getInstrumentation());
 
+	    TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
+            TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
+	   	    
+            //Mostrem estat final
             Estat estatFinal = (Estat) search.getLastSearchState();
             Matriu chcp = estatFinal.getCamionsHCP();
-            System.out.println("\n#############      ESTAT FINAL (Graella Hores-CP)      #############");
-            chcp.printGraellaHCP();
-            System.out.println("\n#############      Endarrerits      #############");
             Matriu endarrerits = estatFinal.getEndarrerits();
-            endarrerits.printEndarrerits();
 
-            TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
-            TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
-            System.out.println("\n#############      Heurístiques ESTAT FINAL      #############");
-            System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
-            System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));
+	    String outcome = ""+ search.getOutcome();
+	    String lastst = ""+ search.getLastSearchState();
+	    
+	    if (HTMLPrint) printHTML("Transports HillClimbing - Minimitzar diferencia absoluta de hores",outcome,lastst,agent.getInstrumentation());
+	    else
+		{
+		    System.out.println("\nTransports HillClimbing Min Dif Hora  -->");
+		    System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));
+		    System.out.println();
+		    printActions(agent.getActions());
+		    System.out.println("Search Outcome=" + search.getOutcome());
+		    System.out.println("Final State=\n" + search.getLastSearchState());
+		    printInstrumentation(agent.getInstrumentation());
+		}
 
+	    if (HTMLPrint)
+		{
+		    System.out.println("<p><b>Heuristic 1 - Beneficis (com major millor, pot haver-hi perdues): </b>"
+				       +(htmg.getHeuristicValue(estatFinal)*-1)+"</p>"+
+				       "<p><b>Heuristic 2 - Hores perdudes (com menor millor): </b>"
+				       +(htdif.getHeuristicValue(estatFinal))+"</p>");
+		    System.out.println(chcp.printGraellaHCPHtml());
+		    System.out.println(endarrerits.printEndarreritsHtml());
+		}
+	    else
+		{
+		    System.out.println("\n#############      ESTAT FINAL (Graella Hores-CP)      #############");
+		    chcp.printGraellaHCP();
+		    System.out.println("\n#############      Endarrerits      #############");
+		    endarrerits.printEndarrerits();
+		       
+		    System.out.println("\n#############      Heurístiques ESTAT FINAL      #############");
+		    System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
+		    System.out.println("Heuristic 2 - Hores perdudes (com menor millor):"+htdif.getHeuristicValue(estatFinal));		    
+	}	    
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
 
     private static void printInstrumentation(Properties properties) {
         Iterator keys = properties.keySet().iterator();
@@ -162,5 +219,18 @@ public class Main {
             System.out.println(action);
         }
     }
+    private static void printHTML(String header,String outcome, String lastSState, Properties properties)
+    {
+	String tmp = "";
+	Iterator keys = properties.keySet().iterator();
+        while (keys.hasNext()) {
+            String key = (String) keys.next();
+            String property = properties.getProperty(key);
+            tmp = "<b>"+ key + ": </b>" + property;
+        }
 
+	System.out.println("<h1>"+header+"</h1>\n"+"\t<p><b>Search Outcome:</b> "+outcome
+			   +"</p><p><b>Final State:</b> "+lastSState+"</p>\n"
+			   +"<p>"+tmp+"</p>\n");	
+    }
 }
