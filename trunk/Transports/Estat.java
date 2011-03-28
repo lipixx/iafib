@@ -257,12 +257,6 @@ public class Estat {
         }
     }
 
-    /**Ordena el vector d'endarrerits en funció de la <horalimit,pes>*/
-    public void ordenaEndarrerits(int cp) {
-        ArrayList<Peticio> llistaEndar = endarrerits.get(0,cp);
-        Collections.sort(llistaEndar,new ComparadorPeticions());
-    }
-
     /**Operador per eliminar una petició que es troba a la posicioPeticio de la llista de peticions d'un camió.
      * El camió és aquell que està a la matriu a la fila hora, i a la columna cp.
      * Es posa la remoguda a "endarrerits" i si el camió queda buit, s'elimina.
