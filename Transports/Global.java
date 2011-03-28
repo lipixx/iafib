@@ -26,6 +26,8 @@ public class Global {
     public static final int LINEAL = 0;
     public static final int MAX_COMPACT = 1;
 
+    /*Debug options*/
+    public static final boolean HTMLPrint = true;
 
     /*Vector de peticions, conté N_CENTRES vectors, on
     a cada vector hi ha les peticions del centre*/
