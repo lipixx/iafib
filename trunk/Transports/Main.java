@@ -16,7 +16,7 @@ public class Main {
 
     public static void main (String args[]) {
         Global P = new Global();
-        P.iniciaProblemaDefault(10,false);
+        P.iniciaProblemaDefault(10,true);
 
 	if (args.length > 1)
 	    {
@@ -117,9 +117,7 @@ public class Main {
 	    if (HTMLPrint) printHTML("Transports HillClimbing - Maximitzar Beneficis",outcome,lastst,agent.getInstrumentation());
 	    else
 		{
-		    System.out.println("\nTransports HillClimbing Maximitzar Beneficis -->");
-		    System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));
-		    System.out.println();
+		    System.out.println("\nTransports HillClimbing Maximitzar Beneficis -->");		    	
 		    printActions(agent.getActions());
 		    System.out.println("Search Outcome=" + search.getOutcome());
 		    System.out.println("Final State=\n" + search.getLastSearchState());
@@ -181,8 +179,6 @@ public class Main {
 	    else
 		{
 		    System.out.println("\nTransports HillClimbing Min Dif Hora  -->");
-		    System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));
-		    System.out.println();
 		    printActions(agent.getActions());
 		    System.out.println("Search Outcome=" + search.getOutcome());
 		    System.out.println("Final State=\n" + search.getLastSearchState());
