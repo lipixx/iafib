@@ -13,7 +13,7 @@ import aima.search.framework.DefaultHeuristicFunction;
 @SuppressWarnings ("unchecked")
 public class Main {
     public static boolean HTMLPrint = false;
-    public static boolean heuristicaSwap = false;
+    public static boolean successorsSwap = false;
 
     public static void main (String args[]) {
         Global P = new Global();
@@ -21,21 +21,21 @@ public class Main {
 
         if (args.length == 1) {
             if (args[0].equals("--html")) HTMLPrint = true;
-            if (args[0].equals("--hswap")) heuristicaSwap = true;
+            if (args[0].equals("--sswap")) successorsSwap = true;
         } else if (args.length == 2) {
-            if (args[0].equals("--hswap") && args[1].equals("--html") || args[1].equals("--hswap") && args[0].equals("--html")) {
+            if (args[0].equals("--sswap") && args[1].equals("--html") || args[1].equals("--sswap") && args[0].equals("--html")) {
                 HTMLPrint = true;
-                heuristicaSwap = true;
+                successorsSwap = true;
             }
         }
-        if ( (args.length == 1 && !HTMLPrint && !heuristicaSwap) || (args.length == 2 && (!HTMLPrint || !heuristicaSwap)) || (args.length > 2)) {
-            System.out.println("\tUs: java Transports.Main <options>\n\tOptions: --html  Mostra l'output en format html.\n\tOptions: --hswap Escull l'heurística de Swapping i no Addremove");
+        if ( (args.length == 1 && !HTMLPrint && !successorsSwap) || (args.length == 2 && (!HTMLPrint || !successorsSwap)) || (args.length > 2)) {
+            System.out.println("\tUs: java Transports.Main <options>\n\tOptions: --html  Mostra l'output en format html.\n\tOptions: --sswap Escull els operadors de Swapping i no Addremove");
             System.exit(0);
         }
 
 
         if (HTMLPrint)
-            System.out.println("<html>\n<title>Resultats execucio : IA - Practica 1 - Q2 2010-2011</title>\n<body>\n<p><b>Paremetres d'execucio:</b><br/> hswap:"+heuristicaSwap+" ,html: "+HTMLPrint+"</p>");
+            System.out.println("<html>\n<title>Resultats execucio : IA - Practica 1 - Q2 2010-2011</title>\n<body>\n<p><b>Paremetres d'execucio:</b><br/> sswap:"+successorsSwap+" ,html: "+HTMLPrint+"</p>");
         /*--------------------------------Algorismes a executar------------------------------------*/
 
 
@@ -104,7 +104,7 @@ public class Main {
         try {
             Problem problem;
 
-            if (heuristicaSwap) {
+            if (successorsSwap) {
                 problem = new Problem(
                     new Estat(peticions, n1, n2, n3, gen),
                     new TransportsSuccessorFunction(),
