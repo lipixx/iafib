@@ -3,9 +3,11 @@ package Transports;
 import aima.search.framework.GoalTest;
 
 
-public class TransportsGoalTest implements GoalTest {
+public class TransportsGoalTest implements GoalTest
+{
 
-    public boolean isGoalState(Object state) {
-        return true;
-    }
+	public boolean isGoalState(Object state)
+	{
+		return true;
+	}
 }
