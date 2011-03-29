@@ -35,7 +35,7 @@ public class Main {
 
 
         if (HTMLPrint)
-            System.out.println("<html>\n<title>Resultats execucio : IA - Practica 1 - Q2 2010-2011</title>\n<body>");
+            System.out.println("<html>\n<title>Resultats execucio : IA - Practica 1 - Q2 2010-2011</title>\n<body>\n<p><b>Paremetres d'execucio:</b><br/> hswap:"+heuristicaSwap+" ,html: "+HTMLPrint+"</p>");
         /*--------------------------------Algorismes a executar------------------------------------*/
 
 
