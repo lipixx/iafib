@@ -59,6 +59,9 @@ public class Camio {
         carrega = c;
     }
 
+    public Peticio getPeticio(int i) {
+        return llista.get(i);
+    }
     public ArrayList<Peticio> getLlistaPeticions() {
         return llista;
     }
@@ -82,6 +85,11 @@ public class Camio {
 	llista.remove(posicioPeticio);       
     }
 
+    public void removePeticioRef(Peticio p)
+    {
+	carrega -= p.getQuantitat();
+	llista.remove(p);
+    }
     /*Recorre la llista de peticions del camió i en calcula els beneficis en funció del 
      *retràs i el pes de cada petició.
      *@params horaCamio Hora en format 24h en que el camió fa el servei.

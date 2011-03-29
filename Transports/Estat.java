@@ -186,18 +186,21 @@ public class Estat {
 
     /**
      * Operador per assignar una peticio d'endarrerits a un camió.
-     * @params ultima Petició que no re-assignarem al camió.
+     * @params h Fila del camió
+     * @params cp CP del camió
+     * @params id Id de la petició dins endarrerits
      */
-    public void endarreritsACamions(int h, int cp, Peticio ultima) {
+    public boolean endarreritsACamions(int h, int cp, int id) {
         ArrayList<Peticio> llistaEndar = endarrerits.get(0,cp);
         Camio camioActual = (Camio) camionsHCP.getObj(h,cp);
-        for (int i = 0; i != -1 && i < llistaEndar.size(); i++) {
-            Peticio pet = llistaEndar.get(i);
-            if (pet != ultima) {
-                afegeixPeticionsCanviantCamio(pet,camioActual, h, cp);
-                i = -1;
-            }
-        }
+	if (id < 0 || id >= llistaEndar.size()) return false;
+	Peticio pet = llistaEndar.get(id);
+	if (afegeixPeticionsCanviantCamio(pet,camioActual, h, cp))
+	    {
+		llistaEndar.remove(id);
+		return true;
+	    }
+	return false;
     }
 
 
@@ -291,6 +294,70 @@ public class Estat {
             }
         }
     }
+
+
+    /**
+     * Intercanvia una petició pi de camió 1, amb una pj de camió 2.
+     * @params centre Columna de la matriu on es farà el swap (un centre)
+     * @params filaP1 Fila de la matriu on es troba la petició P1
+     * @params indexP1 Index de la llista del camió que està dins filaP1, que apunta a P1
+     * @params filaP2 Fila de la matriu on es troba la petició P2
+     * @params indexP2 Index de la llista del camió que està dins filaP2, que apunta a P2
+     */
+    public boolean swap(int centre, int filaP1, int indexP1, int filaP2, int indexP2)
+    {	
+	Camio c1 = (Camio) camionsHCP.getObj(filaP1,centre);
+	Camio c2 = (Camio) camionsHCP.getObj(filaP2,centre);
+	Peticio p1 = c1.getPeticio(indexP1);
+	Peticio p2 = c2.getPeticio(indexP2);
+
+	c1.removePeticio(indexP1);     
+
+	if (!afegeixPeticionsCanviantCamio(p2,c1,filaP1,centre))
+	    {
+		afegeixPeticionsCanviantCamio(p1,c1,filaP1,centre);
+		return false;
+	    }
+				
+	c2.removePeticio(indexP2);
+	       
+	if (!afegeixPeticionsCanviantCamio(p1,c2,filaP2,centre))
+	    {		
+		c1.removePeticio(((c1.getLlistaPeticions()).size()) -1);
+		afegeixPeticionsCanviantCamio(p1,c1,filaP1,centre);
+		afegeixPeticionsCanviantCamio(p2,c2,filaP2,centre);
+		return false;
+	    }	
+	return true;
+    }
+
+    /**
+     * Fa un swap entre la petició P1 del centre i filaP1, amb la petició P2
+     * que es troba a l'índex indexE de la matriu endarrerits.
+     * @params centre Centre en el que operem (Col. de HCP)
+     * @params filaP1 Fila on està el camió
+     * @params indexP1 Index de la petició del camió dins la seva llista.
+     * @params indexE Index de la petició del vector endarrerits.
+     */
+    public boolean swapEndarrerits(int centre, int filaP1, int indexP1, int indexE)
+    {
+	Camio c1 = (Camio) camionsHCP.getObj(filaP1,centre);
+	ArrayList<Peticio> endar = endarrerits.get(0,centre);
+	Peticio p1 = c1.getPeticio(indexP1);
+	Peticio p2 = endar.get(indexE);
+	
+	c1.removePeticio(indexP1);
+	
+	if (!afegeixPeticionsCanviantCamio(p2,c1,filaP1,centre))
+	    {
+		afegeixPeticionsCanviantCamio(p1,c1,filaP1,centre);
+		return false;
+	    }	
+	endar.remove(indexE);
+	endar.add(indexE,p1);	
+	return true;
+    }
+
 
     /**
      * Funció auxiliar per obtenir els valors heurístics de l'estat.
