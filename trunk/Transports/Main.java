@@ -42,7 +42,7 @@ public class Main
 
 
 		if (HTMLPrint)
-			System.out.println("<html>\n<title>Resultats execucio : IA - Practica 1 - Q2 2010-2011</title>\n<body>\n<p><b>Paremetres d'execucio:</b><br/> sswap:"+successorsSwap+" ,html: "+HTMLPrint+"</p>");
+			System.out.println("<html>\n<title>Resultats execucio : IA - Practica 1 - Q2 2010-2011</title>\n<head><style type=\"text/css\">body{font-family: arial;}</style></head>\n<body>\n<p><b>Paremetres d'execucio:</b><br/> sswap:"+successorsSwap+" ,html: "+HTMLPrint+"</p>");
 		/*--------------------------------Algorismes a executar------------------------------------*/
 
 
