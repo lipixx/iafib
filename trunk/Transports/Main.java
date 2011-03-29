@@ -4,6 +4,7 @@ import java.util.*;
 
 import aima.search.framework.Problem;
 import aima.search.informed.HillClimbingSearch;
+import aima.search.informed.SimulatedAnnealingSearch;
 import aima.search.framework.SearchAgent;
 import aima.search.framework.DefaultStepCostFunction;
 import aima.search.framework.DefaultHeuristicFunction;
@@ -133,47 +134,9 @@ public class Main
 			HillClimbingSearch search = new HillClimbingSearch();
 			SearchAgent agent = new SearchAgent(problem, search);
 
-			TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
-			TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
-
 			//Mostrem estat final
 			Estat estatFinal = (Estat) search.getLastSearchState();
-			Matriu chcp = estatFinal.getCamionsHCP();
-			Matriu endarrerits = estatFinal.getEndarrerits();
-
-			String outcome = ""+ search.getOutcome();
-			String lastst = ""+ search.getLastSearchState();
-
-			if (HTMLPrint) printHTML("Transports HillClimbing - Maximitzar Beneficis",outcome,lastst,agent.getInstrumentation());
-			else
-			{
-				System.out.println("\nTransports HillClimbing Maximitzar Beneficis -->");
-				printActions(agent.getActions());
-				System.out.println("Search Outcome=" + search.getOutcome());
-				System.out.println("Final State=\n" + search.getLastSearchState());
-				printInstrumentation(agent.getInstrumentation());
-			}
-
-			if (HTMLPrint)
-			{
-				System.out.println("<p><b>Heuristic 1 - Beneficis (com major millor, pot haver-hi perdues): </b>"
-				                   +(htmg.getHeuristicValue(estatFinal)*-1)+"</p>"+
-				                   "<p><b>Heuristic 2 - Hores desfassades (com menor millor): </b>"
-				                   +(htdif.getHeuristicValue(estatFinal))+"</p>");
-				System.out.println(chcp.printGraellaHCPHtml());
-				System.out.println(endarrerits.printEndarreritsHtml());
-			}
-			else
-			{
-				System.out.println("\n#############      ESTAT FINAL (Graella Hores-CP)      #############");
-				chcp.printGraellaHCP();
-				System.out.println("\n#############      Endarrerits      #############");
-				endarrerits.printEndarrerits();
-
-				System.out.println("\n#############      Heurístiques ESTAT FINAL      #############");
-				System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
-				System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));
-			}
+			printEstatFinal(agent, estatFinal, "HillClimbing", "Maximitzar Beneficis", ""+search.getOutcome(), ""+search.getLastSearchState());
 		}
 		catch (Exception e)
 		{
@@ -197,48 +160,49 @@ public class Main
 			HillClimbingSearch search = new HillClimbingSearch();
 			SearchAgent agent = new SearchAgent(problem, search);
 
-
-			TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
-			TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
-
 			//Mostrem estat final
 			Estat estatFinal = (Estat) search.getLastSearchState();
-			Matriu chcp = estatFinal.getCamionsHCP();
-			Matriu endarrerits = estatFinal.getEndarrerits();
+			printEstatFinal(agent, estatFinal, "HillClimbing", "Minimitzar diferencia absoluta de hores", ""+search.getOutcome(), ""+search.getLastSearchState());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 
-			String outcome = ""+ search.getOutcome();
-			String lastst = ""+ search.getLastSearchState();
-
-			if (HTMLPrint) printHTML("Transports HillClimbing - Minimitzar diferencia absoluta de hores",outcome,lastst,agent.getInstrumentation());
+	/**Creació problema amb Simulated Annealing
+	 * @param gen Tipus d'estratègia a utilitzar (Global.LINEAL, Global.MAX_COMPACT)
+	 */
+	private static void TransportsSimulatedAnnealingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, int gen, int steps, int stiter, int k, double lamb)
+	{
+		try
+		{
+			Problem problem;
+			
+			if (successorsSwap)
+			{
+				problem = new Problem(
+				new Estat(peticions, n1, n2, n3, gen),
+				new TransportsSuccessorFunction(),
+				new TransportsGoalTest(),
+				new TransportsMaxGuanysHeuristicFunction());
+			}
 			else
 			{
-				System.out.println("\nTransports HillClimbing Min Dif Hora  -->");
-				printActions(agent.getActions());
-				System.out.println("Search Outcome=" + search.getOutcome());
-				System.out.println("Final State=\n" + search.getLastSearchState());
-				printInstrumentation(agent.getInstrumentation());
+				problem = new Problem(
+				new Estat(peticions, n1, n2, n3, gen),
+				new TransportsSuccessorFunctionAddRem(),
+				new TransportsGoalTest(),
+				new TransportsMaxGuanysHeuristicFunction());
 			}
-
-			if (HTMLPrint)
-			{
-				System.out.println("<p><b>Heuristic 1 - Beneficis (com major millor, pot haver-hi perdues): </b>"
-				                   +(htmg.getHeuristicValue(estatFinal)*-1)+"</p>"+
-				                   "<p><b>Heuristic 2 - Hores desfassades (com menor millor): </b>"
-				                   +(htdif.getHeuristicValue(estatFinal))+"</p>");
-				System.out.println(chcp.printGraellaHCPHtml());
-				System.out.println(endarrerits.printEndarreritsHtml());
-			}
-			else
-			{
-				System.out.println("\n#############      ESTAT FINAL (Graella Hores-CP)      #############");
-				chcp.printGraellaHCP();
-				System.out.println("\n#############      Endarrerits      #############");
-				endarrerits.printEndarrerits();
-
-				System.out.println("\n#############      Heurístiques ESTAT FINAL      #############");
-				System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
-				System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));
-			}
+			
+			SimulatedAnnealingSearch search = new SimulatedAnnealingSearch(steps, stiter, k, lamb);
+			SearchAgent agent = new SearchAgent(problem, search);
+			
+			//Mostrem estat final
+			Estat estatFinal = (Estat) search.getLastSearchState();
+			printEstatFinal(agent, estatFinal, "Simulated Annealing", "Maximitzar beneficis", ""+search.getOutcome(), ""+search.getLastSearchState());
+			
 		}
 		catch (Exception e)
 		{
@@ -281,5 +245,49 @@ public class Main
 		System.out.println("<h1>"+header+"</h1>\n"+"\t<p><b>Search Outcome:</b> "+outcome
 		                   +"</p><p><b>Final State:</b> "+lastSState+"</p>\n"
 		                   +"<p>"+tmp+"</p>\n");
+	}
+	
+	private static void printEstatFinal(SearchAgent agent, Estat estatFinal, String algorisme, String heuristica, String outcome, String lastSState)
+	{
+		TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
+			TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
+		
+		Matriu chcp = estatFinal.getCamionsHCP();
+		Matriu endarrerits = estatFinal.getEndarrerits();
+
+// 		String outcome = ""+ search.getOutcome();
+// 		String lastst = ""+ search.getLastSearchState();
+		
+		
+		if (HTMLPrint) printHTML("Transports " + algorisme + " - " + heuristica, outcome,lastSState,agent.getInstrumentation());
+		else
+		{
+			System.out.println("\nTransports " + algorisme + heuristica + " -->");
+			printActions(agent.getActions());
+			System.out.println("Search Outcome=" + outcome);
+			System.out.println("Final State=\n" + lastSState);
+			printInstrumentation(agent.getInstrumentation());
+		}
+
+		if (HTMLPrint)
+		{
+			System.out.println("<p><b>Heuristic 1 - Beneficis (com major millor, pot haver-hi perdues): </b>"
+								+(htmg.getHeuristicValue(estatFinal)*-1)+"</p>"+
+								"<p><b>Heuristic 2 - Hores desfassades (com menor millor): </b>"
+								+(htdif.getHeuristicValue(estatFinal))+"</p>");
+			System.out.println(chcp.printGraellaHCPHtml());
+			System.out.println(endarrerits.printEndarreritsHtml());
+		}
+		else
+		{
+			System.out.println("\n#############      ESTAT FINAL (Graella Hores-CP)      #############");
+			chcp.printGraellaHCP();
+			System.out.println("\n#############      Endarrerits      #############");
+			endarrerits.printEndarrerits();
+
+			System.out.println("\n#############      Heurístiques ESTAT FINAL      #############");
+			System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
+			System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));
+		}
 	}
 }
