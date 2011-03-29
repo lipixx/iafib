@@ -46,10 +46,10 @@ public class Global {
     public void iniciaProblemaDefault(int numPeticions,boolean aleatori) {
         Random generator = new Random(System.currentTimeMillis());
         int g = generator.nextInt();
-	
+
         if (aleatori) {
             /*Problema generat de manera aleatoria amb numPeticions.
-	     * En aquest cas les HORES_SERVEI de la graella PETICIONS venen a ser
+            	     * En aquest cas les HORES_SERVEI de la graella PETICIONS venen a ser
             * les hores límit. La info està duplicada a la graella i a la petició,
             * però ja ens va bé perquè així podem accedir de forma directe a la graella
             * i a la vegada quan tenim una petició a un altre lloc, saber on està.

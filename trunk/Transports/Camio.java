@@ -47,25 +47,6 @@ public class Camio {
         }
     }
 
-    public int getTipus() {
-        return tipus;
-    }
-
-    public int getCarrega() {
-        return carrega;
-    }
-
-    public void setCarrega(int c) {
-        carrega = c;
-    }
-
-    public Peticio getPeticio(int i) {
-        return llista.get(i);
-    }
-    public ArrayList<Peticio> getLlistaPeticions() {
-        return llista;
-    }
-
     /**Afegeix una petició a la llista de peticions del camió. S'actualitza
      * la càrrega del camió.
      * @params p Petició a afegir a la llista.
@@ -80,17 +61,12 @@ public class Camio {
      * @params posicioPeticio Posició que s'eliminarà de la llista.
      */
     public void removePeticio(int posicioPeticio) {
-	Peticio peticioPerEsborrar = llista.get(posicioPeticio);
-	carrega -= peticioPerEsborrar.getQuantitat();
-	llista.remove(posicioPeticio);       
+        Peticio peticioPerEsborrar = llista.get(posicioPeticio);
+        carrega -= peticioPerEsborrar.getQuantitat();
+        llista.remove(posicioPeticio);
     }
 
-    public void removePeticioRef(Peticio p)
-    {
-	carrega -= p.getQuantitat();
-	llista.remove(p);
-    }
-    /*Recorre la llista de peticions del camió i en calcula els beneficis en funció del 
+    /*Recorre la llista de peticions del camió i en calcula els beneficis en funció del
      *retràs i el pes de cada petició.
      *@params horaCamio Hora en format 24h en que el camió fa el servei.
      *@return El benefici total que obté aquest camió per la llista de peticions que du.
@@ -123,5 +99,24 @@ public class Camio {
             nHoresRetras += ((h >0) ? h : -h);
         }
         return nHoresRetras;
+    }
+
+    public int getTipus() {
+        return tipus;
+    }
+
+    public int getCarrega() {
+        return carrega;
+    }
+
+    public void setCarrega(int c) {
+        carrega = c;
+    }
+
+    public Peticio getPeticio(int i) {
+        return llista.get(i);
+    }
+    public ArrayList<Peticio> getLlistaPeticions() {
+        return llista;
     }
 }
