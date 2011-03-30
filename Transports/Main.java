@@ -1,7 +1,7 @@
 package Transports;
 
 import java.util.*;
-
+import org.apache.commons.cli.*;
 import aima.search.framework.Problem;
 import aima.search.informed.HillClimbingSearch;
 import aima.search.informed.SimulatedAnnealingSearch;
@@ -16,42 +16,128 @@ public class Main
 {
 	public static boolean HTMLPrint = false;
 	public static boolean successorsSwap = false;
-
-	public static void main (String args[])
+	public static int estrEInicial = Global.LINEAL;
+    public static boolean hbenef = true;
+    public static boolean hhores = false;
+    public static int numpet = 0;
+    public static boolean random = false;
+    public static void main (String args[])
 	{
+	    //main -html -random -s succs -hbenef -hhores -g lineal -numpet 150  -c 20 20 20
 		Global P = new Global();
-		P.iniciaProblemaDefault(10,false);
 
-		if (args.length == 1)
-		{
-			if (args[0].equals("--html")) HTMLPrint = true;
-			if (args[0].equals("--sswap")) successorsSwap = true;
+		Options options = new Options();
+		options.addOption("html",false,"Imprimeix l'output en format html");
+		options.addOption("hbenef",false,"Activar heurístiques de maximització de beneficis");
+		options.addOption("hhores",false,"Activar heurístiques de minimitzar diferència engre hores limit i d'entrega");
+		options.addOption("random",false,"Executar una mostra pre-definida. No afectarà el nombre de peticions.");
+		
+		Option s = OptionBuilder.withArgName("s")
+		    .hasArgs(1)
+		    .withDescription("Tipus d'estratègia de successors [swap,addrem]")
+                    .create("s");
+
+		Option numpetopt = OptionBuilder.withArgName("numpet")
+		    .hasArgs(1)
+		    .withDescription("Nombre de peticions aleatòries a generar. Ha de ser major que 0.")
+                    .create("numpet");		
+
+		Option g = OptionBuilder.withArgName("g")
+		    .hasArgs(1)
+		    .withDescription("Estratègia generació estat inicial [lineal,maxcompact]")
+                    .create("g");
+
+		Option c = OptionBuilder.withArgName("nt1> <nt2> <nt3")
+		    .hasArgs(3)
+		    .withValueSeparator()
+		    .withDescription("Nombre de camions de tipus1, tipus2 i tipus3. Han de sumar 60")
+                    .create("c");
+
+		options.addOption(s);
+		options.addOption(g);
+		options.addOption(c);
+		options.addOption(numpetopt);
+
+		HelpFormatter formatter = new HelpFormatter();
+		CommandLineParser parser = new PosixParser();
+		CommandLine cmd = null;
+
+		try {
+		    cmd = parser.parse(options,args);
+		} catch (ParseException exp) {
+		    System.err.println("Comanda invàlida: "+exp.getMessage());
+		    formatter.printHelp("java Transports.main", options);
+		    System.exit(1);
 		}
-		else if (args.length == 2)
-		{
-			if (args[0].equals("--sswap") && args[1].equals("--html") || args[1].equals("--sswap") && args[0].equals("--html"))
-			{
-				HTMLPrint = true;
+
+		if (cmd.getArgs().length > 0)
+		    {
+		    formatter.printHelp("java Transports.main", options);
+		    System.exit(1);
+		    }
+
+		HTMLPrint = cmd.hasOption("html");	       	       	      
+		hhores = cmd.hasOption("hhores");
+		hbenef = cmd.hasOption("hbenef");		
+		if (!(hbenef | hhores)) hbenef = true;
+		
+		if (cmd.hasOption("s"))
+		    {
+			if (cmd.getOptionValue("s").equals("swap"))
+			    {				
 				successorsSwap = true;
-			}
-		}
-		if ( (args.length == 1 && !HTMLPrint && !successorsSwap) || (args.length == 2 && (!HTMLPrint || !successorsSwap)) || (args.length > 2))
-		{
-			System.out.println("\tUs: java Transports.Main <options>\n\tOptions: --html  Mostra l'output en format html.\n\tOptions: --sswap Escull els operadors de Swapping i no Addremove");
-			System.exit(0);
-		}
+			    }
+			else
+			    if (!cmd.getOptionValue("s").equals("addrem"))
+				{ formatter.printHelp("java Transports.main", options); System.exit(1); }
+		    }
+
+		if (cmd.hasOption("g"))
+		    {
+			if (cmd.getOptionValue("g").equals("maxcompact"))
+			    estrEInicial = Global.MAX_COMPACT;			    
+			else
+			    if (!cmd.getOptionValue("g").equals("lineal"))
+				{ formatter.printHelp("java Transports.main", options); System.exit(1); }
+		    }
+
+		if (cmd.hasOption("numpet"))
+		    {		       
+			numpet = Integer.parseInt((String) cmd.getOptionValue("numpet"));
+			if (numpet <= 0) { formatter.printHelp("java Transports.main", options); System.exit(1); }
+		    }
+		
+		
+		if (cmd.hasOption("c"))
+		    {
+			String sr[] = cmd.getOptionValues("c");
+			
+			if (sr.length != 3)
+			    { formatter.printHelp("java Transports.main", options); System.exit(1); }
+			
+			P.nT1 = Integer.parseInt(sr[0]);
+			P.nT2 = Integer.parseInt(sr[1]);
+			P.nT3 = Integer.parseInt(sr[2]);
+			
+			if ((P.nT1 + P.nT2 + P.nT3) != 60) 
+			    { formatter.printHelp("java Transports.main", options); System.exit(1); }
+		    }
+		random = cmd.hasOption("random");
+		if (random && numpet <= 0)
+		    { System.out.println("Amb la opció -random és obligatori especificar nombre de peticions (-numpet)");
+			formatter.printHelp("java Transports.main", options); System.exit(1); }
+	      
+		P.iniciaProblemaDefault(numpet,random);
 
 
-		if (HTMLPrint)
-			System.out.println("<html>\n<title>Resultats execucio : IA - Practica 1 - Q2 2010-2011</title>\n<head><style type=\"text/css\">body{font-family: arial;}table{border-collapse: collapse;}td{padding: 12px;}</style></head>\n<body>\n<p><b>Paremetres d'execucio:</b><br/> sswap:"+successorsSwap+" ,html: "+HTMLPrint+"</p>");
 		/*--------------------------------Algorismes a executar------------------------------------*/
 
+		if (HTMLPrint){
+		    System.out.println("<html>\n<head>\n<title> Resultats execució IA - Practica 1</title>\n <META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n </head>\n<body> <p><b>Params. execució: </b><br/><br/>\n\t <b> Ex. Heurística Beneficis: </b> " +hbenef+"<br/>\n\t <b> Ex. Heurística Min. Hores: </b> " +hhores+"<br/>\n\t <b> Estratègia successors (swap:true, addrem: false): </b> " +successorsSwap+"<br/>\n\t <b> Estratègia estat inicial (Lineal: "+Global.LINEAL+", Max Compact: "+Global.MAX_COMPACT+") : </b> " +estrEInicial+"<br/>\n\t <b> Generació aleatòria?: </b> " +random+"<br/>\n \t <b> Num peticions a generar: </b> " +numpet+"<br/>\n\t <b> Num camions T1, T2, T3: </b> " +P.nT1+","+P.nT2+","+P.nT3+"<br/>\n</p>");
+				       }
 
-
-		TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.LINEAL);
-		TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, Global.MAX_COMPACT);
-
-
+		if (hbenef) TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial);
+		if (hhores) TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial);
 
 		/*------------------------------------------------------------------------------------------*/
 
@@ -78,8 +164,8 @@ public class Main
 		TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
 
 		System.out.println("\n#############      Heurístiques      #############");
-		System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estat1));
-		System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estat1));
+		System.out.println("Heurístic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estat1));
+		System.out.println("Heurístic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estat1));
 
 		//Dupliquem estat1 a estat2
 		System.out.println("\n=================   ESTAT 2   ==========================");
@@ -100,8 +186,8 @@ public class Main
 
 
 		System.out.println("\n#############      Heurístiques ESTAT 2      #############");
-		System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estat2));
-		System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estat2));
+		System.out.println("Heurístic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estat2));
+		System.out.println("Heurístic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estat2));
 		*/
 	}
 
@@ -242,7 +328,8 @@ public class Main
 			tmp = "<b>"+ key + ": </b>" + property;
 		}
 
-		System.out.println("<h1>"+header+"</h1>\n"+"\t<p><b>Search Outcome:</b> "+outcome
+		System.out.println("<h1>"+header+"</h1>\n"
+				   +"\t<p><b>Search Outcome:</b> "+outcome
 		                   +"</p><p><b>Final State:</b> "+lastSState+"</p>\n"
 		                   +"<p>"+tmp+"</p>\n");
 	}
@@ -271,9 +358,9 @@ public class Main
 
 		if (HTMLPrint)
 		{
-			System.out.println("<p><b>Heuristic 1 - Beneficis (com major millor, pot haver-hi perdues): </b>"
+			System.out.println("<p><b>Heurístic 1 - Beneficis (com major millor, pot haver-hi perdues): </b>"
 								+(htmg.getHeuristicValue(estatFinal)*-1)+"</p>"+
-								"<p><b>Heuristic 2 - Hores desfassades (com menor millor): </b>"
+								"<p><b>Heurístic 2 - Hores desfassades (com menor millor): </b>"
 								+(htdif.getHeuristicValue(estatFinal))+"</p>");
 			System.out.println(chcp.printGraellaHCPHtml());
 			System.out.println(endarrerits.printEndarreritsHtml());
@@ -286,8 +373,8 @@ public class Main
 			endarrerits.printEndarrerits();
 
 			System.out.println("\n#############      Heurístiques ESTAT FINAL      #############");
-			System.out.println("Heuristic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
-			System.out.println("Heuristic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));
+			System.out.println("Heurístic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
+			System.out.println("Heurístic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));
 		}
 	}
 }
