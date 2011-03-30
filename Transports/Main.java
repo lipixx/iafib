@@ -196,6 +196,7 @@ public class Main
 	 */
 	private static void TransportsHillClimbingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, int gen)
 	{
+	    long time = System.currentTimeMillis();
 		try
 		{
 			Problem problem;
@@ -222,7 +223,8 @@ public class Main
 
 			//Mostrem estat final
 			Estat estatFinal = (Estat) search.getLastSearchState();
-			printEstatFinal(agent, estatFinal, "HillClimbing", "Maximitzar Beneficis", ""+search.getOutcome(), ""+search.getLastSearchState());
+			time = System.currentTimeMillis() - time;
+			printEstatFinal(agent, estatFinal, "HillClimbing", "Maximitzar Beneficis", ""+search.getOutcome(), ""+search.getLastSearchState(),time);
 		}
 		catch (Exception e)
 		{
@@ -235,7 +237,7 @@ public class Main
 	 */
 	private static void TransportsHillClimbingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3, int gen)
 	{
-
+	    long time = System.currentTimeMillis();
 		try
 		{
 			Problem problem = new Problem(
@@ -248,7 +250,8 @@ public class Main
 
 			//Mostrem estat final
 			Estat estatFinal = (Estat) search.getLastSearchState();
-			printEstatFinal(agent, estatFinal, "HillClimbing", "Minimitzar diferencia absoluta de hores", ""+search.getOutcome(), ""+search.getLastSearchState());
+			time = System.currentTimeMillis() - time;
+			printEstatFinal(agent, estatFinal, "HillClimbing", "Minimitzar diferencia absoluta de hores", ""+search.getOutcome(), ""+search.getLastSearchState(),time);
 		}
 		catch (Exception e)
 		{
@@ -261,6 +264,7 @@ public class Main
 	 */
 	private static void TransportsSimulatedAnnealingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, int gen, int steps, int stiter, int k, double lamb)
 	{
+	    long time = System.currentTimeMillis();
 		try
 		{
 			Problem problem;
@@ -286,8 +290,9 @@ public class Main
 			SearchAgent agent = new SearchAgent(problem, search);
 			
 			//Mostrem estat final
+			time = System.currentTimeMillis() - time;
 			Estat estatFinal = (Estat) search.getLastSearchState();
-			printEstatFinal(agent, estatFinal, "Simulated Annealing", "Maximitzar beneficis", ""+search.getOutcome(), ""+search.getLastSearchState());
+			printEstatFinal(agent, estatFinal, "Simulated Annealing", "Maximitzar beneficis", ""+search.getOutcome(), ""+search.getLastSearchState(),time);
 			
 		}
 		catch (Exception e)
@@ -317,7 +322,7 @@ public class Main
 			System.out.println(action);
 		}
 	}
-	private static void printHTML(String header,String outcome, String lastSState, Properties properties)
+    private static void printHTML(String header,String outcome, String lastSState, Properties properties, long time)
 	{
 		String tmp = "";
 		Iterator keys = properties.keySet().iterator();
@@ -331,10 +336,11 @@ public class Main
 		System.out.println("<h1>"+header+"</h1>\n"
 				   +"\t<p><b>Search Outcome:</b> "+outcome
 		                   +"</p><p><b>Final State:</b> "+lastSState+"</p>\n"
-		                   +"<p>"+tmp+"</p>\n");
+		                   +"<p>"+tmp+"</p>\n"
+				   +"<p><b>Temps d'execució: </b>"+time+" milisegons</p>\n");
 	}
 	
-	private static void printEstatFinal(SearchAgent agent, Estat estatFinal, String algorisme, String heuristica, String outcome, String lastSState)
+    private static void printEstatFinal(SearchAgent agent, Estat estatFinal, String algorisme, String heuristica, String outcome, String lastSState, long time)
 	{
 		TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
 			TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
@@ -346,7 +352,7 @@ public class Main
 // 		String lastst = ""+ search.getLastSearchState();
 		
 		
-		if (HTMLPrint) printHTML("Transports " + algorisme + " - " + heuristica, outcome,lastSState,agent.getInstrumentation());
+		if (HTMLPrint) printHTML("Transports " + algorisme + " - " + heuristica, outcome,lastSState,agent.getInstrumentation(),time);
 		else
 		{
 			System.out.println("\nTransports " + algorisme + heuristica + " -->");
