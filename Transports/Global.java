@@ -23,6 +23,9 @@ public class Global
 	/*Preus calculats per cada pes possible de peticions*/
 	public static double preus_transport[] = { 100, 200, 300*1.5, 400*1.5, 500*2 };
 
+	/*Probabilitats de que toqui una petició a una hora determinada. Probabilitat uniforme, valors entre 0 i 1.0*/
+        public static double probabilitatsHores[] = { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 };
+        public static double probabilitatsPesos[] = { 1.0, 1.0, 1.0, 1.0, 1.0 };
 	/*Tipus d'estratègies de generació inicial que tenim*/
 	public static final int LINEAL = 0;
 	public static final int MAX_COMPACT = 1;
@@ -37,41 +40,100 @@ public class Global
 	}
 
 	/** Genera peticions i les inserta dins la matriu PETICIONS.
-	 *@params numPeticions Nombre de peticions a generar de forma aleatoria per cada centre
-	 *i hora límit. Si no és aleatoria, es genera un problema predeterminat.
+	 *@params maxPeticions Nombre de peticions màximes a generar de forma aleatoria en total.
+	 *Si no és aleatoria, es genera un problema predeterminat.
 	 *@params aleatori Determina si es genera el problema de forma aleatoria o predeterminada.
 	 *@post S'ha omplert la matriu PETICIONS amb peticions.
 	*/
-	public void iniciaProblemaDefault(int numPeticions,boolean aleatori)
+    public void iniciaProblemaDefault(int maxPeticions,boolean aleatori, double probsH[], double probsP[])
 	{
-		Random generator = new Random(System.currentTimeMillis());
-		int g = generator.nextInt();
-
-		if (aleatori)
+	    if (aleatori)
 		{
-			/*Problema generat de manera aleatoria amb numPeticions.
-				     * En aquest cas les HORES_SERVEI de la graella PETICIONS venen a ser
+		    Random generator = new Random(System.currentTimeMillis());
+		    int g = generator.nextInt();
+		    if (g < 0) g *= -1;	
+		    while (g % maxPeticions == 0)
+			{		
+			    if (g < 0) g *= -1;	
+			    g = generator.nextInt();
+			}
+		    maxPeticions = g % maxPeticions;
+		    System.out.println("Problema generat amb "+maxPeticions+" peticions aleatòries.");
+		       /*Problema generat de manera aleatoria amb maxPeticions.
+			* En aquest cas les HORES_SERVEI de la graella PETICIONS venen a ser
 			* les hores límit. La info està duplicada a la graella i a la petició,
 			* però ja ens va bé perquè així podem accedir de forma directe a la graella
 			* i a la vegada quan tenim una petició a un altre lloc, saber on està.
 			*/
 			int id = 0;
 			for (int nc = 0; nc < N_CENTRES; nc++)
-				for (int hslimit = 0; hslimit < HORES_SERVEI; hslimit++)
-				{
-					/*Definim el num. de peticions que generarem per aquest centre i hora limit*/
-					int numPetCentre = generator.nextInt()%numPeticions + 1;
+			    {	   	
+				int peticionsCentre = maxPeticions / N_CENTRES;
+
+				for (int hslimit = 0; hslimit < HORES_SERVEI && peticionsCentre > 0; hslimit++)
+				    {
+					double numPetHora = (peticionsCentre/HORES_SERVEI) * (probsH[hslimit]);
+					
+					/*Com que tenim probabilitats uniformes hi haurà el nombre
+					  seg. de peticions de cada tipus:*/
+						int petTipus1 = (int)(numPetHora/5 * probsP[0]);
+						int petTipus2 = (int)(numPetHora/5 * probsP[1]);
+						int petTipus3 = (int)(numPetHora/5 * probsP[2]);				   
+						int petTipus4 = (int)(numPetHora/5 * probsP[3]);
+						int petTipus5 = (int)(numPetHora/5 * probsP[4]);
+					if (numPetHora < 5)
+					    {
+						switch (generator.nextInt() % 5)
+						    {
+						    case 0: 
+							petTipus1 =(int) numPetHora;
+							break;
+						    case 1:
+							petTipus2 = (int) numPetHora;
+							break;
+						    case 2:
+							petTipus3 = (int) numPetHora;
+							break;
+						    case 3:
+							petTipus4 = (int) numPetHora;
+							break;
+						    case 4:
+							petTipus5 = (int) numPetHora;
+							break;
+						    default:
+							break;							
+						    }
+					    }
+
 					/*Les generem*/
-					for (int numP = 0; numP < numPetCentre; numP++)
-					{
-						int pes = ((generator.nextInt()%500 + 100) / 100) * 100;
-						if (pes < 0) pes = pes*-1;
-						if (pes == 0) pes = 500;
-						Peticio pi = new Peticio(++id,pes,hslimit+8);
-						//PETICIONS.add(Hora_limit,Centre,Peticio)
-						this.PETICIONS.add(hslimit,nc,pi);
-					}
-				}
+					for (int i=0; i<petTipus1; i++)
+					    {
+					    Peticio pi = new Peticio(++id,100,hslimit+8);
+					    this.PETICIONS.add(hslimit,nc,pi);
+					    }
+					for (int i=0; i<petTipus2; i++)
+					    {
+					    Peticio pi = new Peticio(++id,200,hslimit+8);
+					    this.PETICIONS.add(hslimit,nc,pi);
+					    }
+					for (int i=0; i<petTipus3; i++)
+					    {
+					    Peticio pi = new Peticio(++id,300,hslimit+8);
+					    this.PETICIONS.add(hslimit,nc,pi);
+					    }			   	
+					for (int i=0; i<petTipus4; i++)
+					    {
+					    Peticio pi = new Peticio(++id,400,hslimit+8);
+					    this.PETICIONS.add(hslimit,nc,pi);
+					    }			   	
+					for (int i=0; i<petTipus5; i++)
+					    {
+					    Peticio pi = new Peticio(++id,500,hslimit+8);
+					    this.PETICIONS.add(hslimit,nc,pi);
+					    }			   					
+					
+				    }		    
+			    }
 		}
 		else
 		{

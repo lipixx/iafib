@@ -24,13 +24,15 @@ public class Main
     public static void main (String args[])
 	{
 	    //main -html -random -s succs -hbenef -hhores -g lineal -numpet 150  -c 20 20 20
+
+	    //Falta definir probabilitat de pesos i de hores.
 		Global P = new Global();
 
 		Options options = new Options();
 		options.addOption("html",false,"Imprimeix l'output en format html");
 		options.addOption("hbenef",false,"Activar heurístiques de maximització de beneficis");
 		options.addOption("hhores",false,"Activar heurístiques de minimitzar diferència engre hores limit i d'entrega");
-		options.addOption("random",false,"Executar una mostra pre-definida. No afectarà el nombre de peticions.");
+		options.addOption("random",false,"Executar una mostra no pre-definida. S'ha de definir nombre màx. de peticions.");
 		
 		Option s = OptionBuilder.withArgName("s")
 		    .hasArgs(1)
@@ -39,7 +41,7 @@ public class Main
 
 		Option numpetopt = OptionBuilder.withArgName("numpet")
 		    .hasArgs(1)
-		    .withDescription("Nombre de peticions aleatòries a generar. Ha de ser major que 0.")
+		    .withDescription("Nombre de peticions màx. aleatòries a generar. Ha de ser major que 0.")
                     .create("numpet");		
 
 		Option g = OptionBuilder.withArgName("g")
@@ -127,7 +129,7 @@ public class Main
 		    { System.out.println("Amb la opció -random és obligatori especificar nombre de peticions (-numpet)");
 			formatter.printHelp("java Transports.main", options); System.exit(1); }
 	      
-		P.iniciaProblemaDefault(numpet,random);
+		P.iniciaProblemaDefault(numpet,random,P.probabilitatsHores,P.probabilitatsPesos);
 
 
 		/*--------------------------------Algorismes a executar------------------------------------*/
@@ -251,7 +253,7 @@ public class Main
 			//Mostrem estat final
 			Estat estatFinal = (Estat) search.getLastSearchState();
 			time = System.currentTimeMillis() - time;
-			printEstatFinal(agent, estatFinal, "HillClimbing", "Minimitzar diferencia absoluta de hores", ""+search.getOutcome(), ""+search.getLastSearchState(),time);
+			printEstatFinal(agent, estatFinal, "HillClimbing", "Minimitzar diferència absoluta de hores", ""+search.getOutcome(), ""+search.getLastSearchState(),time);
 		}
 		catch (Exception e)
 		{
