@@ -1,6 +1,7 @@
 package Transports;
 
 import java.util.*;
+import java.io.*;
 import org.apache.commons.cli.*;
 import aima.search.framework.Problem;
 import aima.search.informed.HillClimbingSearch;
@@ -33,6 +34,7 @@ public class Main
 		options.addOption("hbenef",false,"Activar heurístiques de maximització de beneficis");
 		options.addOption("hhores",false,"Activar heurístiques de minimitzar diferència engre hores limit i d'entrega");
 		options.addOption("random",false,"Executar una mostra no pre-definida. S'ha de definir nombre màx. de peticions.");
+		options.addOption("probs",false,"Entrar a l'editor de probabilitats de les hores i del pes de les peticions.");
 		
 		Option s = OptionBuilder.withArgName("s")
 		    .hasArgs(1)
@@ -129,14 +131,66 @@ public class Main
 		    { System.out.println("Amb la opció -random és obligatori especificar nombre de peticions (-numpet)");
 			formatter.printHelp("java Transports.main", options); System.exit(1); }
 	      
+		if (cmd.hasOption("probs"))
+		    {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			String probsH = null;
+			String probsP = null;
+			
+			if (!HTMLPrint)
+			    System.out.println("Entra 10 probabilitats per la distribució peticions entre les hores de 8 a 17h. Valors entre 0.0 i 1.0 i pitja ENTER");
+			try {
+			    probsH = br.readLine();
+			}
+			catch (IOException e){
+			    System.out.println("Error "+e);
+			    System.exit(1);
+			}
+			if (!HTMLPrint)
+			System.out.println("Entra 5 probabilitats per la distribució dels pesos a les peticions de 100 a 500. Valors entre 0.0 i 1.0 i pitja ENTER");
+
+			try{
+			 probsP = br.readLine();
+			}
+			catch (IOException e){
+			    System.out.println("Error "+e);
+			    System.exit(1);
+			}
+			
+			String ph[] = probsH.split(" ");
+			if (ph.length != 10) { System.out.println("String mal introduït"); System.exit(1); }
+			for (int i = 0; i < 10; i++)
+			    {
+				P.probabilitatsHores[i] = Double.parseDouble(ph[i]);
+			    }
+			
+			String pp[] = probsP.split(" ");
+			if (pp.length != 5) { System.out.println("String mal introduït"); System.exit(1); }
+			for (int i = 0; i < 5; i++)
+			    {
+				P.probabilitatsPesos[i] = Double.parseDouble(pp[i]);
+			    }
+			
+		    }
+		
 		P.iniciaProblemaDefault(numpet,random,P.probabilitatsHores,P.probabilitatsPesos);
 
 
 		/*--------------------------------Algorismes a executar------------------------------------*/
 
 		if (HTMLPrint){
-		    System.out.println("<html>\n<head>\n<title> Resultats execució IA - Practica 1</title>\n <META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n </head>\n<body> <p><b>Params. execució: </b><br/><br/>\n\t <b> Ex. Heurística Beneficis: </b> " +hbenef+"<br/>\n\t <b> Ex. Heurística Min. Hores: </b> " +hhores+"<br/>\n\t <b> Estratègia successors (swap:true, addrem: false): </b> " +successorsSwap+"<br/>\n\t <b> Estratègia estat inicial (Lineal: "+Global.LINEAL+", Max Compact: "+Global.MAX_COMPACT+") : </b> " +estrEInicial+"<br/>\n\t <b> Generació aleatòria?: </b> " +random+"<br/>\n \t <b> Num peticions a generar: </b> " +numpet+"<br/>\n\t <b> Num camions T1, T2, T3: </b> " +P.nT1+","+P.nT2+","+P.nT3+"<br/>\n</p>");
-				       }
+		    String probsh = "";
+		    String probsp = "";
+		    
+		    for (int i =0; i<10; i++)
+			probsh = probsh + P.probabilitatsHores[i] + ",";
+		    for (int i =0; i<5; i++)
+			probsp = probsp + P.probabilitatsPesos[i] + ",";
+		    
+		    
+
+		    System.out.println("<html>\n<head>\n<title> Resultats execució IA - Practica 1</title>\n <META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n </head>\n<body> <p><b>Params. execució: </b><br/><br/>\n\t <b> Ex. Heurística Beneficis: </b> " +hbenef+"<br/>\n\t <b> Ex. Heurística Min. Hores: </b> " +hhores+"<br/>\n\t <b> Estratègia successors (swap:true, addrem: false): </b> " +successorsSwap+"<br/>\n\t <b> Estratègia estat inicial (Lineal: "+Global.LINEAL+", Max Compact: "+Global.MAX_COMPACT+") : </b> " +estrEInicial+"<br/>\n\t <b> Generació aleatòria?: </b> " +random+"<br/>\n \t <b> Num peticions a generar: </b> " +numpet+"<br/>\n\t <b> Num camions T1, T2, T3: </b> " +P.nT1+","+P.nT2+","+P.nT3+"<br/>\n\t <b>Probabilitats horàries de 08 a 17h: </b> " +probsh+"<br/>\n \t <b>Probabilitats de pesos de 100 a 500kg: </b> " +probsp+"<br/></p>");
+		}
 
 		if (hbenef) TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial);
 		if (hhores) TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial);
