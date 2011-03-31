@@ -247,7 +247,7 @@ public class Main
 		*/
 	}
 
-	/**Creacio problema amb HillClimbing amb funcio heuristica Max Guanys
+	/**Creació problema amb HillClimbing amb funció heurística Max Guanys
 	 * @param gen Tipus d'estratègia a utilitzar (Global.LINEAL, Global.MAX_COMPACT)
 	 */
 	private static void TransportsHillClimbingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, int gen)
@@ -288,7 +288,7 @@ public class Main
 		}
 	}
 
-	/**Creacio problema amb HillClimbing amb funcio heuristica Min Dif Hora
+	/**Creació problema amb HillClimbing amb funció heurística Min Dif Hora
 	 * @param gen Tipus d'estratègia a utilitzar (Global.LINEAL, Global.MAX_COMPACT)
 	 */
 	private static void TransportsHillClimbingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3, int gen)
@@ -315,7 +315,7 @@ public class Main
 		}
 	}
 
-	/**Creació problema amb Simulated Annealing
+	/**Creació problema amb Simulated Annealing amb funció heurística Max Guanys
 	 * @param gen Tipus d'estratègia a utilitzar (Global.LINEAL, Global.MAX_COMPACT)
 	 */
 	private static void TransportsSimulatedAnnealingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, int gen, int steps, int stiter, int k, double lamb)
@@ -340,6 +340,48 @@ public class Main
 				new TransportsSuccessorFunctionAddRem(),
 				new TransportsGoalTest(),
 				new TransportsMaxGuanysHeuristicFunction());
+			}
+			
+			SimulatedAnnealingSearch search = new SimulatedAnnealingSearch(steps, stiter, k, lamb);
+			SearchAgent agent = new SearchAgent(problem, search);
+			
+			//Mostrem estat final
+			time = System.currentTimeMillis() - time;
+			Estat estatFinal = (Estat) search.getLastSearchState();
+			printEstatFinal(agent, estatFinal, "Simulated Annealing", "Maximitzar beneficis", ""+search.getOutcome(), ""+search.getLastSearchState(),time);
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**Creació problema amb Simulated Annealing amb funció heurística Min Dif Hora
+	 * @param gen Tipus d'estratègia a utilitzar (Global.LINEAL, Global.MAX_COMPACT)
+	 */
+	private static void TransportsSimulatedAnnealingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3, int gen, int steps, int stiter, int k, double lamb)
+	{
+	    long time = System.currentTimeMillis();
+		try
+		{
+			Problem problem;
+			
+			if (successorsSwap)
+			{
+				problem = new Problem(
+				new Estat(peticions, n1, n2, n3, gen),
+				new TransportsSuccessorFunction(),
+				new TransportsGoalTest(),
+				new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
+			}
+			else
+			{
+				problem = new Problem(
+				new Estat(peticions, n1, n2, n3, gen),
+				new TransportsSuccessorFunctionAddRem(),
+				new TransportsGoalTest(),
+				new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
 			}
 			
 			SimulatedAnnealingSearch search = new SimulatedAnnealingSearch(steps, stiter, k, lamb);
