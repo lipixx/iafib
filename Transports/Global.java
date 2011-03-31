@@ -20,13 +20,21 @@ public class Global
 	public static int nT2 = 20;
 	public static int nT3 = 20;
 
+        /*Paràmeters del Simulated Annealing*/
+        public static int steps = 100;
+	public static int stiter = 10;
+	public static int k = 5;
+	public static int lamb = 10;
+
 	/*Preus calculats per cada pes possible de peticions*/
 	public static double preus_transport[] = { 100, 200, 300*1.5, 400*1.5, 500*2 };
 
 	/*Probabilitats de que toqui una petició a una hora determinada. Probabilitat uniforme, valors entre 0 i 1.0*/
         public static int probabilitatsHores[] = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
         public static int probabilitatsPesos[] = { 17, 17, 16, 17, 17 };
-    public static int pesos_peticions[] = { 100, 200, 300, 400, 500 };
+     
+        /*Pesos possibles de les peticions*/
+        public static int pesos_peticions[] = { 100, 200, 300, 400, 500 };        
 
 	/*Tipus d'estratègies de generació inicial que tenim*/
 	public static final int LINEAL = 0;

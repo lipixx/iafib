@@ -57,7 +57,14 @@ public class Main
 		    .withDescription("Nombre de camions de tipus1, tipus2 i tipus3. Han de sumar 60")
                     .create("c");
 
+		Option a = OptionBuilder.withArgName("steps> <stiter> <k> <lamb")
+		    .hasArgs(4)
+		    .withValueSeparator()
+		    .withDescription("Executa l'algorisme del Simulated Annealing amb els paràmetres passats.")
+                    .create("a");
+
 		options.addOption(s);
+		options.addOption(a);
 		options.addOption(g);
 		options.addOption(c);
 		options.addOption(numpetopt);
@@ -126,6 +133,21 @@ public class Main
 			if ((P.nT1 + P.nT2 + P.nT3) != 60) 
 			    { formatter.printHelp("java Transports.main", options); System.exit(1); }
 		    }
+
+
+		if (cmd.hasOption("a"))
+		    {
+			String sr[] = cmd.getOptionValues("a");
+			
+			if (sr.length != 4)
+			    { formatter.printHelp("java Transports.main", options); System.exit(1); }
+			
+			P.steps = Integer.parseInt(sr[0]);
+			P.stiter = Integer.parseInt(sr[1]);
+			P.k = Integer.parseInt(sr[2]);
+			P.lamb = Integer.parseInt(sr[3]);
+		    }
+
 		random = cmd.hasOption("random");
 		if (random && numpet <= 0)
 		    { System.out.println("Amb la opció -random és obligatori especificar nombre de peticions (-numpet)");
@@ -180,9 +202,6 @@ public class Main
 		
 		P.iniciaProblemaDefault(numpet,random,P.probabilitatsHores,P.probabilitatsPesos);
 
-
-		/*--------------------------------Algorismes a executar------------------------------------*/
-
 		if (HTMLPrint){
 		    String probsh = "";
 		    String probsp = "";
@@ -194,62 +213,24 @@ public class Main
 		    
 		    
 
-		    System.out.println("<html>\n<head>\n<style type=\"text/css\">body{font-family: arial;}table{border-collapse: collapse;}td{padding: 12px;}</style>\n<title> Resultats execució IA - Practica 1</title>\n <META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n </head>\n<body> <p><b>Params. execució: </b><br/><br/>\n\t <b> Ex. Heurística Beneficis: </b> " +hbenef+"<br/>\n\t <b> Ex. Heurística Min. Hores: </b> " +hhores+"<br/>\n\t <b> Estratègia successors (swap:true, addrem: false): </b> " +successorsSwap+"<br/>\n\t <b> Estratègia estat inicial (Lineal: "+Global.LINEAL+", Max Compact: "+Global.MAX_COMPACT+") : </b> " +estrEInicial+"<br/>\n\t <b> Generació aleatòria?: </b> " +random+"<br/>\n \t <b> Num peticions a generar: </b> " +numpet+"<br/>\n\t <b> Num camions T1, T2, T3: </b> " +P.nT1+","+P.nT2+","+P.nT3+"<br/>\n\t <b>Probabilitats horàries de 08 a 17h: </b> " +probsh+"<br/>\n \t <b>Probabilitats de pesos de 100 a 500kg: </b> " +probsp+"<br/></p>");
+		    System.out.println("<html>\n<head>\n<style type=\"text/css\">body{font-family: arial;}table{border-collapse: collapse;}td{padding: 12px;}</style>\n<title> Resultats execució IA - Practica 1</title>\n <META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n </head>\n<body> <p><b>Params. execució: </b><br/><br/>\n\t <b> Ex. Heurística Beneficis: </b> " +hbenef+"<br/>\n\t <b> Ex. Heurística Min. Hores: </b> " +hhores+"<br/>\n\t <b> Estratègia successors (swap:true, addrem: false): </b> " +successorsSwap+"<br/>\n\t <b> Estratègia estat inicial (Lineal: "+Global.LINEAL+", Max Compact: "+Global.MAX_COMPACT+") : </b> " +estrEInicial+"<br/>\n\t <b> Generació aleatòria?: </b> " +random+"<br/>\n\t <b> Simulated Annealing?: </b> " +cmd.hasOption("a")+"<br/>\n \t <b> Num peticions a generar: </b> " +numpet+"<br/>\n\t <b> Num camions T1, T2, T3: </b> " +P.nT1+","+P.nT2+","+P.nT3+"<br/>\n\t <b>Probabilitats horàries de 08 a 17h: </b> " +probsh+"<br/>\n \t <b>Probabilitats de pesos de 100 a 500kg: </b> " +probsp+"<br/></p>");
 		}
+
+
+
+		/*--------------------------------Algorismes a executar------------------------------------*/
 
 		if (hbenef) TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial);
 		if (hhores) TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial);
-
+		if (cmd.hasOption("a") && hhores) 
+		    TransportsSimulatedAnnealingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial,P.steps,P.stiter,P.k,P.lamb);
+		if (cmd.hasOption("a") && hbenef) 
+		    TransportsSimulatedAnnealingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial,P.steps,P.stiter,P.k,P.lamb);
 		/*------------------------------------------------------------------------------------------*/
 
-		if (HTMLPrint)
-			System.out.println("</body></html>");
-
-		//Init del problema
-		//Global P = new Global();
-		//P.iniciaProblemaDefault(20,false);
-		/*
-		System.out.println("\n#############      PETICIONS      #############");
-		P.PETICIONS.printPeticions();
-
-		//creem estat1
-		Estat estat1 = new Estat(P.PETICIONS,P.nT1,P.nT2,P.nT3,Global.MAX_COMPACT);
-		Matriu chcp1 = estat1.getCamionsHCP();
-		System.out.println("\n#############      ESTAT (Graella HCP)      #############");
-		chcp1.printGraellaHCP();
-		System.out.println("\n~~~~Endarrerits~~~~");
-		Matriu endar1 = estat1.getEndarrerits();
-		endar1.printEndarrerits();
-
-		TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
-		TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
-
-		System.out.println("\n#############      Heurístiques      #############");
-		System.out.println("Heurístic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estat1));
-		System.out.println("Heurístic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estat1));
-
-		//Dupliquem estat1 a estat2
-		System.out.println("\n=================   ESTAT 2   ==========================");
-		Estat estat2 = new Estat(estat1);
-		estat2.treurePeticio(8  -8, 1  -1, 1  -1);
-		//camio inexistent
-		//estat2.treurePeticio(12  -8, 6  -1, 1  -1);
-		//petició inexistent
-			// 	estat2.treurePeticio(9  -8, 6  -1, 4  -1);
-		estat2.treurePeticio(9  -8, 6  -1, 2  -1);
-		estat2.afegirPeticio(9  -8, 6  -1, new Peticio(666,500,9));
-		Matriu chcp2 = estat2.getCamionsHCP();
-		System.out.println("\n#############      ESTAT (Graella HCP)      #############");
-		chcp2.printGraellaHCP();
-		System.out.println("\n~~~~Endarrerits~~~~");
-		Matriu endar2 = estat2.getEndarrerits();
-		endar2.printEndarrerits();
 
 
-		System.out.println("\n#############      Heurístiques ESTAT 2      #############");
-		System.out.println("Heurístic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estat2));
-		System.out.println("Heurístic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estat2));
-		*/
+		if (HTMLPrint) System.out.println("</body></html>");
 	}
 
 	/**Creació problema amb HillClimbing amb funció heurística Max Guanys
@@ -395,7 +376,7 @@ public class Main
 			//Mostrem estat final
 			time = System.currentTimeMillis() - time;
 			Estat estatFinal = (Estat) search.getLastSearchState();
-			printEstatFinal(agent, estatFinal, "Simulated Annealing", "Maximitzar beneficis", ""+search.getOutcome(), ""+search.getLastSearchState(),time);
+			printEstatFinal(agent, estatFinal, "Simulated Annealing", "Minimitzar diferència absoluta de hores", ""+search.getOutcome(), ""+search.getLastSearchState(),time);
 			
 		}
 		catch (Exception e)
@@ -446,7 +427,7 @@ public class Main
     private static void printEstatFinal(SearchAgent agent, Estat estatFinal, String algorisme, String heuristica, String outcome, String lastSState, long time)
 	{
 		TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
-			TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
+	        TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
 		
 		Matriu chcp = estatFinal.getCamionsHCP();
 		Matriu endarrerits = estatFinal.getEndarrerits();
@@ -454,19 +435,9 @@ public class Main
 // 		String outcome = ""+ search.getOutcome();
 // 		String lastst = ""+ search.getLastSearchState();
 		
-		
-		if (HTMLPrint) printHTML("Transports " + algorisme + " - " + heuristica, outcome,lastSState,agent.getInstrumentation(),time);
-		else
-		{
-			System.out.println("\nTransports " + algorisme + heuristica + " -->");
-			printActions(agent.getActions());
-			System.out.println("Search Outcome=" + outcome);
-			System.out.println("Final State=\n" + lastSState);
-			printInstrumentation(agent.getInstrumentation());
-		}
-
 		if (HTMLPrint)
 		{
+		    printHTML("Transports " + algorisme + " - " + heuristica, outcome,lastSState,agent.getInstrumentation(),time);
 			System.out.println("<p><b>Heurístic 1 - Beneficis (com major millor, pot haver-hi perdues): </b>"
 								+(htmg.getHeuristicValue(estatFinal)*-1)+"</p>"+
 								"<p><b>Heurístic 2 - Hores desfassades (com menor millor): </b>"
@@ -476,6 +447,11 @@ public class Main
 		}
 		else
 		{
+			System.out.println("\nTransports " + algorisme + heuristica + " -->");
+			printActions(agent.getActions());
+			System.out.println("Search Outcome=" + outcome);
+			System.out.println("Final State=\n" + lastSState);
+			printInstrumentation(agent.getInstrumentation());
 			System.out.println("\n#############      ESTAT FINAL (Graella Hores-CP)      #############");
 			chcp.printGraellaHCP();
 			System.out.println("\n#############      Endarrerits      #############");
