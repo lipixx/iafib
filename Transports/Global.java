@@ -50,14 +50,14 @@ public class Global
 	    if (aleatori)
 		{
 		    Random generator = new Random(System.currentTimeMillis());
-		    int g = generator.nextInt();
+		    /*int g = generator.nextInt();
 		    if (g < 0) g *= -1;	
 		    while (g % maxPeticions == 0)
 			{		
 			    if (g < 0) g *= -1;	
 			    g = generator.nextInt();
 			}
-		    maxPeticions = g % maxPeticions;
+		    maxPeticions = g % maxPeticions;*/
 		    System.out.println("Problema generat amb "+maxPeticions+" peticions aleatòries.");
 		       /*Problema generat de manera aleatoria amb maxPeticions.
 			* En aquest cas les HORES_SERVEI de la graella PETICIONS venen a ser
