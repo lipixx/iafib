@@ -18,15 +18,15 @@ public class Main
 	public static boolean HTMLPrint = false;
 	public static boolean successorsSwap = false;
 	public static int estrEInicial = Global.LINEAL;
-    public static boolean hbenef = true;
-    public static boolean hhores = false;
-    public static int numpet = 0;
-    public static boolean random = false;
-    public static void main (String args[])
+	public static boolean hbenef = true;
+	public static boolean hhores = false;
+	public static int numpet = 0;
+	public static boolean random = false;
+	public static void main (String args[])
 	{
-	    //main -html -random -s succs -hbenef -hhores -g lineal -numpet 150  -c 20 20 20
+		//main -html -random -s succs -hbenef -hhores -g lineal -numpet 150  -c 20 20 20
 
-	    //Falta definir probabilitat de pesos i de hores.
+		//Falta definir probabilitat de pesos i de hores.
 		Global P = new Global();
 
 		Options options = new Options();
@@ -35,33 +35,33 @@ public class Main
 		options.addOption("hhores",false,"Activar heurístiques de minimitzar diferència engre hores limit i d'entrega");
 		options.addOption("random",false,"Executar una mostra no pre-definida. S'ha de definir nombre màx. de peticions.");
 		options.addOption("probs",false,"Entrar a l'editor de probabilitats de les hores i del pes de les peticions.");
-		
+
 		Option s = OptionBuilder.withArgName("s")
-		    .hasArgs(1)
-		    .withDescription("Tipus d'estratègia de successors [swap,addrem]")
-                    .create("s");
+		           .hasArgs(1)
+		           .withDescription("Tipus d'estratègia de successors [swap,addrem]")
+		           .create("s");
 
 		Option numpetopt = OptionBuilder.withArgName("numpet")
-		    .hasArgs(1)
-		    .withDescription("Nombre de peticions màx. aleatòries a generar. Ha de ser major que 0.")
-                    .create("numpet");		
+		                   .hasArgs(1)
+		                   .withDescription("Nombre de peticions màx. aleatòries a generar. Ha de ser major que 0.")
+		                   .create("numpet");
 
 		Option g = OptionBuilder.withArgName("g")
-		    .hasArgs(1)
-		    .withDescription("Estratègia generació estat inicial [lineal,maxcompact]")
-                    .create("g");
+		           .hasArgs(1)
+		           .withDescription("Estratègia generació estat inicial [lineal,maxcompact]")
+		           .create("g");
 
 		Option c = OptionBuilder.withArgName("nt1> <nt2> <nt3")
-		    .hasArgs(3)
-		    .withValueSeparator()
-		    .withDescription("Nombre de camions de tipus1, tipus2 i tipus3. Han de sumar 60")
-                    .create("c");
+		           .hasArgs(3)
+		           .withValueSeparator()
+		           .withDescription("Nombre de camions de tipus1, tipus2 i tipus3. Han de sumar 60")
+		           .create("c");
 
 		Option a = OptionBuilder.withArgName("steps> <stiter> <k> <lamb")
-		    .hasArgs(4)
-		    .withValueSeparator()
-		    .withDescription("Executa l'algorisme del Simulated Annealing amb els paràmetres passats.")
-                    .create("a");
+		           .hasArgs(4)
+		           .withValueSeparator()
+		           .withDescription("Executa l'algorisme del Simulated Annealing amb els paràmetres passats.")
+		           .create("a");
 
 		options.addOption(s);
 		options.addOption(a);
@@ -73,147 +73,191 @@ public class Main
 		CommandLineParser parser = new PosixParser();
 		CommandLine cmd = null;
 
-		try {
-		    cmd = parser.parse(options,args);
-		} catch (ParseException exp) {
-		    System.err.println("Comanda invàlida: "+exp.getMessage());
-		    formatter.printHelp("java Transports.main", options);
-		    System.exit(1);
+		try
+		{
+			cmd = parser.parse(options,args);
+		}
+		catch (ParseException exp)
+		{
+			System.err.println("Comanda invàlida: "+exp.getMessage());
+			formatter.printHelp("java Transports.main", options);
+			System.exit(1);
 		}
 
 		if (cmd.getArgs().length > 0)
-		    {
-		    formatter.printHelp("java Transports.main", options);
-		    System.exit(1);
-		    }
+		{
+			formatter.printHelp("java Transports.main", options);
+			System.exit(1);
+		}
 
-		HTMLPrint = cmd.hasOption("html");	       	       	      
+		HTMLPrint = cmd.hasOption("html");
 		hhores = cmd.hasOption("hhores");
-		hbenef = cmd.hasOption("hbenef");		
+		hbenef = cmd.hasOption("hbenef");
 		if (!(hbenef | hhores)) hbenef = true;
-		
+
 		if (cmd.hasOption("s"))
-		    {
+		{
 			if (cmd.getOptionValue("s").equals("swap"))
-			    {				
+			{
 				successorsSwap = true;
-			    }
-			else
-			    if (!cmd.getOptionValue("s").equals("addrem"))
-				{ formatter.printHelp("java Transports.main", options); System.exit(1); }
-		    }
+			}
+			else if (!cmd.getOptionValue("s").equals("addrem"))
+			{
+				formatter.printHelp("java Transports.main", options);
+				System.exit(1);
+			}
+		}
 
 		if (cmd.hasOption("g"))
-		    {
+		{
 			if (cmd.getOptionValue("g").equals("maxcompact"))
-			    estrEInicial = Global.MAX_COMPACT;			    
-			else
-			    if (!cmd.getOptionValue("g").equals("lineal"))
-				{ formatter.printHelp("java Transports.main", options); System.exit(1); }
-		    }
+				estrEInicial = Global.MAX_COMPACT;
+			else if (!cmd.getOptionValue("g").equals("lineal"))
+			{
+				formatter.printHelp("java Transports.main", options);
+				System.exit(1);
+			}
+		}
 
 		if (cmd.hasOption("numpet"))
-		    {		       
+		{
 			numpet = Integer.parseInt((String) cmd.getOptionValue("numpet"));
-			if (numpet <= 0) { formatter.printHelp("java Transports.main", options); System.exit(1); }
-		    }
-		
-		
+			if (numpet <= 0)
+			{
+				formatter.printHelp("java Transports.main", options);
+				System.exit(1);
+			}
+		}
+
+
 		if (cmd.hasOption("c"))
-		    {
+		{
 			String sr[] = cmd.getOptionValues("c");
-			
+
 			if (sr.length != 3)
-			    { formatter.printHelp("java Transports.main", options); System.exit(1); }
-			
+			{
+				formatter.printHelp("java Transports.main", options);
+				System.exit(1);
+			}
+
 			P.nT1 = Integer.parseInt(sr[0]);
 			P.nT2 = Integer.parseInt(sr[1]);
 			P.nT3 = Integer.parseInt(sr[2]);
-			
-			if ((P.nT1 + P.nT2 + P.nT3) != 60) 
-			    { formatter.printHelp("java Transports.main", options); System.exit(1); }
-		    }
+
+			if ((P.nT1 + P.nT2 + P.nT3) != 60)
+			{
+				formatter.printHelp("java Transports.main", options);
+				System.exit(1);
+			}
+		}
 
 
 		if (cmd.hasOption("a"))
-		    {
+		{
 			String sr[] = cmd.getOptionValues("a");
-			
+
 			if (sr.length != 4)
-			    { formatter.printHelp("java Transports.main", options); System.exit(1); }
-			
+			{
+				formatter.printHelp("java Transports.main", options);
+				System.exit(1);
+			}
+
 			P.steps = Integer.parseInt(sr[0]);
 			P.stiter = Integer.parseInt(sr[1]);
 			P.k = Integer.parseInt(sr[2]);
 			P.lamb = Integer.parseInt(sr[3]);
-		    }
+		}
 
 		random = cmd.hasOption("random");
 		if (random && numpet <= 0)
-		    { System.out.println("Amb la opció -random és obligatori especificar nombre de peticions (-numpet)");
-			formatter.printHelp("java Transports.main", options); System.exit(1); }
-	      
+		{
+			System.out.println("Amb la opció -random és obligatori especificar nombre de peticions (-numpet)");
+			formatter.printHelp("java Transports.main", options);
+			System.exit(1);
+		}
+
 		if (cmd.hasOption("probs"))
-		    {
+		{
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			String probsH = null;
 			String probsP = null;
-			
-			if (!HTMLPrint)
-			    System.out.println("Entra 10 probabilitats (enters) per la distribució peticions entre les hores de 8 a 17h. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
-			try {
-			    probsH = br.readLine();
-			}
-			catch (IOException e){
-			    System.out.println("Error "+e);
-			    System.exit(1);
-			}
-			if (!HTMLPrint)
-			System.out.println("Entra 5 probabilitats (enters) per la distribució dels pesos a les peticions de 100 a 500. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
 
-			try{
-			 probsP = br.readLine();
+			if (!HTMLPrint)
+				System.out.println("Entra 10 probabilitats (enters) per la distribució peticions entre les hores de 8 a 17h. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
+			try
+			{
+				probsH = br.readLine();
 			}
-			catch (IOException e){
-			    System.out.println("Error "+e);
-			    System.exit(1);
+			catch (IOException e)
+			{
+				System.out.println("Error "+e);
+				System.exit(1);
 			}
-			
+			if (!HTMLPrint)
+				System.out.println("Entra 5 probabilitats (enters) per la distribució dels pesos a les peticions de 100 a 500. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
+
+			try
+			{
+				probsP = br.readLine();
+			}
+			catch (IOException e)
+			{
+				System.out.println("Error "+e);
+				System.exit(1);
+			}
+
 			String ph[] = probsH.split(" ");
-			if (ph.length != 10) { System.out.println("String mal introduït"); System.exit(1); }
+			if (ph.length != 10)
+			{
+				System.out.println("String mal introduït");
+				System.exit(1);
+			}
 			int result = 0;
 			for (int i = 0; i < 10; i++)
-			    {
+			{
 				P.probabilitatsHores[i] = Integer.parseInt(ph[i]);
 				result += Integer.parseInt(ph[i]);
-			    }
-			if (result != 100){ System.out.println("String mal introduït:"); System.exit(1); }
-			
+			}
+			if (result != 100)
+			{
+				System.out.println("String mal introduït:");
+				System.exit(1);
+			}
+
 			String pp[] = probsP.split(" ");
-			if (pp.length != 5) { System.out.println("String mal introduït"); System.exit(1); }
+			if (pp.length != 5)
+			{
+				System.out.println("String mal introduït");
+				System.exit(1);
+			}
 			result = 0;
 			for (int i = 0; i < 5; i++)
-			    {
+			{
 				P.probabilitatsPesos[i] = Integer.parseInt(pp[i]);
 				result += Integer.parseInt(pp[i]);
-			    }
-			if (result != 100){ System.out.println("String mal introduït"); System.exit(1); }
-		    }
-		
+			}
+			if (result != 100)
+			{
+				System.out.println("String mal introduït");
+				System.exit(1);
+			}
+		}
+
 		P.iniciaProblemaDefault(numpet,random,P.probabilitatsHores,P.probabilitatsPesos);
 
-		if (HTMLPrint){
-		    String probsh = "";
-		    String probsp = "";
-		    
-		    for (int i =0; i<10; i++)
-			probsh = probsh + P.probabilitatsHores[i] + ",";
-		    for (int i =0; i<5; i++)
-			probsp = probsp + P.probabilitatsPesos[i] + ",";
-		    
-		    
+		if (HTMLPrint)
+		{
+			String probsh = "";
+			String probsp = "";
 
-		    System.out.println("<html>\n<head>\n<style type=\"text/css\">body{font-family: arial;}table{border-collapse: collapse;}td{padding: 12px;}</style>\n<title> Resultats execució IA - Practica 1</title>\n <META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n </head>\n<body> <p><b>Params. execució: </b><br/><br/>\n\t <b> Ex. Heurística Beneficis: </b> " +hbenef+"<br/>\n\t <b> Ex. Heurística Min. Hores: </b> " +hhores+"<br/>\n\t <b> Estratègia successors (swap:true, addrem: false): </b> " +successorsSwap+"<br/>\n\t <b> Estratègia estat inicial (Lineal: "+Global.LINEAL+", Max Compact: "+Global.MAX_COMPACT+") : </b> " +estrEInicial+"<br/>\n\t <b> Generació aleatòria?: </b> " +random+"<br/>\n\t <b> Simulated Annealing?: </b> " +cmd.hasOption("a")+"<br/>\n \t <b> Num peticions a generar: </b> " +numpet+"<br/>\n\t <b> Num camions T1, T2, T3: </b> " +P.nT1+","+P.nT2+","+P.nT3+"<br/>\n\t <b>Probabilitats horàries de 08 a 17h: </b> " +probsh+"<br/>\n \t <b>Probabilitats de pesos de 100 a 500kg: </b> " +probsp+"<br/></p>");
+			for (int i =0; i<10; i++)
+				probsh = probsh + P.probabilitatsHores[i] + ",";
+			for (int i =0; i<5; i++)
+				probsp = probsp + P.probabilitatsPesos[i] + ",";
+
+
+
+			System.out.println("<html>\n<head>\n<style type=\"text/css\">body{font-family: arial;}table{border-collapse: collapse;}td{padding: 12px;}</style>\n<title> Resultats execució IA - Practica 1</title>\n <META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n </head>\n<body> <p><b>Params. execució: </b><br/><br/>\n\t <b> Ex. Heurística Beneficis: </b> " +hbenef+"<br/>\n\t <b> Ex. Heurística Min. Hores: </b> " +hhores+"<br/>\n\t <b> Estratègia successors (swap:true, addrem: false): </b> " +successorsSwap+"<br/>\n\t <b> Estratègia estat inicial (Lineal: "+Global.LINEAL+", Max Compact: "+Global.MAX_COMPACT+") : </b> " +estrEInicial+"<br/>\n\t <b> Generació aleatòria?: </b> " +random+"<br/>\n\t <b> Simulated Annealing?: </b> " +cmd.hasOption("a")+"<br/>\n \t <b> Num peticions a generar: </b> " +numpet+"<br/>\n\t <b> Num camions T1, T2, T3: </b> " +P.nT1+","+P.nT2+","+P.nT3+"<br/>\n\t <b>Probabilitats horàries de 08 a 17h: </b> " +probsh+"<br/>\n \t <b>Probabilitats de pesos de 100 a 500kg: </b> " +probsp+"<br/></p>");
 		}
 
 
@@ -222,10 +266,10 @@ public class Main
 
 		if (hbenef) TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial);
 		if (hhores) TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial);
-		if (cmd.hasOption("a") && hhores) 
-		    TransportsSimulatedAnnealingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial,P.steps,P.stiter,P.k,P.lamb);
-		if (cmd.hasOption("a") && hbenef) 
-		    TransportsSimulatedAnnealingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial,P.steps,P.stiter,P.k,P.lamb);
+		if (cmd.hasOption("a") && hhores)
+			TransportsSimulatedAnnealingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial,P.steps,P.stiter,P.k,P.lamb);
+		if (cmd.hasOption("a") && hbenef)
+			TransportsSimulatedAnnealingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial,P.steps,P.stiter,P.k,P.lamb);
 		/*------------------------------------------------------------------------------------------*/
 
 
@@ -238,7 +282,7 @@ public class Main
 	 */
 	private static void TransportsHillClimbingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, int gen)
 	{
-	    long time = System.currentTimeMillis();
+		long time = System.currentTimeMillis();
 		try
 		{
 			Problem problem;
@@ -279,7 +323,7 @@ public class Main
 	 */
 	private static void TransportsHillClimbingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3, int gen)
 	{
-	    long time = System.currentTimeMillis();
+		long time = System.currentTimeMillis();
 		try
 		{
 			Problem problem = new Problem(
@@ -306,78 +350,78 @@ public class Main
 	 */
 	private static void TransportsSimulatedAnnealingSearchMaxGuanys(Matriu peticions, int n1, int n2, int n3, int gen, int steps, int stiter, int k, double lamb)
 	{
-	    long time = System.currentTimeMillis();
+		long time = System.currentTimeMillis();
 		try
 		{
 			Problem problem;
-			
+
 			if (successorsSwap)
 			{
 				problem = new Problem(
-				new Estat(peticions, n1, n2, n3, gen),
-				new TransportsSuccessorFunction(),
-				new TransportsGoalTest(),
-				new TransportsMaxGuanysHeuristicFunction());
+				    new Estat(peticions, n1, n2, n3, gen),
+				    new TransportsSuccessorFunction(),
+				    new TransportsGoalTest(),
+				    new TransportsMaxGuanysHeuristicFunction());
 			}
 			else
 			{
 				problem = new Problem(
-				new Estat(peticions, n1, n2, n3, gen),
-				new TransportsSuccessorFunctionAddRem(),
-				new TransportsGoalTest(),
-				new TransportsMaxGuanysHeuristicFunction());
+				    new Estat(peticions, n1, n2, n3, gen),
+				    new TransportsSuccessorFunctionAddRem(),
+				    new TransportsGoalTest(),
+				    new TransportsMaxGuanysHeuristicFunction());
 			}
-			
+
 			SimulatedAnnealingSearch search = new SimulatedAnnealingSearch(steps, stiter, k, lamb);
 			SearchAgent agent = new SearchAgent(problem, search);
-			
+
 			//Mostrem estat final
 			time = System.currentTimeMillis() - time;
 			Estat estatFinal = (Estat) search.getLastSearchState();
 			printEstatFinal(agent, estatFinal, "Simulated Annealing", "Maximitzar beneficis", ""+search.getOutcome(), ""+search.getLastSearchState(),time);
-			
+
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**Creació problema amb Simulated Annealing amb funció heurística Min Dif Hora
 	 * @param gen Tipus d'estratègia a utilitzar (Global.LINEAL, Global.MAX_COMPACT)
 	 */
 	private static void TransportsSimulatedAnnealingSearchMinDifHora(Matriu peticions, int n1, int n2, int n3, int gen, int steps, int stiter, int k, double lamb)
 	{
-	    long time = System.currentTimeMillis();
+		long time = System.currentTimeMillis();
 		try
 		{
 			Problem problem;
-			
+
 			if (successorsSwap)
 			{
 				problem = new Problem(
-				new Estat(peticions, n1, n2, n3, gen),
-				new TransportsSuccessorFunction(),
-				new TransportsGoalTest(),
-				new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
+				    new Estat(peticions, n1, n2, n3, gen),
+				    new TransportsSuccessorFunction(),
+				    new TransportsGoalTest(),
+				    new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
 			}
 			else
 			{
 				problem = new Problem(
-				new Estat(peticions, n1, n2, n3, gen),
-				new TransportsSuccessorFunctionAddRem(),
-				new TransportsGoalTest(),
-				new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
+				    new Estat(peticions, n1, n2, n3, gen),
+				    new TransportsSuccessorFunctionAddRem(),
+				    new TransportsGoalTest(),
+				    new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
 			}
-			
+
 			SimulatedAnnealingSearch search = new SimulatedAnnealingSearch(steps, stiter, k, lamb);
 			SearchAgent agent = new SearchAgent(problem, search);
-			
+
 			//Mostrem estat final
 			time = System.currentTimeMillis() - time;
 			Estat estatFinal = (Estat) search.getLastSearchState();
 			printEstatFinal(agent, estatFinal, "Simulated Annealing", "Minimitzar diferència absoluta de hores", ""+search.getOutcome(), ""+search.getLastSearchState(),time);
-			
+
 		}
 		catch (Exception e)
 		{
@@ -406,7 +450,7 @@ public class Main
 			System.out.println(action);
 		}
 	}
-    private static void printHTML(String header,String outcome, String lastSState, Properties properties, long time)
+	private static void printHTML(String header,String outcome, String lastSState, Properties properties, long time)
 	{
 		String tmp = "";
 		Iterator keys = properties.keySet().iterator();
@@ -418,30 +462,30 @@ public class Main
 		}
 
 		System.out.println("<h1>"+header+"</h1>\n"
-				   +"\t<p><b>Search Outcome:</b> "+outcome
+		                   +"\t<p><b>Search Outcome:</b> "+outcome
 		                   +"</p><p><b>Final State:</b> "+lastSState+"</p>\n"
 		                   +"<p>"+tmp+"</p>\n"
-				   +"<p><b>Temps d'execució: </b>"+time+" milisegons</p>\n");
+		                   +"<p><b>Temps d'execució: </b>"+time+" milisegons</p>\n");
 	}
-	
-    private static void printEstatFinal(SearchAgent agent, Estat estatFinal, String algorisme, String heuristica, String outcome, String lastSState, long time)
+
+	private static void printEstatFinal(SearchAgent agent, Estat estatFinal, String algorisme, String heuristica, String outcome, String lastSState, long time)
 	{
 		TransportsMaxGuanysHeuristicFunction htmg = new TransportsMaxGuanysHeuristicFunction();
-	        TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
-		
+		TransportsMinDifHoraLimitHoraEntregaHeuristicFunction htdif = new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction();
+
 		Matriu chcp = estatFinal.getCamionsHCP();
 		Matriu endarrerits = estatFinal.getEndarrerits();
 
 // 		String outcome = ""+ search.getOutcome();
 // 		String lastst = ""+ search.getLastSearchState();
-		
+
 		if (HTMLPrint)
 		{
-		    printHTML("Transports " + algorisme + " - " + heuristica, outcome,lastSState,agent.getInstrumentation(),time);
+			printHTML("Transports " + algorisme + " - " + heuristica, outcome,lastSState,agent.getInstrumentation(),time);
 			System.out.println("<p><b>Heurístic 1 - Beneficis (com major millor, pot haver-hi perdues): </b>"
-								+(htmg.getHeuristicValue(estatFinal)*-1)+"</p>"+
-								"<p><b>Heurístic 2 - Hores desfassades (com menor millor): </b>"
-								+(htdif.getHeuristicValue(estatFinal))+"</p>");
+			                   +(htmg.getHeuristicValue(estatFinal)*-1)+"</p>"+
+			                   "<p><b>Heurístic 2 - Hores desfassades (com menor millor): </b>"
+			                   +(htdif.getHeuristicValue(estatFinal))+"</p>");
 			System.out.println(chcp.printGraellaHCPHtml());
 			System.out.println(endarrerits.printEndarreritsHtml());
 		}
