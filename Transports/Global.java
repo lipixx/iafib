@@ -20,8 +20,8 @@ public class Global
 	public static int nT2 = 20;
 	public static int nT3 = 20;
 
-        /*Paràmeters del Simulated Annealing*/
-        public static int steps = 100;
+	/*Paràmeters del Simulated Annealing*/
+	public static int steps = 100;
 	public static int stiter = 10;
 	public static int k = 5;
 	public static int lamb = 10;
@@ -30,11 +30,11 @@ public class Global
 	public static double preus_transport[] = { 100, 200, 300*1.5, 400*1.5, 500*2 };
 
 	/*Probabilitats de que toqui una petició a una hora determinada. Probabilitat uniforme, valors entre 0 i 1.0*/
-        public static int probabilitatsHores[] = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
-        public static int probabilitatsPesos[] = { 17, 17, 16, 17, 17 };
-     
-        /*Pesos possibles de les peticions*/
-        public static int pesos_peticions[] = { 100, 200, 300, 400, 500 };        
+	public static int probabilitatsHores[] = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+	public static int probabilitatsPesos[] = { 17, 17, 16, 17, 17 };
+
+	/*Pesos possibles de les peticions*/
+	public static int pesos_peticions[] = { 100, 200, 300, 400, 500 };
 
 	/*Tipus d'estratègies de generació inicial que tenim*/
 	public static final int LINEAL = 0;
@@ -57,34 +57,34 @@ public class Global
 	 *@params aleatori Determina si es genera el problema de forma aleatoria o predeterminada.
 	 *@post S'ha omplert la matriu PETICIONS amb peticions.
 	*/
-    public void iniciaProblemaDefault(int numPeticions,boolean aleatori, int probsH[], int probsP[])
-    {
-	    if (aleatori)
+	public void iniciaProblemaDefault(int numPeticions,boolean aleatori, int probsH[], int probsP[])
+	{
+		if (aleatori)
 		{
-		    Random generator = new Random(System.currentTimeMillis());
-		    ArrayList hores = new ArrayList();
-		    ArrayList pesos = new ArrayList();
+			Random generator = new Random(System.currentTimeMillis());
+			ArrayList hores = new ArrayList();
+			ArrayList pesos = new ArrayList();
 
-		    /*Probabilitats uniformes*/
-		    for (int h = 0; h < probsH.length; h++)
-			for (int nh = 0; nh < probsH[h]; nh++)
-			    hores.add(h);
-		    
-		    for (int p = 0; p < probsP.length; p++)
-			for (int pp = 0; pp < probsP[p]; pp++)
-			    pesos.add(pesos_peticions[p]);
+			/*Probabilitats uniformes*/
+			for (int h = 0; h < probsH.length; h++)
+				for (int nh = 0; nh < probsH[h]; nh++)
+					hores.add(h);
 
-		    for (int i = 0; i < numPeticions; i++)
+			for (int p = 0; p < probsP.length; p++)
+				for (int pp = 0; pp < probsP[p]; pp++)
+					pesos.add(pesos_peticions[p]);
+
+			for (int i = 0; i < numPeticions; i++)
 			{
-			    /*Nombre de centre 0 a 5 amb prob. uniforme*/
-			    int nc = generator.nextInt(Global.N_CENTRES);
-			    
-			    /*Hora i pes amb prob. uniforme i definida*/
-			    Integer h = (Integer)(hores.get(generator.nextInt(hores.size())));
-			    Integer p = (Integer) (pesos.get(generator.nextInt(pesos.size())));			    
-			    this.PETICIONS.add(h,nc,new Peticio(i,p.intValue(),h.intValue()+8));
-			}		  		    
-		}     	   
+				/*Nombre de centre 0 a 5 amb prob. uniforme*/
+				int nc = generator.nextInt(Global.N_CENTRES);
+
+				/*Hora i pes amb prob. uniforme i definida*/
+				Integer h = (Integer)(hores.get(generator.nextInt(hores.size())));
+				Integer p = (Integer) (pesos.get(generator.nextInt(pesos.size())));
+				this.PETICIONS.add(h,nc,new Peticio(i,p.intValue(),h.intValue()+8));
+			}
+		}
 		else
 		{
 			//Problema generat de forma estàtica i per defecte
@@ -212,6 +212,6 @@ public class Global
 			this.PETICIONS.add(8,5,new Peticio(67,500,16));
 			this.PETICIONS.add(9,5,new Peticio(68,300,17));
 		}
-    }
+	}
 }
 
