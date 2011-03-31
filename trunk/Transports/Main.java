@@ -138,7 +138,7 @@ public class Main
 			String probsP = null;
 			
 			if (!HTMLPrint)
-			    System.out.println("Entra 10 probabilitats per la distribució peticions entre les hores de 8 a 17h. Valors entre 0.0 i 1.0 i pitja ENTER");
+			    System.out.println("Entra 10 probabilitats (enters) per la distribució peticions entre les hores de 8 a 17h. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
 			try {
 			    probsH = br.readLine();
 			}
@@ -147,7 +147,7 @@ public class Main
 			    System.exit(1);
 			}
 			if (!HTMLPrint)
-			System.out.println("Entra 5 probabilitats per la distribució dels pesos a les peticions de 100 a 500. Valors entre 0.0 i 1.0 i pitja ENTER");
+			System.out.println("Entra 5 probabilitats (enters) per la distribució dels pesos a les peticions de 100 a 500. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
 
 			try{
 			 probsP = br.readLine();
@@ -159,18 +159,23 @@ public class Main
 			
 			String ph[] = probsH.split(" ");
 			if (ph.length != 10) { System.out.println("String mal introduït"); System.exit(1); }
+			int result = 0;
 			for (int i = 0; i < 10; i++)
 			    {
-				P.probabilitatsHores[i] = Double.parseDouble(ph[i]);
+				P.probabilitatsHores[i] = Integer.parseInt(ph[i]);
+				result += Integer.parseInt(ph[i]);
 			    }
+			if (result != 100){ System.out.println("String mal introduït:"); System.exit(1); }
 			
 			String pp[] = probsP.split(" ");
 			if (pp.length != 5) { System.out.println("String mal introduït"); System.exit(1); }
+			result = 0;
 			for (int i = 0; i < 5; i++)
 			    {
-				P.probabilitatsPesos[i] = Double.parseDouble(pp[i]);
+				P.probabilitatsPesos[i] = Integer.parseInt(pp[i]);
+				result += Integer.parseInt(pp[i]);
 			    }
-			
+			if (result != 100){ System.out.println("String mal introduït"); System.exit(1); }
 		    }
 		
 		P.iniciaProblemaDefault(numpet,random,P.probabilitatsHores,P.probabilitatsPesos);
