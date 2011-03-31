@@ -27,17 +27,14 @@ public class TransportsSuccessorFunctionAddRem implements SuccessorFunction
 
 		List<Successor> successors = new ArrayList<Successor>();
 
-		/**
+		/** 
 		 * L'estratègia a seguir serà la següent:
 		 * Per un centre de producció CP
-		 * 1. Per cada Peticio pi de CP, que es troba a HCP
-		 *      Per totes les demés peticions pj tals que j > i (en ordre a la matriu HCP)
-		 *        swap (pi,pj);
-		 * 2. Per cada Petició pi de CP, que es troba a HCP
-		 *      Per totes les peticions pj de la matriu endarrerits (en ordre a la matriu)
-		 *	  swap (pi,pj);
-		 *
-		 * La condició de que j > i en (1), implica que no es repeteixen estats.
+		 * 1. Per cada Peticio pi de CP,
+		 *     Moure la petició a endarrerits, actualitzant camió si escau.
+		 * 2. Per cada Petició pi de CP
+		 *     Agafar la primera petició d'endarrerits i intentar col·locar-la al primer lloc buit
+		 *     de l'estat.
 		 */
 
 		//Generacio de successors: eliminar peticions, afegir peticions on capiguen, etc
