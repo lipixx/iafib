@@ -27,7 +27,7 @@ public class TransportsSuccessorFunctionAddRem implements SuccessorFunction
 
 		List<Successor> successors = new ArrayList<Successor>();
 
-		/** 
+		/**
 		 * L'estratègia a seguir serà la següent:
 		 * Per un centre de producció CP
 		 * 1. Per cada Peticio pi de CP,

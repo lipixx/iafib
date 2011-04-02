@@ -11,6 +11,7 @@ public class Global
 	public static int H_FI = 17;
 	public static int HORES_SERVEI = H_FI - H_INI + 1;
 	public static int N_CENTRES = 6;
+	public static int NCAMIONS = N_CENTRES * HORES_SERVEI;
 
 	/*Tipus i nombre de Transports*/
 	public static final int T1 = 500;
@@ -31,10 +32,14 @@ public class Global
 
 	/*Probabilitats de que toqui una petició a una hora determinada. Probabilitat uniforme, valors entre 0 i 1.0*/
 	public static int probabilitatsHores[] = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
-	public static int probabilitatsPesos[] = { 17, 17, 16, 17, 17 };
+	public static int probabilitatsPesos[] = { 20, 20, 20, 20, 20 };
+	public static int probabilitatsTipusCamions[] = { 33, 33, 34 };
 
 	/*Pesos possibles de les peticions*/
 	public static int pesos_peticions[] = { 100, 200, 300, 400, 500 };
+
+	/*Tipus de camió possibles*/
+	public static int tipus_camions[] = { 500, 1000, 2000 };
 
 	/*Tipus d'estratègies de generació inicial que tenim*/
 	public static final int LINEAL = 0;
@@ -57,13 +62,14 @@ public class Global
 	 *@params aleatori Determina si es genera el problema de forma aleatoria o predeterminada.
 	 *@post S'ha omplert la matriu PETICIONS amb peticions.
 	*/
-	public void iniciaProblemaDefault(int numPeticions,boolean aleatori, int probsH[], int probsP[])
+	public void iniciaProblemaDefault(int numPeticions,boolean aleatori, int probsH[], int probsP[], int probsTC[])
 	{
 		if (aleatori)
 		{
 			Random generator = new Random(System.currentTimeMillis());
 			ArrayList hores = new ArrayList();
 			ArrayList pesos = new ArrayList();
+			ArrayList tipusCamions = new ArrayList();
 
 			/*Probabilitats uniformes*/
 			for (int h = 0; h < probsH.length; h++)
@@ -74,6 +80,10 @@ public class Global
 				for (int pp = 0; pp < probsP[p]; pp++)
 					pesos.add(pesos_peticions[p]);
 
+			for (int tc = 0; tc < probsTC.length; tc++)
+				for (int ntc = 0; ntc < probsTC[tc]; ntc++)
+					tipusCamions.add(tipus_camions[tc]);
+
 			for (int i = 0; i < numPeticions; i++)
 			{
 				/*Nombre de centre 0 a 5 amb prob. uniforme*/
@@ -81,8 +91,29 @@ public class Global
 
 				/*Hora i pes amb prob. uniforme i definida*/
 				Integer h = (Integer)(hores.get(generator.nextInt(hores.size())));
-				Integer p = (Integer) (pesos.get(generator.nextInt(pesos.size())));
+				Integer p = (Integer)(pesos.get(generator.nextInt(pesos.size())));
 				this.PETICIONS.add(h,nc,new Peticio(i,p.intValue(),h.intValue()+8));
+			}
+
+			this.nT1 = 0;
+			this.nT2 = 0;
+			this.nT3 = 0;
+			for(int i = 0; i < NCAMIONS; i++)
+			{
+				Integer tc = (Integer) tipusCamions.get(generator.nextInt(tipusCamions.size()));
+
+				switch(tc.intValue())
+				{
+				case 500:
+					this.nT1++;
+					break;
+				case 1000:
+					this.nT2++;
+					break;
+				case 2000:
+					this.nT3++;
+					break;
+				}
 			}
 		}
 		else
