@@ -34,7 +34,7 @@ public class Main
 		options.addOption("hbenef",false,"Activar heurístiques de maximització de beneficis");
 		options.addOption("hhores",false,"Activar heurístiques de minimitzar diferència engre hores limit i d'entrega");
 		options.addOption("random",false,"Executar una mostra no pre-definida. S'ha de definir nombre màx. de peticions.");
-		options.addOption("probs",false,"Entrar a l'editor de probabilitats de les hores i del pes de les peticions.");
+		options.addOption("probs",false,"Entrar a l'editor de probabilitats de les hores, del pes de les peticions i del nombre de camions de cada tipus.");
 
 		Option s = OptionBuilder.withArgName("s")
 		           .hasArgs(1)
@@ -181,6 +181,7 @@ public class Main
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			String probsH = null;
 			String probsP = null;
+			String probsTC = null;
 
 			if (!HTMLPrint)
 				System.out.println("Entra 10 probabilitats (enters) per la distribució peticions entre les hores de 8 a 17h. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
@@ -199,6 +200,18 @@ public class Main
 			try
 			{
 				probsP = br.readLine();
+			}
+			catch (IOException e)
+			{
+				System.out.println("Error "+e);
+				System.exit(1);
+			}
+			if (!HTMLPrint)
+				System.out.println("Entra 3 probabilitats (enters) per la distribució dels tipus de camions de tipus 500, 1000 i 2000. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
+
+			try
+			{
+				probsTC = br.readLine();
 			}
 			catch (IOException e)
 			{
@@ -241,23 +254,44 @@ public class Main
 				System.out.println("String mal introduït");
 				System.exit(1);
 			}
+
+			String ptc[] = probsTC.split(" ");
+			if (ptc.length != 3)
+			{
+				System.out.println("String mal introduït");
+				System.exit(1);
+			}
+			result = 0;
+			for (int i = 0; i < 3; i++)
+			{
+				P.probabilitatsTipusCamions[i] = Integer.parseInt(ptc[i]);
+				result += Integer.parseInt(ptc[i]);
+			}
+			if (result != 100)
+			{
+				System.out.println("String mal introduït:");
+				System.exit(1);
+			}
 		}
 
-		P.iniciaProblemaDefault(numpet,random,P.probabilitatsHores,P.probabilitatsPesos);
+		P.iniciaProblemaDefault(numpet,random,P.probabilitatsHores,P.probabilitatsPesos,P.probabilitatsTipusCamions);
 
 		if (HTMLPrint)
 		{
 			String probsh = "";
 			String probsp = "";
+			String probstc = "";
 
 			for (int i =0; i<10; i++)
 				probsh = probsh + P.probabilitatsHores[i] + ",";
 			for (int i =0; i<5; i++)
 				probsp = probsp + P.probabilitatsPesos[i] + ",";
+			for (int i =0; i<3; i++)
+				probstc = probstc + P.probabilitatsTipusCamions[i] + ",";
 
 
 
-			System.out.println("<html>\n<head>\n<style type=\"text/css\">body{font-family: arial;}table{border-collapse: collapse;}td{padding: 12px;}</style>\n<title> Resultats execució IA - Practica 1</title>\n <META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n </head>\n<body> <p><b>Params. execució: </b><br/><br/>\n\t <b> Ex. Heurística Beneficis: </b> " +hbenef+"<br/>\n\t <b> Ex. Heurística Min. Hores: </b> " +hhores+"<br/>\n\t <b> Estratègia successors (swap:true, addrem: false): </b> " +successorsSwap+"<br/>\n\t <b> Estratègia estat inicial (Lineal: "+Global.LINEAL+", Max Compact: "+Global.MAX_COMPACT+") : </b> " +estrEInicial+"<br/>\n\t <b> Generació aleatòria?: </b> " +random+"<br/>\n\t <b> Simulated Annealing?: </b> " +cmd.hasOption("a")+"<br/>\n \t <b> Num peticions a generar: </b> " +numpet+"<br/>\n\t <b> Num camions T1, T2, T3: </b> " +P.nT1+","+P.nT2+","+P.nT3+"<br/>\n\t <b>Probabilitats horàries de 08 a 17h: </b> " +probsh+"<br/>\n \t <b>Probabilitats de pesos de 100 a 500kg: </b> " +probsp+"<br/></p>");
+			System.out.println("<html>\n<head>\n<style type=\"text/css\">body{font-family: arial;}table{border-collapse: collapse;}td{padding: 12px;}</style>\n<title> Resultats execució IA - Practica 1</title>\n <META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n </head>\n<body> <p><b>Params. execució: </b><br/><br/>\n\t <b> Ex. Heurística Beneficis: </b> " +hbenef+"<br/>\n\t <b> Ex. Heurística Min. Hores: </b> " +hhores+"<br/>\n\t <b> Estratègia successors (swap:true, addrem: false): </b> " +successorsSwap+"<br/>\n\t <b> Estratègia estat inicial (Lineal: "+Global.LINEAL+", Max Compact: "+Global.MAX_COMPACT+") : </b> " +estrEInicial+"<br/>\n\t <b> Generació aleatòria?: </b> " +random+"<br/>\n\t <b> Simulated Annealing?: </b> " +cmd.hasOption("a")+"<br/>\n \t <b> Num peticions a generar: </b> " +numpet+"<br/>\n\t <b> Num camions T1, T2, T3: </b> " +P.nT1+","+P.nT2+","+P.nT3+"<br/>\n\t <b>Probabilitats horàries de 08 a 17h: </b> " +probsh+"<br/>\n \t <b>Probabilitats de pesos de 100 a 500kg: </b> " +probsp+"<br/>\n\t <b>Probabilitats horàries de 08 a 17h: </b> " +probsh+"<br/>\n \t <b>Probabilitats num camions de tipus T1, T2, T3: </b>"+probstc+"<br/></p>");
 		}
 
 
