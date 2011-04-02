@@ -183,8 +183,8 @@ public class Main
 			String probsP = null;
 			String probsTC = null;
 
-			if (!HTMLPrint)
-				System.out.println("Entra 10 probabilitats (enters) per la distribució peticions entre les hores de 8 a 17h. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
+// 			if (!HTMLPrint)
+			System.err.println("Entra 10 probabilitats (enters) per la distribució peticions entre les hores de 8 a 17h. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
 			try
 			{
 				probsH = br.readLine();
@@ -194,9 +194,10 @@ public class Main
 				System.out.println("Error "+e);
 				System.exit(1);
 			}
-			if (!HTMLPrint)
-				System.out.println("Entra 5 probabilitats (enters) per la distribució dels pesos a les peticions de 100 a 500. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
 
+
+// 			if (!HTMLPrint)
+			System.err.println("Entra 5 probabilitats (enters) per la distribució dels pesos a les peticions de 100 a 500. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
 			try
 			{
 				probsP = br.readLine();
@@ -206,8 +207,10 @@ public class Main
 				System.out.println("Error "+e);
 				System.exit(1);
 			}
-			if (!HTMLPrint)
-				System.out.println("Entra 3 probabilitats (enters) per la distribució dels tipus de camions de tipus 500, 1000 i 2000. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
+
+
+// 			if (!HTMLPrint)
+			System.err.println("Entra 3 probabilitats (enters) per la distribució dels tipus de camions de tipus 500, 1000 i 2000. Valors entre 0 i 100 i pitja ENTER. (Han de sumar 100 en total!)");
 
 			try
 			{
@@ -222,7 +225,7 @@ public class Main
 			String ph[] = probsH.split(" ");
 			if (ph.length != 10)
 			{
-				System.out.println("String mal introduït");
+				System.err.println("String mal introduït");
 				System.exit(1);
 			}
 			int result = 0;
@@ -233,14 +236,14 @@ public class Main
 			}
 			if (result != 100)
 			{
-				System.out.println("String mal introduït:");
+				System.err.println("String mal introduït:");
 				System.exit(1);
 			}
 
 			String pp[] = probsP.split(" ");
 			if (pp.length != 5)
 			{
-				System.out.println("String mal introduït");
+				System.err.println("String mal introduït");
 				System.exit(1);
 			}
 			result = 0;
@@ -251,14 +254,14 @@ public class Main
 			}
 			if (result != 100)
 			{
-				System.out.println("String mal introduït");
+				System.err.println("String mal introduït");
 				System.exit(1);
 			}
 
 			String ptc[] = probsTC.split(" ");
 			if (ptc.length != 3)
 			{
-				System.out.println("String mal introduït");
+				System.err.println("String mal introduït");
 				System.exit(1);
 			}
 			result = 0;
@@ -269,7 +272,7 @@ public class Main
 			}
 			if (result != 100)
 			{
-				System.out.println("String mal introduït:");
+				System.err.println("String mal introduït:");
 				System.exit(1);
 			}
 		}
