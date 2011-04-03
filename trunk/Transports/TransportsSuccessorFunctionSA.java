@@ -1,11 +1,5 @@
 /**
- * Aquesta classe genera els successors a partir de l'estat passat de la forma següent:
- * Per cada una de les peticions existents a HCP de l'estat pare:
- * 1. Eliminem la petició i la posem a endarrerits. Afegim l'estat resultant als successors.
- * 2. Afegim una petició d'endarrerits on hi càpiga. Afegim l'estat resultant als successors.
- *
- * Per tant ens queden el següent nombre d'estats, degut al factor de ramificació:
- *    Suma de (Num de peticions a HCP + Num de peticions a endarrerits que es puguin afegir a HCP)
+ * Aquesta classe genera un únic successors de cara a ser utlitzar amb l'algorisme de Simulated Annealing. Per fer-ho es tria un del operadors de swap aleatóriament i llavors s'executa aquest operador amb paràmetres aleatoris
  */
 package Transports;
 
@@ -21,25 +15,39 @@ public class TransportsSuccessorFunctionSA implements SuccessorFunction
 
 	public List getSuccessors(Object state)
 	{
+		Random generator = new Random(System.currentTimeMillis());
 		Estat estatPare = (Estat) state;
 		Matriu hcpPare = estatPare.getCamionsHCP();
 		Matriu endarreritsPare = estatPare.getEndarrerits();
 
 		List<Successor> successors = new ArrayList<Successor>();
 
-		/**
-		 * L'estratègia a seguir serà la següent:
-		 * Per un centre de producció CP
-		 * 1. Per cada Peticio pi de CP, que es troba a HCP
-		 *      Per totes les demés peticions pj tals que j > i (en ordre a la matriu HCP)
-		 *        swap (pi,pj);
-		 * 2. Per cada Petició pi de CP, que es troba a HCP
-		 *      Per totes les peticions pj de la matriu endarrerits (en ordre a la matriu)
-		 *	  swap (pi,pj);
-		 *
-		 * La condició de que j > i en (1), implica que no es repeteixen estats.
-		 */
+		/*S'ha de triat aleatóriament entre un dels dos operadors de swap*/
+		Integer operador = (Integer)(generator.nextInt(2));
 
+		switch(operador.intValue())
+		{
+		case 1:
+			Estat estatFill = new Estat(estatPare);
+			if (estatFill.swap(cp,fila,i,filatmp,isubllista))
+			{
+				Successor suc = new Successor("",estatFill);
+				successors.add(suc);
+			}
+			break;
+		case 2:
+			Estat estatFill = new Estat(estatPare);
+			if (estatFill.swapEndarrerits(cp,fila,i,iendar))
+			{
+				Successor suc = new Successor("",estatFill);
+				successors.add(suc);
+			}
+			break;
+		default:
+			break;
+		}
+
+		////Codi d'aquí cap a sota s'ha d'agafar aleatoriament...////
 		for (int cp = 0; cp < Global.N_CENTRES; cp++)
 		{
 			for (int fila = 0; fila < Global.HORES_SERVEI; fila++)
