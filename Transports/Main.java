@@ -490,12 +490,14 @@ public class Main
 	private static void printHTML(String header,String outcome, String lastSState, Properties properties, long time)
 	{
 		String tmp = "";
+		String tmp2 = "";
 		Iterator keys = properties.keySet().iterator();
 		while (keys.hasNext())
 		{
 			String key = (String) keys.next();
 			String property = properties.getProperty(key);
 			tmp = "<b>"+ key + ": </b>" + property;
+			tmp2 = "" + property;
 		}
 
 		System.out.println("<h1>"+header+"</h1>\n"
@@ -503,6 +505,7 @@ public class Main
 		                   +"</p><p><b>Final State:</b> "+lastSState+"</p>\n"
 		                   +"<p>"+tmp+"</p>\n"
 		                   +"<p><b>Temps d'execució: </b>"+time+" milisegons</p>\n");
+		System.err.print("" + time + " " + tmp2);
 	}
 
 	private static void printEstatFinal(SearchAgent agent, Estat estatFinal, String algorisme, String heuristica, String outcome, String lastSState, long time)
@@ -542,5 +545,6 @@ public class Main
 			System.out.println("Heurístic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
 			System.out.println("Heurístic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));
 		}
+		System.err.println(" " + (htmg.getHeuristicValue(estatFinal)*-1));
 	}
 }
