@@ -8,6 +8,6 @@ public class TransportsGoalTest implements GoalTest
 
 	public boolean isGoalState(Object state)
 	{
-		return true;
+		return false;
 	}
 }
