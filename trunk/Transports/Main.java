@@ -301,8 +301,8 @@ public class Main
 
 		/*--------------------------------Algorismes a executar------------------------------------*/
 
-		if (hbenef) TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial);
-		if (hhores) TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial);
+		if (hbenef && !cmd.hasOption("a")) TransportsHillClimbingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial);
+		if (hhores && !cmd.hasOption("a")) TransportsHillClimbingSearchMinDifHora(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial);
 		if (cmd.hasOption("a") && hhores)
 			TransportsSimulatedAnnealingSearchMaxGuanys(P.PETICIONS, P.nT1, P.nT2, P.nT3, estrEInicial,P.steps,P.stiter,P.k,P.lamb);
 		if (cmd.hasOption("a") && hbenef)
@@ -392,22 +392,11 @@ public class Main
 		{
 			Problem problem;
 
-			if (successorsSwap)
-			{
-				problem = new Problem(
-				    new Estat(peticions, n1, n2, n3, gen),
-				    new TransportsSuccessorFunction(),
-				    new TransportsGoalTest(),
-				    new TransportsMaxGuanysHeuristicFunction());
-			}
-			else
-			{
-				problem = new Problem(
-				    new Estat(peticions, n1, n2, n3, gen),
-				    new TransportsSuccessorFunctionAddRem(),
-				    new TransportsGoalTest(),
-				    new TransportsMaxGuanysHeuristicFunction());
-			}
+			problem = new Problem(
+			new Estat(peticions, n1, n2, n3, gen),
+			new TransportsSuccessorFunctionSA(),
+			new TransportsGoalTest(),
+			new TransportsMaxGuanysHeuristicFunction());
 
 			SimulatedAnnealingSearch search = new SimulatedAnnealingSearch(steps, stiter, k, lamb);
 			SearchAgent agent = new SearchAgent(problem, search);
@@ -433,23 +422,11 @@ public class Main
 		try
 		{
 			Problem problem;
-
-			if (successorsSwap)
-			{
-				problem = new Problem(
-				    new Estat(peticions, n1, n2, n3, gen),
-				    new TransportsSuccessorFunction(),
-				    new TransportsGoalTest(),
-				    new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
-			}
-			else
-			{
-				problem = new Problem(
-				    new Estat(peticions, n1, n2, n3, gen),
-				    new TransportsSuccessorFunctionAddRem(),
-				    new TransportsGoalTest(),
-				    new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
-			}
+			problem = new Problem(
+			new Estat(peticions, n1, n2, n3, gen),
+			new TransportsSuccessorFunctionSA(),
+			new TransportsGoalTest(),
+			new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
 
 			SimulatedAnnealingSearch search = new SimulatedAnnealingSearch(steps, stiter, k, lamb);
 			SearchAgent agent = new SearchAgent(problem, search);
@@ -501,11 +478,12 @@ public class Main
 		}
 
 		System.out.println("<h1>"+header+"</h1>\n"
-		                   +"\t<p><b>Search Outcome:</b> "+outcome
+// 		                   +"\t<p><b>Search Outcome:</b> "+outcome
 		                   +"</p><p><b>Final State:</b> "+lastSState+"</p>\n"
 		                   +"<p>"+tmp+"</p>\n"
 		                   +"<p><b>Temps d'execució: </b>"+time+" milisegons</p>\n");
-		System.err.print("" + time + " " + tmp2);
+// 		System.err.print("" + time + " " + tmp2);
+		System.err.println("" + time);
 	}
 
 	private static void printEstatFinal(SearchAgent agent, Estat estatFinal, String algorisme, String heuristica, String outcome, String lastSState, long time)
@@ -545,6 +523,6 @@ public class Main
 			System.out.println("Heurístic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
 			System.out.println("Heurístic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));
 		}
-		System.err.println(" " + (htmg.getHeuristicValue(estatFinal)*-1));
+// 		System.err.println("" + (int)(htmg.getHeuristicValue(estatFinal)*-1));
 	}
 }
