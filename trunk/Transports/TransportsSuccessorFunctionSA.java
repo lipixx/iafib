@@ -29,8 +29,8 @@ public class TransportsSuccessorFunctionSA implements SuccessorFunction
 		ArrayList<Peticio> llistaCamio = null;
 		int i;
 		Estat estatFill;
-		
-		
+
+
 		switch(operador.intValue())
 		{
 		case 1:
@@ -42,7 +42,7 @@ public class TransportsSuccessorFunctionSA implements SuccessorFunction
 				c = (Camio) hcpPare.getObj(fila,cp);
 				if(c!=null)llistaCamio = c.getLlistaPeticions();
 			}
-			
+
 			i = ((Integer)(gen.nextInt(llistaCamio.size()))).intValue();
 			int filatmp = 0;
 			ArrayList<Peticio> subllista = null;
@@ -69,7 +69,7 @@ public class TransportsSuccessorFunctionSA implements SuccessorFunction
 				c = (Camio) hcpPare.getObj(fila,cp);
 				if(c!=null)llistaCamio = c.getLlistaPeticions();
 			}
-			
+
 			i = ((Integer)(gen.nextInt(llistaCamio.size()))).intValue();
 			ArrayList<Peticio> endar = endarreritsPare.get(0,cp);
 			if(endar.size() <= 0) break;
@@ -99,27 +99,27 @@ public class TransportsSuccessorFunctionSA implements SuccessorFunction
 // 					{
 // 						/*La petició pi és dins la HCP[fila][cp]->c->llistaCamio[i]*/
 // 						Peticio pi = llistaCamio.get(i);
-// 
+//
 // 						/*A partir d'aquí, per pi, hem de fer swap amb totes les
 // 						 peticions que estan per sota d'ella. Anem a trobar
 // 						pj*/
-// 
+//
 // 						/*Del subcamió treurem pj*/
 // 						Camio subcamio = c;
 // 						ArrayList<Peticio> subllista = llistaCamio;
 // 						int filatmp = fila;
 // 						int isubllista = i+1;
-// 
+//
 // 						ArrayList<Peticio> endar = endarreritsPare.get(0,cp);
 // 						int iendar = 0;
-// 
+//
 // 						while (filatmp < Global.HORES_SERVEI)
 // 						{
 // 							subcamio = (Camio) hcpPare.getObj(filatmp,cp);
 // 							if (subcamio != null)
 // 							{
 // 								subllista = subcamio.getLlistaPeticions();
-// 
+//
 // 								while (isubllista < subllista.size())
 // 								{
 // 									Estat estatFill = new Estat(estatPare);
@@ -131,7 +131,7 @@ public class TransportsSuccessorFunctionSA implements SuccessorFunction
 // 									isubllista++;
 // 								}
 // 							}
-// 
+//
 // 							isubllista = 0;
 // 							filatmp++;
 // 						}
@@ -147,7 +147,7 @@ public class TransportsSuccessorFunctionSA implements SuccessorFunction
 // 							}
 // 							iendar++;
 // 						}
-// 
+//
 // 					}
 // 				}
 // 			}
