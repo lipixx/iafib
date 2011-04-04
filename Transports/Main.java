@@ -393,10 +393,10 @@ public class Main
 			Problem problem;
 
 			problem = new Problem(
-			new Estat(peticions, n1, n2, n3, gen),
-			new TransportsSuccessorFunctionSA(),
-			new TransportsGoalTest(),
-			new TransportsMaxGuanysHeuristicFunction());
+			    new Estat(peticions, n1, n2, n3, gen),
+			    new TransportsSuccessorFunctionSA(),
+			    new TransportsGoalTest(),
+			    new TransportsMaxGuanysHeuristicFunction());
 
 			SimulatedAnnealingSearch search = new SimulatedAnnealingSearch(steps, stiter, k, lamb);
 			SearchAgent agent = new SearchAgent(problem, search);
@@ -423,10 +423,10 @@ public class Main
 		{
 			Problem problem;
 			problem = new Problem(
-			new Estat(peticions, n1, n2, n3, gen),
-			new TransportsSuccessorFunctionSA(),
-			new TransportsGoalTest(),
-			new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
+			    new Estat(peticions, n1, n2, n3, gen),
+			    new TransportsSuccessorFunctionSA(),
+			    new TransportsGoalTest(),
+			    new TransportsMinDifHoraLimitHoraEntregaHeuristicFunction());
 
 			SimulatedAnnealingSearch search = new SimulatedAnnealingSearch(steps, stiter, k, lamb);
 			SearchAgent agent = new SearchAgent(problem, search);
@@ -483,7 +483,7 @@ public class Main
 		                   +"<p>"+tmp+"</p>\n"
 		                   +"<p><b>Temps d'execució: </b>"+time+" milisegons</p>\n");
 // 		System.err.print("" + time + " " + tmp2);
-		System.err.println("" + time);
+		System.err.print("" + time);
 	}
 
 	private static void printEstatFinal(SearchAgent agent, Estat estatFinal, String algorisme, String heuristica, String outcome, String lastSState, long time)
@@ -523,6 +523,6 @@ public class Main
 			System.out.println("Heurístic 1 - Beneficis (com major millor, pot haver-hi pèrdues):"+htmg.getHeuristicValue(estatFinal)*-1);
 			System.out.println("Heurístic 2 - Hores desfassades (com menor millor):"+htdif.getHeuristicValue(estatFinal));
 		}
-// 		System.err.println("" + (int)(htmg.getHeuristicValue(estatFinal)*-1));
+		System.err.println(" " + (int)(htmg.getHeuristicValue(estatFinal)*-1));
 	}
 }
