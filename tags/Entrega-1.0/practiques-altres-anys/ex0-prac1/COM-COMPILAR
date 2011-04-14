@@ -1,0 +1,14 @@
+
+##COMPILAR##
+
+Des d'aquest directori:
+
+javac ia/practica1/Main.java
+
+
+##EXECUTAR##
+
+Des d'aquest directori:
+
+java ia/Practica1/Main
+
