@@ -7,13 +7,13 @@
 
 	(actors [TVornoTV_Class2])
 	(any 2007)
-	(descripcio "Laura regresa con su familia al orfanato en el que creció de niña con la intención de abrir una residencia para niños discapacitados.")
+	(descripcio "Laura regresa con su familia al orfanato en el que crecio de niña con la intencion de abrir una residencia para niños discapacitados.")
 	(director [TVornoTV_Class3])
 	(duracio 120)
 	(edatRecomanada 18)
 	(format COLOR)
 	(genere [TVornoTV_Class27])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "Espanyola")
 	(subtitols TRUE)
 	(titol "El orfanato"))
@@ -21,7 +21,7 @@
 ([TVornoTV_Class10] of  Persona
 
 	(edat 40)
-	(idiomes Angl%C3%A8s)
+	(idiomes Angles)
 	(nom "Stephen Rea")
 	(sexe home))
 
@@ -32,19 +32,19 @@
 		[TVornoTV_Class10008]
 		[TVornoTV_Class10009])
 	(any 2007)
-	(descripcio "Una reportera y su cámara están haciendo un reportaje en una estación de bomberos con la intención de retratar la profesión de estos, su modo de vida y sus situaciones de riesgo.")
+	(descripcio "Una reportera y su camara estan haciendo un reportaje en una estacion de bomberos con la intencion de retratar la profesion de estos, su modo de vida y sus situaciones de riesgo.")
 	(director [TVornoTV_Class10006])
 	(duracio 100)
 	(edatRecomanada 18)
 	(genere [TVornoTV_Class27])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "Espanyola")
 	(subtitols TRUE)
 	(titol "REC"))
 
 ([TVornoTV_Class10006] of  Persona
 
-	(nom "Jaume Balagueró")
+	(nom "Jaume Balaguero")
 	(sexe home))
 
 ([TVornoTV_Class10007] of  Persona
@@ -66,12 +66,12 @@
 
 	(actors [TVornoTV_Class10013])
 	(any 2001)
-	(descripcio "Isla de Jersey, 1945. La II Guerra Mundial ha terminado, pero el marido de Grace no vuelve. Sola en un aislado caserón victoriano, educa a sus hijos dentro de las estrictas normas religiosas. Los niños sufren una extraña enfermedad: no pueden recibir directamente la luz del día. Los 3 nuevos sirvientes que se incorporan a la vida familiar deben aprender una regla vital: la casa estará siempre en penumbra.")
+	(descripcio "Isla de Jersey, 1945. La II Guerra Mundial ha terminado, pero el marido de Grace no vuelve. Sola en un aislado caseron victoriano, educa a sus hijos dentro de las estrictas normas religiosas. Los niños sufren una extraña enfermedad: no pueden recibir directamente la luz del dia. Los 3 nuevos sirvientes que se incorporan a la vida familiar deben aprender una regla vital: la casa estara siempre en penumbra.")
 	(director [TVornoTV_Class10012])
 	(duracio 105)
 	(edatRecomanada 18)
 	(genere [TVornoTV_Class27])
-	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s)
+	(idioma Espanyol Angles Frances)
 	(nacionalitat "Espanyola")
 	(subtitols TRUE)
 	(titol "Los Otros")
@@ -79,7 +79,7 @@
 
 ([TVornoTV_Class10012] of  Persona
 
-	(nom "Alejandor Amenábar")
+	(nom "Alejandor Amenabar")
 	(sexe home))
 
 ([TVornoTV_Class10013] of  Persona
@@ -93,13 +93,13 @@
 		[TVornoTV_Class10016]
 		[TVornoTV_Class10017])
 	(any 1973)
-	(descripcio "Regan MacNeil, una inocente niña de 12 años, se empieza a sentir mal y su madre, Chris, acude a diferentes médicos para descubrir qué enfermedad sufre su hija. Cuando nadie es capaz de darle una respuesta, Chris acude desesperada a un sacerdote, el padre Lankester Merrin, empieza a creer que la enfermedad de su hija está más relacionada con lo espiritual que con lo físico.")
+	(descripcio "Regan MacNeil, una inocente niña de 12 años, se empieza a sentir mal y su madre, Chris, acude a diferentes medicos para descubrir que enfermedad sufre su hija. Cuando nadie es capaz de darle una respuesta, Chris acude desesperada a un sacerdote, el padre Lankester Merrin, empieza a creer que la enfermedad de su hija esta mas relacionada con lo espiritual que con lo fisico.")
 	(director [TVornoTV_Class10015])
 	(duracio 117)
 	(edatRecomanada 18)
 	(format COLOR)
 	(genere [TVornoTV_Class27])
-	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s Itali%C3%A0)
+	(idioma Espanyol Angles Frances Italia)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "El Exorcista")
@@ -126,13 +126,13 @@
 		[TVornoTV_Class57]
 		[TVornoTV_Class10020])
 	(any 2002)
-	(descripcio "Una cinta de vídeo contiene imágenes perturbadoras... Tras visionarla, recibes una llamada telefónica que anuncia tu muerte... Siete días después, la terrible profecía se cumple...")
+	(descripcio "Una cinta de video contiene imagenes perturbadoras... Tras visionarla, recibes una llamada telefonica que anuncia tu muerte... Siete dias despues, la terrible profecia se cumple...")
 	(director [TVornoTV_Class10019])
 	(duracio 110)
 	(edatRecomanada 18)
 	(format COLOR)
 	(genere [TVornoTV_Class27])
-	(idioma Espanyol Angl%C3%A8s Japon%C3%A8s)
+	(idioma Espanyol Angles Japones)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "The Ring")
@@ -154,13 +154,13 @@
 		[TVornoTV_Class10022]
 		[TVornoTV_Class10023])
 	(any 1980)
-	(descripcio "Piensa en el mayor terror imaginable. ¿Monstruos? ¿Una epidemia? O, como en esta obra maestra de Stanley Kubrick, el miedo procede de un asesino que debería amarte y protegerte, como un miembro de la familia. Realizada a partir de una novela de Stephen King, Kubrick mezcla la realización más impactante con los escenarios más terroríficos para tenernos susto tras susto.")
+	(descripcio "Piensa en el mayor terror imaginable. ¿Monstruos? ¿Una epidemia? O, como en esta obra maestra de Stanley Kubrick, el miedo procede de un asesino que deberia amarte y protegerte, como un miembro de la familia. Realizada a partir de una novela de Stephen King, Kubrick mezcla la realizacion mas impactante con los escenarios mas terrorificos para tenernos susto tras susto.")
 	(director [TVornoTV_Class10024])
 	(duracio 115)
 	(edatRecomanada 18)
 	(format COLOR)
 	(genere [TVornoTV_Class27])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
 	(titol "El Resplandor")
@@ -187,13 +187,13 @@
 		[TVornoTV_Class10026]
 		[TVornoTV_Class10027])
 	(any 1982)
-	(descripcio "En una estación experimental de la Antártida, un equipo de investigadores descubre a un ente extraño venido del espacio, que ha permanecido enterrado en la nieve durante más de 100.000 años. doreso.")
+	(descripcio "En una estacion experimental de la Antartida, un equipo de investigadores descubre a un ente extraño venido del espacio, que ha permanecido enterrado en la nieve durante mas de 100.000 años. doreso.")
 	(director [TVornoTV_Class10028])
 	(duracio 108)
 	(edatRecomanada 15)
 	(format COLOR)
 	(genere [TVornoTV_Class33])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
 	(titol "La cosa (el enigma de otro mundo)")
@@ -218,13 +218,13 @@
 
 	(actors [TVornoTV_Class10031])
 	(any 1968)
-	(descripcio ". Hace millones de años, en los albores del nacimiento del homo sapiens, unos simios descubren un monolito que les lleva a un estadio de inteligencia superior. Otro monolito vuelve a aparecer, millones de años después, enterrado en una luna, lo que provoca el interés de los científicos humanos.")
+	(descripcio ". Hace millones de años, en los albores del nacimiento del homo sapiens, unos simios descubren un monolito que les lleva a un estadio de inteligencia superior. Otro monolito vuelve a aparecer, millones de años despues, enterrado en una luna, lo que provoca el interes de los cientificos humanos.")
 	(director [TVornoTV_Class10024])
 	(duracio 139)
 	(edatRecomanada 15)
 	(format COLOR)
 	(genere [TVornoTV_Class33])
-	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s)
+	(idioma Espanyol Angles Frances)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "2001: Una odisea del espacio")
@@ -239,13 +239,13 @@
 
 	(actors [TVornoTV_Class10033])
 	(any 1999)
-	(descripcio "Thomas Anderson es un brillante programador de una respetable compañía de software. Pero fuera del trabajo es Neo, un hacker que un día recibe una misteriosa visita...")
+	(descripcio "Thomas Anderson es un brillante programador de una respetable compañia de software. Pero fuera del trabajo es Neo, un hacker que un dia recibe una misteriosa visita...")
 	(director [TVornoTV_Class10034])
 	(duracio 131)
 	(edatRecomanada 12)
 	(format COLOR)
 	(genere [TVornoTV_Class33])
-	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s Itali%C3%A0 Japon%C3%A8s)
+	(idioma Espanyol Angles Frances Italia Japones)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "Matrix")
@@ -267,13 +267,13 @@
 		[TVornoTV_Class10037]
 		[TVornoTV_Class10038])
 	(any 1977)
-	(descripcio "La princesa Leia, líder del movimiento rebelde que desea reinstaurar la República en la galaxia en los tiempos ominosos del Imperio, es capturada por las Fuerzas Imperiales, capitaneadas por el implacable Darth Vader, el sirviente más fiel del Emperador.")
+	(descripcio "La princesa Leia, lider del movimiento rebelde que desea reinstaurar la Republica en la galaxia en los tiempos ominosos del Imperio, es capturada por las Fuerzas Imperiales, capitaneadas por el implacable Darth Vader, el sirviente mas fiel del Emperador.")
 	(director [TVornoTV_Class10036])
 	(duracio 121)
 	(edatRecomanada 12)
 	(format COLOR)
 	(genere [TVornoTV_Class33])
-	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s Itali%C3%A0 Japon%C3%A8s)
+	(idioma Espanyol Angles Frances Italia Japones)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "La guerra de las galaxias")
@@ -300,13 +300,13 @@
 		[TVornoTV_Class10041]
 		[TVornoTV_Class10042])
 	(any 1931)
-	(descripcio "El doctor Henry Von Frankenstein se embarca en un experimento tenebroso: construir, a partir de trozos de cadáveres, un nuevo ser humano.")
+	(descripcio "El doctor Henry Von Frankenstein se embarca en un experimento tenebroso: construir, a partir de trozos de cadaveres, un nuevo ser humano.")
 	(director [TVornoTV_Class10040])
 	(duracio 71)
 	(edatRecomanada 13)
-	(format B%2FN)
+	(format BiN)
 	(genere [TVornoTV_Class33])
-	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s)
+	(idioma Espanyol Angles Frances)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "El doctor Frankenstein")
@@ -339,7 +339,7 @@
 	(edatRecomanada 13)
 	(format COLOR)
 	(genere [TVornoTV_Class5])
-	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s Itali%C3%A0)
+	(idioma Espanyol Angles Frances Italia)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "El Padrino")
@@ -364,13 +364,13 @@
 
 	(actors [TVornoTV_Class10050])
 	(any 1993)
-	(descripcio "Oskar Schindler (Liam Neeson), un hombre de enorme astucia y talento para las relaciones públicas, organiza un ambicioso plan para ganarse la simpatía de los nazis. Después de la invasión de Polonia por los alemanes, consigue, gracias a sus relaciones con los nazis, la propiedad de una fábrica de Cracovia.")
+	(descripcio "Oskar Schindler (Liam Neeson), un hombre de enorme astucia y talento para las relaciones publicas, organiza un ambicioso plan para ganarse la simpatia de los nazis. Despues de la invasion de Polonia por los alemanes, consigue, gracias a sus relaciones con los nazis, la propiedad de una fabrica de Cracovia.")
 	(director [TVornoTV_Class10049])
 	(duracio 195)
 	(edatRecomanada 13)
-	(format B%2FN)
+	(format BiN)
 	(genere [TVornoTV_Class5])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "La lista de Schindler")
@@ -396,7 +396,7 @@
 	(edatRecomanada 12)
 	(format COLOR)
 	(genere [TVornoTV_Class5])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "Pulp Fiction")
@@ -416,16 +416,16 @@
 
 	(actors [TVornoTV_Class10057])
 	(any 1971)
-	(descripcio "Gran Bretaña, en un futuro indeterminado. Alex (Malcolm McDowell) es un joven muy agresivo que tiene dos pasiones: la violencia desaforada y Beethoven. Es el jefe de la banda de los drugos, que dan rienda suelta a sus instintos más salvajes apaleando, violando y aterrorizando a la población.")
+	(descripcio "Gran Bretaña, en un futuro indeterminado. Alex (Malcolm McDowell) es un joven muy agresivo que tiene dos pasiones: la violencia desaforada y Beethoven. Es el jefe de la banda de los drugos, que dan rienda suelta a sus instintos mas salvajes apaleando, violando y aterrorizando a la poblacion.")
 	(director [TVornoTV_Class10024])
 	(duracio 137)
 	(edatRecomanada 12)
 	(format COLOR)
 	(genere [TVornoTV_Class5])
-	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s Itali%C3%A0)
+	(idioma Espanyol Angles Frances Italia)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
-	(titol "La naranja mecánica")
+	(titol "La naranja mecanica")
 	(versioOriginal TRUE))
 
 ([TVornoTV_Class10057] of  Persona
@@ -437,13 +437,13 @@
 
 	(actors [TVornoTV_Class10060])
 	(any 2000)
-	(descripcio "En el año 180, el Imperio Romano domina todo el mundo conocido. Tras la victoria sobre los bárbaros, el anciano emperador Marco Aurelio (Richard Harris) decide transferir el poder a Máximo (Russell Crowe), bravo general de sus ejércitos y hombre de inquebrantable lealtad al imperio, pero su hijo Cómodo (Joaquin Phoenix) no lo acepta y trata de asesinarlo.")
+	(descripcio "En el año 180, el Imperio Romano domina todo el mundo conocido. Tras la victoria sobre los barbaros, el anciano emperador Marco Aurelio (Richard Harris) decide transferir el poder a Maximo (Russell Crowe), bravo general de sus ejercitos y hombre de inquebrantable lealtad al imperio, pero su hijo Comodo (Joaquin Phoenix) no lo acepta y trata de asesinarlo.")
 	(director [TVornoTV_Class10059])
 	(duracio 150)
 	(edatRecomanada 12)
 	(format COLOR)
 	(genere [TVornoTV_Class17])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "Gladiator")
@@ -470,7 +470,7 @@
 	(edatRecomanada 10)
 	(format 3D)
 	(genere [TVornoTV_Class17])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "Spider Man 2")
@@ -495,13 +495,13 @@
 
 	(actors [TVornoTV_Class10067])
 	(any 1987)
-	(descripcio "Martin Riggs es un policía de Los Angeles con tendencias suicidas. Roger Murtaugh es un maduro y responsable policía, padre de familia, que trabaja con Riggs. Juntos intentarán desmantelar una operación de contrabando de droga y, al mismo tiempo, a pesar de sus diferentes caracteres, se harán buenos amigos.")
+	(descripcio "Martin Riggs es un policia de Los Angeles con tendencias suicidas. Roger Murtaugh es un maduro y responsable policia, padre de familia, que trabaja con Riggs. Juntos intentaran desmantelar una operacion de contrabando de droga y, al mismo tiempo, a pesar de sus diferentes caracteres, se haran buenos amigos.")
 	(director [TVornoTV_Class10066])
 	(duracio 105)
 	(edatRecomanada 13)
 	(format COLOR)
 	(genere [TVornoTV_Class17])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "Arma letal")
@@ -521,13 +521,13 @@
 
 	(actors [TVornoTV_Class10070])
 	(any 1988)
-	(descripcio "En lo alto de la ciudad de Los Ángeles un grupo armado terrorista se ha apoderado de un edificio tomando a un grupo de personas como rehenes. Sólo un hombre, el policía John McClane (Bruce Willis), ha conseguido escapar del acoso terrorista.")
+	(descripcio "En lo alto de la ciudad de Los Ángeles un grupo armado terrorista se ha apoderado de un edificio tomando a un grupo de personas como rehenes. Solo un hombre, el policia John McClane (Bruce Willis), ha conseguido escapar del acoso terrorista.")
 	(director [TVornoTV_Class10069])
 	(duracio 131)
 	(edatRecomanada 12)
 	(format COLOR)
 	(genere [TVornoTV_Class17])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "Jungla de cristal")
@@ -545,22 +545,22 @@
 
 ([TVornoTV_Class10071] of  Genere
 
-	(nomGenere "Animació"))
+	(nomGenere "Animacio"))
 
 ([TVornoTV_Class10072] of  Genere
 
-	(nomGenere "Comèdia"))
+	(nomGenere "Comedia"))
 
 ([TVornoTV_Class10073] of  Cine
 
 	(any 1953)
-	(descripcio "Relata las aventuras en el País de Nunca Jamás de Peter Pan, su compañera Campanilla, su amiga Wendy y los Niños Perdidos, en su lucha contra el malvado Capitán Garfio.")
+	(descripcio "Relata las aventuras en el Pais de Nunca Jamas de Peter Pan, su compañera Campanilla, su amiga Wendy y los Niños Perdidos, en su lucha contra el malvado Capitan Garfio.")
 	(director [TVornoTV_Class10074])
 	(duracio 77)
 	(edatRecomanada 7)
 	(format COLOR)
 	(genere [TVornoTV_Class10071])
-	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s Itali%C3%A0)
+	(idioma Espanyol Angles Frances Italia)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
 	(titol "Peter Pan")
@@ -574,12 +574,12 @@
 ([TVornoTV_Class10075] of  Cine
 
 	(any 1991)
-	(descripcio "Una hermosa joven llamada Bella acepta alojarse en un castillo con una bestia a cambio de la libertad de su padre. La bestia es, en realidad, un príncipe encantado.")
+	(descripcio "Una hermosa joven llamada Bella acepta alojarse en un castillo con una bestia a cambio de la libertad de su padre. La bestia es, en realidad, un principe encantado.")
 	(director [TVornoTV_Class10076])
 	(duracio 85)
 	(edatRecomanada 7)
 	(genere [TVornoTV_Class10071])
-	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s Itali%C3%A0)
+	(idioma Espanyol Angles Frances Italia)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
 	(titol "La Bella y la Bestia")
@@ -593,16 +593,16 @@
 ([TVornoTV_Class10077] of  Cine
 
 	(any 1994)
-	(descripcio "La sabana africana es el escenario en el que tienen lugar las aventuras de Simba, un pequeño león que es el heredero del trono. Sin embargo, se ve forzado a exiliarse al ser injustamente acusado de la muerte de su padre. Durante su destierro, hará buenas amistades y, finalmente, regresará para recuperar lo que legítimamente le corresponde.")
+	(descripcio "La sabana africana es el escenario en el que tienen lugar las aventuras de Simba, un pequeño leon que es el heredero del trono. Sin embargo, se ve forzado a exiliarse al ser injustamente acusado de la muerte de su padre. Durante su destierro, hara buenas amistades y, finalmente, regresara para recuperar lo que legitimamente le corresponde.")
 	(director [TVornoTV_Class10078])
 	(duracio 85)
 	(edatRecomanada 7)
 	(format COLOR)
 	(genere [TVornoTV_Class10071])
-	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s Itali%C3%A0)
+	(idioma Espanyol Angles Frances Italia)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
-	(titol "El Rey León")
+	(titol "El Rey Leon")
 	(versioOriginal TRUE))
 
 ([TVornoTV_Class10078] of  Persona
@@ -613,13 +613,13 @@
 ([TVornoTV_Class10079] of  Cine
 
 	(any 1995)
-	(descripcio "Los juguetes de Andy, un niño de 6 años, temen que haya llegado su hora y que un nuevo regalo de cumpleaños les sustituya en el corazón de su dueño.")
+	(descripcio "Los juguetes de Andy, un niño de 6 años, temen que haya llegado su hora y que un nuevo regalo de cumpleaños les sustituya en el corazon de su dueño.")
 	(director [TVornoTV_Class10080])
 	(duracio 80)
 	(edatRecomanada 7)
 	(format COLOR)
 	(genere [TVornoTV_Class10071])
-	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s Itali%C3%A0)
+	(idioma Espanyol Angles Frances Italia)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
 	(titol "Toy Story")
@@ -634,13 +634,13 @@
 
 	(actors [TVornoTV_Class10083])
 	(any 1959)
-	(descripcio "Época de la Ley Seca (1920-1933). Joe y Jerry son dos músicos del montón que se ven obligados a huir después de ser testigos de un ajuste de cuentas entre dos bandas rivales.")
+	(descripcio "Época de la Ley Seca (1920-1933). Joe y Jerry son dos musicos del monton que se ven obligados a huir despues de ser testigos de un ajuste de cuentas entre dos bandas rivales.")
 	(director [TVornoTV_Class10082])
 	(duracio 119)
 	(edatRecomanada 12)
-	(format B%2FN)
+	(format BiN)
 	(genere [TVornoTV_Class10072])
-	(idioma Angl%C3%A8s)
+	(idioma Angles)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
 	(titol "Con faldas y a lo loco")
@@ -664,9 +664,9 @@
 	(director [TVornoTV_Class10085])
 	(duracio 81)
 	(edatRecomanada 10)
-	(format B%2FN)
+	(format BiN)
 	(genere [TVornoTV_Class10072])
-	(idioma Angl%C3%A8s)
+	(idioma Angles)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "Luces de la ciudad")
@@ -683,13 +683,13 @@
 		[TVornoTV_Class10089]
 		[TVornoTV_Class10090])
 	(any 1952)
-	(descripcio "Antes de conocer a la aspirante a actriz Kathy Selden (Debbie Reynolds), el ídolo del cine mudo Don Lockwood (Gene Kelly) pensaba que lo tenía todo: fama, fortuna y éxito...")
+	(descripcio "Antes de conocer a la aspirante a actriz Kathy Selden (Debbie Reynolds), el idolo del cine mudo Don Lockwood (Gene Kelly) pensaba que lo tenia todo: fama, fortuna y exito...")
 	(director [TVornoTV_Class10088])
 	(duracio 102)
 	(edatRecomanada 7)
 	(format COLOR)
 	(genere [TVornoTV_Class10072])
-	(idioma Angl%C3%A8s)
+	(idioma Angles)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "Cantando bajo la lluvia")
@@ -718,7 +718,7 @@
 		[TVornoTV_Class10095]
 		[TVornoTV_Class10096])
 	(any 1984)
-	(descripcio "En la academia de policía están a punto de finalizar sus pruebas preparatorias para el cuerpo un numeroso grupo de veteranos. Durante un tiempo, coinciden con los novatos de nuevo ingreso, que serán el centro de un montón de bromas que muchas veces se lo harán pasar muy mal.")
+	(descripcio "En la academia de policia estan a punto de finalizar sus pruebas preparatorias para el cuerpo un numeroso grupo de veteranos. Durante un tiempo, coinciden con los novatos de nuevo ingreso, que seran el centro de un monton de bromas que muchas veces se lo haran pasar muy mal.")
 	(director [TVornoTV_Class10092])
 	(duracio 95)
 	(edatRecomanada 7)
@@ -727,7 +727,7 @@
 	(idioma Espanyol)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
-	(titol "Loca academia de policía")
+	(titol "Loca academia de policia")
 	(versioOriginal TRUE))
 
 ([TVornoTV_Class10092] of  Persona
@@ -763,7 +763,7 @@
 	(edatRecomanada 7)
 	(format 3D)
 	(genere [TVornoTV_Class10071])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
 	(titol "Monsters Vs. Aliens")
@@ -780,13 +780,13 @@
 		[TVornoTV_Class10101]
 		[TVornoTV_Class10102])
 	(any 2000)
-	(descripcio "Un joven estudiante tiene una premonición al subirse al avión en el que se dispone a ir a París con sus compañeros. Presintiendo que algo grave va a pasar, él y sus amigos desembarcan antes del despegue.")
+	(descripcio "Un joven estudiante tiene una premonicion al subirse al avion en el que se dispone a ir a Paris con sus compañeros. Presintiendo que algo grave va a pasar, el y sus amigos desembarcan antes del despegue.")
 	(director [TVornoTV_Class10100])
 	(duracio 97)
 	(edatRecomanada 12)
 	(format 3D)
 	(genere [TVornoTV_Class27])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "Destino final")
@@ -813,13 +813,13 @@
 		[TVornoTV_Class10105]
 		[TVornoTV_Class10106])
 	(any 2008)
-	(descripcio "Durante una expedición científica en Islandia, el visionario científico Trevor Anderson (Brendan Fraser), su sobrino Sean (Josh Hutcherson) y su hermosa guía regional, Hannah (Anita Briem), quedan atrapados en una cueva. La única posibilidad de escapar de allí es adentrándose en las entrañas de la Tierra.")
+	(descripcio "Durante una expedicion cientifica en Islandia, el visionario cientifico Trevor Anderson (Brendan Fraser), su sobrino Sean (Josh Hutcherson) y su hermosa guia regional, Hannah (Anita Briem), quedan atrapados en una cueva. La unica posibilidad de escapar de alli es adentrandose en las entrañas de la Tierra.")
 	(director [TVornoTV_Class10104])
 	(duracio 92)
 	(edatRecomanada 10)
 	(format 3D)
 	(genere [TVornoTV_Class33])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
 	(titol "Viaje al centro de la Tierra")
@@ -848,13 +848,13 @@
 		[TVornoTV_Class10111]
 		[TVornoTV_Class10112])
 	(any 2003)
-	(descripcio "La tecnología HD/3-D entra en escena cuando los jóvenes agentes Juni (Daryl Sabara) y Carmen Cortez (Alexa Vega) emprenden la misión más emocionante de sus vidas: un viaje al interior de la realidad virtual de un videojuego en 3D que ha sido especialmente diseñado para acabar con ellos")
+	(descripcio "La tecnologia HD/3-D entra en escena cuando los jovenes agentes Juni (Daryl Sabara) y Carmen Cortez (Alexa Vega) emprenden la mision mas emocionante de sus vidas: un viaje al interior de la realidad virtual de un videojuego en 3D que ha sido especialmente diseñado para acabar con ellos")
 	(director [TVornoTV_Class10108])
 	(duracio 84)
 	(edatRecomanada 7)
 	(format 3D)
 	(genere [TVornoTV_Class10071])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
 	(titol "Spy Kids 3D: Game Over")
@@ -889,13 +889,13 @@
 
 	(actors [TVornoTV_Class10115])
 	(any 2001)
-	(descripcio "Amelie no es una chica como las demás. Ha visto a su pez de colores deslizarse hacia las alcantarillas municipales, a su madre morir en la plaza de Notre-Dame y a su padre dedicar todo su afecto a un gnomo de jardín. De repente, a sus veintidós años, descubre su objetivo en la vida: arreglar la vida de los demás.")
+	(descripcio "Amelie no es una chica como las demas. Ha visto a su pez de colores deslizarse hacia las alcantarillas municipales, a su madre morir en la plaza de Notre-Dame y a su padre dedicar todo su afecto a un gnomo de jardin. De repente, a sus veintidos años, descubre su objetivo en la vida: arreglar la vida de los demas.")
 	(director [TVornoTV_Class10114])
 	(duracio 120)
 	(edatRecomanada 12)
 	(format COLOR)
 	(genere [TVornoTV_Class5])
-	(idioma Franc%C3%A8s Espanyol Angl%C3%A8s)
+	(idioma Frances Espanyol Angles)
 	(nacionalitat "Francesa")
 	(subtitols TRUE)
 	(titol "Amelie")
@@ -917,13 +917,13 @@
 		[TVornoTV_Class10118]
 		[TVornoTV_Class10119])
 	(any 2006)
-	(descripcio "En París, el amor está por todas partes: en sus bares y cafés, bajo la Torre Eiffel e incluso bajo tierra, en el metro. Algunos de los directores más prestigiosos del mundo fueron invitados a contar una historia ambientada en uno de los barrios de la ciudad.")
+	(descripcio "En Paris, el amor esta por todas partes: en sus bares y cafes, bajo la Torre Eiffel e incluso bajo tierra, en el metro. Algunos de los directores mas prestigiosos del mundo fueron invitados a contar una historia ambientada en uno de los barrios de la ciudad.")
 	(director [TVornoTV_Class10117])
 	(duracio 119)
 	(edatRecomanada 12)
 	(format COLOR)
 	(genere [TVornoTV_Class10072])
-	(idioma Franc%C3%A8s Espanyol Angl%C3%A8s)
+	(idioma Frances Espanyol Angles)
 	(nacionalitat "Francesa")
 	(subtitols TRUE)
 	(titol "Paris, je t'aime")
@@ -950,13 +950,13 @@
 		[TVornoTV_Class10121]
 		[TVornoTV_Class10122])
 	(any 1991)
-	(descripcio "En un inmenso descampado, se alza un viejo edificio habitado por personas de costumbres más bien extrañas que sólo tiene una preocupación: alimentarse. El propietario es un peculiar carnicero que tiene su establecimiento en los bajos del bloque. Allí llega un nuevo inquilino que trabaja en el circo y que alterará la vida de la excéntrica comunidad que lo habita.")
+	(descripcio "En un inmenso descampado, se alza un viejo edificio habitado por personas de costumbres mas bien extrañas que solo tiene una preocupacion: alimentarse. El propietario es un peculiar carnicero que tiene su establecimiento en los bajos del bloque. Alli llega un nuevo inquilino que trabaja en el circo y que alterara la vida de la excentrica comunidad que lo habita.")
 	(director [TVornoTV_Class10114])
 	(duracio 95)
 	(edatRecomanada 10)
 	(format COLOR)
 	(genere [TVornoTV_Class10072])
-	(idioma Franc%C3%A8s Espanyol Angl%C3%A8s)
+	(idioma Frances Espanyol Angles)
 	(nacionalitat "Francesa")
 	(subtitols TRUE)
 	(titol "Delicatessen")
@@ -979,13 +979,13 @@
 
 	(actors [TVornoTV_Class10126])
 	(any 1999)
-	(descripcio "Daniel Lefebre, de 40 años, dirige una escuela infantil en un barrio marginal de Hernaing, población minera del norte de Francia. En el pequeño pueblo, el 30% de la población está en paro a causa de la crisis de la minería. Un día, la madre de una de las alumnas llega borracha a la escuela, sufre un colapso y dejá allí a su bebe y a su hija de cinco años. El profesor decide tomar cartas en el asunto y solicita la ayuda de la comunidad.")
+	(descripcio "Daniel Lefebre, de 40 años, dirige una escuela infantil en un barrio marginal de Hernaing, poblacion minera del norte de Francia. En el pequeño pueblo, el 30% de la poblacion esta en paro a causa de la crisis de la mineria. Un dia, la madre de una de las alumnas llega borracha a la escuela, sufre un colapso y deja alli a su bebe y a su hija de cinco años. El profesor decide tomar cartas en el asunto y solicita la ayuda de la comunidad.")
 	(director [TVornoTV_Class10125])
 	(duracio 107)
 	(edatRecomanada 12)
 	(format COLOR)
 	(genere [TVornoTV_Class5])
-	(idioma Franc%C3%A8s Angl%C3%A8s Espanyol)
+	(idioma Frances Angles Espanyol)
 	(nacionalitat "Francesa")
 	(subtitols TRUE)
 	(titol "Hoy empieza todo")
@@ -1011,13 +1011,13 @@
 		[TVornoTV_Class10133]
 		[TVornoTV_Class10134])
 	(any 2010)
-	(descripcio "Durante los duros años de la postguerra, en una zona rural de Cataluña, un niño llamado Andreu, cuya familia pertenece al bando de los perdedores, encuentra un día en el bosque los cadáveres de un hombre y su hijo.")
+	(descripcio "Durante los duros años de la postguerra, en una zona rural de Cataluña, un niño llamado Andreu, cuya familia pertenece al bando de los perdedores, encuentra un dia en el bosque los cadaveres de un hombre y su hijo.")
 	(director [TVornoTV_Class10128])
 	(duracio 108)
 	(edatRecomanada 12)
 	(format COLOR)
 	(genere [TVornoTV_Class5])
-	(idioma Catal%C3%A0)
+	(idioma Catala)
 	(nacionalitat "Espanyola")
 	(subtitols FALSE)
 	(titol "Pa negre")
@@ -1025,7 +1025,7 @@
 
 ([TVornoTV_Class10128] of  Persona
 
-	(nom "Agustí Villaronga")
+	(nom "Agusti Villaronga")
 	(sexe home))
 
 ([TVornoTV_Class10129] of  Persona
@@ -1054,13 +1054,13 @@
 
 ([TVornoTV_Class10134] of  Persona
 
-	(nom "Sergi López")
+	(nom "Sergi Lopez")
 	(sexe home))
 
 ([TVornoTV_Class10139] of  Historia
 
 	(any 1988)
-	(descripcio "Història sobre el règim dictatorial de Adolf Hitler.")
+	(descripcio "Historia sobre el regim dictatorial de Adolf Hitler.")
 	(director [TVornoTV_Class10146])
 	(duracio 54)
 	(edatRecomanada 16)
@@ -1074,9 +1074,9 @@
 	(nom "Dave Flitton")
 	(sexe home))
 
-([TVornoTV_Class10150] of  Tecnolog%C3%ADa
+([TVornoTV_Class10150] of  Tecnologia
 
-	(ambit Inform%C3%A0tica)
+	(ambit Informatica)
 	(any 1999)
 	(descripcio "La red esta poblada de tribus ciberneticas. Piratas, escritores de virus, jovenes que se adueñan de la identidad de las empresas...")
 	(director [TVornoTV_Class10151])
@@ -1093,15 +1093,15 @@
 	(orientacioSexual heterosexual)
 	(sexe home))
 
-([TVornoTV_Class10152] of  Tecnolog%C3%ADa
+([TVornoTV_Class10152] of  Tecnologia
 
-	(ambit Inform%C3%A0tica)
+	(ambit Informatica)
 	(any 1999)
-	(descripcio "Història de la construcció del gran imperi de Microsoft i Apple")
+	(descripcio "Historia de la construccio del gran imperi de Microsoft i Apple")
 	(director [TVornoTV_Class10153])
 	(duracio 95)
 	(edatRecomanada 13)
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(subtitols TRUE)
 	(titol "Piratas de Silicon Valley"))
 
@@ -1115,14 +1115,14 @@
 		[TVornoTV_Class10157]
 		[TVornoTV_Class10158])
 	(any 1929)
-	(descripcio "Pel·licula clàssica de salvador dalí")
+	(descripcio "Pel·licula classica de salvador dali")
 	(director
 		[TVornoTV_Class10155]
 		[TVornoTV_Class10156])
 	(duracio 16)
-	(format B%2FN)
+	(format BiN)
 	(genere [TVornoTV_Class5])
-	(idioma Franc%C3%A8s)
+	(idioma Frances)
 	(nacionalitat "Francesa")
 	(subtitols FALSE)
 	(titol "Un perro andaluz")
@@ -1148,20 +1148,20 @@
 	(nom "Pierre Batchef")
 	(sexe home))
 
-([TVornoTV_Class10159] of  Tecnolog%C3%ADa
+([TVornoTV_Class10159] of  Tecnologia
 
-	(ambit Inform%C3%A0tica)
+	(ambit Informatica)
 	(any 2002)
 	(descripcio "Entrevist a Richard Stallman a TVE3")
 	(duracio 28)
 	(edatRecomanada 13)
-	(idioma Catal%C3%A0)
+	(idioma Catala)
 	(subtitols FALSE)
 	(titol "Richard Stallman - GNU/Linux"))
 
 ([TVornoTV_Class11] of  Persona
 
-	(idiomes Angl%C3%A8s)
+	(idiomes Angles)
 	(nom "Lotte Verbeek")
 	(sexe home))
 
@@ -1173,7 +1173,7 @@
 ([TVornoTV_Class13] of  Cine
 
 	(any 2010)
-	(descripcio "En el sur de Francia durante la temporada estival. Gaspard es un adolescente que se regocija en la idea de poder hacer lo que le venga en gana en su casa, ahora que sus padres se han marchado. Sus amigos Yann y Ludo están siempre con él, dispuestos a hacer el tonto mientras Gaspard descubre el deseo y quizás el amor con Marion.")
+	(descripcio "En el sur de Francia durante la temporada estival. Gaspard es un adolescente que se regocija en la idea de poder hacer lo que le venga en gana en su casa, ahora que sus padres se han marchado. Sus amigos Yann y Ludo estan siempre con el, dispuestos a hacer el tonto mientras Gaspard descubre el deseo y quizas el amor con Marion.")
 	(director [TVornoTV_Class15])
 	(duracio 105)
 	(edatRecomanada 18)
@@ -1186,7 +1186,7 @@
 
 ([TVornoTV_Class15] of  Persona
 
-	(idiomes Franc%C3%A8s)
+	(idiomes Frances)
 	(nom "Gilles Marchand")
 	(sexe home))
 
@@ -1201,20 +1201,20 @@
 		[TVornoTV_Class24]
 		[TVornoTV_Class25])
 	(any 1991)
-	(descripcio "Las máquinas, en su intento fallido por matar a la embarazada Sarah Connor (Linda Hamilton), deciden continuar con su cometido, pero esta vez deciden cambiar de objetivo: el adolescente John Connor (Edward Furlong). Para ello envían al avanzado T-1000 (Robert Patrick), un prototipo de metal líquido que es capaz de transformarse en cualquier persona. Pero el joven Connor recibirá la ayuda de un T-800 CSM-101 (Arnold Schwarzenegger), que viene desde el futuro para salvarlo.")
+	(descripcio "Las maquinas, en su intento fallido por matar a la embarazada Sarah Connor (Linda Hamilton), deciden continuar con su cometido, pero esta vez deciden cambiar de objetivo: el adolescente John Connor (Edward Furlong). Para ello envian al avanzado T-1000 (Robert Patrick), un prototipo de metal liquido que es capaz de transformarse en cualquier persona. Pero el joven Connor recibira la ayuda de un T-800 CSM-101 (Arnold Schwarzenegger), que viene desde el futuro para salvarlo.")
 	(director [TVornoTV_Class18])
 	(duracio 137)
 	(edatRecomanada 16)
 	(format COLOR)
 	(genere [TVornoTV_Class17])
-	(idioma Espanyol Angl%C3%A8s Catal%C3%A0)
+	(idioma Espanyol Angles Catala)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "Terminator 2: El juicio final"))
 
 ([TVornoTV_Class17] of  Genere
 
-	(nomGenere "Acció"))
+	(nomGenere "Accio"))
 
 ([TVornoTV_Class18] of  Persona
 
@@ -1225,7 +1225,7 @@
 
 	(edat 64)
 	(estatCivil casada)
-	(idiomes Angl%C3%A8s)
+	(idiomes Angles)
 	(nivellEconomic 2.0E8)
 	(nom "Arnold Schwarzenegger")
 	(orientacioSexual heterosexual)
@@ -1281,7 +1281,7 @@
 	(edatRecomanada 18)
 	(format COLOR)
 	(genere [TVornoTV_Class27])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "Saw III"))
@@ -1329,13 +1329,13 @@
 		[TVornoTV_Class43]
 		[TVornoTV_Class44])
 	(any 2009)
-	(descripcio "ake Sully, un Infante de Marina veterano de guerra y herido en combate que queda parapléjico, es seleccionado para participar en el programa Avatar ocupando el puesto que, como científico, ejercía su hermano gemelo recién fallecido. De esta forma, Jake es trasladado a Pandora, una luna del planeta Polifemo cuya atmósfera es tóxica para los humanos y que, además de albergar una asombrosa biodiversidad, está habitada por los na'vi, una raza humanoide de piel azul y con algunos rasgos felinos.[")
+	(descripcio "ake Sully, un Infante de Marina veterano de guerra y herido en combate que queda paraplejico, es seleccionado para participar en el programa Avatar ocupando el puesto que, como cientifico, ejercia su hermano gemelo recien fallecido. De esta forma, Jake es trasladado a Pandora, una luna del planeta Polifemo cuya atmosfera es toxica para los humanos y que, ademas de albergar una asombrosa biodiversidad, esta habitada por los na'vi, una raza humanoide de piel azul y con algunos rasgos felinos.[")
 	(director [TVornoTV_Class18])
 	(duracio 162)
 	(edatRecomanada 13)
 	(format 3D)
 	(genere [TVornoTV_Class33])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
 	(titol "Avatar")
@@ -1343,7 +1343,7 @@
 
 ([TVornoTV_Class33] of  Genere
 
-	(nomGenere "Ciència Ficció"))
+	(nomGenere "Ciencia Ficcio"))
 
 ([TVornoTV_Class35] of  Persona
 
@@ -1367,7 +1367,7 @@
 
 ([TVornoTV_Class39] of  Persona
 
-	(nom "Michelle Rodríguez")
+	(nom "Michelle Rodriguez")
 	(sexe dona))
 
 ([TVornoTV_Class4] of  Cine
@@ -1377,13 +1377,13 @@
 		[TVornoTV_Class10]
 		[TVornoTV_Class12])
 	(any 2009)
-	(descripcio "Una joven y rebelde holandesa recorre los caminos de Irlanda, convirtiéndose en vagabunda por elección y disfrutando de la soledad que buscaba en el austero paisaje de Connemara.")
+	(descripcio "Una joven y rebelde holandesa recorre los caminos de Irlanda, convirtiendose en vagabunda por eleccion y disfrutando de la soledad que buscaba en el austero paisaje de Connemara.")
 	(director [TVornoTV_Class6])
 	(duracio 85)
 	(edatRecomanada 18)
 	(format COLOR)
 	(genere [TVornoTV_Class5])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "Irlanda")
 	(subtitols TRUE)
 	(titol "Nada Personal"))
@@ -1402,7 +1402,7 @@
 
 	(edat 60)
 	(estatCivil casada)
-	(idiomes Espanyol Angl%C3%A8s)
+	(idiomes Espanyol Angles)
 	(nom "C. C. H. Pounder")
 	(orientacioSexual heterosexual)
 	(sexe dona))
@@ -1414,7 +1414,7 @@
 
 ([TVornoTV_Class44] of  Persona
 
-	(idiomes Angl%C3%A8s)
+	(idiomes Angles)
 	(nom "Laz Alonso")
 	(sexe home))
 
@@ -1428,12 +1428,12 @@
 		[TVornoTV_Class50]
 		[TVornoTV_Class51])
 	(any 1986)
-	(descripcio "El sargento Tom Highway (Eastwood) es un adicto al alcohol dispuesto a arruinar su vida personal, sacrificando a su mujer, a sus amigos y su reputación, con tal de llegar a lo más alto en la carrera militar. Veterano de las guerras de Vietnam y Corea, vuelve a los Estados Unidos para llevar a cabo una misión nada fácil: instruir a un grupo de novatos desmotivados e indisciplinados para convertirlos en auténticos marines. Los reclutas ponen de relieve el anacronismo de Highway, cuyos principios son útiles tan sólo en caso de guerra.")
+	(descripcio "El sargento Tom Highway (Eastwood) es un adicto al alcohol dispuesto a arruinar su vida personal, sacrificando a su mujer, a sus amigos y su reputacion, con tal de llegar a lo mas alto en la carrera militar. Veterano de las guerras de Vietnam y Corea, vuelve a los Estados Unidos para llevar a cabo una mision nada facil: instruir a un grupo de novatos desmotivados e indisciplinados para convertirlos en autenticos marines. Los reclutas ponen de relieve el anacronismo de Highway, cuyos principios son utiles tan solo en caso de guerra.")
 	(director [TVornoTV_Class46])
 	(duracio 126)
 	(edatRecomanada 16)
 	(genere [TVornoTV_Class17])
-	(idioma Espanyol Angl%C3%A8s)
+	(idioma Espanyol Angles)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
 	(titol "El sargento de hierro"))
@@ -1442,7 +1442,7 @@
 
 	(edat 81)
 	(estatCivil casada)
-	(idiomes Angl%C3%A8s)
+	(idiomes Angles)
 	(nom "Clint Eastwood")
 	(orientacioSexual heterosexual)
 	(sexe home))
@@ -1450,7 +1450,7 @@
 ([TVornoTV_Class47] of  Persona
 
 	(estatCivil separada)
-	(idiomes Angl%C3%A8s)
+	(idiomes Angles)
 	(nom "Marsha Mason")
 	(orientacioSexual heterosexual)
 	(sexe dona))
@@ -1488,7 +1488,7 @@
 		[TVornoTV_Class58]
 		[TVornoTV_Class59])
 	(any 2012)
-	(descripcio "Biopic de J. Edgar Hoover, que fue nombrado en 1924, a los 29 años, director general del FBI con la intención de reformar la organización. Ocupó dicho cargo hasta su muerte en 1972, y durante su mandato sobrevivió a siete presidentes, alguno de los cuales quiso destituirlo sin conseguirlo. Los archivos que Hoover guardaba celosamente, llenos de secretos inconfesables de muchas personalidades importantes de los Estados Unidos, lo convirtieron en uno de los hombres más poderosos y temidos de la historia de ese país.")
+	(descripcio "Biopic de J. Edgar Hoover, que fue nombrado en 1924, a los 29 años, director general del FBI con la intencion de reformar la organizacion. Ocupo dicho cargo hasta su muerte en 1972, y durante su mandato sobrevivio a siete presidentes, alguno de los cuales quiso destituirlo sin conseguirlo. Los archivos que Hoover guardaba celosamente, llenos de secretos inconfesables de muchas personalidades importantes de los Estados Unidos, lo convirtieron en uno de los hombres mas poderosos y temidos de la historia de ese pais.")
 	(director [TVornoTV_Class46])
 	(duracio 120)
 	(edatRecomanada 13)
@@ -1526,7 +1526,7 @@
 ([TVornoTV_Class6] of  Persona
 
 	(edat 52)
-	(idiomes Angl%C3%A8s)
+	(idiomes Angles)
 	(nom "Urszula Antoniak")
 	(sexe dona))
 
@@ -1537,7 +1537,7 @@
 		[TVornoTV_Class62]
 		[TVornoTV_Class63])
 	(any 1997)
-	(descripcio "En 1996, el cazatesoros Brock Lovett (Bill Paxton) y su equipo exploran los restos del Titanic buscando un collar, el \"Corazón del Mar\". En medio de su búsqueda estos descubren un dibujo de una mujer joven reclinada y desnuda, que lleva puesto aquel collar firmado el día del hundimiento del Titanic. La noticia del descubrimiento del dibujo aparece en televisión, llamando la atención una mujer, Rose Dawson Calvert (Gloria Stuart), próxima a los 101 años. Junto a su nieta Lizzy Calvert , vuela hasta el barco de Lovett. Allí les informa de que ella es la mujer del dibujo y les relata sus recuerdos, cuando ella era la joven de 17 años Rose DeWitt Bukater (Kate Winslet).")
+	(descripcio "En 1996, el cazatesoros Brock Lovett (Bill Paxton) y su equipo exploran los restos del Titanic buscando un collar, el \"Corazon del Mar\". En medio de su busqueda estos descubren un dibujo de una mujer joven reclinada y desnuda, que lleva puesto aquel collar firmado el dia del hundimiento del Titanic. La noticia del descubrimiento del dibujo aparece en television, llamando la atencion una mujer, Rose Dawson Calvert (Gloria Stuart), proxima a los 101 años. Junto a su nieta Lizzy Calvert , vuela hasta el barco de Lovett. Alli les informa de que ella es la mujer del dibujo y les relata sus recuerdos, cuando ella era la joven de 17 años Rose DeWitt Bukater (Kate Winslet).")
 	(director [TVornoTV_Class18])
 	(edatRecomanada 7)
 	(format COLOR)
