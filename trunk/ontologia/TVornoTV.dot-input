@@ -1,0 +1,13 @@
+digraph "TVornoTV" {
+
+"Persona" [shape=box, label="Persona", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"Cine" [shape=box, label="Cine", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"Contingut"->"Cine" [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"Serie" [shape=box, label="Serie", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"Contingut"->"Serie" [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"Genere" [shape=box, label="Genere", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"Documental" [shape=box, label="Documental", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"Contingut"->"Documental" [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"Contingut" [shape=box, label="Contingut", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"Tematica" [shape=box, label="Tematica", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+}
