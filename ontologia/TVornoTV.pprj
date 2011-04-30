@@ -1,4 +1,4 @@
-; Sat Apr 30 15:47:02 CEST 2011
+; Sat Apr 30 18:35:30 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -20,9 +20,15 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[TVornoTV_ProjectKB_Class135]
-		[TVornoTV_ProjectKB_Class136]
-		[TVornoTV_ProjectKB_Class137]))
+		[TVornoTV_ProjectKB_Class10137]
+		[TVornoTV_ProjectKB_Class10138]
+		[TVornoTV_ProjectKB_Class10139]
+		[TVornoTV_ProjectKB_Class10140]
+		[TVornoTV_ProjectKB_Class10141]
+		[TVornoTV_ProjectKB_Class10142]
+		[TVornoTV_ProjectKB_Class10143]
+		[TVornoTV_ProjectKB_Class10144]
+		[TVornoTV_ProjectKB_Class10145]))
 
 ([CLSES_TAB] of  Widget
 
@@ -66,6 +72,9 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
+([KB_105527_Class3] of  Map
+)
+
 ([KB_392334_Class0] of  String
 
 	(name "factory_class_name")
@@ -74,9 +83,9 @@
 ([KB_392334_Class1] of  Map
 
 	(entries
-		[TVornoTV_ProjectKB_Class138]
-		[TVornoTV_ProjectKB_Class139]
-		[TVornoTV_ProjectKB_Class140]))
+		[TVornoTV_ProjectKB_Class10146]
+		[TVornoTV_ProjectKB_Class10147]
+		[TVornoTV_ProjectKB_Class10148]))
 
 ([KB_392334_Class10] of  Property_List
 )
@@ -148,9 +157,6 @@
 	(is_hidden TRUE)
 	(property_list [KB_392334_Class20])
 	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.InstanceTreeTab"))
-
-([KB_392334_Class2] of  Map
-)
 
 ([KB_392334_Class20] of  Property_List
 )
@@ -617,8 +623,8 @@
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[STANDARD_FACET_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
+		[STANDARD_FACET_FORM_WIDGET]
 		[PAL_FORM_WIDGET]
 		[STANDARD_CLASS_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")
@@ -999,45 +1005,200 @@
 		[STANDARD_SLOT_TYPE_WIDGET]
 		[KB_392334_Class92]))
 
-([TVornoTV_ProjectKB_Class107] of  String
+([TVornoTV_ProjectKB_Class10107] of  Widget
 
-	(name "SearchTab_Query"))
+	(height 60)
+	(is_hidden FALSE)
+	(name "subtitols")
+	(property_list [TVornoTV_ProjectKB_Class10108])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 480))
 
-([TVornoTV_ProjectKB_Class135] of  String
+([TVornoTV_ProjectKB_Class10108] of  Property_List
+)
+
+([TVornoTV_ProjectKB_Class10137] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([TVornoTV_ProjectKB_Class136] of  String
+([TVornoTV_ProjectKB_Class10138] of  String
 
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
+	(name "Persona")
+	(string_value "nom"))
 
-([TVornoTV_ProjectKB_Class137] of  String
+([TVornoTV_ProjectKB_Class10139] of  String
+
+	(name "Cine")
+	(string_value "{CI_}titol"))
+
+([TVornoTV_ProjectKB_Class10140] of  String
+
+	(name "Serie")
+	(string_value "{SE}titol{-}num_temporada{x}num_capitol"))
+
+([TVornoTV_ProjectKB_Class10141] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([TVornoTV_ProjectKB_Class138] of  Map_Entry
+([TVornoTV_ProjectKB_Class10142] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([TVornoTV_ProjectKB_Class10143] of  String
+
+	(name "Genere")
+	(string_value "nomGenere"))
+
+([TVornoTV_ProjectKB_Class10144] of  String
+
+	(name "Documental")
+	(string_value "{DO}titol"))
+
+([TVornoTV_ProjectKB_Class10145] of  String
+
+	(name "Tematica")
+	(string_value "nomTema"))
+
+([TVornoTV_ProjectKB_Class10146] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([TVornoTV_ProjectKB_Class139] of  Map_Entry
+([TVornoTV_ProjectKB_Class10147] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([TVornoTV_ProjectKB_Class140] of  Map_Entry
+([TVornoTV_ProjectKB_Class10148] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
+
+([TVornoTV_ProjectKB_Class103] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "idioma")
+	(property_list [TVornoTV_ProjectKB_Class104])
+	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
+	(width 200)
+	(x 0)
+	(y 360))
+
+([TVornoTV_ProjectKB_Class104] of  Property_List
+)
+
+([TVornoTV_ProjectKB_Class107] of  String
+
+	(name "SearchTab_Query"))
+
+([TVornoTV_ProjectKB_Class35] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "idioma")
+	(property_list [TVornoTV_ProjectKB_Class36])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 60))
+
+([TVornoTV_ProjectKB_Class36] of  Property_List
+)
+
+([TVornoTV_ProjectKB_Class63] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "idiomes")
+	(property_list [TVornoTV_ProjectKB_Class64])
+	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
+	(width 200)
+	(x 400)
+	(y 0))
+
+([TVornoTV_ProjectKB_Class64] of  Property_List
+)
+
+([TVornoTV_ProjectKB_Class77] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "rol")
+	(property_list [TVornoTV_ProjectKB_Class78])
+	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
+	(width 100)
+	(x 200)
+	(y 60))
+
+([TVornoTV_ProjectKB_Class78] of  Property_List
+)
+
+([TVornoTV_ProjectKB_Class91] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "TVornoTV_Class7")
+	(property_list [TVornoTV_ProjectKB_Class92])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 180))
+
+([TVornoTV_ProjectKB_Class92] of  Property_List
+)
+
+([TVornoTV_ProjectKB_Class93] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "actors")
+	(property_list [TVornoTV_ProjectKB_Class94])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 240))
+
+([TVornoTV_ProjectKB_Class94] of  Property_List
+)
+
+([TVornoTV_ProjectKB_Class95] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "actors")
+	(property_list [TVornoTV_ProjectKB_Class96])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(width 200)
+	(x 0)
+	(y 240))
+
+([TVornoTV_ProjectKB_Class96] of  Property_List
+
+	(properties
+		[TVornoTV_ProjectKB_Class97]
+		[TVornoTV_ProjectKB_Class98]))
+
+([TVornoTV_ProjectKB_Class97] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([TVornoTV_ProjectKB_Class98] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
 
 ([VERTICAL_STRETCHER] of  String
 

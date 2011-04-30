@@ -1,4 +1,367 @@
-; Sat Apr 30 15:47:02 CEST 2011
+; Sat Apr 30 18:35:30 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
+
+([TVornoTV_Class10] of  Persona
+
+	(edat 40)
+	(idiomes Angl%C3%A8s)
+	(nom "Stephen Rea")
+	(sexe home))
+
+([TVornoTV_Class11] of  Persona
+
+	(idiomes Angl%C3%A8s)
+	(nom "Lotte Verbeek")
+	(sexe home))
+
+([TVornoTV_Class12] of  Persona
+
+	(nom "Tom Charlfa")
+	(sexe home))
+
+([TVornoTV_Class13] of  Cine
+
+	(any 2010)
+	(descripcio "En el sur de Francia durante la temporada estival. Gaspard es un adolescente que se regocija en la idea de poder hacer lo que le venga en gana en su casa, ahora que sus padres se han marchado. Sus amigos Yann y Ludo están siempre con él, dispuestos a hacer el tonto mientras Gaspard descubre el deseo y quizás el amor con Marion.")
+	(director [TVornoTV_Class15])
+	(duracio 105)
+	(edatRecomanada 18)
+	(format COLOR)
+	(genere [TVornoTV_Class5])
+	(idioma Espanyol)
+	(nacionalitat "Francia")
+	(subtitols FALSE)
+	(titol "Black Heaven"))
+
+([TVornoTV_Class15] of  Persona
+
+	(idiomes Franc%C3%A8s)
+	(nom "Gilles Marchand")
+	(sexe home))
+
+([TVornoTV_Class16] of  Cine
+
+	(actors
+		[TVornoTV_Class19]
+		[TVornoTV_Class20]
+		[TVornoTV_Class21]
+		[TVornoTV_Class22]
+		[TVornoTV_Class23]
+		[TVornoTV_Class24]
+		[TVornoTV_Class25])
+	(any 1991)
+	(descripcio "Las máquinas, en su intento fallido por matar a la embarazada Sarah Connor (Linda Hamilton), deciden continuar con su cometido, pero esta vez deciden cambiar de objetivo: el adolescente John Connor (Edward Furlong). Para ello envían al avanzado T-1000 (Robert Patrick), un prototipo de metal líquido que es capaz de transformarse en cualquier persona. Pero el joven Connor recibirá la ayuda de un T-800 CSM-101 (Arnold Schwarzenegger), que viene desde el futuro para salvarlo.")
+	(director [TVornoTV_Class18])
+	(duracio 137)
+	(edatRecomanada 16)
+	(format COLOR)
+	(genere [TVornoTV_Class17])
+	(idioma Espanyol Angl%C3%A8s Catal%C3%A0)
+	(nacionalitat "EEUU")
+	(subtitols TRUE)
+	(titol "Terminator 2: El juicio final"))
+
+([TVornoTV_Class17] of  Genere
+
+	(nomGenere "Acció"))
+
+([TVornoTV_Class18] of  Persona
+
+	(nom "James Cameron")
+	(sexe home))
+
+([TVornoTV_Class19] of  Persona
+
+	(edat 64)
+	(estatCivil casada)
+	(idiomes Angl%C3%A8s)
+	(nivellEconomic 2.0E8)
+	(nom "Arnold Schwarzenegger")
+	(orientacioSexual heterosexual)
+	(sexe home))
+
+([TVornoTV_Class20] of  Persona
+
+	(nom "Linda Hamilton")
+	(sexe dona))
+
+([TVornoTV_Class21] of  Persona
+
+	(nom "Edward Furlong")
+	(sexe home))
+
+([TVornoTV_Class22] of  Persona
+
+	(nom "Robert Patrick")
+	(sexe home))
+
+([TVornoTV_Class23] of  Persona
+
+	(nom "Earl Boen")
+	(sexe home))
+
+([TVornoTV_Class24] of  Persona
+
+	(nom "Joe Morton")
+	(sexe home))
+
+([TVornoTV_Class25] of  Persona
+
+	(nom "Michael Biehn")
+	(sexe home))
+
+([TVornoTV_Class26] of  Cine
+
+	(actors
+		[TVornoTV_Class29]
+		[TVornoTV_Class30]
+		[TVornoTV_Class31])
+	(any 2006)
+	(descripcio "Jigsaw kidnaps a doctor to keep him alive while he watches his new apprentice put an unlucky citizen through a brutal test.")
+	(director [TVornoTV_Class28])
+	(duracio 108)
+	(edatRecomanada 18)
+	(format COLOR)
+	(genere [TVornoTV_Class27])
+	(idioma Espanyol Angl%C3%A8s)
+	(nacionalitat "EEUU")
+	(subtitols TRUE)
+	(titol "Saw III"))
+
+([TVornoTV_Class27] of  Genere
+
+	(nomGenere "Terror"))
+
+([TVornoTV_Class28] of  Persona
+
+	(nom "Darren Lynn Bousman")
+	(sexe home))
+
+([TVornoTV_Class29] of  Persona
+
+	(nom "Tobin Bell")
+	(sexe home))
+
+([TVornoTV_Class30] of  Persona
+
+	(nom "Shawnee Smith")
+	(sexe dona))
+
+([TVornoTV_Class31] of  Persona
+
+	(nom "Angus Macfadyen")
+	(sexe home))
+
+([TVornoTV_Class32] of  Cine
+
+	(actors
+		[TVornoTV_Class35]
+		[TVornoTV_Class36]
+		[TVornoTV_Class37]
+		[TVornoTV_Class38]
+		[TVornoTV_Class39]
+		[TVornoTV_Class40]
+		[TVornoTV_Class41]
+		[TVornoTV_Class42]
+		[TVornoTV_Class43]
+		[TVornoTV_Class44])
+	(any 2009)
+	(descripcio "ake Sully, un Infante de Marina veterano de guerra y herido en combate que queda parapléjico, es seleccionado para participar en el programa Avatar ocupando el puesto que, como científico, ejercía su hermano gemelo recién fallecido. De esta forma, Jake es trasladado a Pandora, una luna del planeta Polifemo cuya atmósfera es tóxica para los humanos y que, además de albergar una asombrosa biodiversidad, está habitada por los na'vi, una raza humanoide de piel azul y con algunos rasgos felinos.[")
+	(director [TVornoTV_Class18])
+	(duracio 162)
+	(edatRecomanada 13)
+	(format 3D)
+	(genere [TVornoTV_Class33])
+	(idioma Espanyol Angl%C3%A8s)
+	(subtitols TRUE)
+	(titol "Avatar"))
+
+([TVornoTV_Class33] of  Genere
+
+	(nomGenere "Ciència Ficció"))
+
+([TVornoTV_Class35] of  Persona
+
+	(nom "Sam Worthington")
+	(sexe home))
+
+([TVornoTV_Class36] of  Persona
+
+	(nom "Zoe Saldaña")
+	(sexe home))
+
+([TVornoTV_Class37] of  Persona
+
+	(nom "Sigourney Weaver")
+	(sexe home))
+
+([TVornoTV_Class38] of  Persona
+
+	(nom "Stephen Lang")
+	(sexe home))
+
+([TVornoTV_Class39] of  Persona
+
+	(nom "Michelle Rodríguez")
+	(sexe dona))
+
+([TVornoTV_Class4] of  Cine
+
+	(actors
+		[TVornoTV_Class11]
+		[TVornoTV_Class10]
+		[TVornoTV_Class12])
+	(any 2009)
+	(descripcio "Una joven y rebelde holandesa recorre los caminos de Irlanda, convirtiéndose en vagabunda por elección y disfrutando de la soledad que buscaba en el austero paisaje de Connemara.")
+	(director [TVornoTV_Class6])
+	(duracio 85)
+	(edatRecomanada 18)
+	(format COLOR)
+	(genere [TVornoTV_Class5])
+	(idioma Espanyol Angl%C3%A8s)
+	(nacionalitat "Irlanda")
+	(subtitols TRUE)
+	(titol "Nada Personal"))
+
+([TVornoTV_Class40] of  Persona
+
+	(nom "Giovanni Ribisi")
+	(sexe home))
+
+([TVornoTV_Class41] of  Persona
+
+	(nom "Joel David Moore")
+	(sexe home))
+
+([TVornoTV_Class42] of  Persona
+
+	(edat 60)
+	(estatCivil casada)
+	(idiomes Espanyol Angl%C3%A8s)
+	(nom "C. C. H. Pounder")
+	(orientacioSexual heterosexual)
+	(sexe dona))
+
+([TVornoTV_Class43] of  Persona
+
+	(nom "Wes Studi")
+	(sexe home))
+
+([TVornoTV_Class44] of  Persona
+
+	(idiomes Angl%C3%A8s)
+	(nom "Laz Alonso")
+	(sexe home))
+
+([TVornoTV_Class45] of  Cine
+
+	(actors
+		[TVornoTV_Class47]
+		[TVornoTV_Class48]
+		[TVornoTV_Class46]
+		[TVornoTV_Class49]
+		[TVornoTV_Class50]
+		[TVornoTV_Class51])
+	(any 1986)
+	(descripcio "El sargento Tom Highway (Eastwood) es un adicto al alcohol dispuesto a arruinar su vida personal, sacrificando a su mujer, a sus amigos y su reputación, con tal de llegar a lo más alto en la carrera militar. Veterano de las guerras de Vietnam y Corea, vuelve a los Estados Unidos para llevar a cabo una misión nada fácil: instruir a un grupo de novatos desmotivados e indisciplinados para convertirlos en auténticos marines. Los reclutas ponen de relieve el anacronismo de Highway, cuyos principios son útiles tan sólo en caso de guerra.")
+	(director [TVornoTV_Class46])
+	(duracio 126)
+	(edatRecomanada 16)
+	(genere [TVornoTV_Class17])
+	(idioma Espanyol Angl%C3%A8s)
+	(nacionalitat "EEUU")
+	(subtitols FALSE)
+	(titol "El sargento de hierro"))
+
+([TVornoTV_Class46] of  Persona
+
+	(edat 81)
+	(estatCivil casada)
+	(idiomes Angl%C3%A8s)
+	(nom "Clint Eastwood")
+	(orientacioSexual heterosexual)
+	(sexe home))
+
+([TVornoTV_Class47] of  Persona
+
+	(estatCivil separada)
+	(idiomes Angl%C3%A8s)
+	(nom "Marsha Mason")
+	(orientacioSexual heterosexual)
+	(sexe dona))
+
+([TVornoTV_Class48] of  Persona
+
+	(nom "Everett McGill")
+	(sexe dona))
+
+([TVornoTV_Class49] of  Persona
+
+	(nom "Bo Svenson")
+	(sexe home))
+
+([TVornoTV_Class5] of  Genere
+
+	(nomGenere "Drama"))
+
+([TVornoTV_Class50] of  Persona
+
+	(nom "Mario Van Peebles")
+	(sexe home))
+
+([TVornoTV_Class51] of  Persona
+
+	(nom "Tom Villard")
+	(sexe home))
+
+([TVornoTV_Class52] of  Cine
+
+	(actors
+		[TVornoTV_Class55]
+		[TVornoTV_Class56]
+		[TVornoTV_Class57]
+		[TVornoTV_Class58]
+		[TVornoTV_Class59])
+	(any 2012)
+	(descripcio "Biopic de J. Edgar Hoover, que fue nombrado en 1924, a los 29 años, director general del FBI con la intención de reformar la organización. Ocupó dicho cargo hasta su muerte en 1972, y durante su mandato sobrevivió a siete presidentes, alguno de los cuales quiso destituirlo sin conseguirlo. Los archivos que Hoover guardaba celosamente, llenos de secretos inconfesables de muchas personalidades importantes de los Estados Unidos, lo convirtieron en uno de los hombres más poderosos y temidos de la historia de ese país.")
+	(director [TVornoTV_Class46])
+	(duracio 120)
+	(edatRecomanada 13)
+	(genere [TVornoTV_Class5])
+	(nacionalitat "EEUU")
+	(subtitols FALSE)
+	(titol "J. Edgar"))
+
+([TVornoTV_Class55] of  Persona
+
+	(nom "Leonardo DiCaprio")
+	(sexe home))
+
+([TVornoTV_Class56] of  Persona
+
+	(nom "Arnie Hammer")
+	(sexe home))
+
+([TVornoTV_Class57] of  Persona
+
+	(nom "Naomi Watts")
+	(sexe dona))
+
+([TVornoTV_Class58] of  Persona
+
+	(nom "Judi Dench")
+	(sexe dona))
+
+([TVornoTV_Class59] of  Persona
+
+	(nom "Ed Westwick")
+	(sexe home))
+
+([TVornoTV_Class6] of  Persona
+
+	(edat 52)
+	(idiomes Angl%C3%A8s)
+	(nom "Urszula Antoniak")
+	(sexe dona))

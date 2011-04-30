@@ -1,4 +1,4 @@
-; Sat Apr 30 15:47:02 CEST 2011
+; Sat Apr 30 18:35:30 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -7,12 +7,18 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
-	(single-slot idioma
+	(multislot idioma
 ;+		(comment "Idioma en que s'emet el contingut.")
-		(type STRING)
-;+		(cardinality 0 1)
+		(type SYMBOL)
+		(allowed-values Espanyol Angl%C3%A8s Catal%C3%A0 Franc%C3%A8s Itali%C3%A0)
 		(create-accessor read-write))
-	(single-slot actors
+	(multislot actors
+;+		(comment "Actors del contingut de tipus Cine.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
+		(create-accessor read-write))
+	(single-slot nacionalitat
+;+		(comment "Defineix el país de producció de la pel·licula. Pot ser Espanyola, Francesa, EEUU, etc.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -22,15 +28,21 @@
 		(allowed-values actor director)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot nacionalitat
-;+		(comment "Defineix el país de producció de la pel·licula. Pot ser Espanyola, Francesa, EEUU, etc.")
-		(type STRING)
-;+		(cardinality 0 1)
+	(single-slot tematica
+;+		(comment "Temàtica del documental.")
+		(type INSTANCE)
+;+		(allowed-classes Tematica)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot resum
 ;+		(comment "Resum del capítol en concret. Es diferència de la descripció (paràmetre heretat), en que l'altre és la descripció en general de la sèrie.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot director
+;+		(comment "Relació que indica que una Persona té com a rol director per un Contingut determinat.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
 		(create-accessor read-write))
 	(single-slot nom
 		(type STRING)
@@ -65,17 +77,17 @@
 		(range 1 %3FVARIABLE)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot num_capitol
-;+		(comment "Nombre del capítol de la sèrie.")
-		(type INTEGER)
-		(range 1 %3FVARIABLE)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot duracio
 ;+		(comment "Duració en minuts del contingut. Ex. 60', 90', 120', etc.")
 		(type INTEGER)
 		(range 0 %3FVARIABLE)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot num_capitol
+;+		(comment "Nombre del capítol de la sèrie.")
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot sexe
 ;+		(comment "Sexe de la persona")
@@ -83,14 +95,33 @@
 		(allowed-values home dona)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot genere_serie
+;+		(comment "Génere del contingut de tipus Sèrie.")
+		(type INSTANCE)
+;+		(allowed-classes Genere)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot subtitols
+;+		(comment "Es poden seleccionar subtitols per aquest contingut?")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(multislot idiomes
 ;+		(comment "Idiomes que enten la persona.")
-		(type STRING)
-		(cardinality 1 ?VARIABLE)
+		(type SYMBOL)
+		(allowed-values Angl%C3%A8s Franc%C3%A8s Catal%C3%A0 Espanyol Itali%C3%A0)
 		(create-accessor read-write))
 	(single-slot nomGenere
 ;+		(comment "Nom del gènere al que fa referència la classe.")
 		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot genere
+;+		(comment "Genere del contingut de tipus Cine.")
+		(type INSTANCE)
+;+		(allowed-classes Genere)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot any
@@ -99,11 +130,20 @@
 		(range 1895 2012)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot TVornoTV_Class7
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot orientacioSexual
 ;+		(comment "Orientació sexual de la persona.")
 		(type SYMBOL)
 		(allowed-values heterosexual homosexual bisexual)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot actorsS
+;+		(comment "Actors de la sèrie.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
 		(create-accessor read-write))
 	(single-slot edatRecomanada
 ;+		(comment "Edat recomanada per veure aquest contingut.")
@@ -126,28 +166,25 @@
 ;+		(comment "Nom del tema a la que fa referència la instància.")
 		(type STRING)
 ;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot TVornoTV_Class16
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot TVornoTV_Class17
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Contingut "Classe que representa un programa televisiu, també anomenat \"Contingut\"."
 	(is-a USER)
 	(role concrete)
-	(single-slot idioma
+	(multislot idioma
 ;+		(comment "Idioma en que s'emet el contingut.")
-		(type STRING)
-;+		(cardinality 0 1)
+		(type SYMBOL)
+		(allowed-values Espanyol Angl%C3%A8s Catal%C3%A0 Franc%C3%A8s Itali%C3%A0)
 		(create-accessor read-write))
 	(single-slot descripcio
 ;+		(comment "Descripció, resum o sinópsis del contingut del programa.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot director
+;+		(comment "Relació que indica que una Persona té com a rol director per un Contingut determinat.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
 		(create-accessor read-write))
 	(single-slot any
 ;+		(comment "Any en que el contingut s'ha realitzat. P.ex. correspondría a la data de filmació d'una pel·licula.")
@@ -166,6 +203,13 @@
 		(range 0 %3FVARIABLE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot subtitols
+;+		(comment "Es poden seleccionar subtitols per aquest contingut?")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot edatRecomanada
 ;+		(comment "Edat recomanada per veure aquest contingut.")
 		(type INTEGER)
@@ -173,28 +217,45 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Cine
+(defclass Cine "Representa el conjunt de pel·licules cinematogràfiques."
 	(is-a Contingut)
 	(role concrete)
-	(single-slot nacionalitat
-;+		(comment "Defineix el país de producció de la pel·licula. Pot ser Espanyola, Francesa, EEUU, etc.")
-		(type STRING)
-;+		(cardinality 0 1)
+	(single-slot genere
+;+		(comment "Genere del contingut de tipus Cine.")
+		(type INSTANCE)
+;+		(allowed-classes Genere)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot actors
+;+		(comment "Actors del contingut de tipus Cine.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
 		(create-accessor read-write))
 	(single-slot format
 ;+		(comment "Descriu el format en que s'emet la pel·licula. Pot ser en color, blanc i negre o en 3D.")
 		(type SYMBOL)
 		(allowed-values 3D B%2FN COLOR)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nacionalitat
+;+		(comment "Defineix el país de producció de la pel·licula. Pot ser Espanyola, Francesa, EEUU, etc.")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Serie
+(defclass Serie "Representa una sèrie de televisió."
 	(is-a Contingut)
 	(role concrete)
 	(single-slot resum
 ;+		(comment "Resum del capítol en concret. Es diferència de la descripció (paràmetre heretat), en que l'altre és la descripció en general de la sèrie.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot genere_serie
+;+		(comment "Génere del contingut de tipus Sèrie.")
+		(type INSTANCE)
+;+		(allowed-classes Genere)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot num_temporada
 ;+		(comment "Temporada de la sèrie.")
@@ -207,19 +268,34 @@
 		(type INTEGER)
 		(range 1 %3FVARIABLE)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot actorsS
+;+		(comment "Actors de la sèrie.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
 		(create-accessor read-write)))
 
-(defclass Documental
+(defclass Documental "Representa els continguts de tipus documental, ja siguin d'animals, telediaris, etc."
 	(is-a Contingut)
-	(role concrete))
+	(role concrete)
+	(single-slot tematica
+;+		(comment "Temàtica del documental.")
+		(type INSTANCE)
+;+		(allowed-classes Tematica)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
 
 (defclass Persona "Clase persona. Ens servirà tant per definir els usuaris del nostre sistema, com per definir els actors, directors dels continguts."
 	(is-a USER)
 	(role concrete)
 	(multislot idiomes
 ;+		(comment "Idiomes que enten la persona.")
+		(type SYMBOL)
+		(allowed-values Angl%C3%A8s Franc%C3%A8s Catal%C3%A0 Espanyol Itali%C3%A0)
+		(create-accessor read-write))
+	(single-slot nom
 		(type STRING)
-		(cardinality 1 ?VARIABLE)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot orientacioSexual
 ;+		(comment "Orientació sexual de la persona.")
@@ -227,20 +303,10 @@
 		(allowed-values heterosexual homosexual bisexual)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot nom
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot estatCivil
 ;+		(comment "La persona esta casada, divorciada, etc?")
 		(type SYMBOL)
 		(allowed-values casada divorciada soltera separada)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot sexe
-;+		(comment "Sexe de la persona")
-		(type SYMBOL)
-		(allowed-values home dona)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot edat
@@ -249,16 +315,16 @@
 		(range 0 120)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot sexe
+;+		(comment "Sexe de la persona")
+		(type SYMBOL)
+		(allowed-values home dona)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot nivellEconomic
 ;+		(comment "Sou que guanya aquesta persona per fer-se una idea del nivell econòmic.")
 		(type FLOAT)
 		(range 0.0 %3FVARIABLE)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot rol
-;+		(comment "Rol que tindrà la persona en un contingut determinat.")
-		(type SYMBOL)
-		(allowed-values actor director)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
