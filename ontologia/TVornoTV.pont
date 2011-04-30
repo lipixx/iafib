@@ -1,4 +1,4 @@
-; Sat Apr 30 20:48:48 CEST 2011
+; Sat Apr 30 22:50:08 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -17,6 +17,12 @@
 		(type INSTANCE)
 ;+		(allowed-classes Persona)
 		(create-accessor read-write))
+	(single-slot ambit
+;+		(comment "Ambit del que tracta aquest documental.")
+		(type SYMBOL)
+		(allowed-values Inform%C3%A0tica Telecomunicacions Aviaci%C3%B3 N%C3%A0utica Construcci%C3%B3 Mec%C3%A0nica)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot rol
 ;+		(comment "Rol que tindrà la persona en un contingut determinat.")
 		(type SYMBOL)
@@ -31,7 +37,7 @@
 	(single-slot tematica
 ;+		(comment "Temàtica del documental.")
 		(type INSTANCE)
-;+		(allowed-classes Tematica)
+;+		(allowed-classes)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot resum
@@ -106,6 +112,12 @@
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
 		(default FALSE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot epoca
+;+		(comment "Epoca en que està enfocat el documental.")
+		(type SYMBOL)
+		(allowed-values Moderna Medieval Prehist%C3%B2ria Cl%C3%A0ssica SegleXX Romanticisme SegleXIX Actual Futur)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot idiomes
@@ -291,11 +303,49 @@
 
 (defclass Documental "Representa els continguts de tipus documental, ja siguin d'animals, telediaris, etc."
 	(is-a Contingut)
+	(role concrete))
+
+(defclass Historia
+	(is-a Documental)
 	(role concrete)
-	(single-slot tematica
-;+		(comment "Temàtica del documental.")
-		(type INSTANCE)
-;+		(allowed-classes Tematica)
+	(single-slot epoca
+;+		(comment "Epoca en que està enfocat el documental.")
+		(type SYMBOL)
+		(allowed-values Moderna Medieval Prehist%C3%B2ria Cl%C3%A0ssica SegleXX Romanticisme SegleXIX Actual Futur)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Naturalesa
+	(is-a Documental)
+	(role concrete))
+
+(defclass Ci%C3%A8ncia
+	(is-a Documental)
+	(role concrete))
+
+(defclass Actualitat
+	(is-a Documental)
+	(role concrete))
+
+(defclass Art
+	(is-a Documental)
+	(role concrete))
+
+(defclass Pol%C3%ADtica
+	(is-a Documental)
+	(role concrete))
+
+(defclass Econom%C3%ADa
+	(is-a Documental)
+	(role concrete))
+
+(defclass Tecnolog%C3%ADa
+	(is-a Documental)
+	(role concrete)
+	(single-slot ambit
+;+		(comment "Ambit del que tracta aquest documental.")
+		(type SYMBOL)
+		(allowed-values Inform%C3%A0tica Telecomunicacions Aviaci%C3%B3 N%C3%A0utica Construcci%C3%B3 Mec%C3%A0nica)
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -347,15 +397,6 @@
 	(role concrete)
 	(single-slot nomGenere
 ;+		(comment "Nom del gènere al que fa referència la classe.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Tematica "Defineix la temàtica del contingut, especialment per documentals."
-	(is-a USER)
-	(role concrete)
-	(single-slot nomTema
-;+		(comment "Nom del tema a la que fa referència la instància.")
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
