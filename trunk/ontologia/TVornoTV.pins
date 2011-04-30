@@ -1,4 +1,4 @@
-; Sat Apr 30 20:48:48 CEST 2011
+; Sat Apr 30 22:50:08 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -244,6 +244,7 @@
 	(duracio 131)
 	(edatRecomanada 12)
 	(format COLOR)
+	(genere [TVornoTV_Class33])
 	(idioma Espanyol Angl%C3%A8s Franc%C3%A8s Itali%C3%A0 Japon%C3%A8s)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
@@ -754,6 +755,410 @@
 	(nom "G.W. Bailey")
 	(sexe home))
 
+([TVornoTV_Class10097] of  Cine
+
+	(any 2009)
+	(director [TVornoTV_Class10098])
+	(duracio 94)
+	(edatRecomanada 7)
+	(format 3D)
+	(genere [TVornoTV_Class10071])
+	(idioma Espanyol Angl%C3%A8s)
+	(nacionalitat "EEUU")
+	(subtitols FALSE)
+	(titol "Monsters Vs. Aliens")
+	(versioOriginal TRUE))
+
+([TVornoTV_Class10098] of  Persona
+
+	(nom "Rob Letterman")
+	(sexe home))
+
+([TVornoTV_Class10099] of  Cine
+
+	(actors
+		[TVornoTV_Class10101]
+		[TVornoTV_Class10102])
+	(any 2000)
+	(descripcio "Un joven estudiante tiene una premonición al subirse al avión en el que se dispone a ir a París con sus compañeros. Presintiendo que algo grave va a pasar, él y sus amigos desembarcan antes del despegue.")
+	(director [TVornoTV_Class10100])
+	(duracio 97)
+	(edatRecomanada 12)
+	(format 3D)
+	(genere [TVornoTV_Class27])
+	(idioma Espanyol Angl%C3%A8s)
+	(nacionalitat "EEUU")
+	(subtitols TRUE)
+	(titol "Destino final")
+	(versioOriginal FALSE))
+
+([TVornoTV_Class10100] of  Persona
+
+	(nom "James Wong")
+	(sexe home))
+
+([TVornoTV_Class10101] of  Persona
+
+	(nom "Devon Sawa")
+	(sexe home))
+
+([TVornoTV_Class10102] of  Persona
+
+	(nom "Ali Larter")
+	(sexe dona))
+
+([TVornoTV_Class10103] of  Cine
+
+	(actors
+		[TVornoTV_Class10105]
+		[TVornoTV_Class10106])
+	(any 2008)
+	(descripcio "Durante una expedición científica en Islandia, el visionario científico Trevor Anderson (Brendan Fraser), su sobrino Sean (Josh Hutcherson) y su hermosa guía regional, Hannah (Anita Briem), quedan atrapados en una cueva. La única posibilidad de escapar de allí es adentrándose en las entrañas de la Tierra.")
+	(director [TVornoTV_Class10104])
+	(duracio 92)
+	(edatRecomanada 10)
+	(format 3D)
+	(genere [TVornoTV_Class33])
+	(idioma Espanyol Angl%C3%A8s)
+	(nacionalitat "EEUU")
+	(subtitols FALSE)
+	(titol "Viaje al centro de la Tierra")
+	(versioOriginal TRUE))
+
+([TVornoTV_Class10104] of  Persona
+
+	(nom "Eric Brevig")
+	(sexe home))
+
+([TVornoTV_Class10105] of  Persona
+
+	(nom "Brendan Fraser")
+	(sexe home))
+
+([TVornoTV_Class10106] of  Persona
+
+	(nom "Josh Hutcherson")
+	(sexe home))
+
+([TVornoTV_Class10107] of  Cine
+
+	(actors
+		[TVornoTV_Class10109]
+		[TVornoTV_Class10110]
+		[TVornoTV_Class10111]
+		[TVornoTV_Class10112])
+	(any 2003)
+	(descripcio "La tecnología HD/3-D entra en escena cuando los jóvenes agentes Juni (Daryl Sabara) y Carmen Cortez (Alexa Vega) emprenden la misión más emocionante de sus vidas: un viaje al interior de la realidad virtual de un videojuego en 3D que ha sido especialmente diseñado para acabar con ellos")
+	(director [TVornoTV_Class10108])
+	(duracio 84)
+	(edatRecomanada 7)
+	(format 3D)
+	(genere [TVornoTV_Class10071])
+	(idioma Espanyol Angl%C3%A8s)
+	(nacionalitat "EEUU")
+	(subtitols FALSE)
+	(titol "Spy Kids 3D: Game Over")
+	(versioOriginal TRUE))
+
+([TVornoTV_Class10108] of  Persona
+
+	(nom "Robert Rodriguez")
+	(sexe home))
+
+([TVornoTV_Class10109] of  Persona
+
+	(nom "Antonio Banderas")
+	(sexe home))
+
+([TVornoTV_Class10110] of  Persona
+
+	(nom "Carla Gugino")
+	(sexe dona))
+
+([TVornoTV_Class10111] of  Persona
+
+	(nom "Daryl Sabara")
+	(sexe home))
+
+([TVornoTV_Class10112] of  Persona
+
+	(nom "Alexa Vega")
+	(sexe dona))
+
+([TVornoTV_Class10113] of  Cine
+
+	(actors [TVornoTV_Class10115])
+	(any 2001)
+	(descripcio "Amelie no es una chica como las demás. Ha visto a su pez de colores deslizarse hacia las alcantarillas municipales, a su madre morir en la plaza de Notre-Dame y a su padre dedicar todo su afecto a un gnomo de jardín. De repente, a sus veintidós años, descubre su objetivo en la vida: arreglar la vida de los demás.")
+	(director [TVornoTV_Class10114])
+	(duracio 120)
+	(edatRecomanada 12)
+	(format COLOR)
+	(genere [TVornoTV_Class5])
+	(idioma Franc%C3%A8s Espanyol Angl%C3%A8s)
+	(nacionalitat "Francesa")
+	(subtitols TRUE)
+	(titol "Amelie")
+	(versioOriginal TRUE))
+
+([TVornoTV_Class10114] of  Persona
+
+	(nom "Jean Pierre Jeunet")
+	(sexe home))
+
+([TVornoTV_Class10115] of  Persona
+
+	(nom "Audrey Tautou")
+	(sexe dona))
+
+([TVornoTV_Class10116] of  Cine
+
+	(actors
+		[TVornoTV_Class10118]
+		[TVornoTV_Class10119])
+	(any 2006)
+	(descripcio "En París, el amor está por todas partes: en sus bares y cafés, bajo la Torre Eiffel e incluso bajo tierra, en el metro. Algunos de los directores más prestigiosos del mundo fueron invitados a contar una historia ambientada en uno de los barrios de la ciudad.")
+	(director [TVornoTV_Class10117])
+	(duracio 119)
+	(edatRecomanada 12)
+	(format COLOR)
+	(genere [TVornoTV_Class10072])
+	(idioma Franc%C3%A8s Espanyol Angl%C3%A8s)
+	(nacionalitat "Francesa")
+	(subtitols TRUE)
+	(titol "Paris, je t'aime")
+	(versioOriginal TRUE))
+
+([TVornoTV_Class10117] of  Persona
+
+	(nom "Olivier Assayas")
+	(sexe home))
+
+([TVornoTV_Class10118] of  Persona
+
+	(nom "Natalie Portman")
+	(sexe dona))
+
+([TVornoTV_Class10119] of  Persona
+
+	(nom "Fanny Ardant")
+	(sexe home))
+
+([TVornoTV_Class10120] of  Cine
+
+	(actors
+		[TVornoTV_Class10121]
+		[TVornoTV_Class10122])
+	(any 1991)
+	(descripcio "En un inmenso descampado, se alza un viejo edificio habitado por personas de costumbres más bien extrañas que sólo tiene una preocupación: alimentarse. El propietario es un peculiar carnicero que tiene su establecimiento en los bajos del bloque. Allí llega un nuevo inquilino que trabaja en el circo y que alterará la vida de la excéntrica comunidad que lo habita.")
+	(director [TVornoTV_Class10114])
+	(duracio 95)
+	(edatRecomanada 10)
+	(format COLOR)
+	(genere [TVornoTV_Class10072])
+	(idioma Franc%C3%A8s Espanyol Angl%C3%A8s)
+	(nacionalitat "Francesa")
+	(subtitols TRUE)
+	(titol "Delicatessen")
+	(versioOriginal TRUE))
+
+([TVornoTV_Class10121] of  Persona
+
+	(nom "Howard Vernon")
+	(sexe home))
+
+([TVornoTV_Class10122] of  Persona
+
+	(nom "Dominique Pinon")
+	(sexe home))
+
+([TVornoTV_Class10123] of  Persona
+)
+
+([TVornoTV_Class10124] of  Cine
+
+	(actors [TVornoTV_Class10126])
+	(any 1999)
+	(descripcio "Daniel Lefebre, de 40 años, dirige una escuela infantil en un barrio marginal de Hernaing, población minera del norte de Francia. En el pequeño pueblo, el 30% de la población está en paro a causa de la crisis de la minería. Un día, la madre de una de las alumnas llega borracha a la escuela, sufre un colapso y dejá allí a su bebe y a su hija de cinco años. El profesor decide tomar cartas en el asunto y solicita la ayuda de la comunidad.")
+	(director [TVornoTV_Class10125])
+	(duracio 107)
+	(edatRecomanada 12)
+	(format COLOR)
+	(genere [TVornoTV_Class5])
+	(idioma Franc%C3%A8s Angl%C3%A8s Espanyol)
+	(nacionalitat "Francesa")
+	(subtitols TRUE)
+	(titol "Hoy empieza todo")
+	(versioOriginal TRUE))
+
+([TVornoTV_Class10125] of  Persona
+
+	(nom "Bertrand Tavernier")
+	(sexe home))
+
+([TVornoTV_Class10126] of  Persona
+
+	(nom "Philippe Torreton")
+	(sexe home))
+
+([TVornoTV_Class10127] of  Cine
+
+	(actors
+		[TVornoTV_Class10129]
+		[TVornoTV_Class10130]
+		[TVornoTV_Class10131]
+		[TVornoTV_Class10132]
+		[TVornoTV_Class10133]
+		[TVornoTV_Class10134])
+	(any 2010)
+	(descripcio "Durante los duros años de la postguerra, en una zona rural de Cataluña, un niño llamado Andreu, cuya familia pertenece al bando de los perdedores, encuentra un día en el bosque los cadáveres de un hombre y su hijo.")
+	(director [TVornoTV_Class10128])
+	(duracio 108)
+	(edatRecomanada 12)
+	(format COLOR)
+	(genere [TVornoTV_Class5])
+	(idioma Catal%C3%A0)
+	(nacionalitat "Espanyola")
+	(subtitols FALSE)
+	(titol "Pa negre")
+	(versioOriginal TRUE))
+
+([TVornoTV_Class10128] of  Persona
+
+	(nom "Agustí Villaronga")
+	(sexe home))
+
+([TVornoTV_Class10129] of  Persona
+
+	(nom "Francesc Colomer")
+	(sexe home))
+
+([TVornoTV_Class10130] of  Persona
+
+	(nom "Nora Navas")
+	(sexe dona))
+
+([TVornoTV_Class10131] of  Persona
+
+	(nom "Marina Comas")
+	(sexe dona))
+
+([TVornoTV_Class10132] of  Persona
+
+	(nom "Laia Marull"))
+
+([TVornoTV_Class10133] of  Persona
+
+	(nom "Jordi Pla")
+	(sexe home))
+
+([TVornoTV_Class10134] of  Persona
+
+	(nom "Sergi López")
+	(sexe home))
+
+([TVornoTV_Class10139] of  Historia
+
+	(any 1988)
+	(descripcio "Història sobre el règim dictatorial de Adolf Hitler.")
+	(director [TVornoTV_Class10146])
+	(duracio 54)
+	(edatRecomanada 16)
+	(epoca SegleXX)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(titol "Adolf Hitler - La historia oculta del III Reich"))
+
+([TVornoTV_Class10146] of  Persona
+
+	(nom "Dave Flitton")
+	(sexe home))
+
+([TVornoTV_Class10150] of  Tecnolog%C3%ADa
+
+	(ambit Inform%C3%A0tica)
+	(any 1999)
+	(descripcio "La red esta poblada de tribus ciberneticas. Piratas, escritores de virus, jovenes que se adueñan de la identidad de las empresas...")
+	(director [TVornoTV_Class10151])
+	(duracio 45)
+	(edatRecomanada 13)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(titol "Hackers españoles"))
+
+([TVornoTV_Class10151] of  Persona
+
+	(estatCivil casada)
+	(nom "Miguel Ángel Nieto")
+	(orientacioSexual heterosexual)
+	(sexe home))
+
+([TVornoTV_Class10152] of  Tecnolog%C3%ADa
+
+	(ambit Inform%C3%A0tica)
+	(any 1999)
+	(descripcio "Història de la construcció del gran imperi de Microsoft i Apple")
+	(director [TVornoTV_Class10153])
+	(duracio 95)
+	(edatRecomanada 13)
+	(idioma Espanyol Angl%C3%A8s)
+	(subtitols TRUE)
+	(titol "Piratas de Silicon Valley"))
+
+([TVornoTV_Class10153] of  Persona
+
+	(nom "Martyn Burke"))
+
+([TVornoTV_Class10154] of  Cine
+
+	(actors
+		[TVornoTV_Class10157]
+		[TVornoTV_Class10158])
+	(any 1929)
+	(descripcio "Pel·licula clàssica de salvador dalí")
+	(director
+		[TVornoTV_Class10155]
+		[TVornoTV_Class10156])
+	(duracio 16)
+	(format B%2FN)
+	(genere [TVornoTV_Class5])
+	(idioma Franc%C3%A8s)
+	(nacionalitat "Francesa")
+	(subtitols FALSE)
+	(titol "Un perro andaluz")
+	(versioOriginal TRUE))
+
+([TVornoTV_Class10155] of  Persona
+
+	(nom "Louis Bunuel")
+	(sexe home))
+
+([TVornoTV_Class10156] of  Persona
+
+	(nom "Salvador Dali")
+	(sexe home))
+
+([TVornoTV_Class10157] of  Persona
+
+	(nom "Simonne Marefuil")
+	(sexe dona))
+
+([TVornoTV_Class10158] of  Persona
+
+	(nom "Pierre Batchef")
+	(sexe home))
+
+([TVornoTV_Class10159] of  Tecnolog%C3%ADa
+
+	(ambit Inform%C3%A0tica)
+	(any 2002)
+	(descripcio "Entrevist a Richard Stallman a TVE3")
+	(duracio 28)
+	(edatRecomanada 13)
+	(idioma Catal%C3%A0)
+	(subtitols FALSE)
+	(titol "Richard Stallman - GNU/Linux"))
+
 ([TVornoTV_Class11] of  Persona
 
 	(idiomes Angl%C3%A8s)
@@ -1088,6 +1493,7 @@
 	(duracio 120)
 	(edatRecomanada 13)
 	(genere [TVornoTV_Class5])
+	(idioma Espanyol)
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
 	(titol "J. Edgar"))
