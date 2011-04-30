@@ -1072,12 +1072,12 @@
 
 ([TVornoTV_ProjectKB_Class10637] of  String
 
-	(name "Economía")
+	(name "Economia")
 	(string_value "{DO_ECO_}titol"))
 
 ([TVornoTV_ProjectKB_Class10638] of  String
 
-	(name "Ciència")
+	(name "Ciencia")
 	(string_value "{DO_CI_}titol"))
 
 ([TVornoTV_ProjectKB_Class10639] of  String
@@ -1102,7 +1102,7 @@
 
 ([TVornoTV_ProjectKB_Class10643] of  String
 
-	(name "Política")
+	(name "Politica")
 	(string_value "{DO_PO_}titol"))
 
 ([TVornoTV_ProjectKB_Class10644] of  String
@@ -1117,7 +1117,7 @@
 
 ([TVornoTV_ProjectKB_Class10646] of  String
 
-	(name "Tecnología")
+	(name "Tecnologia")
 	(string_value "{DO_T_}titol"))
 
 ([TVornoTV_ProjectKB_Class10647] of  String
