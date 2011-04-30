@@ -1,4 +1,4 @@
-; Sat Apr 30 22:50:08 CEST 2011
+; Sat Apr 30 23:20:13 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -578,6 +578,7 @@
 	(director [TVornoTV_Class10076])
 	(duracio 85)
 	(edatRecomanada 7)
+	(format BiN)
 	(genere [TVornoTV_Class10071])
 	(idioma Espanyol Angles Frances Italia)
 	(nacionalitat "EEUU")
