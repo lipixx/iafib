@@ -1,4 +1,4 @@
-; Sun May 01 19:48:51 CEST 2011
+; Sun May 01 20:09:48 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -20,22 +20,22 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[TVornoTV_ProjectKB_Class20268]
-		[TVornoTV_ProjectKB_Class20269]
-		[TVornoTV_ProjectKB_Class20270]
-		[TVornoTV_ProjectKB_Class20271]
-		[TVornoTV_ProjectKB_Class20272]
-		[TVornoTV_ProjectKB_Class20273]
-		[TVornoTV_ProjectKB_Class20274]
-		[TVornoTV_ProjectKB_Class20275]
-		[TVornoTV_ProjectKB_Class20276]
-		[TVornoTV_ProjectKB_Class20277]
-		[TVornoTV_ProjectKB_Class20278]
-		[TVornoTV_ProjectKB_Class20279]
-		[TVornoTV_ProjectKB_Class20280]
-		[TVornoTV_ProjectKB_Class20281]
-		[TVornoTV_ProjectKB_Class20282]
-		[TVornoTV_ProjectKB_Class20283]))
+		[TVornoTV_ProjectKB_Class20308]
+		[TVornoTV_ProjectKB_Class20309]
+		[TVornoTV_ProjectKB_Class20310]
+		[TVornoTV_ProjectKB_Class20311]
+		[TVornoTV_ProjectKB_Class20312]
+		[TVornoTV_ProjectKB_Class20313]
+		[TVornoTV_ProjectKB_Class20314]
+		[TVornoTV_ProjectKB_Class20315]
+		[TVornoTV_ProjectKB_Class20316]
+		[TVornoTV_ProjectKB_Class20317]
+		[TVornoTV_ProjectKB_Class20318]
+		[TVornoTV_ProjectKB_Class20319]
+		[TVornoTV_ProjectKB_Class20320]
+		[TVornoTV_ProjectKB_Class20321]
+		[TVornoTV_ProjectKB_Class20322]
+		[TVornoTV_ProjectKB_Class20323]))
 
 ([CLSES_TAB] of  Widget
 
@@ -87,9 +87,9 @@
 ([KB_392334_Class1] of  Map
 
 	(entries
-		[TVornoTV_ProjectKB_Class20284]
-		[TVornoTV_ProjectKB_Class20285]
-		[TVornoTV_ProjectKB_Class20286]))
+		[TVornoTV_ProjectKB_Class20324]
+		[TVornoTV_ProjectKB_Class20325]
+		[TVornoTV_ProjectKB_Class20326]))
 
 ([KB_392334_Class10] of  Property_List
 )
@@ -1016,101 +1016,101 @@
 
 	(name "SearchTab_Query"))
 
-([TVornoTV_ProjectKB_Class20268] of  String
+([TVornoTV_ProjectKB_Class20308] of  String
 
 	(name "Persona")
 	(string_value "nom"))
 
-([TVornoTV_ProjectKB_Class20269] of  String
+([TVornoTV_ProjectKB_Class20309] of  String
 
 	(name "Economia")
 	(string_value "{DO_ECO_}titol"))
 
-([TVornoTV_ProjectKB_Class20270] of  String
+([TVornoTV_ProjectKB_Class20310] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([TVornoTV_ProjectKB_Class20271] of  String
+([TVornoTV_ProjectKB_Class20311] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([TVornoTV_ProjectKB_Class20272] of  String
+([TVornoTV_ProjectKB_Class20312] of  String
 
 	(name "Ciencia")
 	(string_value "{DO_CI_}titol"))
 
-([TVornoTV_ProjectKB_Class20273] of  String
+([TVornoTV_ProjectKB_Class20313] of  String
 
 	(name "Tecnologia")
 	(string_value "{DO_T_}titol"))
 
-([TVornoTV_ProjectKB_Class20274] of  String
+([TVornoTV_ProjectKB_Class20314] of  String
 
 	(name "Actualitat")
 	(string_value "{DO_AC_}titol"))
 
-([TVornoTV_ProjectKB_Class20275] of  String
+([TVornoTV_ProjectKB_Class20315] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([TVornoTV_ProjectKB_Class20276] of  String
+([TVornoTV_ProjectKB_Class20316] of  String
 
 	(name "Historia")
 	(string_value "{DO_HI_}titol"))
 
-([TVornoTV_ProjectKB_Class20277] of  String
+([TVornoTV_ProjectKB_Class20317] of  String
 
 	(name "Cine")
 	(string_value "{CI_}titol"))
 
-([TVornoTV_ProjectKB_Class20278] of  String
+([TVornoTV_ProjectKB_Class20318] of  String
 
 	(name "Serie")
 	(string_value "{SE}titol{-}num_temporada{x}num_capitol"))
 
-([TVornoTV_ProjectKB_Class20279] of  String
+([TVornoTV_ProjectKB_Class20319] of  String
 
 	(name "Documental")
 	(string_value "{DO}titol"))
 
-([TVornoTV_ProjectKB_Class20280] of  String
+([TVornoTV_ProjectKB_Class20320] of  String
 
 	(name "Genere")
 	(string_value "nomGenere"))
 
-([TVornoTV_ProjectKB_Class20281] of  String
+([TVornoTV_ProjectKB_Class20321] of  String
 
 	(name "Politica")
 	(string_value "{DO_PO_}titol"))
 
-([TVornoTV_ProjectKB_Class20282] of  String
+([TVornoTV_ProjectKB_Class20322] of  String
 
 	(name "Naturalesa")
 	(string_value "{DO_NA_}titol"))
 
-([TVornoTV_ProjectKB_Class20283] of  String
+([TVornoTV_ProjectKB_Class20323] of  String
 
 	(name "Art")
 	(string_value "{DO_AR_}titol"))
 
-([TVornoTV_ProjectKB_Class20284] of  Map_Entry
+([TVornoTV_ProjectKB_Class20324] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([TVornoTV_ProjectKB_Class20285] of  Map_Entry
+([TVornoTV_ProjectKB_Class20325] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([TVornoTV_ProjectKB_Class20286] of  Map_Entry
+([TVornoTV_ProjectKB_Class20326] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
