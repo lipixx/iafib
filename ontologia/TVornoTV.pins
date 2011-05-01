@@ -1,4 +1,4 @@
-; Sun May 01 19:48:51 CEST 2011
+; Sun May 01 20:09:48 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -1518,6 +1518,7 @@
 	(director
 		[TVornoTV_Class30011]
 		[TVornoTV_Class30012])
+	(duracio 89)
 	(epoca Actual)
 	(idioma Angles)
 	(subtitols FALSE)
@@ -1532,6 +1533,86 @@
 ([TVornoTV_Class30012] of  Persona
 
 	(nom "Kevin Merz"))
+
+([TVornoTV_Class30013] of  Naturalesa
+
+	(any 2011)
+	(descripcio "Erase una vez el corazón del Congo, una especie de grandes simios que no se encuentran en ninguna otra parte, los bonobos. Más inteligentes, mas bromistas y más fascinantes que cualquier otra especie de monos, están sin embargo, en peligro de extinción. Claudine André, que dedica su vida a su defensa, abrió una reserva única en el mundo")
+	(director [TVornoTV_Class30014])
+	(duracio 90)
+	(idioma Frances)
+	(subtitols FALSE)
+	(tema Mamifers)
+	(titol "Bonobos"))
+
+([TVornoTV_Class30014] of  Persona
+
+	(edat 63)
+	(nom "Alain Tixier")
+	(sexe home))
+
+([TVornoTV_Class30015] of  Naturalesa
+
+	(any 2011)
+	(descripcio "Born to be Wild 3D es una historia inspirada en el amor, la dedicación y el vínculo importante entre los seres humanos y animales. Esta película documenta los orangutanes huérfanos y los elefantes y la gente extraordinaria que los rescatan y crian. Es una aventura conmovedora que transporta a los espectadores a las selvas de Borneo con el mundialmente famoso primatólogo Dr. Birute Galdikas, y a través de la sabana de Kenya con la famosa autoridad en elefantes Dame Daphne Sheldrick, y veremos cómo ellos y su equipo de rescate, rehabilitan y devuelven a los animales a su hábitat natural")
+	(director [TVornoTV_Class30016])
+	(duracio 40)
+	(idioma Angles)
+	(subtitols FALSE)
+	(tema Mamifers)
+	(titol "Born to be wild"))
+
+([TVornoTV_Class30016] of  Persona
+
+	(nom "David Lickley")
+	(sexe home))
+
+([TVornoTV_Class30017] of  Art
+
+	(any 2011)
+	(descripcio "Es el reflejo de la trayectoria vital y musical de Enrique Bunbury. Un documental que muestra el recorrido del cantante desde sus inicios, pasando por Héroes del Silencio donde empezó su aventura a nivel internacional, para continuar con una extensa producción en solitario que llega hasta su más reciente creación en estudio a través de “Las Consecuencias”. Una carrera de crecimiento artístico y personal motivada por el continuo cambio, no exenta de riesgos, de conflictos que le han llevado siempre a recorrer caminos diferentes e inexplorados")
+	(director [TVornoTV_Class30018])
+	(duracio 101)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(titol "Bunbury: Porque las cosas cambian"))
+
+([TVornoTV_Class30018] of  Persona
+
+	(nom "Javier Alvero")
+	(sexe home))
+
+([TVornoTV_Class30019] of  Actualitat
+
+	(any 2011)
+	(descripcio "Documental que resume una amplia entrevista que el escritor Manuel Rivas hizo al ex juez de la Audiencia Nacional Baltasar Garzón. Estreno en el Festival de Berlín de 2011 en la sección \"Eventos especiales\".")
+	(director [TVornoTV_Class30020])
+	(duracio 87)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(titol "Escuchando al juez Garzón"))
+
+([TVornoTV_Class30020] of  Persona
+
+	(edat 51)
+	(idiomes Catala Espanyol)
+	(nom "Isabel Coixet")
+	(sexe dona))
+
+([TVornoTV_Class30021] of  Economia
+
+	(any 2010)
+	(descripcio "La realizadora alemana Cosima Dannoritze dirige esta reveladora historia que explica por qué los productos que compramos duran cada vez menos, detalla la programación de la obsolescencia de los objetos para incrementar el consumo. ¿Existen bombillas eternas? ¿Cómo se puede usar un chip para 'matar' un producto cuando llegue a un determinado número de usos? Éstas y otras muchas preguntas encuentran respuesta en este reportaje, en cuya realización participa RTVE y otras televisiones europeas. El documental ha sido rodado en Cataluña, Francia, Alemania, EE.UU. y Ghana, un país africano que se ha convertido en el vertedero de la 'basura electrónica' de Occidente.")
+	(director [TVornoTV_Class30022])
+	(duracio 52)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(titol "Comprar, tirar, comprar"))
+
+([TVornoTV_Class30022] of  Persona
+
+	(nom "Cosima Dannoritzer")
+	(sexe dona))
 
 ([TVornoTV_Class31] of  Persona
 
