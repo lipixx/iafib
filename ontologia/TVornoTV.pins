@@ -1,4 +1,4 @@
-; Sat Apr 30 23:20:13 CEST 2011
+; Sun May 01 12:13:20 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -24,6 +24,35 @@
 	(idiomes Angles)
 	(nom "Stephen Rea")
 	(sexe home))
+
+([TVornoTV_Class10000] of  Naturalesa
+
+	(any 2004)
+	(descripcio "Las Rocosas, que se extienden desde Alaska a Nuevo México, son una de las grandes cadenas montañosas del planeta.")
+	(director [TVornoTV_Class10001])
+	(duracio 44)
+	(edatRecomanada 7)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(tema Geologia)
+	(titol "Asi se hizo la tierra - Las montañas rocosas"))
+
+([TVornoTV_Class10001] of  Persona
+
+	(nom "Stefanie Kern")
+	(sexe home))
+
+([TVornoTV_Class10003] of  Naturalesa
+
+	(any 2003)
+	(descripcio "Los insectos nos producen pesadillas. Son criaturas que se esconden al acecho en la oscuridad, más allá de nuestra visión. Tienen el poder de engañar, matar, desmembrar, esclavizar e incluso de lavar el cerebro de otros para que cumplan sus órdenes.")
+	(director [TVornoTV_Class10001])
+	(duracio 47)
+	(edatRecomanada 7)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(tema Insectes)
+	(titol "Insectos mortales"))
 
 ([TVornoTV_Class10004] of  Cine
 
@@ -1242,6 +1271,107 @@
 ([TVornoTV_Class20] of  Persona
 
 	(nom "Linda Hamilton")
+	(sexe dona))
+
+([TVornoTV_Class20004] of  Naturalesa
+
+	(any 2001)
+	(descripcio "David Attenborough nos presenta el ciclo estacional de la Antártida , en cada uno de los seis episodios  examina cómo las especies hacen frente a la vida en el continente antártico durante el año")
+	(director [TVornoTV_Class10001])
+	(duracio 28)
+	(edatRecomanada 7)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(tema Mamifers)
+	(titol "La vida en el hielo: La carrera para la reproduccion"))
+
+([TVornoTV_Class20005] of  Naturalesa
+
+	(any 2000)
+	(descripcio "Científicos observan el apareamiento de distintas especies para descubrir aquello que las hembras buscan en los machos para mejorar su especie.")
+	(director [TVornoTV_Class20006])
+	(duracio 50)
+	(edatRecomanada 7)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(tema AnimalsGeneral)
+	(titol "Lo que las hembras desean y los machos no dudan en hacer"))
+
+([TVornoTV_Class20006] of  Persona
+
+	(nom "Kevin Bachar"))
+
+([TVornoTV_Class20007] of  Naturalesa
+
+	(any 2002)
+	(descripcio "Documental que recoge uno de los acontecimientos más impresionates que se desarrolla entre los meses de Mayo y Julio en el punto donde el Océano Indico y Atlántico se unen (Cape Town): la migración de las sardinas a aguas más cálidas.")
+	(director [TVornoTV_Class10151])
+	(duracio 52)
+	(idioma Espanyol)
+	(subtitols TRUE)
+	(tema Peixos)
+	(titol "El banquete"))
+
+([TVornoTV_Class20008] of  Serie
+
+	(actorsS
+		[TVornoTV_Class20010]
+		[TVornoTV_Class20011]
+		[TVornoTV_Class20012]
+		[TVornoTV_Class20013]
+		[TVornoTV_Class20014]
+		[TVornoTV_Class20015]
+		[TVornoTV_Class20016])
+	(any 2010)
+	(descripcio "Serie de ciencia ficcio on transcorren dos mons paralels i fenomens mes alla del conegut.")
+	(director [TVornoTV_Class20009])
+	(duracio 45)
+	(edatRecomanada 13)
+	(genere_serie [TVornoTV_Class33])
+	(idioma Angles Catala)
+	(num_capitol 6)
+	(num_temporada 1)
+	(resum "En aquest capítol Walter Bishop surt del centre psiquiatric.")
+	(subtitols TRUE)
+	(titol "Fringe"))
+
+([TVornoTV_Class20009] of  Persona
+
+	(nom "J.J. Abrams"))
+
+([TVornoTV_Class20010] of  Persona
+
+	(nom "Anna Torv")
+	(sexe dona))
+
+([TVornoTV_Class20011] of  Persona
+
+	(nom "Joshua Jackson")
+	(sexe home))
+
+([TVornoTV_Class20012] of  Persona
+
+	(nom "John Noble")
+	(sexe home))
+
+([TVornoTV_Class20013] of  Persona
+
+	(nom "Lance Reddick")
+	(sexe home))
+
+([TVornoTV_Class20014] of  Persona
+
+	(nom "Kirk Acevedo")
+	(sexe home))
+
+([TVornoTV_Class20015] of  Persona
+
+	(nom "Blair Brown")
+	(sexe dona))
+
+([TVornoTV_Class20016] of  Persona
+
+	(nom "Jasika Nicole")
 	(sexe dona))
 
 ([TVornoTV_Class21] of  Persona
