@@ -1,4 +1,4 @@
-; Sun May 01 12:13:20 CEST 2011
+; Sun May 01 19:48:51 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -1273,6 +1273,31 @@
 	(nom "Linda Hamilton")
 	(sexe dona))
 
+([TVornoTV_Class20000] of  Economia
+
+	(any 2010)
+	(descripcio "Documental no sólo sobre las causas, sino también sobre los responsables de la crisis económica mundial de 2008, que signíficó la ruina de millones de personas que perdieron sus hogares y empleos, y, además, puso en peligro la estabilidad económica de los países desarrollados. A través de una extensa investigación y de entrevistas a financieros, políticos y periodistas, se muestra el auge de empresarios sin escrúpulos y la degradación de la política y la educación.")
+	(director [TVornoTV_Class20001])
+	(idioma Angles)
+	(subtitols FALSE)
+	(titol "Inside Job"))
+
+([TVornoTV_Class20001] of  Persona
+
+	(edat 56)
+	(nom "Charles Ferguson")
+	(sexe home))
+
+([TVornoTV_Class20003] of  Politica
+
+	(any 2008)
+	(descripcio "Documental que conmemora el 50 aniversario del ascenso al poder del presidente de los Estados Unidos John F. Kennedy, presentando grabaciones nunca mostradas hasta la fecha con otras más conocidas.")
+	(director [TVornoTV_Class30004])
+	(duracio 92)
+	(idioma Angles)
+	(subtitols FALSE)
+	(titol "A President to Remember. In the Company of John F. Kennedy"))
+
 ([TVornoTV_Class20004] of  Naturalesa
 
 	(any 2001)
@@ -1440,6 +1465,73 @@
 
 	(nom "Shawnee Smith")
 	(sexe dona))
+
+([TVornoTV_Class30004] of  Persona
+
+	(edat 87)
+	(nom "Robert Drew")
+	(sexe home))
+
+([TVornoTV_Class30005] of  Art
+
+	(any 2011)
+	(descripcio "Miniserie de cuatro capítulos en la que más de 50 actrices españolas cuentan, a través de entrevistas exclusivas, cómo afrontan su apasionante trabajo. Casi un año de seguimiento exhaustivo por todas las facetas de la profesión: cástings, ensayos, rodajes, entregas de premios, ruedas de prensa, premieres, sesiones fotográficas, promoción de películas, galas, fiestas, festivales...")
+	(director [TVornoTV_Class30006])
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(titol "Actrices"))
+
+([TVornoTV_Class30006] of  Persona
+
+	(idiomes Espanyol)
+	(nom "Gonzalo Cabrera")
+	(sexe home))
+
+([TVornoTV_Class30007] of  Naturalesa
+
+	(any 2011)
+	(descripcio "Documental centrado en dos familias de felinos y en cómo se les enseña a los cachorros la forma de afrontar la vida salvaje")
+	(director
+		[TVornoTV_Class30008]
+		[TVornoTV_Class30009])
+	(duracio 89)
+	(idioma Angles)
+	(subtitols FALSE)
+	(tema Mamifers)
+	(titol "African Cats: Kingdom of Courage"))
+
+([TVornoTV_Class30008] of  Persona
+
+	(edat 51)
+	(nom "Alastair Fothergill")
+	(sexe home))
+
+([TVornoTV_Class30009] of  Persona
+
+	(nom "Keith Scholey")
+	(sexe home))
+
+([TVornoTV_Class30010] of  Historia
+
+	(any 2011)
+	(descripcio "An African Election is a political documentary that exposes the never-before-seen, nitty-gritty of political electioneering in Africa. It captures the intrigues of political campaigns; the almost carnival like atmosphere that is laced with fear of the unknown and the danger that lurks behind-the-scenes")
+	(director
+		[TVornoTV_Class30011]
+		[TVornoTV_Class30012])
+	(epoca Actual)
+	(idioma Angles)
+	(subtitols FALSE)
+	(titol "An African Election"))
+
+([TVornoTV_Class30011] of  Persona
+
+	(edat 41)
+	(nom "Jarreth J. Merz")
+	(sexe home))
+
+([TVornoTV_Class30012] of  Persona
+
+	(nom "Kevin Merz"))
 
 ([TVornoTV_Class31] of  Persona
 
