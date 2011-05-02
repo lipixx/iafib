@@ -1,4 +1,4 @@
-; Mon May 02 10:04:09 CEST 2011
+; Mon May 02 11:42:18 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -1623,7 +1623,7 @@
 	(duracio 87)
 	(idioma Espanyol)
 	(subtitols FALSE)
-	(titol "Escuchando al juez Garzón"))
+	(titol "Escuchando al juez Garzon"))
 
 ([TVornoTV_Class30020] of  Persona
 
@@ -1730,6 +1730,33 @@
 	(nom "Giovanni Ribisi")
 	(sexe home))
 
+([TVornoTV_Class40000] of  Actualitat
+
+	(any 2011)
+	(descripcio "La fractura entre rics i pobres creix a un ritme alarmant a la Xina. El govern intenta corregir aquest desequilibri i arribar a una societat \"harmoniosa\" i \"modestament acomodada\".")
+	(director [TVornoTV_Class40001])
+	(duracio 60)
+	(edatRecomanada 7)
+	(idioma Catala)
+	(subtitols FALSE)
+	(titol "Contrastos a la Xina: Els nous rics i els pobres del camp"))
+
+([TVornoTV_Class40001] of  Persona
+
+	(nom "Joan Salvat")
+	(sexe home))
+
+([TVornoTV_Class40002] of  Actualitat
+
+	(any 2011)
+	(descripcio "La Xina s'està convertint en el nou centre de creixement mundial. El volum de capital que s'hi genera és cada cop més important, i les inversions i compres de grans corporacions estrangeres es multipliquen.")
+	(director [TVornoTV_Class40001])
+	(duracio 60)
+	(edatRecomanada 12)
+	(idioma Catala)
+	(subtitols FALSE)
+	(titol "El poder de la Xina"))
+
 ([TVornoTV_Class40004] of  Persona
 
 	(nom "Eli Wallach")
@@ -1819,6 +1846,206 @@
 ([TVornoTV_Class50] of  Persona
 
 	(nom "Mario Van Peebles")
+	(sexe home))
+
+([TVornoTV_Class50004] of  Actualitat
+
+	(any 2011)
+	(descripcio "A la població de Feng Jiang, al sud de Xangai, van a parar cada any prop de 2 milions de tones de deixalles metàl·liques i electròniques, provinents del Japó, els Estats Units, Austràlia i Europa.")
+	(director [TVornoTV_Class40001])
+	(duracio 60)
+	(edatRecomanada 12)
+	(idioma Catala)
+	(subtitols TRUE)
+	(titol "Viure del metall"))
+
+([TVornoTV_Class50005] of  Politica
+
+	(any 2011)
+	(descripcio "Els alumnes del darrer any de secundària d'una escola de la ciutat de Chongqing, al centre de la Xina, es preparen durament per accedir a una de les dues universitats més importants de la capital, en competició amb altres 10 milions i mig d'estudiants d'arreu del país.")
+	(director [TVornoTV_Class40001])
+	(duracio 60)
+	(edatRecomanada 13)
+	(idioma Catala)
+	(subtitols FALSE)
+	(titol "Dirigents del futur?"))
+
+([TVornoTV_Class50006] of  Politica
+
+	(any 2011)
+	(descripcio "El documental planteja interrogants com ara si la democràcia és un valor universal o si les eleccions comporten necessàriament la manipulació.")
+	(director [TVornoTV_Class40001])
+	(duracio 60)
+	(edatRecomanada 16)
+	(idioma Catala)
+	(subtitols TRUE)
+	(titol "Xina: Vota per mi, sisplau."))
+
+([TVornoTV_Class50007] of  Ciencia
+
+	(any 2009)
+	(descripcio "¿Sabrías decir cu¿Sabrías decir cuál es el objeto de estudio de la física cuántica o a qué es un cuanto? ¿Has oído hablar alguna vez del ordenador cuántico? Posiblemente no, pero seguro que sí que conoces el láser, la resonancia magnética, o utilizas CD y DVD en tu vida cotidiana. ál es el objeto de estudio de la física cuántica o a qué es un cuanto? ¿Has oído hablar alguna vez del ordenador cuántico? Posiblemente no, pero seguro que sí que conoces el láser, la resonancia magnética, o utilizas CD y DVD en tu vida cotidiana.")
+	(director [TVornoTV_Class50008])
+	(duracio 51)
+	(edatRecomanada 13)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(titol "Revolucion cuantica"))
+
+([TVornoTV_Class50008] of  Persona
+
+	(nom "John Matlock")
+	(sexe home))
+
+([TVornoTV_Class50009] of  Ciencia
+
+	(any 2011)
+	(descripcio "Tras el éxito de su anterior serie documental, Wonders of the Solar System, el profesor Brian Cox vuelve con otra superproducción de la BBC: Wonders of the Universe;")
+	(director [TVornoTV_Class50010])
+	(duracio 62)
+	(edatRecomanada 7)
+	(idioma Angles)
+	(subtitols FALSE)
+	(titol "Wonders of the Universe"))
+
+([TVornoTV_Class50010] of  Persona
+
+	(nom "Brian Cox")
+	(sexe home))
+
+([TVornoTV_Class50012] of  Serie
+
+	(actorsS
+		[TVornoTV_Class20010]
+		[TVornoTV_Class20011]
+		[TVornoTV_Class20012]
+		[TVornoTV_Class20013]
+		[TVornoTV_Class20014]
+		[TVornoTV_Class20015]
+		[TVornoTV_Class20016])
+	(any 2010)
+	(descripcio "Serie de ciencia ficcio on transcorren dos mons paralels i fenomens mes alla del conegut.")
+	(director [TVornoTV_Class20009])
+	(duracio 45)
+	(edatRecomanada 13)
+	(genere_serie [TVornoTV_Class33])
+	(idioma Angles Catala)
+	(num_capitol 13)
+	(num_temporada 2)
+	(resum "Olivia dunham es raptada a l'univers paral·lel.")
+	(subtitols TRUE)
+	(titol "Fringe"))
+
+([TVornoTV_Class50013] of  Serie
+
+	(actorsS
+		[TVornoTV_Class20010]
+		[TVornoTV_Class20011]
+		[TVornoTV_Class20012]
+		[TVornoTV_Class20013]
+		[TVornoTV_Class20014]
+		[TVornoTV_Class20015]
+		[TVornoTV_Class20016])
+	(any 2010)
+	(descripcio "Serie de ciencia ficcio on transcorren dos mons paralels i fenomens mes alla del conegut.")
+	(director [TVornoTV_Class20009])
+	(duracio 45)
+	(edatRecomanada 13)
+	(genere_serie [TVornoTV_Class33])
+	(idioma Angles Catala)
+	(num_capitol 9)
+	(num_temporada 2)
+	(resum "Walter Bishop explica per fi els motius del segrest del seu fill.")
+	(subtitols TRUE)
+	(titol "Fringe"))
+
+([TVornoTV_Class50014] of  Serie
+
+	(actorsS
+		[TVornoTV_Class20010]
+		[TVornoTV_Class20011]
+		[TVornoTV_Class20012]
+		[TVornoTV_Class20013]
+		[TVornoTV_Class20014]
+		[TVornoTV_Class20015]
+		[TVornoTV_Class20016])
+	(any 2010)
+	(descripcio "Serie de ciencia ficcio on transcorren dos mons paralels i fenomens mes alla del conegut.")
+	(director [TVornoTV_Class20009])
+	(duracio 45)
+	(edatRecomanada 13)
+	(genere_serie [TVornoTV_Class33])
+	(idioma Angles Catala)
+	(num_capitol 22)
+	(num_temporada 1)
+	(resum "En aquest capitol apareix un trenc entre els dos universos.")
+	(subtitols TRUE)
+	(titol "Fringe"))
+
+([TVornoTV_Class50015] of  Serie
+
+	(actorsS [TVornoTV_Class50016])
+	(any 2010)
+	(descripcio "Programa de televisión  español perteneciente al género conocido como late show, conducido por el humorista Andreu Buenafuente y producido por El Terrat")
+	(director [TVornoTV_Class50016])
+	(duracio 70)
+	(edatRecomanada 13)
+	(genere_serie
+		[TVornoTV_Class10072]
+		[TVornoTV_Class50017])
+	(idioma Espanyol)
+	(num_capitol 25)
+	(num_temporada 6)
+	(resum "Si Piqué tiene un piquetón, Los Piqueras ¿qué tenemos?")
+	(subtitols FALSE)
+	(titol "Buenafuente"))
+
+([TVornoTV_Class50016] of  Persona
+
+	(idiomes Catala Espanyol)
+	(nom "Andreu Buenafuente")
+	(sexe home))
+
+([TVornoTV_Class50017] of  Genere
+
+	(nomGenere "Show"))
+
+([TVornoTV_Class50018] of  Serie
+
+	(actorsS [TVornoTV_Class50016])
+	(any 2010)
+	(descripcio "Programa de televisión  español perteneciente al género conocido como late show, conducido por el humorista Andreu Buenafuente y producido por El Terrat")
+	(director [TVornoTV_Class50016])
+	(duracio 70)
+	(edatRecomanada 13)
+	(genere_serie
+		[TVornoTV_Class10072]
+		[TVornoTV_Class50017])
+	(idioma Espanyol)
+	(num_capitol 6)
+	(num_temporada 4)
+	(resum "El amigo de Berto de pasear al perro")
+	(subtitols FALSE)
+	(titol "Buenafuente"))
+
+([TVornoTV_Class50019] of  Serie
+
+	(any 1987)
+	(descripcio "Doraemon es probablemente uno de los manga más exitosos de la historia, tanto que en Japón  su anime nunca se ha dejado de transmitir por televisión y es un icono de la niñez en todo el mundo.")
+	(director [TVornoTV_Class50020])
+	(duracio 30)
+	(edatRecomanada 3)
+	(genere_serie [TVornoTV_Class10071])
+	(idioma Catala Angles Espanyol Japones)
+	(num_capitol 8)
+	(num_temporada 1)
+	(resum "La guerra espacial den Nobita")
+	(subtitols FALSE)
+	(titol "Doraemon"))
+
+([TVornoTV_Class50020] of  Persona
+
+	(nom "Tsutomu Shibayama")
 	(sexe home))
 
 ([TVornoTV_Class51] of  Persona
