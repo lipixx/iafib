@@ -1,4 +1,4 @@
-; Sun May 01 20:09:48 CEST 2011
+; Mon May 02 10:04:09 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -107,11 +107,11 @@
 		(allowed-values home dona)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot genere_serie
+	(multislot genere_serie
 ;+		(comment "Genere del contingut de tipus Serie.")
 		(type INSTANCE)
 ;+		(allowed-classes Genere)
-;+		(cardinality 1 1)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot subtitols
 ;+		(comment "Es poden seleccionar subtitols per aquest contingut?")
@@ -136,11 +136,11 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot genere
+	(multislot genere
 ;+		(comment "Genere del contingut de tipus Cine.")
 		(type INSTANCE)
 ;+		(allowed-classes Genere)
-;+		(cardinality 1 1)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot any
 ;+		(comment "Any en que el contingut s'ha realitzat. P.ex. correspondria a la data de filmacio d'una pel·licula.")
@@ -245,11 +245,11 @@
 (defclass Cine "Representa el conjunt de pel·licules cinematografiques."
 	(is-a Contingut)
 	(role concrete)
-	(single-slot genere
+	(multislot genere
 ;+		(comment "Genere del contingut de tipus Cine.")
 		(type INSTANCE)
 ;+		(allowed-classes Genere)
-;+		(cardinality 1 1)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(multislot actors
 ;+		(comment "Actors del contingut de tipus Cine.")
@@ -283,11 +283,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot genere_serie
+	(multislot genere_serie
 ;+		(comment "Genere del contingut de tipus Serie.")
 		(type INSTANCE)
 ;+		(allowed-classes Genere)
-;+		(cardinality 1 1)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot num_temporada
 ;+		(comment "Temporada de la serie.")

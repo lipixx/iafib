@@ -1,4 +1,4 @@
-; Sun May 01 20:09:48 CEST 2011
+; Mon May 02 10:04:09 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -1002,9 +1002,6 @@
 	(nom "Dominique Pinon")
 	(sexe home))
 
-([TVornoTV_Class10123] of  Persona
-)
-
 ([TVornoTV_Class10124] of  Cine
 
 	(actors [TVornoTV_Class10126])
@@ -1466,6 +1463,42 @@
 	(nom "Shawnee Smith")
 	(sexe dona))
 
+([TVornoTV_Class30000] of  Genere
+
+	(nomGenere "Oest"))
+
+([TVornoTV_Class30001] of  Cine
+
+	(actors
+		[TVornoTV_Class46]
+		[TVornoTV_Class30003]
+		[TVornoTV_Class40004]
+		[TVornoTV_Class40005])
+	(any 1966)
+	(descripcio "Los protagonistas son tres cazadores de recompensas que buscan un tesoro que ninguno de ellos puede encontrar sin la ayuda de los otros dos. Así que los tres colaboran entre sí, al menos en apariencia.")
+	(director [TVornoTV_Class30002])
+	(duracio 150)
+	(edatRecomanada 13)
+	(format COLOR)
+	(genere
+		[TVornoTV_Class30000]
+		[TVornoTV_Class17])
+	(idioma Italia Angles Espanyol Catala)
+	(nacionalitat "Italiana")
+	(subtitols TRUE)
+	(titol "El bueno, el feo y el malo")
+	(versioOriginal FALSE))
+
+([TVornoTV_Class30002] of  Persona
+
+	(nom "Sergio Leone")
+	(sexe home))
+
+([TVornoTV_Class30003] of  Persona
+
+	(nom "Lee Van Cleef")
+	(sexe home))
+
 ([TVornoTV_Class30004] of  Persona
 
 	(edat 87)
@@ -1695,6 +1728,16 @@
 ([TVornoTV_Class40] of  Persona
 
 	(nom "Giovanni Ribisi")
+	(sexe home))
+
+([TVornoTV_Class40004] of  Persona
+
+	(nom "Eli Wallach")
+	(sexe home))
+
+([TVornoTV_Class40005] of  Persona
+
+	(nom "Aldo Giuffrè")
 	(sexe home))
 
 ([TVornoTV_Class41] of  Persona
