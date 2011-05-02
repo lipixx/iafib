@@ -1,3 +1,458 @@
+;;Sistema expert per a la recomanació de televisió
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;CLASSES;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Mon May 02 11:54:41 CEST 2011
+; 
+;+ (version "3.4.6")
+;+ (build "Build 613")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot idioma
+;+		(comment "Idioma en que s'emet el contingut.")
+		(type SYMBOL)
+		(allowed-values Espanyol Angles Catala Frances Italia Japones)
+		(create-accessor read-write))
+	(single-slot tema
+;+		(comment "Tema  dintre de la naturalesa.")
+		(type SYMBOL)
+		(allowed-values Geologia Mamifers Peixos Insectes Clima Aus Reptils AnimalsGeneral)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot actors
+;+		(comment "Actors del contingut de tipus Cine.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
+		(create-accessor read-write))
+	(single-slot ambit
+;+		(comment "Ambit del que tracta aquest documental.")
+		(type SYMBOL)
+		(allowed-values Informatica Telecomunicacions Aviacio Nautica Construccio Mecanica)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nacionalitat
+;+		(comment "Defineix el pais de produccio de la pel·licula. Pot ser Espanyola, Francesa, EEUU, etc.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot rol
+;+		(comment "Rol que tindra la persona en un contingut determinat.")
+		(type SYMBOL)
+		(allowed-values actor director)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot tematica
+;+		(comment "Tematica del documental.")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot resum
+;+		(comment "Resum del capitol en concret. Es diferencia de la descripcio (parametre heretat), en que l'altre es la descripcio en general de la serie.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot director
+;+		(comment "Relacio que indica que una Persona te com a rol director per un Contingut determinat.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
+		(create-accessor read-write))
+	(single-slot nom
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot estatCivil
+;+		(comment "La persona esta casada, divorciada, etc?")
+		(type SYMBOL)
+		(allowed-values casada divorciada soltera separada)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nivellEconomic
+;+		(comment "Sou que guanya aquesta persona per fer-se una idea del nivell economic.")
+		(type FLOAT)
+		(range 0.0 1.0E12)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot format
+;+		(comment "Descriu el format en que s'emet la pel·licula. Pot ser en color, blanc i negre o en 3D.")
+		(type SYMBOL)
+		(allowed-values 3D BiN COLOR)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot descripcio
+;+		(comment "Descripcio, resum o sinopsis del contingut del programa.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot num_temporada
+;+		(comment "Temporada de la serie.")
+		(type INTEGER)
+		(range 1 1000)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot duracio
+;+		(comment "Duracio en minuts del contingut. Ex. 60', 90', 120', etc.")
+		(type INTEGER)
+		(range 0 600)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot num_capitol
+;+		(comment "Nombre del capitol de la serie.")
+		(type INTEGER)
+		(range 1 1000)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot sexe
+;+		(comment "Sexe de la persona")
+		(type SYMBOL)
+		(allowed-values home dona)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot genere_serie
+;+		(comment "Genere del contingut de tipus Serie.")
+		(type INSTANCE)
+;+		(allowed-classes Genere)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot subtitols
+;+		(comment "Es poden seleccionar subtitols per aquest contingut?")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot epoca
+;+		(comment "Epoca en que esta enfocat el documental.")
+		(type SYMBOL)
+		(allowed-values Moderna Medieval Prehist%C3%B2ria Classica SegleXX Romanticisme SegleXIX Actual Futur)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot idiomes
+;+		(comment "Idiomes que enten la persona.")
+		(type SYMBOL)
+		(allowed-values Angles Frances Catala Espanyol Italia)
+		(create-accessor read-write))
+	(single-slot nomGenere
+;+		(comment "Nom del genere al que fa referencia la classe.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot genere
+;+		(comment "Genere del contingut de tipus Cine.")
+		(type INSTANCE)
+;+		(allowed-classes Genere)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot any
+;+		(comment "Any en que el contingut s'ha realitzat. P.ex. correspondria a la data de filmacio d'una pel·licula.")
+		(type INTEGER)
+		(range 1895 2012)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot TVornoTV_Class7
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot orientacioSexual
+;+		(comment "Orientacio sexual de la persona.")
+		(type SYMBOL)
+		(allowed-values heterosexual homosexual bisexual)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot actorsS
+;+		(comment "Actors de la serie.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
+		(create-accessor read-write))
+	(single-slot edatRecomanada
+;+		(comment "Edat recomanada per veure aquest contingut.")
+		(type INTEGER)
+		(range 0 18)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot versioOriginal
+;+		(comment "Indica si aquesta pel·licula pot ser emesa en versio original. (Si inclou l'idioma original en que es grava).")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot titol
+;+		(comment "Nom o titol del contingut, per exemple \"Terminator 3\" o \"Doraemon\"")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot edat
+;+		(comment "Edat de la persona")
+		(type INTEGER)
+		(range 0 120)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nomTema
+;+		(comment "Nom del tema a la que fa referencia la instancia.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Contingut "Classe que representa un programa televisiu, tambe anomenat \"Contingut\"."
+	(is-a USER)
+	(role concrete)
+	(multislot idioma
+;+		(comment "Idioma en que s'emet el contingut.")
+		(type SYMBOL)
+		(allowed-values Espanyol Angles Catala Frances Italia Japones)
+		(create-accessor read-write))
+	(single-slot descripcio
+;+		(comment "Descripcio, resum o sinopsis del contingut del programa.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot director
+;+		(comment "Relacio que indica que una Persona te com a rol director per un Contingut determinat.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
+		(create-accessor read-write))
+	(single-slot any
+;+		(comment "Any en que el contingut s'ha realitzat. P.ex. correspondria a la data de filmacio d'una pel·licula.")
+		(type INTEGER)
+		(range 1895 2012)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot titol
+;+		(comment "Nom o titol del contingut, per exemple \"Terminator 3\" o \"Doraemon\"")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot duracio
+;+		(comment "Duracio en minuts del contingut. Ex. 60', 90', 120', etc.")
+		(type INTEGER)
+		(range 0 600)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot subtitols
+;+		(comment "Es poden seleccionar subtitols per aquest contingut?")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot edatRecomanada
+;+		(comment "Edat recomanada per veure aquest contingut.")
+		(type INTEGER)
+		(range 0 18)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Cine "Representa el conjunt de pel·licules cinematografiques."
+	(is-a Contingut)
+	(role concrete)
+	(multislot genere
+;+		(comment "Genere del contingut de tipus Cine.")
+		(type INSTANCE)
+;+		(allowed-classes Genere)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot actors
+;+		(comment "Actors del contingut de tipus Cine.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
+		(create-accessor read-write))
+	(single-slot format
+;+		(comment "Descriu el format en que s'emet la pel·licula. Pot ser en color, blanc i negre o en 3D.")
+		(type SYMBOL)
+		(allowed-values 3D BiN COLOR)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nacionalitat
+;+		(comment "Defineix el pais de produccio de la pel·licula. Pot ser Espanyola, Francesa, EEUU, etc.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot versioOriginal
+;+		(comment "Indica si aquesta pel·licula pot ser emesa en versio original. (Si inclou l'idioma original en que es grava).")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Serie "Representa una serie de televisio."
+	(is-a Contingut)
+	(role concrete)
+	(single-slot resum
+;+		(comment "Resum del capitol en concret. Es diferencia de la descripcio (parametre heretat), en que l'altre es la descripcio en general de la serie.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot genere_serie
+;+		(comment "Genere del contingut de tipus Serie.")
+		(type INSTANCE)
+;+		(allowed-classes Genere)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot num_temporada
+;+		(comment "Temporada de la serie.")
+		(type INTEGER)
+		(range 1 1000)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot num_capitol
+;+		(comment "Nombre del capitol de la serie.")
+		(type INTEGER)
+		(range 1 1000)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot actorsS
+;+		(comment "Actors de la serie.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
+		(create-accessor read-write)))
+
+(defclass Documental "Representa els continguts de tipus documental, ja siguin d'animals, telediaris, etc."
+	(is-a Contingut)
+	(role concrete))
+
+(defclass Historia
+	(is-a Documental)
+	(role concrete)
+	(single-slot epoca
+;+		(comment "Epoca en que esta enfocat el documental.")
+		(type SYMBOL)
+		(allowed-values Moderna Medieval Prehist%C3%B2ria Classica SegleXX Romanticisme SegleXIX Actual Futur)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Naturalesa
+	(is-a Documental)
+	(role concrete)
+	(single-slot tema
+;+		(comment "Tema  dintre de la naturalesa.")
+		(type SYMBOL)
+		(allowed-values Geologia Mamifers Peixos Insectes Clima Aus Reptils AnimalsGeneral)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Ciencia
+	(is-a Documental)
+	(role concrete))
+
+(defclass Actualitat
+	(is-a Documental)
+	(role concrete))
+
+(defclass Art
+	(is-a Documental)
+	(role concrete))
+
+(defclass Politica
+	(is-a Documental)
+	(role concrete))
+
+(defclass Economia
+	(is-a Documental)
+	(role concrete))
+
+(defclass Tecnologia
+	(is-a Documental)
+	(role concrete)
+	(single-slot ambit
+;+		(comment "Ambit del que tracta aquest documental.")
+		(type SYMBOL)
+		(allowed-values Informatica Telecomunicacions Aviacio Nautica Construccio Mecanica)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Persona "Clase persona. Ens servira tant per definir els usuaris del nostre sistema, com per definir els actors, directors dels continguts."
+	(is-a USER)
+	(role concrete)
+	(multislot idiomes
+;+		(comment "Idiomes que enten la persona.")
+		(type SYMBOL)
+		(allowed-values Angles Frances Catala Espanyol Italia)
+		(create-accessor read-write))
+	(single-slot nom
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot orientacioSexual
+;+		(comment "Orientacio sexual de la persona.")
+		(type SYMBOL)
+		(allowed-values heterosexual homosexual bisexual)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot estatCivil
+;+		(comment "La persona esta casada, divorciada, etc?")
+		(type SYMBOL)
+		(allowed-values casada divorciada soltera separada)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot edat
+;+		(comment "Edat de la persona")
+		(type INTEGER)
+		(range 0 120)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot sexe
+;+		(comment "Sexe de la persona")
+		(type SYMBOL)
+		(allowed-values home dona)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nivellEconomic
+;+		(comment "Sou que guanya aquesta persona per fer-se una idea del nivell economic.")
+		(type FLOAT)
+		(range 0.0 1.0E12)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Genere "Representa el genere del contingut i es fa servir tant per cine com per series."
+	(is-a USER)
+	(role concrete)
+	(single-slot nomGenere
+;+		(comment "Nom del genere al que fa referencia la classe.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;INSTANCIES;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(definstances instancies
+
 ; Mon May 02 11:54:41 CEST 2011
 ; 
 ;+ (version "3.4.6")
@@ -2130,3 +2585,84 @@
 
 	(nom "Billy Zane")
 	(sexe home))
+
+
+)
+;;FI INSTANCIES
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;DEFFUNCTIONS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(deffunction ask-question (?question $?allowed-values)
+   (printout t ?question)
+   (bind ?answer (read))
+   (if (lexemep ?answer) 
+       then (bind ?answer (lowcase ?answer)))
+   (while (not (member ?answer ?allowed-values)) do
+      (printout t ?question)
+      (bind ?answer (read))
+      (if (lexemep ?answer) 
+          then (bind ?answer (lowcase ?answer))))
+   ?answer)
+
+(deffunction yes-or-no-p (?question)
+   (bind ?response (ask-question ?question yes no y n))
+   (if (or (eq ?response yes) (eq ?response y))
+       then TRUE 
+       else FALSE))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;REGLA D'INICI;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defrule system-banner ""
+  (declare (salience 10))
+  =>
+  (printout t crlf crlf)
+  (printout t "Benvingut a TVornoTV!")
+  (printout t crlf crlf))
+
+(defrule print-repair ""
+  (declare (salience 10))
+  (repair ?item)
+  =>
+  (printout t crlf crlf)
+  (printout t "Suggested Repair:")
+  (printout t crlf crlf)
+  (format t " %s%n%n%n" ?item))
+
