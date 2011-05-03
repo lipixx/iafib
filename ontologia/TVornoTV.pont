@@ -1,4 +1,4 @@
-; Mon May 02 11:54:41 CEST 2011
+; Tue May 03 14:08:21 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -29,15 +29,15 @@
 		(allowed-values Informatica Telecomunicacions Aviacio Nautica Construccio Mecanica)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot nacionalitat
-;+		(comment "Defineix el pais de produccio de la pel·licula. Pot ser Espanyola, Francesa, EEUU, etc.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot rol
 ;+		(comment "Rol que tindra la persona en un contingut determinat.")
 		(type SYMBOL)
 		(allowed-values actor director)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nacionalitat
+;+		(comment "Defineix el pais de produccio de la pel·licula. Pot ser Espanyola, Francesa, EEUU, etc.")
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot tematica
@@ -89,17 +89,17 @@
 		(range 1 1000)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot duracio
-;+		(comment "Duracio en minuts del contingut. Ex. 60', 90', 120', etc.")
-		(type INTEGER)
-		(range 0 600)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot num_capitol
 ;+		(comment "Nombre del capitol de la serie.")
 		(type INTEGER)
 		(range 1 1000)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot duracio
+;+		(comment "Duracio en minuts del contingut. Ex. 60', 90', 120', etc.")
+		(type INTEGER)
+		(range 0 600)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot sexe
 ;+		(comment "Sexe de la persona")
@@ -206,16 +206,16 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot director
-;+		(comment "Relacio que indica que una Persona te com a rol director per un Contingut determinat.")
-		(type INSTANCE)
-;+		(allowed-classes Persona)
-		(create-accessor read-write))
 	(single-slot any
 ;+		(comment "Any en que el contingut s'ha realitzat. P.ex. correspondria a la data de filmacio d'una pel·licula.")
 		(type INTEGER)
 		(range 1895 2012)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot director
+;+		(comment "Relacio que indica que una Persona te com a rol director per un Contingut determinat.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
 		(create-accessor read-write))
 	(single-slot titol
 ;+		(comment "Nom o titol del contingut, per exemple \"Terminator 3\" o \"Doraemon\"")
@@ -256,10 +256,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes Persona)
 		(create-accessor read-write))
-	(single-slot format
-;+		(comment "Descriu el format en que s'emet la pel·licula. Pot ser en color, blanc i negre o en 3D.")
+	(single-slot versioOriginal
+;+		(comment "Indica si aquesta pel·licula pot ser emesa en versio original. (Si inclou l'idioma original en que es grava).")
 		(type SYMBOL)
-		(allowed-values 3D BiN COLOR)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot nacionalitat
@@ -267,11 +268,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot versioOriginal
-;+		(comment "Indica si aquesta pel·licula pot ser emesa en versio original. (Si inclou l'idioma original en que es grava).")
+	(single-slot format
+;+		(comment "Descriu el format en que s'emet la pel·licula. Pot ser en color, blanc i negre o en 3D.")
 		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-		(default FALSE)
+		(allowed-values 3D BiN COLOR)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -283,17 +283,17 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot genere_serie
-;+		(comment "Genere del contingut de tipus Serie.")
-		(type INSTANCE)
-;+		(allowed-classes Genere)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
 	(single-slot num_temporada
 ;+		(comment "Temporada de la serie.")
 		(type INTEGER)
 		(range 1 1000)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot genere_serie
+;+		(comment "Genere del contingut de tipus Serie.")
+		(type INSTANCE)
+;+		(allowed-classes Genere)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot num_capitol
 ;+		(comment "Nombre del capitol de la serie.")
@@ -311,7 +311,7 @@
 	(is-a Contingut)
 	(role concrete))
 
-(defclass Historia
+(defclass Historia "Documentals històrics, que expliquen tant la prehistòria, com el succés de la societat humana."
 	(is-a Documental)
 	(role concrete)
 	(single-slot epoca
@@ -321,7 +321,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Naturalesa
+(defclass Naturalesa "Els documentals de naturalesa són els més habituals en televisió. Mostren el món animal, o simplement el món geològic, entre altres."
 	(is-a Documental)
 	(role concrete)
 	(single-slot tema
@@ -331,27 +331,27 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Ciencia
+(defclass Ciencia "Els documentals de ciència comporten tots aquells relacionats amb el coneixement científic que ja sabem."
 	(is-a Documental)
 	(role concrete))
 
-(defclass Actualitat
+(defclass Actualitat "Els documentals d'actualitat són tots aquells referents a l'època actual i que anuncien fets actuals. Podríen ser sociològics o informatius."
 	(is-a Documental)
 	(role concrete))
 
-(defclass Art
+(defclass Art "Com bé diu el seu títol els documentals d'art estan relacionats amb el tema artístic. Poden ser de pintura, escultures, etc."
 	(is-a Documental)
 	(role concrete))
 
-(defclass Politica
+(defclass Politica "Els documentals de política fan referència a tots els que analitzin la política de qualsevol època de la humanitat."
 	(is-a Documental)
 	(role concrete))
 
-(defclass Economia
+(defclass Economia "Documentals relacionats amb el mon de les finànces, la borsa, i l'economía en general."
 	(is-a Documental)
 	(role concrete))
 
-(defclass Tecnologia
+(defclass Tecnologia "La tecnología està lligada a la ciència però es diferència en que són les eines que en sorgeixen d'ella, o les que permeten avançar a la ciència. Té diferents àmbits, com la informàtica, les telecomunicacions, etc."
 	(is-a Documental)
 	(role concrete)
 	(single-slot ambit
@@ -369,15 +369,15 @@
 		(type SYMBOL)
 		(allowed-values Angles Frances Catala Espanyol Italia)
 		(create-accessor read-write))
-	(single-slot nom
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot orientacioSexual
 ;+		(comment "Orientacio sexual de la persona.")
 		(type SYMBOL)
 		(allowed-values heterosexual homosexual bisexual)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nom
+		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot estatCivil
 ;+		(comment "La persona esta casada, divorciada, etc?")
@@ -385,16 +385,16 @@
 		(allowed-values casada divorciada soltera separada)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot edat
-;+		(comment "Edat de la persona")
-		(type INTEGER)
-		(range 0 120)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot sexe
 ;+		(comment "Sexe de la persona")
 		(type SYMBOL)
 		(allowed-values home dona)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot edat
+;+		(comment "Edat de la persona")
+		(type INTEGER)
+		(range 0 120)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot nivellEconomic
@@ -404,7 +404,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Genere "Representa el genere del contingut i es fa servir tant per cine com per series."
+(defclass Genere "Representa el genere del contingut i es fa servir tant per cine com per series.\n\nLos géneros cinematográficos se clasifican según los elementos comunes de las películas que abarquen, originalmente según sus aspectos formales (ritmo, estilo o tono y, sobre todo, el sentimiento que busquen provocar en el espectador, ajuste). Alternativamente, los géneros cinematográficos se definen por su ambientación, estilo o por su formato. Los géneros son a menudo concretados para formar subgéneros, y también pueden ser combinados para formar géneros híbridos.\n\nActualmente no existe un consenso en cuanto a géneros cinematográficos se refiere y se da una compleja serie de clasificaciones."
 	(is-a USER)
 	(role concrete)
 	(single-slot nomGenere
@@ -412,3 +412,15 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
+
+(defclass Estil "El tipus de gènere \"Estil\" determina la sensació que es vol fer sentir a l'espectador. Per exemple terror, romanticisme o adrenalina (acció)."
+	(is-a Genere)
+	(role concrete))
+
+(defclass Ambientacio "L'ambientació caracterítza el programa segons els elements que hi apareixen. Una ambientació típica seria la de l'oest, on els elements són comuns: vaquers, sorra, cavalls, etc. Un altre exemple seria els de l'espai exterior, on hi ha estrelles, planetes, i l'acció esdevé a l'espai i amb naus espacials."
+	(is-a Genere)
+	(role concrete))
+
+(defclass Format "El format representa com s'emet el programa o com es porta a terme. Per exemple el show de Buenafuente es caracteritza com a show ja que té una sèrie d'etapes ben definides, on hi prima la comèdia i es fan exhibicions. Un altre seria l'animació, que correspondrien als dibuixos animats."
+	(is-a Genere)
+	(role concrete))
