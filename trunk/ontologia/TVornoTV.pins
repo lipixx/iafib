@@ -1,4 +1,4 @@
-; Mon May 02 11:54:41 CEST 2011
+; Tue May 03 14:08:21 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -252,7 +252,9 @@
 	(duracio 139)
 	(edatRecomanada 15)
 	(format COLOR)
-	(genere [TVornoTV_Class33])
+	(genere
+		[TVornoTV_Class33]
+		[TVornoTV_Class60016])
 	(idioma Espanyol Angles Frances)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
@@ -572,11 +574,11 @@
 	(nom "Bruce Willis")
 	(sexe home))
 
-([TVornoTV_Class10071] of  Genere
+([TVornoTV_Class10071] of  Format
 
 	(nomGenere "Animacio"))
 
-([TVornoTV_Class10072] of  Genere
+([TVornoTV_Class10072] of  Estil
 
 	(nomGenere "Comedia"))
 
@@ -1239,7 +1241,7 @@
 	(subtitols TRUE)
 	(titol "Terminator 2: El juicio final"))
 
-([TVornoTV_Class17] of  Genere
+([TVornoTV_Class17] of  Estil
 
 	(nomGenere "Accio"))
 
@@ -1439,7 +1441,7 @@
 	(subtitols TRUE)
 	(titol "Saw III"))
 
-([TVornoTV_Class27] of  Genere
+([TVornoTV_Class27] of  Estil
 
 	(nomGenere "Terror"))
 
@@ -1463,7 +1465,7 @@
 	(nom "Shawnee Smith")
 	(sexe dona))
 
-([TVornoTV_Class30000] of  Genere
+([TVornoTV_Class30000] of  Ambientacio
 
 	(nomGenere "Oest"))
 
@@ -1678,7 +1680,7 @@
 	(titol "Avatar")
 	(versioOriginal TRUE))
 
-([TVornoTV_Class33] of  Genere
+([TVornoTV_Class33] of  Estil
 
 	(nomGenere "Ciencia Ficcio"))
 
@@ -1839,7 +1841,7 @@
 	(nom "Bo Svenson")
 	(sexe home))
 
-([TVornoTV_Class5] of  Genere
+([TVornoTV_Class5] of  Estil
 
 	(nomGenere "Drama"))
 
@@ -1847,6 +1849,10 @@
 
 	(nom "Mario Van Peebles")
 	(sexe home))
+
+([TVornoTV_Class50003] of  Estil
+
+	(nomGenere "Aventura"))
 
 ([TVornoTV_Class50004] of  Actualitat
 
@@ -2006,7 +2012,7 @@
 	(nom "Andreu Buenafuente")
 	(sexe home))
 
-([TVornoTV_Class50017] of  Genere
+([TVornoTV_Class50017] of  Format
 
 	(nomGenere "Show"))
 
@@ -2120,6 +2126,54 @@
 	(nacionalitat "EEUU")
 	(subtitols FALSE)
 	(titol "Titanic"))
+
+([TVornoTV_Class60004] of  Estil
+
+	(nomGenere "Romantic"))
+
+([TVornoTV_Class60005] of  Estil
+
+	(nomGenere "Musical"))
+
+([TVornoTV_Class60006] of  Estil
+
+	(nomGenere "Melodrama"))
+
+([TVornoTV_Class60007] of  Estil
+
+	(nomGenere "Catastrofe"))
+
+([TVornoTV_Class60008] of  Estil
+
+	(nomGenere "Suspense"))
+
+([TVornoTV_Class60009] of  Estil
+
+	(nomGenere "Fantasia"))
+
+([TVornoTV_Class60010] of  Ambientacio
+
+	(nomGenere "Historic"))
+
+([TVornoTV_Class60011] of  Ambientacio
+
+	(nomGenere "Policiaca"))
+
+([TVornoTV_Class60012] of  Ambientacio
+
+	(nomGenere "Belic"))
+
+([TVornoTV_Class60013] of  Ambientacio
+
+	(nomGenere "Esportiu"))
+
+([TVornoTV_Class60015] of  Ambientacio
+
+	(nomGenere "Culte"))
+
+([TVornoTV_Class60016] of  Ambientacio
+
+	(nomGenere "Espai exterior"))
 
 ([TVornoTV_Class62] of  Persona
 
