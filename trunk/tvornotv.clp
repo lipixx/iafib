@@ -1,12 +1,10 @@
 ;;Sistema expert per a la recomanació de televisió
 
 
+;;****************
+;;*   CLASSES    *
+;;****************
 
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;CLASSES;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Mon May 02 11:54:41 CEST 2011
 ; 
@@ -424,32 +422,9 @@
 		(create-accessor read-write)))
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;INSTANCIES;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;****************
+;;*  INSTÀNCIES  *
+;;****************
 
 (definstances instancies
 
@@ -2591,78 +2566,97 @@
 ;;FI INSTANCIES
 
 
+;;****************
+;;*   MODULS     *
+;;****************
+
+;;;
+;;; MODUL INICI
+;;;
+
+;;; TEMPLATES
+;;; Template que emmagatzema el tipus de client
+;;; Inicialitzem el sistema amb un client desconegut
+;;; Template que emmagatzema una recomanacio
+
+;;; FUNCIONS
+;;; Obte una resposta a la pregunta d'entre un conjunt de possibles valors
+;;; Fa una pregunta a la que s'ha de respondre "si" o "no"
+;;; Fa una pregunta a la que s'ha de respondre "si", "no", "potser-si", "potser-no" O "indiferent"
+;;; Fa una pregunta a la qual se li ha de respondre un numero
+;;; Fa una pregunta a la qual se li ha de respondre un numero en un rang
+;;; Obte una llista de continguts de una categoria determinada
+;;; Obte una llista de continguts d'una duració determinada
+;;; Actualitza les satisfaccions d'una recomanacio
+
+;;; REGLES
+(defrule presentacio "Regla inicial de presentacio"
+	(declare (salience 20))
+	=>
+	(printout t crlf)
+	(printout t "+---------------------------------------------------+" crlf)
+	(printout t "|                    TVornoTV                              |" crlf)
+	(printout t "|    Sistema de recomanacio de continguts      |" crlf)
+	(printout t "|                                                                 |" crlf)
+	(printout t "+---------------------------------------------------+" crlf)
+	(focus preguntes-determinar-client)
+)
 
 
+;;;
+;;; MODUL DE PREGUNTES PER CATEGORITZAR L'USUARI
+;;;
+;;;		* edat
+;;;		* estat civil
+;;;		* nombre fills
+;;;
+
+;;; Comprovem l'edat del client
+;;; Ens informem de si hi vol anar en parella
+;;; Ens informem de si te fills petits
+;;; Ens informem de si necessita accessibilitat
+;;; Saltem al modul de les preguntes comunes
+
+;;;
+;;; MODUL DE PREGUNTES COMUNES
+;;;
+;;Quin es el maxim que et vols gastar?
+;;Estaries disposat a pagar mes si l'oferta s'ho val?
+;;Tens mascotes?
+;; Saltem al modul de les preguntes especifiques
+
+;;;
+;;; MODUL DE PREGUNTES ESPECIFIQUES
+;;;
+;;; Saltem al modul de les assignacions incondicionals
+;;Vols que el pis sigui duplex?
+;;Vols ascensor al pis?
+;;Vols balco al pis?
+
+;;;
+;;; MODUL D'ASSIGNACIONS INCONDICIONALS
+;;; Es creen fets en funció de la info que tenim
+;;;
+;;Si el client te entre 15-60 anys, no li interessa "Animació".
+
+;;; MODUL ESBORRAR OFERTES
+;;;
+;;; Descarta les ofertes que no compleixen els requisits minims
+;;Si és sord eliminem, tots els que no tinguin subtitols.
 
 
+;;;
+;;; MODUL QUE FA L'ASSOCIACIO HEURISTICA
+;;;
+
+;;;
+;;;MODUL DE REFINAMENT
+;;;
+;;Avalua la solució trobada segons la satisfacció dels requisits
 
 
-
-
-
-
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;DEFFUNCTIONS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(deffunction ask-question (?question $?allowed-values)
-   (printout t ?question)
-   (bind ?answer (read))
-   (if (lexemep ?answer) 
-       then (bind ?answer (lowcase ?answer)))
-   (while (not (member ?answer ?allowed-values)) do
-      (printout t ?question)
-      (bind ?answer (read))
-      (if (lexemep ?answer) 
-          then (bind ?answer (lowcase ?answer))))
-   ?answer)
-
-(deffunction yes-or-no-p (?question)
-   (bind ?response (ask-question ?question yes no y n))
-   (if (or (eq ?response yes) (eq ?response y))
-       then TRUE 
-       else FALSE))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;REGLA D'INICI;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defrule system-banner ""
-  (declare (salience 10))
-  =>
-  (printout t crlf crlf)
-  (printout t "Benvingut a TVornoTV!")
-  (printout t crlf crlf))
-
-(defrule print-repair ""
-  (declare (salience 10))
-  (repair ?item)
-  =>
-  (printout t crlf crlf)
-  (printout t "Suggested Repair:")
-  (printout t crlf crlf)
-  (format t " %s%n%n%n" ?item))
+;;;
+;;;MODUL DE MOSTRA DE SOLUCIONS
+;;;
+;;Imprimeix totes les recomanacions
 
