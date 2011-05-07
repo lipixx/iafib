@@ -2566,15 +2566,14 @@
 ;;FI INSTANCIES
 
 
-;;****************
-;;*   MODULS     *
-;;****************
+;;****************************************************************************************************************************************************
+;;*   MODULS     ******************************************************************************************************************
+;;****************************************************************************************************************************************************
 
 ;;;
 ;;; MODUL INICI
 ;;;
-
-;;; TEMPLATES
+;;***********************************************************************************************************************************************INICI
 ;;; Template que emmagatzema el tipus de client
 ;;; Inicialitzem el sistema amb un client desconegut
 ;;; Template que emmagatzema una recomanacio
@@ -2604,59 +2603,125 @@
 
 
 ;;;
-;;; MODUL DE PREGUNTES PER CATEGORITZAR L'USUARI
+;;; MODUL DE PREGUNTES PER DEFINIR L'USUARI
 ;;;
-;;;		* edat
-;;;		* estat civil
-;;;		* nombre fills
-;;;
-
-;;; Comprovem l'edat del client
-;;; Ens informem de si hi vol anar en parella
-;;; Ens informem de si te fills petits
-;;; Ens informem de si necessita accessibilitat
+;;*************************************************************************************************************************************DEFINIR L'USUARI
+;;; Quina edat tens? (0-120)
+;;; Ets home o dona? (home, dona)
+;;; Quin és el teu estat civil? (casat, separat, divorciat, solter, ajuntat)
+;;; Posa en ordre els idiomes que entenguis? (cat, esp, fra, it, en, jp)
+;;; Tens alguna discapacitat audiovisual? (no, auditiva, visual)
+;;; Orientació sexual? (homosexual, heterosexual)
 ;;; Saltem al modul de les preguntes comunes
 
 ;;;
 ;;; MODUL DE PREGUNTES COMUNES
 ;;;
-;;Quin es el maxim que et vols gastar?
-;;Estaries disposat a pagar mes si l'oferta s'ho val?
+;;Mitjançant les seguents preguntes, podrem deduir el nivell intelectual de l'usuari, aixi com la seva vocacio
+;;i treball. Gracies a aixo podrem saber per exemple alguns documentals que li podrien agradar, tot i que no
+;;haurem d'abusar molt, si es que no li agrada el que fa.
+;;**********************************************************************************************************************************************COMUNES
+;;Tens estudis o estudies? (si,no)
+;;;;Si->I els teus estudis que son, de lletres, de ciencia, de tecnologia o d'art? (lletres, ciencia, tecnologia, art)
+
+;;Treballes? (si,no)
+;;;;Si-> [Si té estudis] -> I el teu treball esta relacionat amb els teus estudis? (si,no)
+;;;;Sino->En quin sector treballes? (construccio, legal, politic, economic, tecnologic, cientific, artistic, altres)
+
+;;T'agrada el que fas? (si,no)
+
+;;De la seguent pregunta podem deduir si li agrada la politica, l'actualitat, les noticies.
+;;Recentment hi ha un conflicte belic amb les tropes de Muamar el Gadafi, t'ha interesat el tema? (gens, poc, normal, molt, extremis)
+
+;;;Podem posar-hi documentals de ciencia i medi ambient
+;;Et preocupa la radiacio deguda a la fuga de Fukushima? (si, no, ns)
+
+;;;Sabem que te temps i que li agraden els "cotilleos", corazon, i programes amb poc contingut intel·lectual.
+;;Has seguit la boda real de Guillermo i Kate? (si,no)
+;;Saps qui és la Princesa del Pueblo? (si,no.. resposta: es la belen esteban)
+
+;;;D'aqui podem deduir si es una persona mes practica o teorica i per tant si li interessa mes per exemple les lletres o la tecnologia.
+;;Tens vehicle propi? (si,no)
+;;Si te algun problema no molt greu, faries mai cap reparacio tu mateix (1), o el portaries al mecanic (2)? (1,2)
+
+;;;D'aquesta pregunta podem deduir si 1:Interessat en oci in-door (xbox, pelicules, callejeros), 2:Interessat en oci out-of-door, 3:Molt estudios, in-door, 4:varietat
+;;Els caps de semana, habitualment... surts de festa (1), disfrutes de la natura (2), aprofites per estudiar o aprendre coses pel teu compte (3), una mica de tot (4)
+
+;;;Li agrada l'acció.
+;;De petit, a l'estiu, jugaves amb pistoles d'aigua?(si,no)
+
+;;;Te certa aficio pels animals.
 ;;Tens mascotes?
+
+;;;;Refinem el contingut dels documentals
+;;Les teves aficions, es centren en temes de mar, de muntanya, tecnologia, lectura, societat, altres?
+
+;;;;Refinem encara més les preferencies de Animacio, Accio, Politica, Economia, Oci->Ciencia ficcio, Oci->Comedia, Romantica, etc.
+;;Si et dono a triar entre 1:Bambi, 2:Terminator II, 3:El discurso del Rei, 4:Perdidos, 5:Buenafuente, 6:Sexo en nueva york, 7:Brokeback Mountain, amb quin ordre de preferencia
+;;les col·locaries? (1,2,3,4,5,6,7)
+
+
 ;; Saltem al modul de les preguntes especifiques
+
 
 ;;;
 ;;; MODUL DE PREGUNTES ESPECIFIQUES
 ;;;
+;;****************************************************************************************************************************************ESPECIFIQUES
+;;Vols mes series (1), pel·licules (2), o documentals (3)?
+;;Quantes hores de televisio al dia veus normalment? (0-24)
+;;Vols que cada contingut sigui mes be llarg (1), curt (2), o t'es igual (3)? (1,2,3)
+;;Dels temes següents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, oest, policiaca, peixos, mamifers, mar, muntanya, geologia, terror, suspense, clima, informatica,
+telecos, societat,xxx.
+;;(Si edat > 18) Vols permetre cap contingut XXX? (si,no)
+;;(Si edat > 18) Vols permetre continguts que puguin ferir la sensibilitat de les persones? (si,no)
+;;T'agradaria veure alguns continguts amb versio original?
 ;;; Saltem al modul de les assignacions incondicionals
-;;Vols que el pis sigui duplex?
-;;Vols ascensor al pis?
-;;Vols balco al pis?
 
-;;;
-;;; MODUL D'ASSIGNACIONS INCONDICIONALS
-;;; Es creen fets en funció de la info que tenim
-;;;
-;;Si el client te entre 15-60 anys, no li interessa "Animació".
+;;; MODUL D'ASSUMPCIONS INCONDICIONALS (L'hauriem d'unificar amb el modul d'esborrar ofertes??? Sembla que aqui juguem amb probabilitats i a l'altre modul esborrem directament)
+;;; Es creen fets en funció de la info deduida al modul per definir l'usuari.
+;;****************************************************************************************************************************************INCONDICIONAL
+;;;Restriccions per edat
+;;Si l'usuari te entre 16-65 anys, no li interessa gaire "Animacio".
+;;Si l'usuari te menys de 13 anys, li interessa molt "Animacio"
+;;Si l'usuari te mes de 65 anys, no li interessa massa XXX
+;;;Per orientacio sexual, sexe i estat civil
+;;Si es homosexual no li posem pelicules XXX amb contingut d'ambientacio hetero, i viceversa.
+;;Si es dona, baixem la probabilitat que vulgui XXX
+;;Si es solter, separat o divorciat, augmentem probabilitat XXX i disminuim Romantiques
+;;Si es ajuntat augmentem romantiques
+;;Si es casat i edat < 40 anys, segurament s'ha casat fa poc. Augmentar romantiques.
+;;;Discapacitat i idioma:
+;;Augmentar probabilitats de pelicules amb primer i 2on idioma de l'usuari (si es que en te 2)
+;;Si es ceg, baixar probabilitat de pel·licules amb alt contingut grafic, com pelicules 3D????¿?¿ <-A revisar
+;;Si es ceg, fer irrellevant el que hi hagi subtitols o no.
+;;Si es ceg, augmentar probabilitat de genere estil Debat o Tertulia
 
 ;;; MODUL ESBORRAR OFERTES
 ;;;
+;;*************************************************************************************************************************************ESBORRAR OFERTES
 ;;; Descarta les ofertes que no compleixen els requisits minims
-;;Si és sord eliminem, tots els que no tinguin subtitols.
+;;Si no vol XXX eliminem tot XXX
+;;Si no vol continguts que pugin ferir sensibilitat, eliminar tots els que tinguin contingut dur.
+;;;Discapacitat i idioma:
+;;Si te discapacitat auditiva, eliminar tot el que no tingui subtitols.
+;;Si l'idioma del contingut no apareix a la llista de idiomes que enten l'usuari i no es subtitulat, eliminar-lo.
+;;
 
 
 ;;;
 ;;; MODUL QUE FA L'ASSOCIACIO HEURISTICA
 ;;;
+;;****************************************************************************************************************************************************
 
 ;;;
 ;;;MODUL DE REFINAMENT
 ;;;
 ;;Avalua la solució trobada segons la satisfacció dels requisits
-
+;;****************************************************************************************************************************************************
 
 ;;;
 ;;;MODUL DE MOSTRA DE SOLUCIONS
-;;;
+;;****************************************************************************************************************************************************
 ;;Imprimeix totes les recomanacions
 
