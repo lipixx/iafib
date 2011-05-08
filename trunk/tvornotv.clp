@@ -2573,16 +2573,43 @@
 ;;;
 ;;; MODUL INICI
 ;;;
+(defmodule MAIN (export ?ALL))
+
 ;;***********************************************************************************************************************************************INICI
-;;; Template que emmagatzema el tipus de client
-;;; Inicialitzem el sistema amb un client desconegut
+;;; Template que emmagatzema el tipus d'usuari
+(deftemplate usuari
+    (slot edat)
+    (slot sexe)
+    (slot estat-civil)
+    (slot orientacio-sexual)
+)
+;;; Inicialitzem el sistema amb un usuari desconegut
+(deffacts tipus-usuari
+    (usuari
+        (edat desconegut)
+        (sexe desconegut)
+        (estat-civil desconegut)
+        (orientacio-sexual desconegut)
+    )
+)
 ;;; Template que emmagatzema una recomanacio
+
+
 
 ;;; FUNCIONS
 ;;; Obte una resposta a la pregunta d'entre un conjunt de possibles valors
 ;;; Fa una pregunta a la que s'ha de respondre "si" o "no"
 ;;; Fa una pregunta a la que s'ha de respondre "si", "no", "potser-si", "potser-no" O "indiferent"
 ;;; Fa una pregunta a la qual se li ha de respondre un numero
+(deffunction obte-nombre (?question)
+    (printout t crlf ?question)
+    (bind ?answer (read))
+    (while (not (integerp ?answer))
+        (printout t ?question)
+        (bind ?answer (read))
+    )
+    ?answer
+)
 ;;; Fa una pregunta a la qual se li ha de respondre un numero en un rang
 ;;; Obte una llista de continguts de una categoria determinada
 ;;; Obte una llista de continguts d'una duració determinada
@@ -2594,12 +2621,15 @@
 	=>
 	(printout t crlf)
 	(printout t "+---------------------------------------------------+" crlf)
-	(printout t "|                    TVornoTV                              |" crlf)
-	(printout t "|    Sistema de recomanacio de continguts      |" crlf)
-	(printout t "|                                                                 |" crlf)
+    (printout t "|                                                   |" crlf)
+	(printout t "|                    TVornoTV                       |" crlf)
+	(printout t "|      Sistema de recomanacio de continguts         |" crlf)
+	(printout t "|                                                   |" crlf)
 	(printout t "+---------------------------------------------------+" crlf)
-	(focus preguntes-determinar-client)
+	(focus preguntes-definir-usuari)
 )
+
+
 
 
 ;;;
@@ -2614,6 +2644,27 @@
 ;;; Orientació sexual? (homosexual, heterosexual)
 ;;; Saltem al modul de les preguntes comunes
 
+(defmodule preguntes-definir-usuari "Modul de preguntes per definir tipus d'usuari"
+    (import MAIN ?ALL)
+    (export ?ALL)
+)
+
+(defrule determinar-edat
+    ?u <- (usuari (edat desconegut))
+    =>
+    (bind ?edat (obte-nombre "Quina edat tens? "))
+    (if (< ?edat 30)
+    then
+        (modify ?u (edat jove))
+    else
+        (if (< ?edat 60)
+        then
+            (modify ?u (edat adult))
+        else
+            (modify ?u (edat vell))
+        )
+    )
+)
 ;;;
 ;;; MODUL DE PREGUNTES COMUNES
 ;;;
@@ -2672,7 +2723,7 @@
 ;;Quantes hores de televisio al dia veus normalment? (0-24)
 ;;Vols que cada contingut sigui mes be llarg (1), curt (2), o t'es igual (3)? (1,2,3)
 ;;Dels temes següents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, oest, policiaca, peixos, mamifers, mar, muntanya, geologia, terror, suspense, clima, informatica,
-telecos, societat,xxx.
+;; telecos, societat,xxx.
 ;;(Si edat > 18) Vols permetre cap contingut XXX? (si,no)
 ;;(Si edat > 18) Vols permetre continguts que puguin ferir la sensibilitat de les persones? (si,no)
 ;;T'agradaria veure alguns continguts amb versio original?
