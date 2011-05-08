@@ -2653,15 +2653,25 @@
     ?u <- (usuari (edat desconegut))
     =>
     (bind ?edat (obte-nombre "Quina edat tens? "))
-    (if (< ?edat 30)
+    (if (< ?edat 12)
     then
-        (modify ?u (edat jove))
+        (modify ?u (edat infantil))
     else
-        (if (< ?edat 60)
+        (if (< ?edat 18)
         then
-            (modify ?u (edat adult))
+            (modify ?u (edat adolescent))
         else
-            (modify ?u (edat vell))
+            (if (< ?edat 35)
+            then
+                (modify ?u (edat jove))
+            else
+                (if (< ?edat 65)
+                then
+                    (modify ?u (edat madur))
+                else
+                    (modify ?u (edat vell))
+                )
+            )
         )
     )
 )
