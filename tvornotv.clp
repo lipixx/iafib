@@ -2653,7 +2653,7 @@
     ?u <- (usuari (edat desconegut))
     =>
     (bind ?edat (obte-nombre "Quina edat tens? "))
-    (if (< ?edat 12)
+    (if (< ?edat 13)
     then
         (modify ?u (edat infantil))
     else
@@ -2745,6 +2745,13 @@
 ;;;Restriccions per edat
 ;;Si l'usuari te entre 16-65 anys, no li interessa gaire "Animacio".
 ;;Si l'usuari te menys de 13 anys, li interessa molt "Animacio"
+(defrule infantil
+    (usuari (edat infantil))
+    =>
+    (assert
+        (interesa Animacio)
+    )
+)
 ;;Si l'usuari te mes de 65 anys, no li interessa massa XXX
 ;;;Per orientacio sexual, sexe i estat civil
 ;;Si es homosexual no li posem pelicules XXX amb contingut d'ambientacio hetero, i viceversa.
