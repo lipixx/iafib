@@ -2578,7 +2578,9 @@
 ;;***********************************************************************************************************************************************INICI
 ;;; Template que emmagatzema el tipus d'usuari
 (deftemplate usuari
-    (slot edat)
+    (slot edat
+;; 		(create-accessor read) NO ES POT FER??
+	)
     (slot sexe)
     (slot estat-civil)
     (slot orientacio-sexual)
@@ -2652,7 +2654,9 @@
 (defrule determinar-edat
     ?u <- (usuari (edat -1))
     =>
-    (modify ?u (edat (obte-nombre "Quina edat tens? ")))
+    (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
+    (modify ?u (edat ?edatLlegida))
+    (assert(edatUsuari ?edatLlegida))
 ;;     (if (< ?edat 13)
 ;;     then
 ;;         (modify ?u (edat infantil))
@@ -2674,6 +2678,12 @@
 ;;             )
 ;;         )
 ;;     )
+)
+;; s'ha de canviar el focus
+(defrule a-assumpcions-incondicionals
+	(declare (salience -1))
+	=>
+	(focus assumpcions-incondicionals)
 )
 ;;;
 ;;; 1.2 MODUL DE PREGUNTES COMUNES
@@ -2741,6 +2751,10 @@
 
 
 ;;; 2.1 MODUL D'ASSUMPCIONS
+(defmodule assumpcions-incondicionals "Modul d'assignacions incondicionals"
+    (import preguntes-definir-usuari ?ALL)
+    (export ?ALL)
+)
 ;;; Sembla que aqui juguem amb probabilitats.
 ;;; Es creen fets en funció de la info deduida al modul 1 per definir l'usuari.
 ;;****************************************************************************************************************************************ASSUMPCIONS
@@ -2751,9 +2765,11 @@
     (usuari (edat ?e&: (< ?e 13)))
     =>
     (assert
-        (interesa Animacio)
+        (interesaMolt Animacio)
     )
 )
+
+
 ;;Si l'usuari te mes de 65 anys, no li interessa massa XXX
 ;;;Per orientacio sexual, sexe i estat civil
 ;;Si es homosexual no li posem pelicules XXX amb contingut d'ambientacio hetero, i viceversa.
@@ -2767,10 +2783,35 @@
 ;;Si es ceg, fer irrellevant el que hi hagi subtitols o no.
 ;;Si es ceg, augmentar probabilitat de genere estil Debat o Tertulia
 
+;; aixo es temporal, pel micro prototip
+(defrule a-esborrar-instancies
+	(declare (salience -1))
+	=>
+	(focus esborrar-instancies)
+)
+
 ;;; 2.2 MODUL ESBORRAR INSTANCIES
 ;;;
 ;;*************************************************************************************************************************************ESBORRAR INSTANCIES
+(defmodule esborrar-instancies "Modul d'esborrar instances"
+    (import assumpcions-incondicionals ?ALL)
+    (export ?ALL)
+)
+
+
+
 ;;; Descarta les ofertes que no compleixen els requisits minims
+
+(defrule esborrar-no-compleixen-requisits-minims
+	?u <- (usuari (edat ?edat))
+	?contingut <- (object (is-a Contingut))
+	=>
+;; 	(bind ?edatUsuari (send ?u get-edat ))
+	(if (> (send ?contingut get-edatRecomanada) 12);;TODO: possar la edat de l'usuari....
+	then
+		(send ?contingut delete)
+	)
+)
 ;;Si no vol XXX eliminem tot XXX
 ;;Si no vol continguts que pugin ferir sensibilitat, eliminar tots els que tinguin contingut dur.
 ;;;Discapacitat i idioma:
@@ -2778,6 +2819,13 @@
 ;;Si l'idioma del contingut no apareix a la llista de idiomes que enten l'usuari i no es subtitulat, eliminar-lo.
 ;;
 
+
+;; aixo es temporal, pel micro prototip
+(defrule a-solucions
+	(declare (salience -1))
+	=>
+	(focus solucions)
+)
 
 ;;;
 ;;; 3.1 MODUL QUE FA L'ASSOCIACIO HEURISTICA
@@ -2794,6 +2842,18 @@
 ;;;MODUL DE MOSTRA DE SOLUCIONS
 ;;****************************************************************************************************************************************************
 ;;Imprimeix totes les recomanacions
+(defmodule solucions
+;; 	(import refinament ?ALL)
+	(import assumpcions-incondicionals ?ALL)
+	(export ?ALL)
+)
+
+(defrule escriu-adequades
+	(declare (salience 5))
+	?contingut <- (object (is-a Contingut))
+	=>
+	(printout t (send ?contingut get-titol) crlf)
+)
 
 
 
