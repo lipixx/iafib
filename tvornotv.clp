@@ -2586,7 +2586,7 @@
 ;;; Inicialitzem el sistema amb un usuari desconegut
 (deffacts tipus-usuari
     (usuari
-        (edat desconegut)
+        (edat -1)
         (sexe desconegut)
         (estat-civil desconegut)
         (orientacio-sexual desconegut)
@@ -2633,7 +2633,7 @@
 
 
 ;;;
-;;; MODUL DE PREGUNTES PER DEFINIR L'USUARI
+;;; 1.1 MODUL DE PREGUNTES PER DEFINIR L'USUARI
 ;;;
 ;;*************************************************************************************************************************************DEFINIR L'USUARI
 ;;; Quina edat tens? (0-120)
@@ -2650,33 +2650,33 @@
 )
 
 (defrule determinar-edat
-    ?u <- (usuari (edat desconegut))
+    ?u <- (usuari (edat -1))
     =>
-    (bind ?edat (obte-nombre "Quina edat tens? "))
-    (if (< ?edat 13)
-    then
-        (modify ?u (edat infantil))
-    else
-        (if (< ?edat 18)
-        then
-            (modify ?u (edat adolescent))
-        else
-            (if (< ?edat 35)
-            then
-                (modify ?u (edat jove))
-            else
-                (if (< ?edat 65)
-                then
-                    (modify ?u (edat madur))
-                else
-                    (modify ?u (edat vell))
-                )
-            )
-        )
-    )
+    (modify ?u (edat (obte-nombre "Quina edat tens? ")))
+;;     (if (< ?edat 13)
+;;     then
+;;         (modify ?u (edat infantil))
+;;     else
+;;         (if (< ?edat 18)
+;;         then
+;;             (modify ?u (edat adolescent))
+;;         else
+;;             (if (< ?edat 35)
+;;             then
+;;                 (modify ?u (edat jove))
+;;             else
+;;                 (if (< ?edat 65)
+;;                 then
+;;                     (modify ?u (edat madur))
+;;                 else
+;;                     (modify ?u (edat vell))
+;;                 )
+;;             )
+;;         )
+;;     )
 )
 ;;;
-;;; MODUL DE PREGUNTES COMUNES
+;;; 1.2 MODUL DE PREGUNTES COMUNES
 ;;;
 ;;Mitjançant les seguents preguntes, podrem deduir el nivell intelectual de l'usuari, aixi com la seva vocacio
 ;;i treball. Gracies a aixo podrem saber per exemple alguns documentals que li podrien agradar, tot i que no
@@ -2726,7 +2726,7 @@
 
 
 ;;;
-;;; MODUL DE PREGUNTES ESPECIFIQUES
+;;; 1.3 MODUL DE PREGUNTES ESPECIFIQUES
 ;;;
 ;;****************************************************************************************************************************************ESPECIFIQUES
 ;;Vols mes series (1), pel·licules (2), o documentals (3)?
@@ -2739,14 +2739,15 @@
 ;;T'agradaria veure alguns continguts amb versio original?
 ;;; Saltem al modul de les assignacions incondicionals
 
-;;; MODUL D'ASSUMPCIONS INCONDICIONALS (L'hauriem d'unificar amb el modul d'esborrar ofertes??? Sembla que aqui juguem amb probabilitats i a l'altre modul esborrem directament)
+
+;;; 2.1 MODUL D'ASSUMPCIONS INCONDICIONALS (L'hauriem d'unificar amb el modul d'esborrar ofertes??? Sembla que aqui juguem amb probabilitats i a l'altre modul esborrem directament)
 ;;; Es creen fets en funció de la info deduida al modul per definir l'usuari.
 ;;****************************************************************************************************************************************INCONDICIONAL
 ;;;Restriccions per edat
 ;;Si l'usuari te entre 16-65 anys, no li interessa gaire "Animacio".
 ;;Si l'usuari te menys de 13 anys, li interessa molt "Animacio"
 (defrule infantil
-    (usuari (edat infantil))
+    (usuari (edat ?e&: (< ?e 13)))
     =>
     (assert
         (interesa Animacio)
@@ -2765,7 +2766,7 @@
 ;;Si es ceg, fer irrellevant el que hi hagi subtitols o no.
 ;;Si es ceg, augmentar probabilitat de genere estil Debat o Tertulia
 
-;;; MODUL ESBORRAR OFERTES
+;;; 2.3 MODUL ESBORRAR OFERTES
 ;;;
 ;;*************************************************************************************************************************************ESBORRAR OFERTES
 ;;; Descarta les ofertes que no compleixen els requisits minims
@@ -2778,7 +2779,7 @@
 
 
 ;;;
-;;; MODUL QUE FA L'ASSOCIACIO HEURISTICA
+;;; 3.1 MODUL QUE FA L'ASSOCIACIO HEURISTICA
 ;;;
 ;;****************************************************************************************************************************************************
 
@@ -2792,4 +2793,6 @@
 ;;;MODUL DE MOSTRA DE SOLUCIONS
 ;;****************************************************************************************************************************************************
 ;;Imprimeix totes les recomanacions
+
+
 
