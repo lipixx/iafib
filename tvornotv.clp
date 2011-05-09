@@ -2737,12 +2737,13 @@
 ;;(Si edat > 18) Vols permetre cap contingut XXX? (si,no)
 ;;(Si edat > 18) Vols permetre continguts que puguin ferir la sensibilitat de les persones? (si,no)
 ;;T'agradaria veure alguns continguts amb versio original?
-;;; Saltem al modul de les assignacions incondicionals
+;;; Saltem al modul de les assumpcions
 
 
-;;; 2.1 MODUL D'ASSUMPCIONS INCONDICIONALS (L'hauriem d'unificar amb el modul d'esborrar ofertes??? Sembla que aqui juguem amb probabilitats i a l'altre modul esborrem directament)
-;;; Es creen fets en funció de la info deduida al modul per definir l'usuari.
-;;****************************************************************************************************************************************INCONDICIONAL
+;;; 2.1 MODUL D'ASSUMPCIONS
+;;; Sembla que aqui juguem amb probabilitats.
+;;; Es creen fets en funció de la info deduida al modul 1 per definir l'usuari.
+;;****************************************************************************************************************************************ASSUMPCIONS
 ;;;Restriccions per edat
 ;;Si l'usuari te entre 16-65 anys, no li interessa gaire "Animacio".
 ;;Si l'usuari te menys de 13 anys, li interessa molt "Animacio"
@@ -2766,9 +2767,9 @@
 ;;Si es ceg, fer irrellevant el que hi hagi subtitols o no.
 ;;Si es ceg, augmentar probabilitat de genere estil Debat o Tertulia
 
-;;; 2.3 MODUL ESBORRAR OFERTES
+;;; 2.2 MODUL ESBORRAR INSTANCIES
 ;;;
-;;*************************************************************************************************************************************ESBORRAR OFERTES
+;;*************************************************************************************************************************************ESBORRAR INSTANCIES
 ;;; Descarta les ofertes que no compleixen els requisits minims
 ;;Si no vol XXX eliminem tot XXX
 ;;Si no vol continguts que pugin ferir sensibilitat, eliminar tots els que tinguin contingut dur.
