@@ -2628,7 +2628,8 @@
 	(printout t "|      Sistema de recomanacio de continguts         |" crlf)
 	(printout t "|                                                   |" crlf)
 	(printout t "+---------------------------------------------------+" crlf)
-	(focus preguntes-definir-usuari)
+	
+    (focus preguntes-definir-usuari)
 )
 
 
@@ -2637,6 +2638,10 @@
 ;;;
 ;;; 1.1 MODUL DE PREGUNTES PER DEFINIR L'USUARI
 ;;;
+(defmodule preguntes-definir-usuari "Modul de preguntes per definir tipus d'usuari"
+    (import MAIN ?ALL)
+    (export ?ALL)
+)
 ;;*************************************************************************************************************************************DEFINIR L'USUARI
 ;;; Quina edat tens? (0-120)
 ;;; Ets home o dona? (home, dona)
@@ -2646,10 +2651,6 @@
 ;;; Orientació sexual? (homosexual, heterosexual)
 ;;; Saltem al modul de les preguntes comunes
 
-(defmodule preguntes-definir-usuari "Modul de preguntes per definir tipus d'usuari"
-    (import MAIN ?ALL)
-    (export ?ALL)
-)
 
 (defrule determinar-edat
     ?u <- (usuari (edat -1))
@@ -2679,15 +2680,19 @@
 ;;         )
 ;;     )
 )
-;; s'ha de canviar el focus
-(defrule a-assumpcions-incondicionals
+
+(defrule a-preguntes-comunes
 	(declare (salience -1))
 	=>
-	(focus assumpcions-incondicionals)
+	(focus preguntes-comunes)
 )
 ;;;
 ;;; 1.2 MODUL DE PREGUNTES COMUNES
 ;;;
+(defmodule preguntes-comunes "Modul de preguntes comunes"
+    (import preguntes-definir-usuari ?ALL)
+    (export ?ALL)
+)
 ;;Mitjançant les seguents preguntes, podrem deduir el nivell intelectual de l'usuari, aixi com la seva vocacio
 ;;i treball. Gracies a aixo podrem saber per exemple alguns documentals que li podrien agradar, tot i que no
 ;;haurem d'abusar molt, si es que no li agrada el que fa.
@@ -2734,10 +2739,18 @@
 
 ;; Saltem al modul de les preguntes especifiques
 
-
+(defrule a-preguntes-especifiques
+    (declare (salience -1))
+    =>
+    (focus preguntes-especifiques)
+)
 ;;;
 ;;; 1.3 MODUL DE PREGUNTES ESPECIFIQUES
 ;;;
+(defmodule preguntes-especifiques "Modul de preguntes especifiques"
+    (import preguntes-comunes ?ALL)
+    (export ?ALL)
+)
 ;;****************************************************************************************************************************************ESPECIFIQUES
 ;;Vols mes series (1), pel·licules (2), o documentals (3)?
 ;;Quantes hores de televisio al dia veus normalment? (0-24)
@@ -2749,10 +2762,14 @@
 ;;T'agradaria veure alguns continguts amb versio original?
 ;;; Saltem al modul de les assumpcions
 
-
+(defrule a-assumpcions-incondicionals
+    (declare (salience -1))
+    =>
+    (focus assumpcions-incondicionals)
+)
 ;;; 2.1 MODUL D'ASSUMPCIONS
 (defmodule assumpcions-incondicionals "Modul d'assignacions incondicionals"
-    (import preguntes-definir-usuari ?ALL)
+    (import preguntes-especifiques ?ALL)
     (export ?ALL)
 )
 ;;; Sembla que aqui juguem amb probabilitats.
@@ -2783,7 +2800,6 @@
 ;;Si es ceg, fer irrellevant el que hi hagi subtitols o no.
 ;;Si es ceg, augmentar probabilitat de genere estil Debat o Tertulia
 
-;; aixo es temporal, pel micro prototip
 (defrule a-esborrar-instancies
 	(declare (salience -1))
 	=>
@@ -2830,6 +2846,10 @@
 ;;;
 ;;; 3.1 MODUL QUE FA L'ASSOCIACIO HEURISTICA
 ;;;
+(defmodule associacio-heuristica "Modul associació heurística"
+    (import esborrar-instancies ?ALL)
+    (export ?ALL)
+)
 ;;****************************************************************************************************************************************************
 
 ;;;
