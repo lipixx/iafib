@@ -2657,28 +2657,6 @@
     =>
     (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
     (modify ?u (edat ?edatLlegida))
-    (assert(edatUsuari ?edatLlegida))
-;;     (if (< ?edat 13)
-;;     then
-;;         (modify ?u (edat infantil))
-;;     else
-;;         (if (< ?edat 18)
-;;         then
-;;             (modify ?u (edat adolescent))
-;;         else
-;;             (if (< ?edat 35)
-;;             then
-;;                 (modify ?u (edat jove))
-;;             else
-;;                 (if (< ?edat 65)
-;;                 then
-;;                     (modify ?u (edat madur))
-;;                 else
-;;                     (modify ?u (edat vell))
-;;                 )
-;;             )
-;;         )
-;;     )
 )
 
 (defrule a-preguntes-comunes
@@ -2818,12 +2796,11 @@
 
 ;;; Descarta les ofertes que no compleixen els requisits minims
 
-(defrule esborrar-no-compleixen-requisits-minims
+(defrule esborrar-no-compleixen-requisit-minim-edat
 	?u <- (usuari (edat ?edat))
 	?contingut <- (object (is-a Contingut))
 	=>
-;; 	(bind ?edatUsuari (send ?u get-edat ))
-	(if (> (send ?contingut get-edatRecomanada) 12);;TODO: possar la edat de l'usuari....
+	(if (> (send ?contingut get-edatRecomanada) ?edat)
 	then
 		(send ?contingut delete)
 	)
