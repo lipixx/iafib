@@ -2729,7 +2729,7 @@
     (nom "Billy Zane")
     (sexe home))
 
-
+)
 
 ;;FI INSTANCIES
 
@@ -2996,7 +2996,10 @@
     (interesaPoc xxx)
     ?contingut <- (object (is-a Contingut))
     =>
-    (if (= (send ?contingut get-nomGenere) xxx)
+    (if (str-compare (send ?contingut get-nomGenere) Comedia)
+            ;;ha der xxx, fent proves amb comedia, no 'sha de comparar directamente
+            ;;s'ha de comparar accedint a les instancies de genere i mirar si hi ha una
+            ;;amb nomGenere Comedia, xxx o el que sigui
     then
         (send ?contingut delete)
     )
