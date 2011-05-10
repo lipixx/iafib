@@ -2578,9 +2578,7 @@
 ;;***********************************************************************************************************************************************INICI
 ;;; Template que emmagatzema el tipus d'usuari
 (deftemplate usuari
-    (slot edat
-;; 		(create-accessor read) NO ES POT FER??
-	)
+    (slot edat)
     (slot sexe)
     (slot estat-civil)
     (slot orientacio-sexual)
@@ -2600,6 +2598,15 @@
 
 ;;; FUNCIONS
 ;;; Obte una resposta a la pregunta d'entre un conjunt de possibles valors
+(deffunction pregunta (?pregunta $?valors)
+    (printout t crlf ?pregunta)
+    (bind ?resposta (read))
+    (while (not (member ?resposta ?valors)) do
+        (printout t ?pregunta)
+        (bind ?resposta (read))
+    )
+    ?resposta
+)
 ;;; Fa una pregunta a la que s'ha de respondre "si" o "no"
 ;;; Fa una pregunta a la que s'ha de respondre "si", "no", "potser-si", "potser-no" O "indiferent"
 ;;; Fa una pregunta a la qual se li ha de respondre un numero
@@ -2644,21 +2651,24 @@
 )
 ;;*************************************************************************************************************************************DEFINIR L'USUARI
 ;;; Quina edat tens? (0-120)
-;;; Ets home o dona? (home, dona)
-;;; Quin és el teu estat civil? (casat, separat, divorciat, solter, ajuntat)
-;;; Posa en ordre els idiomes que entenguis? (cat, esp, fra, it, en, jp)
-;;; Tens alguna discapacitat audiovisual? (no, auditiva, visual)
-;;; Orientació sexual? (homosexual, heterosexual)
-;;; Saltem al modul de les preguntes comunes
-
-
 (defrule determinar-edat
     ?u <- (usuari (edat -1))
     =>
     (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
     (modify ?u (edat ?edatLlegida))
 )
-
+;;; Ets home o dona? (home, dona)
+(defrule determinar-sexe
+    ?u <- (usuari (sexe desconegut))
+    =>
+    (bind ?sexeLlegit (pregunta (str-cat "Ets home o dona? (home/dona) ") home dona))
+    (modify ?u (sexe ?sexeLlegit))
+)
+;;; Quin és el teu estat civil? (casat, separat, divorciat, solter, ajuntat)
+;;; Posa en ordre els idiomes que entenguis? (cat, esp, fra, it, en, jp)
+;;; Tens alguna discapacitat audiovisual? (no, auditiva, visual)
+;;; Orientació sexual? (homosexual, heterosexual)
+;;; Saltem al modul de les preguntes comunes
 (defrule a-preguntes-comunes
 	(declare (salience -1))
 	=>
@@ -2768,7 +2778,15 @@
 ;;Si l'usuari te mes de 65 anys, no li interessa massa XXX
 ;;;Per orientacio sexual, sexe i estat civil
 ;;Si es homosexual no li posem pelicules XXX amb contingut d'ambientacio hetero, i viceversa.
-;;Si es dona, baixem la probabilitat que vulgui XXX
+;;Si es dona, baixem la probabilitat que vulgui XXX i augmentem romantiques
+(defrule prob-xxx
+    (usuari (sexe dona))
+    =>
+    (assert
+        (interesaMolt Romantiques)
+        (interesaPoc XXX)
+    )
+)
 ;;Si es solter, separat o divorciat, augmentem probabilitat XXX i disminuim Romantiques
 ;;Si es ajuntat augmentem romantiques
 ;;Si es casat i edat < 40 anys, segurament s'ha casat fa poc. Augmentar romantiques.
@@ -2797,15 +2815,24 @@
 ;;; Descarta les ofertes que no compleixen els requisits minims
 
 (defrule esborrar-no-compleixen-requisit-minim-edat
-	?u <- (usuari (edat ?edat))
+	?u <- (usuari (edat ?edatUsuari))
 	?contingut <- (object (is-a Contingut))
 	=>
-	(if (> (send ?contingut get-edatRecomanada) ?edat)
+	(if (> (send ?contingut get-edatRecomanada) ?edatUsuari)
 	then
 		(send ?contingut delete)
 	)
 )
 ;;Si no vol XXX eliminem tot XXX
+(defrule esborrar-no-vol-xxx
+    (interesaPoc xxx)
+    ?contingut <- (object (is-a Contingut))
+    =>
+    (if (= (send ?contingut get-nomGenere) xxx)
+    then
+        (send ?contingut delete)
+    )
+)
 ;;Si no vol continguts que pugin ferir sensibilitat, eliminar tots els que tinguin contingut dur.
 ;;;Discapacitat i idioma:
 ;;Si te discapacitat auditiva, eliminar tot el que no tingui subtitols.
