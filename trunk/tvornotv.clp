@@ -2750,6 +2750,7 @@
     (slot sexe)
     (slot estat-civil)
     (slot orientacio-sexual)
+    (slot discapacitat-audiovisual)
 )
 ;;; Inicialitzem el sistema amb un usuari desconegut
 (deffacts tipus-usuari
@@ -2758,6 +2759,8 @@
         (sexe desconegut)
         (estat-civil desconegut)
         (orientacio-sexual desconegut)
+	(discapacitat-audiovisual desconegut)
+	
     )
 )
 ;;; Template que emmagatzema una recomanacio
@@ -2833,9 +2836,29 @@
     (modify ?u (sexe ?sexeLlegit))
 )
 ;;; Quin és el teu estat civil? (casat, separat, divorciat, solter, ajuntat)
+(defrule determinar-estat-civil
+    ?u <- (usuari (estat-civil desconegut))
+    =>
+    (bind ?estatCivilLlegit(pregunta (str-cat "Quin és el teu estat civil? (casat/separat/divorciat/solter/ajuntat) ") casat separat divorciat solter ajuntat))
+    (modify ?u (estat-civil ?estatCivilLlegit))
+)
 ;;; Posa en ordre els idiomes que entenguis? (cat, esp, fra, it, en, jp)
+;;     TODO
+
 ;;; Tens alguna discapacitat audiovisual? (no, auditiva, visual)
+(defrule determinar-discapacitat-audiovisual
+    ?u <- (usuari (discapacitat-audiovisual desconegut))
+    =>
+    (bind ?discapacitatLlegida(pregunta (str-cat "Tens alguna discapacitat audiovisual? (no/auditiva/visual)") no auditiva visual))
+    (modify ?u (discapacitat-audiovisual ?discapacitatLlegida))
+)
 ;;; Orientació sexual? (homosexual, heterosexual)
+(defrule determinar-orientacio-sexual
+    ?u <- (usuari (orientacio-sexual desconegut))
+    =>
+    (bind ?orientSexualLlegida (pregunta (str-cat "Orientació sexual? (homosexual/heterosexual) ") homosexual, heterosexual))
+    (modify ?u (orientacio-sexual ?orientSexualLlegida))
+)
 ;;; Saltem al modul de les preguntes comunes
 (defrule a-preguntes-comunes
 	(declare (salience -1))
