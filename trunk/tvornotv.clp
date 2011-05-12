@@ -2779,7 +2779,19 @@
     ?resposta
 )
 ;;; Fa una pregunta a la que s'ha de respondre "si" o "no"
-;;; Fa una pregunta a la que s'ha de respondre "si", "no", "potser-si", "potser-no" O "indiferent"
+(deffunction si-o-no (?question)
+   (bind ?response (pregunta ?question si no s n))
+   (if (or (eq ?response si) (eq ?response s))
+       then TRUE 
+       else FALSE))
+
+
+;;; Fa una pregunta a la que s'ha de respondre "gens", "poc", "normal", "molt" O "extrem"
+(deffunction pregunta-sino-multiple (?pregunta)
+	(bind ?resposta (pregunta (str-cat ?pregunta "(gens,poc,normal,molt,extrem) ") gens poc normal molt extrem))
+	?resposta
+)
+
 ;;; Fa una pregunta a la qual se li ha de respondre un numero
 (deffunction obte-nombre (?question)
     (printout t crlf ?question)
@@ -2790,6 +2802,18 @@
     )
     ?answer
 )
+
+;;;Fa una pregunta sobre una llista d’elements
+(deffunction pregunta-llista (?pregunta)
+        (printout t crlf ?pregunta)
+    	;Llegim una línea sencera (Ex. "Pasta Marisc Fruita")
+	(bind ?resposta (readline))
+	;Separem l’string (Ex. "Pasta" "Marisc" "Fruita")
+	(bind ?res (str-explode ?resposta))
+	;Retornem els diferents camps (Ex. "Pasta" "Marisc" "Fruita")
+	?res
+)
+
 ;;; Fa una pregunta a la qual se li ha de respondre un numero en un rang
 ;;; Obte una llista de continguts de una categoria determinada
 ;;; Obte una llista de continguts d'una duració determinada
@@ -2877,44 +2901,134 @@
 ;;haurem d'abusar molt, si es que no li agrada el que fa.
 ;;**********************************************************************************************************************************************COMUNES
 ;;Tens estudis o estudies? (si,no)
+(defrule pregunta-estudia
+	=>
+	(assert (te-estudis ( si-o-no "Tens estudis o estudies? " )))
+)
+
 ;;;;Si->I els teus estudis que son, de lletres, de ciencia, de tecnologia o d'art? (lletres, ciencia, tecnologia, art)
+(defrule pregunta-estudis-de-que-son
+	(te-estudis TRUE)
+	=>
+	(assert (que-estudia (pregunta "Els teus estudis de que tracten, de lletres, ciencia, tecnologia o art? " lletres ciencia tecnologia art)))
+)
+
 
 ;;Treballes? (si,no)
-;;;;Si-> [Si té estudis] -> I el teu treball esta relacionat amb els teus estudis? (si,no)
-;;;;Sino->En quin sector treballes? (construccio, legal, politic, economic, tecnologic, cientific, artistic, altres)
+(defrule pregunta-treballa
+	=>
+	(assert (te-treball ( si-o-no "Treballes actualment? " )))
+)
+
+;;;;Si no té estudis
+;;;;En quin sector treballes? (construccio, legal, politic, economic, tecnologic, cientific, artistic, altres)
+(defrule pregunta-tipus-treball
+	(te-treball TRUE)
+	=>
+	(assert (treball-relacionat-amb (pregunta "Quin tipus de treball es? (construccio,legal,politic,economic,lletres,tecnologia,ciencia,art,altres) " construccio legal politic economic lletres tecnologia ciencia art altres)))
+)
 
 ;;T'agrada el que fas? (si,no)
+(defrule pregunta-agrada-treball
+	(te-treball TRUE)
+	=>
+	(assert (agrada-treball ( pregunta-sino-multiple "Quant t'agrada la teva feina? " )))
+)
 
 ;;De la seguent pregunta podem deduir si li agrada la politica, l'actualitat, les noticies.
 ;;Recentment hi ha un conflicte belic amb les tropes de Muamar el Gadafi, t'ha interesat el tema? (gens, poc, normal, molt, extremis)
+(defrule pregunta-gadafi
+	=>
+	(assert (interessat-gadafi ( pregunta-sino-multiple "Recentment hi ha un conflicte belic amb les tropes de Muamar el Gadafi, t'ha interesat el tema? " )))
+)
 
 ;;;Podem posar-hi documentals de ciencia i medi ambient
 ;;Et preocupa la radiacio deguda a la fuga de Fukushima? (si, no, ns)
+(defrule pregunta-fukushima
+	=>
+	(assert (interessat-fukushima ( pregunta-sino-multiple "Et preocupa la radiacio deguda a la fuga de Fukushima? " )))
+)
 
 ;;;Sabem que te temps i que li agraden els "cotilleos", corazon, i programes amb poc contingut intel·lectual.
 ;;Has seguit la boda real de Guillermo i Kate? (si,no)
+(defrule pregunta-bodareal
+	=>
+	(assert (interessat-boda-real ( si-o-no "Has seguit la boda real de Guillermo i Kate? " )))
+)
+
 ;;Saps qui és la Princesa del Pueblo? (si,no.. resposta: es la belen esteban)
+(defrule pregunta-belenesteban
+	=>
+	(assert (coneix-belen-esteban ( si-o-no "Saps qui es la Princesa del Pueblo? " )))
+)
 
 ;;;D'aqui podem deduir si es una persona mes practica o teorica i per tant si li interessa mes per exemple les lletres o la tecnologia.
 ;;Tens vehicle propi? (si,no)
+(defrule pregunta-vehicle
+	=>
+	(assert (te-vehicle ( si-o-no "Tens vehicle propi? " )))
+)
+
 ;;Si te algun problema no molt greu, faries mai cap reparacio tu mateix (1), o el portaries al mecanic (2)? (1,2)
+(defrule pregunta-vehicle-reparacio
+	(te-vehicle TRUE)
+	=>
+	(if (eq (obte-nombre "Si aquest vehicle te algun problema no molt greu, faries mai cap reparacio tu mateix (1), o el portaries al mecanic (2)? ") 1)
+	  then
+	  (assert (es-practic TRUE))
+	  else
+  	  (assert (es-practic FALSE)))
+)
+
 
 ;;;D'aquesta pregunta podem deduir si 1:Interessat en oci in-door (xbox, pelicules, callejeros), 2:Interessat en oci out-of-door, 3:Molt estudios, in-door, 4:varietat
 ;;Els caps de semana, habitualment... surts de festa (1), disfrutes de la natura (2), aprofites per estudiar o aprendre coses pel teu compte (3), una mica de tot (4)
+(defrule pregunta-oci
+
+	=>
+	(bind ?valorOci (obte-nombre "Els caps de semana, habitualment... surts de festa (1), disfrutes de la natura (2), aprofites per estudiar o aprendre coses pel teu compte (3), una mica de tot (4)? "))
+	(if (eq ?valorOci 1) then (assert (oci festa)))
+	(if (eq ?valorOci 2) then (assert (oci natura)))
+	(if (eq ?valorOci 3) then (assert (oci estudiar)))
+	(if (eq ?valorOci 4) then (assert (oci general)))
+)
+
 
 ;;;Li agrada l'acció.
 ;;De petit, a l'estiu, jugaves amb pistoles d'aigua?(si,no)
+(defrule pregunta-pistolesaigua
+	=>
+	(assert (jugava-pistoles-aigua ( si-o-no "De petit, a l'estiu, jugaves amb pistoles d'aigua? " )))
+)
 
 ;;;Te certa aficio pels animals.
 ;;Tens mascotes?
+(defrule pregunta-mascotes
+	=>
+	(assert (te-mascota ( si-o-no "Tens mascotes? " )))
+)
 
 ;;;;Refinem el contingut dels documentals
 ;;Les teves aficions, es centren en temes de mar, de muntanya, tecnologia, lectura, societat, altres?
+(defrule pregunta-aficions
+	=>
+	(assert (aficions (pregunta "Les teves aficions, es centren en temes de mar, muntanya, tecnologia, lectura, societat, altres? " mar muntanya tecnologia lectura societat altres)))
+)
 
 ;;;;Refinem encara més les preferencies de Animacio, Accio, Politica, Economia, Oci->Ciencia ficcio, Oci->Comedia, Romantica, etc.
 ;;Si et dono a triar entre 1:Bambi, 2:Terminator II, 3:El discurso del Rei, 4:Perdidos, 5:Buenafuente, 6:Sexo en nueva york, 7:Brokeback Mountain, amb quin ordre de preferencia
 ;;les col·locaries? (1,2,3,4,5,6,7)
-
+(defrule pregunta-ordre-pelis
+	=>
+	(bind ?llista (pregunta-llista "Si et dono a triar entre 1:Bambi, 2:Terminator II, 3:El discurso del Rei, 4:Perdidos, 5:Buenafuente, 6:Sexo en nueva york, 7:Brokeback Mountain, amb quin ordre de preferencia les col.locaries? "))
+	(bind ?i 1)
+	(while (<= ?i 7)
+		do
+		   (bind ?ival (nth$ ?i $?llista))
+		   (assert (interes ?i ?ival))
+		   (bind ?i (+ ?i 1))
+	)
+)
 
 ;; Saltem al modul de les preguntes especifiques
 
@@ -2932,13 +3046,70 @@
 )
 ;;****************************************************************************************************************************************ESPECIFIQUES
 ;;Vols mes series (1), pel·licules (2), o documentals (3)?
+(defrule pregunta-tipus
+
+	=>
+	(bind ?valor (obte-nombre "Vols mes series (1), pel.licules (2), o documentals (3)? "))
+	(if (eq ?valor 1) then (assert (contingut-preferit series)))
+	(if (eq ?valor 2) then (assert (contingut-preferit cine)))
+	(if (eq ?valor 3) then (assert (contingut-preferit documentals)))
+)
+
 ;;Quantes hores de televisio al dia veus normalment? (0-24)
+(defrule pregunta-hores
+	=>
+	(bind ?valor (obte-nombre "Quantes hores de televisio al dia veus normalment (0-24)?"))
+	(if (eq ?valor 1) then (assert (hores-tv 1)))
+	(if (eq ?valor 2) then (assert (hores-tv 2)))
+	(if (>= ?valor 3) then (assert (hores-tv 3)))
+)
+
+
 ;;Vols que cada contingut sigui mes be llarg (1), curt (2), o t'es igual (3)? (1,2,3)
+(defrule pregunta-duracio
+	=>
+	(bind ?valor (obte-nombre "Vols que cada contingut sigui mes be curt (1), llarg (2), o t'es igual (3)? "))
+	(if (eq ?valor 1) then (assert (duracio-pref curt)))
+	(if (eq ?valor 2) then (assert (duracio-pref llarg)))
+)
+
+
 ;;Dels temes següents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, oest, policiaca, peixos, mamifers, mar, muntanya, geologia, terror, suspense, clima, informatica,
 ;; telecos, societat,xxx.
+(defrule pregunta-temes-apasionants
+	=>
+	(bind ?llista (pregunta-llista "Dels temes següents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, oest, policiaca, peixos, mamifers, mar, muntanya, geologia, terror, suspense, clima, informatica, telecos, societat, xxx? "))
+	(bind ?i 1)
+	(while (<= ?i (length$ $?llista))
+		do
+		   (bind ?ival (nth$ ?i $?llista))
+		   (assert (passio-per ?ival))
+		   (bind ?i (+ ?i 1))
+	)
+)
+
 ;;(Si edat > 18) Vols permetre cap contingut XXX? (si,no)
+(defrule pregunta-xxx
+        (usuari (edat ?e&: (> ?e 18)))
+	=>
+	(assert (xxx-permes ( si-o-no "Vols permetre cap contingut XXX? " )))
+)
+
 ;;(Si edat > 18) Vols permetre continguts que puguin ferir la sensibilitat de les persones? (si,no)
+(defrule pregunta-sensibilitat
+        (usuari (edat ?e&: (> ?e 18)))
+	=>
+	(assert (contingut-sensible-permes ( si-o-no "Vols permetre continguts que puguin ferir la sensibilitat de les persones? " )))
+)
+
+
 ;;T'agradaria veure alguns continguts amb versio original?
+(defrule pregunta-vo
+	=>
+	(assert (versio-original-permes ( si-o-no "T'agradaria veure alguns continguts amb versio original? " )))
+)
+
+
 ;;; Saltem al modul de les assumpcions
 
 (defrule a-assumpcions-incondicionals
