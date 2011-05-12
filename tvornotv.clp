@@ -2798,7 +2798,7 @@
 	=>
 	(printout t crlf)
 	(printout t "+---------------------------------------------------+" crlf)
-    (printout t "|                                                   |" crlf)
+	(printout t "|                                                   |" crlf)
 	(printout t "|                    TVornoTV                       |" crlf)
 	(printout t "|      Sistema de recomanacio de continguts         |" crlf)
 	(printout t "|                                                   |" crlf)
@@ -2993,16 +2993,24 @@
 )
 ;;Si no vol XXX eliminem tot XXX
 (defrule esborrar-no-vol-xxx
-    (interesaPoc xxx)
-    ?contingut <- (object (is-a Contingut))
+    (interesaPoc XXX)
+    ?contingut <- (object (is-a Contingut) (genere $?generes))
     =>
-    (if (str-compare (send ?contingut get-nomGenere) Comedia)
-            ;;ha der xxx, fent proves amb comedia, no 'sha de comparar directamente
-            ;;s'ha de comparar accedint a les instancies de genere i mirar si hi ha una
-            ;;amb nomGenere Comedia, xxx o el que sigui
-    then
-        (send ?contingut delete)
+    (bind ?i 1)
+    (while (<= ?i (length$ $?generes))
+	do 
+		(bind ?genereActual (nth$ ?i $?generes))
+;; 		(printout t ?genereActual crlf)
+		(printout t (send (instance-address * ?genereActual) get-nomGenere) crlf)
+		(bind ?i (+ ?i 1))
     )
+;;     (if (str-compare (send ?contingut get-nomGenere) Comedia)
+;;             ;;ha de ser xxx, fent proves amb comedia, no 'sha de comparar directamente
+;;             ;;s'ha de comparar accedint a les instancies de genere i mirar si hi ha una
+;;             ;;amb nomGenere Comedia, xxx o el que sigui
+;;     then
+;; ;;         (send ?contingut delete)
+;;     )
 )
 ;;Si no vol continguts que pugin ferir sensibilitat, eliminar tots els que tinguin contingut dur.
 ;;;Discapacitat i idioma:
