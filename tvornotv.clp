@@ -2863,7 +2863,7 @@
 (defrule determinar-estat-civil
     ?u <- (usuari (estat-civil desconegut))
     =>
-    (bind ?estatCivilLlegit(pregunta (str-cat "Quin és el teu estat civil? (casat/separat/divorciat/solter/ajuntat) ") casat separat divorciat solter ajuntat))
+    (bind ?estatCivilLlegit(pregunta (str-cat "Quin es el teu estat civil? (casat/separat/divorciat/solter/ajuntat) ") casat separat divorciat solter ajuntat))
     (modify ?u (estat-civil ?estatCivilLlegit))
 )
 ;;; Posa en ordre els idiomes que entenguis? (cat, esp, fra, it, en, jp)
@@ -2880,7 +2880,7 @@
 (defrule determinar-orientacio-sexual
     ?u <- (usuari (orientacio-sexual desconegut))
     =>
-    (bind ?orientSexualLlegida (pregunta (str-cat "Orientació sexual? (homosexual/heterosexual) ") homosexual, heterosexual))
+    (bind ?orientSexualLlegida (pregunta (str-cat "Orientacio sexual? (homosexual/heterosexual) ") homosexual, heterosexual))
     (modify ?u (orientacio-sexual ?orientSexualLlegida))
 )
 ;;; Saltem al modul de les preguntes comunes
@@ -3078,7 +3078,7 @@
 ;; telecos, societat,xxx.
 (defrule pregunta-temes-apasionants
 	=>
-	(bind ?llista (pregunta-llista "Dels temes següents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, oest, policiaca, peixos, mamifers, mar, muntanya, geologia, terror, suspense, clima, informatica, telecos, societat, xxx? "))
+	(bind ?llista (pregunta-llista "Dels temes seguents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, oest, policiaca, peixos, mamifers, mar, muntanya, geologia, terror, suspense, clima, informatica, telecomunicacions, societat, xxx? "))
 	(bind ?i 1)
 	(while (<= ?i (length$ $?llista))
 		do

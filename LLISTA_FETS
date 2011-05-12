@@ -1,0 +1,54 @@
+BLOC 1 - Recollida de dades
+------------------------------
+
+Bloc 1.1: Definició de l'usuari
+Bloc 1.2: Preguntes per  determinar preferències i gustos. Es fan preguntes no directes per poder determinar nosaltres el que li agrada.
+Bloc 1.3: Preguntes específiques sobre questions com si realment vol veure sèries o no.
+
+BLOC 2 - Raonament bàsic
+-------------------------
+Bloc 2.1: Determinem els gustos mitjançant algunes regles que hem suposat i la info. entrada al bloc 1.2. Assignem també "valors de bondat" a cada contingut, gènere o el que sigui.
+Bloc 2.2: Fem suposicions segures en funció del Bloc 1.1, eliminem continguts que ja no són vàlids. P.ex. persona sorda no posarli musicals.
+
+
+
+---------------------------------------------------------------------------------
+Fets:
+---------------------------------------------------------------------------------
+Bloc 1.1:
+~~~~~~~~~
+
+Bloc 1.2:
+~~~~~~~~~
+te-estudis
+que-estudia
+te-treball
+treball-relacionat-amb
+agrada-treball
+interessat-gadafi
+interessat-fukushima
+interessat-boda-real
+coneix-belen-esteban
+te-vehicle
+es-practic
+jugava-pistoles-aigua
+te-mascota
+
+interes 1 ?v
+interes 2 ?v
+interes 3 ?v
+interes 4 ?v
+interes 5 ?v
+interes 6 ?v
+interes 7 ?v
+
+Bloc 1.3:
+~~~~~~~~~
+contingut-preferit
+hores-tv
+duracio-pref
+xxx-permes
+contingut-sensible-permes
+versio-original-permes
+passio-per*
+
