@@ -3105,7 +3105,6 @@
 ;;; Es creen fets en funció de la info deduida al modul 1 per definir l'usuari.
 ;;****************************************************************************************************************************************ASSUMPCIONS
 ;;;Restriccions per edat
-;;Si l'usuari te entre 16-65 anys, no li interessa gaire "Animacio".
 ;;Si l'usuari te menys de 13 anys, li interessa molt "Animacio"
 (defrule infantil
     (usuari (edat ?e&: (< ?e 13)))
@@ -3115,10 +3114,12 @@
     )
 )
 
-
 ;;Si l'usuari te mes de 65 anys, no li interessa massa XXX
+
 ;;;Per orientacio sexual, sexe i estat civil
+
 ;;Si es homosexual no li posem pelicules XXX amb contingut d'ambientacio hetero, i viceversa.
+
 ;;Si es dona, baixem la probabilitat que vulgui XXX i augmentem romantiques
 (defrule prob-xxx
     (usuari (sexe dona))
@@ -3152,7 +3153,6 @@
 )
 
 
-
 ;;; Descarta les ofertes que no compleixen els requisits minims
 
 (defrule esborrar-no-compleixen-requisit-minim-edat
@@ -3166,7 +3166,9 @@
 )
 ;;Si no vol XXX eliminem tot XXX
 (defrule esborrar-no-vol-xxx
-    (interesaPoc XXX)
+    (xxx-permes FALSE)
+;;ATENCIO, AQUI S'HA DE FER UNA OR ENTRE xxx-permes i L'EDAT DE L'USUARI. EN AMBDOS CASOS SHA DELIMINAR XXX. ESTA BE AIXI?
+    (usuari (edat ?e&: (< ?e 13)))
     ?contingut <- (object (is-a Contingut) (genere $?generes))
     =>
     (bind ?i 1)
