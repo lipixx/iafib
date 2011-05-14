@@ -2880,7 +2880,7 @@
 (defrule determinar-orientacio-sexual
     ?u <- (usuari (orientacio-sexual desconegut))
     =>
-    (bind ?orientSexualLlegida (pregunta (str-cat "Orientacio sexual? (homosexual/heterosexual) ") homosexual, heterosexual))
+    (bind ?orientSexualLlegida (pregunta (str-cat "Orientacio sexual? (homosexual/heterosexual) ") homosexual heterosexual))
     (modify ?u (orientacio-sexual ?orientSexualLlegida))
 )
 ;;; Saltem al modul de les preguntes comunes
@@ -3066,28 +3066,7 @@
 
 
 ;;Vols que cada contingut sigui mes be llarg (1), curt (2), o t'es igual (3)? (1,2,3)
-(defrule pregunta-duracio
-	=>
-	(bind ?valor (obte-nombre "Vols que cada contingut sigui mes be curt (1), llarg (2), o t'es igual (3)? "))
-	(if (eq ?valor 1) then (assert (duracio-pref curt)))
-	(if (eq ?valor 2) then (assert (duracio-pref llarg)))
-)
-
-
-;;Dels temes següents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, oest, policiaca, peixos, mamifers, mar, muntanya, geologia, terror, suspense, clima, informatica,
-;; telecos, societat,xxx.
-(defrule pregunta-temes-apasionants
-	=>
-	(bind ?llista (pregunta-llista "Dels temes seguents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, oest, policiaca, peixos, mamifers, mar, muntanya, geologia, terror, suspense, clima, informatica, telecomunicacions, societat, xxx? "))
-	(bind ?i 1)
-	(while (<= ?i (length$ $?llista))
-		do
-		   (bind ?ival (nth$ ?i $?llista))
-		   (assert (passio-per ?ival))
-		   (bind ?i (+ ?i 1))
-	)
-)
-
+;;Dels temes següents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, oest, policiaca, peixos, mamifers, mar, muntanya, geologia, terror, suspense, clima, informatica,telecos, societat,xxx.
 ;;(Si edat > 18) Vols permetre cap contingut XXX? (si,no)
 (defrule pregunta-xxx
         (usuari (edat ?e&: (> ?e 18)))
