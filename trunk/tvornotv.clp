@@ -3202,11 +3202,10 @@
 ;;
 
 
-;; aixo es temporal, pel micro prototip
-(defrule a-solucions
+(defrule a-associacio-heuristica
 	(declare (salience -1))
 	=>
-	(focus solucions)
+	(focus associacio-heuristica)
 )
 
 ;;;
@@ -3215,6 +3214,14 @@
 (defmodule associacio-heuristica "Modul associació heurística"
     (import esborrar-instancies ?ALL)
     (export ?ALL)
+)
+
+
+
+(defrule a-solucions
+	(declare (salience -1))
+	=>
+	(focus solucions)
 )
 ;;****************************************************************************************************************************************************
 
