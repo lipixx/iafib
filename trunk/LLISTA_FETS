@@ -17,7 +17,13 @@ Fets:
 ---------------------------------------------------------------------------------
 Bloc 1.1:
 ~~~~~~~~~
-
+usuari
+    edat
+    sexe
+    estat-civil
+    idiomes
+    discapacitat-audiovisual
+    orientacio-sexual
 Bloc 1.2:
 ~~~~~~~~~
 te-estudis

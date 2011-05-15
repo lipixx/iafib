@@ -2749,6 +2749,7 @@
     (slot edat)
     (slot sexe)
     (slot estat-civil)
+	(multislot idiomes)
     (slot orientacio-sexual)
     (slot discapacitat-audiovisual)
 )
@@ -2758,8 +2759,9 @@
         (edat -1)
         (sexe desconegut)
         (estat-civil desconegut)
+		(idiomes (create$))
         (orientacio-sexual desconegut)
-	(discapacitat-audiovisual desconegut)
+		(discapacitat-audiovisual desconegut)
 	
     )
 )
@@ -2867,7 +2869,13 @@
     (modify ?u (estat-civil ?estatCivilLlegit))
 )
 ;;; Posa en ordre els idiomes que entenguis? (cat, esp, fra, it, en, jp)
-;;     TODO
+(defrule determinar-ordre-idiomes
+	?u <- (usuari (idiomes $?llistaIdiomes))
+	(test (= 0 (length$ $?llistaIdiomes)))
+	=>
+	(bind ?llista (pregunta-llista "Posa en ordre de mes a menys els idiomes que entenguis: (cat, esp, fra, it, en, jp) "))
+	(modify ?u (idiomes ?llista))
+)
 
 ;;; Tens alguna discapacitat audiovisual? (no, auditiva, visual)
 (defrule determinar-discapacitat-audiovisual
