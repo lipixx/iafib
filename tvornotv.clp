@@ -3185,18 +3185,17 @@
 		(send ?contingut delete)
 	)
 )
-;;Si no vol XXX eliminem tot XXX
+;;Si XXX no esta permes eliminem tot XXX
 (defrule esborrar-no-vol-xxx
     (xxx-permes FALSE)
-;;ATENCIO, AQUI S'HA DE FER UNA OR ENTRE xxx-permes i L'EDAT DE L'USUARI. EN AMBDOS CASOS SHA DELIMINAR XXX. ESTA BE AIXI?
-    (usuari (edat ?e&: (< ?e 13)))
     ?contingut <- (object (is-a Contingut) (genere $?generes))
     =>
     (bind ?i 1)
     (while (<= ?i (length$ $?generes))
 	do 
 		(bind ?genereActual (nth$ ?i $?generes))
-;; 		(printout t ?genereActual crlf)
+		(printout t ?genereActual crlf)
+;; 		(printout t (send (instance-address * ?genereActual) get-nomGenere) crlf)
 		(printout t (send (instance-address * ?genereActual) get-nomGenere) crlf)
 		(bind ?i (+ ?i 1))
     )
