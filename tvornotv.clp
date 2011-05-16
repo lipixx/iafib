@@ -2854,8 +2854,9 @@
     (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
     (modify ?u (edat ?edatLlegida))
     
-;;     PER PROVES DE ESBORRAR XXX
+;;PROVES PROVES PROVES-->> PER PROVES DE ESBORRAR XXX
 ;;     (assert (xxx-permes FALSE))
+;; 	(assert (contingut-sensible-permes FALSE))
 ;;     (focus esborrar-instancies)
 )
 ;;; Ets home o dona? (home, dona)
@@ -3201,21 +3202,25 @@
     (while (<= ?i (length$ $?generes))
 	do
 		(bind ?genereActual (nth$ ?i $?generes))
-;; 		(printout t ?genereActual crlf)
-;; 		(printout t (send (instance-address * ?genereActual) get-nomGenere) crlf)
-		
-		(if (eq (str-compare (send (instance-address * ?genereActual) get-nomGenere) "Comedia") 0)
+		(if (eq (str-compare (send (instance-address * ?genereActual) get-nomGenere) "XXX") 0)
 		then
-			(printout t "comedia esborrada: " (send ?contingut get-titol) crlf)
+			(printout t "S'ha esborrat, per xxx no permes: " (send ?contingut get-titol) crlf)
 			(send ?contingut delete)
-			(break)
-			
+			(break);;no cal seguir recorrent els generes un cop eliminat el contingut
 		)
 		(bind ?i (+ ?i 1))
     )
 
 )
 ;;Si no vol continguts que pugin ferir sensibilitat, eliminar tots els que tinguin contingut dur.
+(defrule esborrar-ferir-sensibilitat-no-permes
+	(contingut-sensible-permes FALSE)
+	?contingut <- (object (is-a Contingut) (ferirSensibilitat TRUE))
+	=>
+	(printout t "S'ha esborrat, per ferir sensibilitat: " (send ?contingut get-titol) crlf)
+	(send ?contingut delete)
+	
+)
 ;;;Discapacitat i idioma:
 ;;Si te discapacitat auditiva, eliminar tot el que no tingui subtitols.
 ;;Si l'idioma del contingut no apareix a la llista de idiomes que enten l'usuari i no es subtitulat, eliminar-lo.
@@ -3259,6 +3264,19 @@
 ;; 	(import refinament ?ALL)
 	(import assumpcions-incondicionals ?ALL)
 	(export ?ALL)
+)
+
+(defrule escriure-titol-solucions
+	(declare (salience 10))
+	(not(titol-solucio-pintada TRUE))
+	=>
+	(printout t "+---------------------------------------------------+" crlf)
+	(printout t "|                                                   |" crlf)
+	(printout t "|                      Solucions                    |" crlf)
+	(printout t "|                                                   |" crlf)
+	(printout t "+---------------------------------------------------+" crlf)
+	
+	(assert (titol-solucio-pintada TRUE))
 )
 
 (defrule escriu-adequades
