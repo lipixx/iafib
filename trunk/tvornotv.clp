@@ -2853,6 +2853,10 @@
     =>
     (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
     (modify ?u (edat ?edatLlegida))
+    
+;;     PER PROVES DE ESBORRAR XXX
+;;     (assert (xxx-permes FALSE))
+;;     (focus esborrar-instancies)
 )
 ;;; Ets home o dona? (home, dona)
 (defrule determinar-sexe
@@ -3186,26 +3190,30 @@
 	)
 )
 ;;Si XXX no esta permes eliminem tot XXX
-(defrule esborrar-no-vol-xxx
+(defrule esborrar-xxx-no-permes
     (xxx-permes FALSE)
-    ?contingut <- (object (is-a Contingut) (genere $?generes))
+    (or
+		?contingut <- (object (is-a Contingut) (genere $?generes))
+		?contingut <- (object (is-a Contingut) (genere_serie $?generes))
+	)
     =>
     (bind ?i 1)
     (while (<= ?i (length$ $?generes))
-	do 
+	do
 		(bind ?genereActual (nth$ ?i $?generes))
-		(printout t ?genereActual crlf)
+;; 		(printout t ?genereActual crlf)
 ;; 		(printout t (send (instance-address * ?genereActual) get-nomGenere) crlf)
-		(printout t (send (instance-address * ?genereActual) get-nomGenere) crlf)
+		
+		(if (eq (str-compare (send (instance-address * ?genereActual) get-nomGenere) "Comedia") 0)
+		then
+			(printout t "comedia esborrada: " (send ?contingut get-titol) crlf)
+			(send ?contingut delete)
+			(break)
+			
+		)
 		(bind ?i (+ ?i 1))
     )
-;;     (if (str-compare (send ?contingut get-nomGenere) Comedia)
-;;             ;;ha de ser xxx, fent proves amb comedia, no 'sha de comparar directamente
-;;             ;;s'ha de comparar accedint a les instancies de genere i mirar si hi ha una
-;;             ;;amb nomGenere Comedia, xxx o el que sigui
-;;     then
-;; ;;         (send ?contingut delete)
-;;     )
+
 )
 ;;Si no vol continguts que pugin ferir sensibilitat, eliminar tots els que tinguin contingut dur.
 ;;;Discapacitat i idioma:
