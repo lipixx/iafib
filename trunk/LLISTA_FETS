@@ -10,7 +10,32 @@ BLOC 2 - Raonament bàsic
 Bloc 2.1: Determinem els gustos mitjançant algunes regles que hem suposat i la info. entrada al bloc 1.2. Assignem també "valors de bondat" a cada contingut, gènere o el que sigui.
 Bloc 2.2: Fem suposicions segures en funció del Bloc 1.1, eliminem continguts que ja no són vàlids. P.ex. persona sorda no posarli musicals.
 
-
+'''''''''''''''''''''''
+GENERES DISPONIBLES
+'''''''''''''''''''''''
+        (nomGenere "Animacio"))
+        (nomGenere "Comedia"))
+        (nomGenere "Accio"))
+        (nomGenere "Terror"))
+        (nomGenere "Oest"))
+        (nomGenere "Ciencia Ficcio"))
+        (nomGenere "Drama"))
+        (nomGenere "XXX"))
+        (nomGenere "Homosexual"))
+        (nomGenere "Aventura"))
+        (nomGenere "Show"))
+        (nomGenere "Romantic"))
+        (nomGenere "Musical"))
+        (nomGenere "Melodrama"))
+        (nomGenere "Catastrofe"))
+        (nomGenere "Suspense"))
+        (nomGenere "Fantasia"))
+        (nomGenere "Historic"))
+        (nomGenere "Policiaca"))
+        (nomGenere "Belic"))
+        (nomGenere "Esportiu"))
+        (nomGenere "Culte"))
+        (nomGenere "Espai exterior"))
 
 ---------------------------------------------------------------------------------
 Fets:
@@ -27,9 +52,9 @@ usuari
 Bloc 1.2:
 ~~~~~~~~~
 te-estudis
-que-estudia
+que-estudia (lletres, ciencia, tecnologia o art)
 te-treball
-treball-relacionat-amb
+treball-relacionat-amb (construccio,legal,politic,economic,lletres,tecnologia,ciencia,art,altres)
 agrada-treball
 interessat-gadafi
 interessat-fukushima
@@ -37,8 +62,10 @@ interessat-boda-real
 coneix-belen-esteban
 te-vehicle
 es-practic
+oci (festa, natura, estudiar, general)
 jugava-pistoles-aigua
 te-mascota
+aficions (mar muntanya tecnologia lectura societat altres)
 
 interes 1 ?v
 interes 2 ?v
@@ -48,13 +75,15 @@ interes 5 ?v
 interes 6 ?v
 interes 7 ?v
 
+(1:Bambi, 2:Terminator II, 3:El discurso del Rei, 4:Perdidos, 5:Buenafuente, 6:Sexo en nueva york, 7:Brokeback Mountain)
+
 Bloc 1.3:
 ~~~~~~~~~
-contingut-preferit
-hores-tv
-duracio-pref
+contingut-preferit (series cine documentals)
+duracio-prefer (llarg curt mig) --->>FALTA
+hores-tv (1 2 3)
 xxx-permes
 contingut-sensible-permes
 versio-original-permes
-passio-per*
+passio-per* --->> FALTA
 
