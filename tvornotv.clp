@@ -2924,8 +2924,12 @@
 
 ;;Treballes? (si,no)
 (defrule pregunta-treballa
+        (usuari (edat ?e))
 	=>
+	(if (< ?e 16) then (assert (te-treball FALSE))
+	else
 	(assert (te-treball ( si-o-no "Treballes actualment? " )))
+	)
 )
 
 ;;;;Si no té estudis
@@ -2973,8 +2977,12 @@
 ;;;D'aqui podem deduir si es una persona mes practica o teorica i per tant si li interessa mes per exemple les lletres o la tecnologia.
 ;;Tens vehicle propi? (si,no)
 (defrule pregunta-vehicle
+        (usuari (edat ?e))
 	=>
+	(if (< ?e 14) then (assert (te-vehicle FALSE))
+	else
 	(assert (te-vehicle ( si-o-no "Tens vehicle propi? " )))
+	)
 )
 
 ;;Si te algun problema no molt greu, faries mai cap reparacio tu mateix (1), o el portaries al mecanic (2)? (1,2)
@@ -2992,7 +3000,6 @@
 ;;;D'aquesta pregunta podem deduir si 1:Interessat en oci in-door (xbox, pelicules, callejeros), 2:Interessat en oci out-of-door, 3:Molt estudios, in-door, 4:varietat
 ;;Els caps de semana, habitualment... surts de festa (1), disfrutes de la natura (2), aprofites per estudiar o aprendre coses pel teu compte (3), una mica de tot (4)
 (defrule pregunta-oci
-
 	=>
 	(bind ?valorOci (obte-nombre "Els caps de semana, habitualment... surts de festa (1), disfrutes de la natura (2), aprofites per estudiar o aprendre coses pel teu compte (3), una mica de tot (4)? "))
 	(if (eq ?valorOci 1) then (assert (oci festa)))
@@ -3006,7 +3013,7 @@
 ;;De petit, a l'estiu, jugaves amb pistoles d'aigua?(si,no)
 (defrule pregunta-pistolesaigua
 	=>
-	(assert (jugava-pistoles-aigua ( si-o-no "De petit, a l'estiu, jugaves amb pistoles d'aigua? " )))
+	(assert (jugava-pistoles-aigua ( si-o-no "De petit, a l'estiu, jugaves o jugues amb pistoles d'aigua? " )))
 )
 
 ;;;Te certa aficio pels animals.
@@ -3077,16 +3084,22 @@
 ;;Dels temes següents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, oest, policiaca, peixos, mamifers, mar, muntanya, geologia, terror, suspense, clima, informatica,telecos, societat,xxx.
 ;;(Si edat > 18) Vols permetre cap contingut XXX? (si,no)
 (defrule pregunta-xxx
-        (usuari (edat ?e&: (> ?e 18)))
+        (usuari (edat ?e))
 	=>
+	(if (< ?e 18) then (assert (xxx-permes FALSE))
+	else
 	(assert (xxx-permes ( si-o-no "Vols permetre cap contingut XXX? " )))
+	)
 )
 
 ;;(Si edat > 18) Vols permetre continguts que puguin ferir la sensibilitat de les persones? (si,no)
 (defrule pregunta-sensibilitat
-        (usuari (edat ?e&: (> ?e 18)))
+        (usuari (edat ?e))
 	=>
+	(if (< ?e 16) then (assert (contingut-sensible-permes FALSE))
+	else
 	(assert (contingut-sensible-permes ( si-o-no "Vols permetre continguts que puguin ferir la sensibilitat de les persones? " )))
+	)
 )
 
 
