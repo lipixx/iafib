@@ -33,9 +33,18 @@ GENERES DISPONIBLES
         (nomGenere "Historic"))
         (nomGenere "Policiaca"))
         (nomGenere "Belic"))
-        (nomGenere "Esportiu"))
         (nomGenere "Culte"))
         (nomGenere "Espai exterior"))
+        (nomGenere "Drama"))
+	(defclass Actualitat)
+	(defclass Art)
+	(defclass Ciencia)
+	(defclass Economia)
+	(defclass Historia)
+	(defclass Naturalesa)
+	(defclass Politica)
+	(defclass Tecnologia)
+	(defclass Esports)
 
 ---------------------------------------------------------------------------------
 Fets:
