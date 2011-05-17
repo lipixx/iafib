@@ -2765,7 +2765,12 @@
 	
     )
 )
-;;; Template que emmagatzema una recomanacio
+;;; Template que emmagatzema un contingut i la seva puntuacio
+(deftemplate contingut-amb-puntuacio
+    (slot titol)
+    (slot descripcio)
+    (slot puntuacio)
+)
 
 
 
@@ -2850,9 +2855,15 @@
 ;;; Quina edat tens? (0-120)
 (defrule determinar-edat
     ?u <- (usuari (edat -1))
+	?contingut <- (object (is-a Contingut) (titol "Buenafuente"))
     =>
     (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
     (modify ?u (edat ?edatLlegida))
+	
+	(printout t "S'ha MODIFICAT el titol de: " (send ?contingut get-titol) crlf)
+	(printout t "S'ha MODIFICAT el titol de: " ?contingut crlf)
+	(send ?contingut put-titol "JIJIJIJEJEJE")
+	(printout t "NOU TITOL: " (send ?contingut get-titol) crlf)
     
 ;;PROVES PROVES PROVES-->> PER PROVES DE ESBORRAR XXX
 ;;     (assert (xxx-permes FALSE))
