@@ -1,4 +1,4 @@
-; Sat May 07 14:16:09 CEST 2011
+; Tue May 17 11:09:29 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -1916,6 +1916,10 @@
 	(nom "Mario Van Peebles")
 	(sexe home))
 
+([TVornoTV_Class50000] of  Ambientacio
+
+	(nomGenere "Rosa"))
+
 ([TVornoTV_Class50001] of  Estil
 
 	(nomGenere "XXX"))
@@ -2214,6 +2218,57 @@
 	(subtitols FALSE)
 	(titol "Titanic"))
 
+([TVornoTV_Class60001] of  Serie
+
+	(any 2003)
+	(descripcio "Actualidad de la prensa del corazón y el mundo de los famosos. La base del programa son los reportajes (mayoritariamente grabados) y en menor medida, las entrevistas.")
+	(duracio 45)
+	(edatRecomanada 16)
+	(ferirSensibilitat FALSE)
+	(genere_serie
+		[TVornoTV_Class50000]
+		[TVornoTV_Class50017])
+	(idioma Espanyol)
+	(num_capitol 201)
+	(num_temporada 6)
+	(resum "Persiguiendo a Isabel Pantoja")
+	(subtitols FALSE)
+	(titol "Aqui hay tomate"))
+
+([TVornoTV_Class60002] of  Serie
+
+	(any 2003)
+	(descripcio "Actualidad de la prensa del corazón y el mundo de los famosos. La base del programa son los reportajes (mayoritariamente grabados) y en menor medida, las entrevistas.")
+	(duracio 30)
+	(edatRecomanada 16)
+	(ferirSensibilitat FALSE)
+	(genere_serie
+		[TVornoTV_Class50000]
+		[TVornoTV_Class50017])
+	(idioma Espanyol)
+	(num_capitol 123)
+	(num_temporada 5)
+	(resum "Entrevista a El Farruquito")
+	(subtitols FALSE)
+	(titol "Aqui hay tomate"))
+
+([TVornoTV_Class60003] of  Serie
+
+	(any 2003)
+	(descripcio "Actualidad de la prensa del corazón y el mundo de los famosos. La base del programa son los reportajes (mayoritariamente grabados) y en menor medida, las entrevistas.")
+	(duracio 45)
+	(edatRecomanada 16)
+	(ferirSensibilitat FALSE)
+	(genere_serie
+		[TVornoTV_Class50000]
+		[TVornoTV_Class50017])
+	(idioma Espanyol)
+	(num_capitol 124)
+	(num_temporada 5)
+	(resum "El secreto de Farruquito")
+	(subtitols FALSE)
+	(titol "Aqui hay tomate"))
+
 ([TVornoTV_Class60004] of  Estil
 
 	(nomGenere "Romantic"))
@@ -2271,3 +2326,120 @@
 
 	(nom "Billy Zane")
 	(sexe home))
+
+([TVornoTV_Class70004] of  Serie
+
+	(any 2003)
+	(descripcio "Actualidad de la prensa del corazón y el mundo de los famosos. La base del programa son los reportajes (mayoritariamente grabados) y en menor medida, las entrevistas.")
+	(duracio 45)
+	(edatRecomanada 16)
+	(ferirSensibilitat FALSE)
+	(genere_serie
+		[TVornoTV_Class50000]
+		[TVornoTV_Class50017])
+	(idioma Espanyol)
+	(num_capitol 111)
+	(num_temporada 2)
+	(resum "Beckham en el vestuario")
+	(subtitols FALSE)
+	(titol "Aqui hay tomate"))
+
+([TVornoTV_Class70005] of  Serie
+
+	(any 2007)
+	(descripcio "Talk show dedicado a la actualidad de la prensa del corazón, producido por Cuarzo Producciones")
+	(duracio 45)
+	(edatRecomanada 16)
+	(ferirSensibilitat FALSE)
+	(genere_serie
+		[TVornoTV_Class50000]
+		[TVornoTV_Class50017])
+	(idioma Espanyol)
+	(num_capitol 12)
+	(num_temporada 1)
+	(resum "En aquest capítol es vulnera l'honor de Pepe Navarro")
+	(subtitols FALSE)
+	(titol "Donde estas corazon"))
+
+([TVornoTV_Class70006] of  Serie
+
+	(any 2008)
+	(descripcio "Talk show dedicado a la actualidad de la prensa del corazón, producido por Cuarzo Producciones")
+	(duracio 45)
+	(edatRecomanada 16)
+	(ferirSensibilitat FALSE)
+	(genere_serie
+		[TVornoTV_Class50000]
+		[TVornoTV_Class50017])
+	(idioma Espanyol)
+	(num_capitol 24)
+	(num_temporada 2)
+	(resum "Baralla entre Maria Patinyo i Belen Esteban")
+	(subtitols FALSE)
+	(titol "Donde estas corazon"))
+
+([TVornoTV_Class70007] of  Cine
+
+	(any 2003)
+	(descripcio "Esta Pelicula contiene imagenes explicitas de sexo, para su visionado debes ser mayor de edad.")
+	(duracio 45)
+	(edatRecomanada 18)
+	(ferirSensibilitat FALSE)
+	(format COLOR)
+	(genere [TVornoTV_Class50001])
+	(nacionalitat "Angles")
+	(subtitols FALSE)
+	(titol "110 por ciento natural")
+	(versioOriginal FALSE))
+
+([TVornoTV_Class70008] of  Cine
+
+	(any 2006)
+	(descripcio "Esta Pelicula contiene imagenes explicitas de sexo, para su visionado debes ser mayor de edad.")
+	(duracio 90)
+	(edatRecomanada 18)
+	(ferirSensibilitat FALSE)
+	(format COLOR)
+	(genere [TVornoTV_Class50001])
+	(idioma Angles)
+	(nacionalitat "Angles")
+	(subtitols FALSE)
+	(titol "4 contra 1")
+	(versioOriginal FALSE))
+
+([TVornoTV_Class70009] of  Cine
+
+	(any 2009)
+	(descripcio "Esta Pelicula contiene imagenes explicitas de sexo, para su visionado debes ser mayor de edad.")
+	(duracio 30)
+	(edatRecomanada 18)
+	(ferirSensibilitat FALSE)
+	(format COLOR)
+	(genere [TVornoTV_Class50001])
+	(idioma Angles)
+	(nacionalitat "Angles")
+	(subtitols FALSE)
+	(titol "Alison")
+	(versioOriginal FALSE))
+
+([TVornoTV_Class70011] of  Esports
+
+	(any 2011)
+	(descripcio "Mitic partit Barca Madrid de la lliga Champions League")
+	(duracio 90)
+	(edatRecomanada 7)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Catala)
+	(subtitols FALSE)
+	(titol "Lliga champions Barca-Madrid"))
+
+([TVornoTV_Class70012] of  Esports
+
+	(any 2011)
+	(descripcio "Sortida de la regata Barcelona World Race 2011")
+	(duracio 45)
+	(edatRecomanada 7)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles Catala Frances)
+	(subtitols FALSE)
+	(titol "Sortida BWR 2011"))
