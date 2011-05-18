@@ -2857,13 +2857,21 @@
     ?u <- (usuari (edat -1))
 	?contingut <- (object (is-a Contingut) (titol "Buenafuente"))
     =>
-    (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
-    (modify ?u (edat ?edatLlegida))
+;;     (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
+;;     (modify ?u (edat ?edatLlegida))
+;; 	
+;; 	(printout t "S'ha MODIFICAT el titol de: " (send ?contingut get-titol) crlf)
+;; 	(printout t "S'ha MODIFICAT el titol de: " ?contingut crlf)
+;; 	(send ?contingut put-titol "JIJIJIJEJEJE")
+;; 	(printout t "NOU TITOL: " (send ?contingut get-titol) crlf)
 	
-	(printout t "S'ha MODIFICAT el titol de: " (send ?contingut get-titol) crlf)
-	(printout t "S'ha MODIFICAT el titol de: " ?contingut crlf)
-	(send ?contingut put-titol "JIJIJIJEJEJE")
-	(printout t "NOU TITOL: " (send ?contingut get-titol) crlf)
+	(deffacts tipus-continguts
+		(contingut-amb-puntuacio
+			(titol (send ?contingut get-titol))
+			(descripcio (send ?contingut get-descripcio))
+			(puntuacio 0)
+		)
+	)
     
 ;;PROVES PROVES PROVES-->> PER PROVES DE ESBORRAR XXX
 ;;     (assert (xxx-permes FALSE))
@@ -3169,7 +3177,7 @@
 ;;;
 ;;*************************************************************************************************************************************ESBORRAR INSTANCIES
 (defmodule esborrar-instancies "Modul d'esborrar instances"
-    (import assumpcions-incondicionals ?ALL)
+    (import preguntes-especifiques ?ALL)
     (export ?ALL)
 )
 
@@ -3258,7 +3266,7 @@
 ;;; 3.1 MODUL QUE FA L'ASSOCIACIO HEURISTICA***********************************************************************************************HEURISTICA
 ;;;
 (defmodule associacio-heuristica "Modul associació heurística"
-    (import esborrar-instancies ?ALL)
+    (import assumpcions-incondicionals ?ALL)
     (export ?ALL)
 )
 
