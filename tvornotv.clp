@@ -3097,7 +3097,27 @@
 
 
 ;;Vols que cada contingut sigui mes be llarg (1), curt (2), o t'es igual (3)? (1,2,3)
-;;Dels temes següents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, oest, policiaca, peixos, mamifers, mar, muntanya, geologia, terror, suspense, clima, informatica,telecos, societat,xxx.
+(defrule pregunta-temps
+	=>
+	(bind ?valor (obte-nombre "Vols que cada contingut sigui mes be llarg (1), curt (2), o t'es igual (3)? "))
+	(if (eq ?valor 1) then (assert (duracio-prefer llarg)))
+	(if (eq ?valor 2) then (assert (duracio-prefer curt)))
+	(if (eq ?valor 3) then (assert (duracio-prefer esigual)))
+)
+
+;;
+(defrule pregunta-passions
+	=>
+	(assert (passio-per (pregunta-llista "Dels temes seguents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, homosexual, oest, policiaca, terror, suspense, melodrama, fantasia, romantic, musical, xxx")))
+)
+
+;;Tens cap actor(s)/director(s) preferit(s)? Si no en tens cap, escriu "cap".
+(defrule pregunta-actors
+	=>
+	(assert (actors-preferits (pregunta-llista "Tens cap actor(s)/director(s) preferit(s)? Si no en tens cap, escriu cap.")))
+)
+
+
 ;;(Si edat > 18) Vols permetre cap contingut XXX? (si,no)
 (defrule pregunta-xxx
         (usuari (edat ?e))
@@ -3125,6 +3145,17 @@
 	(assert (versio-original-permes ( si-o-no "T'agradaria veure alguns continguts amb versio original? " )))
 )
 
+;;T'agraden les pelicules en blanc i negre? (si,no)
+(defrule pregunta-bin
+	=>
+	(assert (blanc-negre ( si-o-no "T'agraden les pelicules en blanc i negre? " )))
+)
+
+;;Voldries veure pelicules antigues? (si,no)
+(defrule pregunta-antigues
+	=>
+	(assert (pelis-antigues ( si-o-no "Voldries veure pelicules antigues? " )))
+)
 
 ;;; Saltem al modul de les assumpcions
 
@@ -3138,10 +3169,8 @@
     (import preguntes-especifiques ?ALL)
     (export ?ALL)
 )
-;;; Sembla que aqui juguem amb probabilitats.
-;;; Es creen fets en funció de la info deduida al modul 1 per definir l'usuari.
+
 ;;****************************************************************************************************************************************ASSUMPCIONS
-;;;Restriccions per edat
 ;;Si l'usuari te menys de 13 anys, li interessa molt "Animacio"
 (defrule infantil
     (usuari (edat ?e&: (< ?e 13)))
@@ -3151,13 +3180,6 @@
     )
 )
 
-;;Si l'usuari te mes de 65 anys, no li interessa massa XXX
-
-;;;Per orientacio sexual, sexe i estat civil
-
-;;Si es homosexual no li posem pelicules XXX amb contingut d'ambientacio hetero, i viceversa.
-
-;;Si es dona, baixem la probabilitat que vulgui XXX i augmentem romantiques
 (defrule prob-xxx
     (usuari (sexe dona))
     =>
@@ -3166,14 +3188,6 @@
         (interesaPoc XXX)
     )
 )
-;;Si es solter, separat o divorciat, augmentem probabilitat XXX i disminuim Romantiques
-;;Si es ajuntat augmentem romantiques
-;;Si es casat i edat < 40 anys, segurament s'ha casat fa poc. Augmentar romantiques.
-;;;Discapacitat i idioma:
-;;Augmentar probabilitats de pelicules amb primer i 2on idioma de l'usuari (si es que en te 2)
-;;Si es ceg, baixar probabilitat de pel·licules amb alt contingut grafic, com pelicules 3D????¿?¿ <-A revisar
-;;Si es ceg, fer irrellevant el que hi hagi subtitols o no.
-;;Si es ceg, augmentar probabilitat de genere estil Debat o Tertulia
 
 (defrule a-esborrar-instancies
 	(declare (salience -1))
@@ -3232,11 +3246,6 @@
 	(send ?contingut delete)
 	
 )
-;;;Discapacitat i idioma:
-;;Si te discapacitat auditiva, eliminar tot el que no tingui subtitols.
-;;Si l'idioma del contingut no apareix a la llista de idiomes que enten l'usuari i no es subtitulat, eliminar-lo.
-;;
-
 
 (defrule a-associacio-heuristica
 	(declare (salience -1))
@@ -3245,7 +3254,7 @@
 )
 
 ;;;
-;;; 3.1 MODUL QUE FA L'ASSOCIACIO HEURISTICA
+;;; 3.1 MODUL QUE FA L'ASSOCIACIO HEURISTICA***********************************************************************************************HEURISTICA
 ;;;
 (defmodule associacio-heuristica "Modul associació heurística"
     (import esborrar-instancies ?ALL)
