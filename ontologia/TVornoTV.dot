@@ -1,45 +1,60 @@
 digraph TVornoTV {
 	node [label="\N"];
-	graph [bb="0,0,1465,958"];
+	graph [bb="0,0,1746.9,1088"];
 	Persona [label="{Persona|{idiomes|Symbol*|{Angles|Frances|Catala|...}}|{orientacioSexual|Symbol|{heterosexual|homosexual|bisexual}}|{nom|String}\
-|{estatCivil|Symbol|{casada|divorciada|soltera|...}}|{sexe|Symbol|{home|dona}}|{...}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="305,200", rects="179,375,432,400 179,275,261,375 261,275,349,375 349,350,431,375 349,325,431,350 349,300,431,325 349,275,431,300 179,200,287,275 \
-287,200,347,275 347,250,432,275 347,225,432,250 347,200,432,225 179,175,301,200 301,175,432,200 179,75,263,175 263,75,340,175 34\
-0,150,432,175 340,125,432,150 340,100,432,125 340,75,432,100 179,25,255,75 255,25,350,75 350,50,432,75 350,25,432,50 179,0,432,2\
-5", width="3.50", height="5.56"];
-	Economia [label=Economia, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="557,200", width="1.00", height="0.50"];
-	Documental [label=Documental, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="800,554", width="1.14", height="0.50"];
-	Ciencia [label=Ciencia, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="639,200", width="0.78", height="0.50"];
-	Tecnologia [label="{Tecnologia|{ambit|Symbol|{Informatica|Telecomunicacions|Aviacio|...}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="800,200", rects="685,237,915,262 685,137,732,237 732,137,792,237 792,212,915,237 792,187,915,212 792,162,915,187 792,137,915,162", width="3.19", height="1.74"];
-	Actualitat [label=Actualitat, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="967,200", width="0.94", height="0.50"];
-	Historia [label="{Historia|{epoca|Symbol|{Moderna|Medieval|Prehistòria|...}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="1111,200", rects="1019,237,1204,262 1019,137,1069,237 1069,137,1129,237 1129,212,1204,237 1129,187,1204,212 1129,162,1204,187 1129,137,1204,162", width="2.56", height="1.74"];
-	Cine [label="{Cine|{genere|Instance|{Genere}}|{actors|Instance*|{Persona}}|{versioOriginal|Boolean}|{nacionalitat|String}|{format|Symbol|{3D|\
-BiN|COLOR}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="312,554", rects="222,629,403,654 222,604,277,629 277,604,343,629 343,604,403,629 222,579,273,604 273,579,342,604 342,579,403,604 222,554,328,579 \
-328,554,403,579 222,529,327,554 327,529,403,554 222,454,276,529 276,454,337,529 337,504,403,529 337,479,403,504 337,454,403,479", width="2.50", height="2.78"];
-	Contingut [label="{Contingut|{idioma|Symbol*|{Espanyol|Angles|Catala|...}}|{descripcio|String}|{any|Integer}|{director|Instance*|{Persona}}|{titol\
-|String}|{...}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="399,833", rects="304,933,494,958 304,833,358,933 358,833,425,933 425,908,493,933 425,883,493,908 425,858,493,883 425,833,493,858 304,808,412,833 \
-412,808,494,833 304,783,390,808 390,783,494,808 304,758,364,783 364,758,433,783 433,758,494,783 304,733,393,758 393,733,494,758 \
-304,708,494,733", width="2.64", height="3.47"];
-	Genere [label="{Genere|{nomGenere|String}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="94,200", rects="29,200,159,225 29,175,110,200 110,175,159,200", width="1.81", height="0.69"];
-	Serie [label="{Serie|{resum|String}|{num_temporada|Integer}|{genere_serie|Instance|{Genere}}|{num_capitol|Integer}|{actorsS|Instance*|{Persona\
-}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="102,554", rects="0,604,204,629 0,579,102,604 102,579,204,604 0,554,128,579 128,554,204,579 0,529,85,554 85,529,148,554 148,529,204,554 0,504,117,\
-529 117,504,204,529 0,479,64,504 64,479,138,504 138,479,204,504", width="2.83", height="2.08"];
-	Politica [label=Politica, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="1249,200", width="0.78", height="0.50"];
-	Naturalesa [label="{Naturalesa|{tema|Symbol|{Geologia|Mamifers|Peixos|...}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="1380,200", rects="1295,237,1466,262 1295,137,1337,237 1337,137,1397,237 1397,212,1466,237 1397,187,1466,212 1397,162,1466,187 1397,137,1466,162", width="2.36", height="1.74"];
-	Art [label=Art, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="476,200", width="0.75", height="0.50"];
-	Documental -> Economia [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,764,536 755,531 709,506 640,460 602,400 564,341 558,255 557,218", lp="636,427"];
-	Documental -> Ciencia [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,780,536 773,529 744,500 699,450 676,400 647,337 641,254 639,218", lp="702,427"];
-	Documental -> Tecnologia [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,800,536 800,526 800,469 800,340 800,262", lp="807,427"];
-	Documental -> Actualitat [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,820,536 827,529 855,500 899,450 924,400 954,337 963,254 966,218", lp="919,427"];
-	Documental -> Historia [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,834,536 843,531 889,504 962,456 1010,400 1045,359 1071,304 1088,262", lp="997,427"];
-	Contingut -> Cine [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,360,708 357,698 352,684 348,669 343,654", lp="359,681"];
-	Cine -> Genere [label=genere, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,96,225 266,454 257,440 246,428 233,418 211,400 192,419 170,400 123,356 105,279 98,235", lp="270,427"];
-	Cine -> Persona [label="actors*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,309,400 310,454 310,440 309,425 309,410", lp="328,427"];
-	Contingut -> Serie [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,304,744 297,737 259,702 218,663 182,629", lp="250,681"];
-	Serie -> Genere [label=genere_serie, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,93,225 94,479 93,465 92,450 91,436 88,365 91,281 93,235", lp="126,427"];
-	Serie -> Persona [label="actorsS*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,190,400 145,479 158,458 171,434 185,409", lp="206,427"];
-	Contingut -> Persona [label="director*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,397,400 417,708 424,633 428,537 411,454 408,439 404,424 400,410", lp="447,554"];
-	Contingut -> Documental [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,494,767 502,761 594,697 720,610 774,572", lp="629,681"];
-	Documental -> Politica [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,841,551 851,550 939,542 1119,510 1212,400 1257,346 1254,256 1251,218", lp="1193,427"];
-	Documental -> Naturalesa [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,841,546 851,544 963,520 1223,461 1286,400 1324,362 1349,306 1363,262", lp="1266,427"];
-	Documental -> Art [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,759,544 749,541 683,523 570,480 512,400 471,343 472,256 474,218", lp="546,427"];
+|{estatCivil|Symbol|{casada|divorciada|soltera|...}}|{sexe|Symbol|{home|dona}}|{...}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="162.89,299", rects="10.39,481,315.39,507 10.39,377,109.39,481 109.39,377,214.39,481 214.39,455,315.39,481 214.39,429,315.39,455 214.39,403,315.39,429\
+ 214.39,377,315.39,403 10.39,299,141.39,377 141.39,299,208.39,377 208.39,351,315.39,377 208.39,325,315.39,351 208.39,299,315.39\
+,325 10.39,273,156.39,299 156.39,273,315.39,299 10.39,169,114.39,273 114.39,169,205.39,273 205.39,247,315.39,273 205.39,221,315.39\
+,247 205.39,195,315.39,221 205.39,169,315.39,195 10.39,117,102.39,169 102.39,117,214.39,169 214.39,143,315.39,169 214.39,117,315.39\
+,143 10.39,91,315.39,117", width="4.2222", height="5.7917"];
+	Economia [label=Economia, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="917.89,299", width="1.1389", height="0.5"];
+	Documental [label=Documental, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="963.89,667", width="1.3889", height="0.5"];
+	Ambientacio [label=Ambientacio, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="310.89,18", width="1.3889", height="0.5"];
+	Genere [label="{Genere|{nomGenere|String}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="410.89,299", rects="332.39,299,489.39,325 332.39,273,430.39,299 430.39,273,489.39,299", width="2.1667", height="0.73611"];
+	Ciencia [label=Ciencia, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="1009.9,299", width="0.91667", height="0.5"];
+	Tecnologia [label="{Tecnologia|{ambit|Symbol|{Informatica|Telecomunicacions|Aviacio|...}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="1193.9,299", rects="1060.9,338,1326.9,364 1060.9,234,1116.9,338 1116.9,234,1183.9,338 1183.9,312,1326.9,338 1183.9,286,1326.9,312 1183.9,260,1326.9,\
+286 1183.9,234,1326.9,260", width="3.6944", height="1.8194"];
+	Esports [label=Esports, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="1378.9,299", width="0.94444", height="0.5"];
+	Actualitat [label=Actualitat, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="1472.9,299", width="1.1667", height="0.5"];
+	Format [label=Format, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="410.89,18", width="0.88889", height="0.5"];
+	Historia [label="{Historia|{epoca|Symbol|{Moderna|Medieval|Prehistòria|...}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="1639.9,299", rects="1532.4,338,1747.4,364 1532.4,234,1588.4,338 1588.4,234,1655.4,338 1655.4,312,1747.4,338 1655.4,286,1747.4,312 1655.4,260,1747.4,\
+286 1655.4,234,1747.4,260", width="2.9722", height="1.8194"];
+	Cine [label="{Cine|{genere|Instance*|{Genere}}|{actors|Instance*|{Persona}}|{versioOriginal|Boolean}|{nacionalitat|String}|{format|Symbol|{3D\
+|BiN|COLOR}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="206.89,667", rects="98.89,745,314.89,771 98.89,719,163.89,745 163.89,719,246.89,745 246.89,719,314.89,745 98.89,693,158.89,719 158.89,693,242.89,719\
+ 242.89,693,314.89,719 98.89,667,226.89,693 226.89,667,314.89,693 98.89,641,225.89,667 225.89,641,314.89,667 98.89,563,167.89,641\
+ 167.89,563,241.89,641 241.89,615,314.89,641 241.89,589,314.89,615 241.89,563,314.89,589", width=3, height="2.9028"];
+	Contingut [label="{Contingut|{idioma|Symbol*|{Espanyol|Angles|Catala|...}}|{ferirSensibilitat|Boolean}|{descripcio|String}|{any|Integer}|{director\
+|Instance*|{Persona}}|{...}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="359.89,957", rects="247.89,1061,471.89,1087 247.89,957,312.89,1061 312.89,957,389.89,1061 389.89,1035,471.89,1061 389.89,1009,471.89,1035 389.89,983\
+,471.89,1009 389.89,957,471.89,983 247.89,931,384.89,957 384.89,931,471.89,957 247.89,905,371.89,931 371.89,905,471.89,931 247.89\
+,879,346.89,905 346.89,879,471.89,905 247.89,853,317.89,879 317.89,853,400.89,879 400.89,853,471.89,879 247.89,827,471.89,853", width="3.1111", height="3.625"];
+	Serie [label="{Serie|{resum|String}|{num_temporada|Integer}|{genere_serie|Instance*|{Genere}}|{num_capitol|Integer}|{actorsS|Instance*|{Persona\
+}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="460.89,667", rects="332.89,719,588.89,745 332.89,693,460.89,719 460.89,693,588.89,719 332.89,667,491.89,693 491.89,667,588.89,693 332.89,641,437.89,\
+667 437.89,641,520.89,667 520.89,641,588.89,667 332.89,615,476.89,641 476.89,615,588.89,641 332.89,589,411.89,615 411.89,589,505.89\
+,615 505.89,589,588.89,615", width="3.5556", height="2.1806"];
+	Estil [label=Estil, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="487.89,18", width="0.75", height="0.5"];
+	Politica [label=Politica, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="538.89,299", width="0.88889", height="0.5"];
+	Naturalesa [label="{Naturalesa|{tema|Symbol|{Geologia|Mamifers|Peixos|...}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="687.89,299", rects="588.89,338,786.89,364 588.89,234,640.89,338 640.89,234,707.89,338 707.89,312,786.89,338 707.89,286,786.89,312 707.89,260,786.89,\
+286 707.89,234,786.89,260", width="2.75", height="1.8194"];
+	Art [label=Art, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="831.89,299", width="0.75", height="0.5"];
+	Documental -> Economia [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,961.61,648.75 960.34,638.58 951.31,566.33 927.65,377.11 920.18,317.36", lp="956.39,535"];
+	Genere -> Ambientacio [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,401.57,272.82 398.18,263.29 376.63,202.74 333.69,82.067 317.38,36.233", lp="340.39,63"];
+	Documental -> Ciencia [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,966.17,648.75 967.44,638.58 976.47,566.33 1000.1,377.11 1007.6,317.36", lp="990.39,535"];
+	Documental -> Tecnologia [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,975.3,648.75 980.63,640.22 1016.6,582.69 1102.1,445.91 1153.2,364.06", lp="1060.4,535"];
+	Documental -> Esports [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,1013.9,660.48 1024,658.76 1107.3,644.01 1256.7,605 1335.9,508 1382.4,451.05 1382.6,356.76 1380.4,317.28", lp="1323.4,535"];
+	Documental -> Actualitat [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,1014.2,656.26 1024,654.06 1135.9,628.78 1369.3,569.85 1421.9,508 1470,451.38 1474.1,356.5 1473.6,317.05", lp="1408.4,535"];
+	Genere -> Format [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,410.89,272.82 410.89,262.54 410.89,201.75 410.89,81.878 410.89,36.233", lp="420.39,63"];
+	Documental -> Historia [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,1014.1,658.22 1024.1,656.38 1152.4,632.76 1447.2,572.79 1523.9,508 1568.7,470.09 1599.4,410.24 1617.9,364.28", lp="1502.4,535"];
+	Contingut -> Cine [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,291.22,826.85 286.36,817.63 278.09,801.96 269.78,786.2 261.81,771.09", lp="288.39,799"];
+	Cine -> Genere [label="genere*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,407.54,325.14 228.9,562.76 235.43,549.03 243.91,536.21 254.89,526 278.1,504.42 299.97,528.8 323.89,508 375.73,462.92 397.33,381.98\
+ 405.83,335.15", lp="282.89,535"];
+	Cine -> Persona [label="actors*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,172.16,507.11 180.11,562.91 178.91,556.54 177.81,550.2 176.89,544 175.59,535.27 174.4,526.36 173.33,517.34", lp="201.89,535"];
+	Contingut -> Serie [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,405.22,826.85 408.52,817.36 417.16,792.55 425.87,767.54 433.64,745.23", lp="425.39,799"];
+	Serie -> Genere [label="genere_serie*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,409.44,325.01 431.14,588.8 426.61,574.11 422.56,558.73 419.89,544 406.63,470.8 407.28,383.35 409.03,335.23", lp="468.39,535"];
+	Serie -> Persona [label="actorsS*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,315.47,497.75 392.43,588.8 379.57,573.97 366.28,558.55 353.89,544 343.29,531.56 332.53,518.63 321.79,505.5", lp="383.39,535"];
+	Genere -> Estil [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,418.06,272.82 420.78,262.91 437.4,202.25 470.36,81.972 482.89,36.233", lp="485.39,63"];
+	Contingut -> Documental [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,472.08,903.13 481.1,898.8 619.77,832.22 838.91,727 926.2,685.09", lp="707.39,799"];
+	Contingut -> Persona [label="director*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,35.003,507.22 247.55,926.87 171.16,899.88 75.777,851.92 28.89,772 -16.693,694.3 -1.9137,600.27 31.204,516.59", lp="59.39,667"];
+	Documental -> Politica [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,913.87,661.33 903.77,659.78 818.05,646.15 662.02,608.33 579.89,508 533.28,451.06 534.36,356.35 537.15,317", lp="619.39,535"];
+	Documental -> Naturalesa [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,940.04,648.78 931.78,642.2 895.49,612.99 836.23,561.63 795.89,508 762.5,463.61 734.11,407.4 714.82,364.46", lp="833.39,535"];
+	Documental -> Art [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,949.6,648.61 943.43,640.27 921.26,609.9 886.55,558.05 867.89,508 842.74,440.55 835.01,354.23 832.76,317.2", lp="891.39,535"];
 }
