@@ -90,10 +90,23 @@ interes 7 ?v
 Bloc 1.3:
 ~~~~~~~~~
 contingut-preferit (series cine documentals)
-duracio-prefer (llarg curt mig) --->>FALTA
+duracio-prefer (llarg curt mig)
 hores-tv (1 2 3)
 xxx-permes
 contingut-sensible-permes
 versio-original-permes
-passio-per* --->> FALTA
+actors-preferits
+passio-per
+pelis-antigues
+
+==A ELIMINAR==
+
+Continguts XXX si xxx-no-permes o menor de 18
+Continguts ferirSensibilitat si contingut-sensible-permes FALSE o <16
+Continguts versioOriginal si versio-original-permes FALSE
+Continguts de Genere Musical si discapacitat-audiovisual "auditiva"
+Continguts sense subtitols si discapacitat-audiovisual "visual"
+Continguts versioOriginal FALSE i amb idioma que no està dins els idiomes que enten l'usuari.
+Continguts homosexuals si heterosexual.
+
 
