@@ -3159,43 +3159,13 @@
 
 ;;; Saltem al modul de les assumpcions
 
-(defrule a-assumpcions-incondicionals
+(defrule a-esborrar-instancies
     (declare (salience -1))
     =>
-    (focus assumpcions-incondicionals)
-)
-;;; 2.1 MODUL D'ASSUMPCIONS
-(defmodule assumpcions-incondicionals "Modul d'assignacions incondicionals"
-    (import preguntes-especifiques ?ALL)
-    (export ?ALL)
+    (focus esborrar-instancies)
 )
 
-;;****************************************************************************************************************************************ASSUMPCIONS
-;;Si l'usuari te menys de 13 anys, li interessa molt "Animacio"
-(defrule infantil
-    (usuari (edat ?e&: (< ?e 13)))
-    =>
-    (assert
-        (interesaMolt Animacio)
-    )
-)
-
-(defrule prob-xxx
-    (usuari (sexe dona))
-    =>
-    (assert
-        (interesaMolt Romantiques)
-        (interesaPoc XXX)
-    )
-)
-
-(defrule a-esborrar-instancies
-	(declare (salience -1))
-	=>
-	(focus esborrar-instancies)
-)
-
-;;; 2.2 MODUL ESBORRAR INSTANCIES
+;;; 2.1 MODUL ESBORRAR INSTANCIES
 ;;;
 ;;*************************************************************************************************************************************ESBORRAR INSTANCIES
 (defmodule esborrar-instancies "Modul d'esborrar instances"
@@ -3245,6 +3215,37 @@
 	(printout t "S'ha esborrat, per ferir sensibilitat: " (send ?contingut get-titol) crlf)
 	(send ?contingut delete)
 	
+)
+
+(defrule a-assumpcions-incondicionals
+	(declare (salience -1))
+	=>
+	(focus assumpcions-incondicionals)
+)
+
+;;; 2.2 MODUL D'ASSUMPCIONS
+(defmodule assumpcions-incondicionals "Modul d'assignacions incondicionals"
+    (import preguntes-especifiques ?ALL)
+    (export ?ALL)
+)
+
+;;****************************************************************************************************************************************ASSUMPCIONS
+;;Si l'usuari te menys de 13 anys, li interessa molt "Animacio"
+(defrule infantil
+    (usuari (edat ?e&: (< ?e 13)))
+    =>
+    (assert
+        (interesaMolt Animacio)
+    )
+)
+
+(defrule prob-xxx
+    (usuari (sexe dona))
+    =>
+    (assert
+        (interesaMolt Romantiques)
+        (interesaPoc XXX)
+    )
 )
 
 (defrule a-associacio-heuristica
