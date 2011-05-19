@@ -2943,8 +2943,23 @@
 	
     )
 )
-;;; Template que emmagatzema un contingut i la seva puntuacio
+;;; Template que emmagatzema un contingut de tipus cine i la seva puntuacio
 (deftemplate cine-amb-puntuacio
+    (slot titol)
+    (slot descripcio)
+    (slot puntuacio)
+)
+
+;;; Template que emmagatzema un contingut de tipus serie i la seva puntuacio
+(deftemplate serie-amb-puntuacio
+    (slot titol)
+    (slot resum)
+	(slot num-capitol)
+    (slot puntuacio)
+)
+
+;;; Template que emmagatzema un contingut de tipus documental i la seva puntuacio
+(deftemplate documental-amb-puntuacio
     (slot titol)
     (slot descripcio)
     (slot puntuacio)
@@ -3030,7 +3045,7 @@
     (export ?ALL)
 )
 ;;*************************************************************************************************************************************DEFINIR L'USUARI
-;;Regla que inicialitza els templates (va aqui??)
+;; Regla que inicialitza els templates (va aqui??)
 (defrule inicialitza-cine-puntuacions
 	(declare (salience 10))
 	?contingut <- (object (is-a Cine))
@@ -3043,6 +3058,35 @@
 		)
 	)
 )
+(defrule inicialitza-serie-puntuacions
+	(declare (salience 10))
+	?contingut <- (object (is-a Serie))
+	=>
+	(assert
+		(serie-amb-puntuacio
+			(titol (send ?contingut get-titol))
+			(resum (send ?contingut get-resum))
+			(num-capitol (send ?contingut get-num_capitol))
+			(puntuacio 0)
+		)
+	)
+)
+(defrule inicialitza-documental-puntuacions
+	(declare (salience 10))
+	?contingut <- (object (is-a Documental))
+	=>
+	(assert
+		(documental-amb-puntuacio
+			(titol (send ?contingut get-titol))
+			(descripcio (send ?contingut get-descripcio))
+			(puntuacio 0)
+		)
+	)
+)
+
+
+
+
 ;;; Quina edat tens? (0-120)
 (defrule determinar-edat
     ?u <- (usuari (edat -1))
