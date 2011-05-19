@@ -2766,7 +2766,7 @@
     )
 )
 ;;; Template que emmagatzema un contingut i la seva puntuacio
-(deftemplate contingut-amb-puntuacio
+(deftemplate cine-amb-puntuacio
     (slot titol)
     (slot descripcio)
     (slot puntuacio)
@@ -2852,27 +2852,26 @@
     (export ?ALL)
 )
 ;;*************************************************************************************************************************************DEFINIR L'USUARI
-;;; Quina edat tens? (0-120)
-(defrule determinar-edat
-    ?u <- (usuari (edat -1))
-	?contingut <- (object (is-a Contingut) (titol "Buenafuente"))
-    =>
-;;     (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
-;;     (modify ?u (edat ?edatLlegida))
-;; 	
-;; 	(printout t "S'ha MODIFICAT el titol de: " (send ?contingut get-titol) crlf)
-;; 	(printout t "S'ha MODIFICAT el titol de: " ?contingut crlf)
-;; 	(send ?contingut put-titol "JIJIJIJEJEJE")
-;; 	(printout t "NOU TITOL: " (send ?contingut get-titol) crlf)
-	
-	(deffacts tipus-continguts
-		(contingut-amb-puntuacio
+;;Regla que inicialitza els templates (va aqui??)
+(defrule inicialitza-cine-puntuacions
+	(declare (salience 10))
+	?contingut <- (object (is-a Cine))
+	=>
+	(assert
+		(cine-amb-puntuacio
 			(titol (send ?contingut get-titol))
 			(descripcio (send ?contingut get-descripcio))
 			(puntuacio 0)
 		)
 	)
-    
+)
+;;; Quina edat tens? (0-120)
+(defrule determinar-edat
+    ?u <- (usuari (edat -1))
+    =>
+    (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
+    (modify ?u (edat ?edatLlegida))
+
 ;;PROVES PROVES PROVES-->> PER PROVES DE ESBORRAR XXX
 ;;     (assert (xxx-permes FALSE))
 ;; 	(assert (contingut-sensible-permes FALSE))
