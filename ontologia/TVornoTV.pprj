@@ -1,4 +1,4 @@
-; Tue May 17 11:09:29 CEST 2011
+; Sat May 21 19:04:18 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -20,23 +20,23 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[TVornoTV_ProjectKB_Class10149]
-		[TVornoTV_ProjectKB_Class10150]
-		[TVornoTV_ProjectKB_Class10151]
-		[TVornoTV_ProjectKB_Class10152]
-		[TVornoTV_ProjectKB_Class10153]
-		[TVornoTV_ProjectKB_Class10154]
-		[TVornoTV_ProjectKB_Class10155]
-		[TVornoTV_ProjectKB_Class10156]
-		[TVornoTV_ProjectKB_Class10157]
-		[TVornoTV_ProjectKB_Class10158]
-		[TVornoTV_ProjectKB_Class10159]
-		[TVornoTV_ProjectKB_Class10160]
-		[TVornoTV_ProjectKB_Class10161]
-		[TVornoTV_ProjectKB_Class10162]
-		[TVornoTV_ProjectKB_Class10163]
-		[TVornoTV_ProjectKB_Class10164]
-		[TVornoTV_ProjectKB_Class10165]))
+		[TVornoTV_ProjectKB_Class66]
+		[TVornoTV_ProjectKB_Class67]
+		[TVornoTV_ProjectKB_Class68]
+		[TVornoTV_ProjectKB_Class69]
+		[TVornoTV_ProjectKB_Class70]
+		[TVornoTV_ProjectKB_Class71]
+		[TVornoTV_ProjectKB_Class72]
+		[TVornoTV_ProjectKB_Class73]
+		[TVornoTV_ProjectKB_Class74]
+		[TVornoTV_ProjectKB_Class75]
+		[TVornoTV_ProjectKB_Class76]
+		[TVornoTV_ProjectKB_Class77]
+		[TVornoTV_ProjectKB_Class78]
+		[TVornoTV_ProjectKB_Class79]
+		[TVornoTV_ProjectKB_Class80]
+		[TVornoTV_ProjectKB_Class81]
+		[TVornoTV_ProjectKB_Class82]))
 
 ([CLSES_TAB] of  Widget
 
@@ -88,9 +88,9 @@
 ([KB_392334_Class1] of  Map
 
 	(entries
-		[TVornoTV_ProjectKB_Class10166]
-		[TVornoTV_ProjectKB_Class10167]
-		[TVornoTV_ProjectKB_Class10168]))
+		[TVornoTV_ProjectKB_Class83]
+		[TVornoTV_ProjectKB_Class84]
+		[TVornoTV_ProjectKB_Class85]))
 
 ([KB_392334_Class10] of  Property_List
 )
@@ -544,7 +544,7 @@
 ([KB_392334_Class99] of  Property_List
 )
 
-([KB_396633_Class3] of  Map
+([KB_945806_Class3] of  Map
 )
 
 ([LAYOUT_PROPERTIES] of  Property_List
@@ -631,8 +631,8 @@
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[STANDARD_SLOT_FORM_WIDGET]
 		[STANDARD_FACET_FORM_WIDGET]
+		[STANDARD_SLOT_FORM_WIDGET]
 		[PAL_FORM_WIDGET]
 		[STANDARD_CLASS_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")
@@ -1013,115 +1013,115 @@
 		[STANDARD_SLOT_TYPE_WIDGET]
 		[KB_392334_Class92]))
 
-([TVornoTV_ProjectKB_Class10149] of  String
+([TVornoTV_ProjectKB_Class107] of  String
+
+	(name "SearchTab_Query"))
+
+([TVornoTV_ProjectKB_Class66] of  String
 
 	(name "Persona")
 	(string_value "nom"))
 
-([TVornoTV_ProjectKB_Class10150] of  String
+([TVornoTV_ProjectKB_Class67] of  String
 
 	(name "Economia")
 	(string_value "{DO_ECO_}titol"))
 
-([TVornoTV_ProjectKB_Class10151] of  String
+([TVornoTV_ProjectKB_Class68] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([TVornoTV_ProjectKB_Class10152] of  String
+([TVornoTV_ProjectKB_Class69] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([TVornoTV_ProjectKB_Class10153] of  String
+([TVornoTV_ProjectKB_Class70] of  String
 
 	(name "Esports")
 	(string_value "{DO_ES_}titol"))
 
-([TVornoTV_ProjectKB_Class10154] of  String
+([TVornoTV_ProjectKB_Class71] of  String
 
 	(name "Ciencia")
 	(string_value "{DO_CI_}titol"))
 
-([TVornoTV_ProjectKB_Class10155] of  String
+([TVornoTV_ProjectKB_Class72] of  String
 
 	(name "Tecnologia")
 	(string_value "{DO_T_}titol"))
 
-([TVornoTV_ProjectKB_Class10156] of  String
+([TVornoTV_ProjectKB_Class73] of  String
 
 	(name "Actualitat")
 	(string_value "{DO_AC_}titol"))
 
-([TVornoTV_ProjectKB_Class10157] of  String
+([TVornoTV_ProjectKB_Class74] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([TVornoTV_ProjectKB_Class10158] of  String
+([TVornoTV_ProjectKB_Class75] of  String
 
 	(name "Historia")
 	(string_value "{DO_HI_}titol"))
 
-([TVornoTV_ProjectKB_Class10159] of  String
+([TVornoTV_ProjectKB_Class76] of  String
 
 	(name "Cine")
 	(string_value "{CI_}titol"))
 
-([TVornoTV_ProjectKB_Class10160] of  String
+([TVornoTV_ProjectKB_Class77] of  String
 
 	(name "Serie")
 	(string_value "{SE}titol{-}num_temporada{x}num_capitol"))
 
-([TVornoTV_ProjectKB_Class10161] of  String
-
-	(name "Documental")
-	(string_value "{DO}titol"))
-
-([TVornoTV_ProjectKB_Class10162] of  String
+([TVornoTV_ProjectKB_Class78] of  String
 
 	(name "Genere")
 	(string_value "nomGenere"))
 
-([TVornoTV_ProjectKB_Class10163] of  String
+([TVornoTV_ProjectKB_Class79] of  String
+
+	(name "Documental")
+	(string_value "{DO}titol"))
+
+([TVornoTV_ProjectKB_Class80] of  String
 
 	(name "Politica")
 	(string_value "{DO_PO_}titol"))
 
-([TVornoTV_ProjectKB_Class10164] of  String
+([TVornoTV_ProjectKB_Class81] of  String
 
 	(name "Naturalesa")
 	(string_value "{DO_NA_}titol"))
 
-([TVornoTV_ProjectKB_Class10165] of  String
+([TVornoTV_ProjectKB_Class82] of  String
 
 	(name "Art")
 	(string_value "{DO_AR_}titol"))
 
-([TVornoTV_ProjectKB_Class10166] of  Map_Entry
+([TVornoTV_ProjectKB_Class83] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([TVornoTV_ProjectKB_Class10167] of  Map_Entry
+([TVornoTV_ProjectKB_Class84] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([TVornoTV_ProjectKB_Class10168] of  Map_Entry
+([TVornoTV_ProjectKB_Class85] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
-
-([TVornoTV_ProjectKB_Class107] of  String
-
-	(name "SearchTab_Query"))
 
 ([VERTICAL_STRETCHER] of  String
 
