@@ -6,7 +6,7 @@
 ;;****************
 
 
-; Tue May 17 11:09:29 CEST 2011
+; Sat May 21 19:04:18 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -37,15 +37,15 @@
 		(allowed-values Informatica Telecomunicacions Aviacio Nautica Construccio Mecanica)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(single-slot nacionalitat
+;+		(comment "Defineix el pais de produccio de la pel·licula. Pot ser Espanyola, Francesa, EEUU, etc.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot rol
 ;+		(comment "Rol que tindra la persona en un contingut determinat.")
 		(type SYMBOL)
 		(allowed-values actor director)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot nacionalitat
-;+		(comment "Defineix el pais de produccio de la pel·licula. Pot ser Espanyola, Francesa, EEUU, etc.")
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot tematica
@@ -97,17 +97,17 @@
 		(range 1 1000)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot num_capitol
-;+		(comment "Nombre del capitol de la serie.")
-		(type INTEGER)
-		(range 1 1000)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot duracio
 ;+		(comment "Duracio en minuts del contingut. Ex. 60', 90', 120', etc.")
 		(type INTEGER)
 		(range 0 600)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot num_capitol
+;+		(comment "Nombre del capitol de la serie.")
+		(type INTEGER)
+		(range 1 1000)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot sexe
 ;+		(comment "Sexe de la persona")
@@ -228,16 +228,16 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot director
+;+		(comment "Relacio que indica que una Persona te com a rol director per un Contingut determinat.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
+		(create-accessor read-write))
 	(single-slot any
 ;+		(comment "Any en que el contingut s'ha realitzat. P.ex. correspondria a la data de filmacio d'una pel·licula.")
 		(type INTEGER)
 		(range 1895 2012)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot director
-;+		(comment "Relacio que indica que una Persona te com a rol director per un Contingut determinat.")
-		(type INSTANCE)
-;+		(allowed-classes Persona)
 		(create-accessor read-write))
 	(single-slot titol
 ;+		(comment "Nom o titol del contingut, per exemple \"Terminator 3\" o \"Doraemon\"")
@@ -278,11 +278,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes Persona)
 		(create-accessor read-write))
-	(single-slot versioOriginal
-;+		(comment "Indica si aquesta pel·licula pot ser emesa en versio original. (Si inclou l'idioma original en que es grava).")
+	(single-slot format
+;+		(comment "Descriu el format en que s'emet la pel·licula. Pot ser en color, blanc i negre o en 3D.")
 		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-		(default FALSE)
+		(allowed-values 3D BiN COLOR)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot nacionalitat
@@ -290,10 +289,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot format
-;+		(comment "Descriu el format en que s'emet la pel·licula. Pot ser en color, blanc i negre o en 3D.")
+	(single-slot versioOriginal
+;+		(comment "Indica si aquesta pel·licula pot ser emesa en versio original. (Si inclou l'idioma original en que es grava).")
 		(type SYMBOL)
-		(allowed-values 3D BiN COLOR)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -305,17 +305,17 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot num_temporada
-;+		(comment "Temporada de la serie.")
-		(type INTEGER)
-		(range 1 1000)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(multislot genere_serie
 ;+		(comment "Genere del contingut de tipus Serie.")
 		(type INSTANCE)
 ;+		(allowed-classes Genere)
 		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot num_temporada
+;+		(comment "Temporada de la serie.")
+		(type INTEGER)
+		(range 1 1000)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot num_capitol
 ;+		(comment "Nombre del capitol de la serie.")
@@ -395,15 +395,15 @@
 		(type SYMBOL)
 		(allowed-values Angles Frances Catala Espanyol Italia)
 		(create-accessor read-write))
+	(single-slot nom
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot orientacioSexual
 ;+		(comment "Orientacio sexual de la persona.")
 		(type SYMBOL)
 		(allowed-values heterosexual homosexual bisexual)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot nom
-		(type STRING)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot estatCivil
 ;+		(comment "La persona esta casada, divorciada, etc?")
@@ -411,16 +411,16 @@
 		(allowed-values casada divorciada soltera separada)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot sexe
-;+		(comment "Sexe de la persona")
-		(type SYMBOL)
-		(allowed-values home dona)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot edat
 ;+		(comment "Edat de la persona")
 		(type INTEGER)
 		(range 0 120)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot sexe
+;+		(comment "Sexe de la persona")
+		(type SYMBOL)
+		(allowed-values home dona)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot nivellEconomic
@@ -451,15 +451,13 @@
 	(is-a Genere)
 	(role concrete))
 
-
 ;;****************
 ;;*  INSTÀNCIES  *
 ;;****************
 
 (definstances instancies
 
-
-; Tue May 17 11:09:29 CEST 2011
+; Sat May 21 19:04:18 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -2679,6 +2677,20 @@
 	(subtitols FALSE)
 	(titol "Titanic"))
 
+([TVornoTV_Class60000] of  Cine
+
+	(any 2003)
+	(descripcio "Esta Pelicula contiene imagenes explicitas de sexo, para su visionado debes ser mayor de edad.")
+	(duracio 45)
+	(edatRecomanada 18)
+	(ferirSensibilitat FALSE)
+	(format COLOR)
+	(genere [TVornoTV_Class50001])
+	(nacionalitat "Angles")
+	(subtitols FALSE)
+	(titol "110 por ciento natural")
+	(versioOriginal FALSE))
+
 ([TVornoTV_Class60001] of  Serie
 
 	(any 2003)
@@ -2844,13 +2856,15 @@
 	(any 2003)
 	(descripcio "Esta Pelicula contiene imagenes explicitas de sexo, para su visionado debes ser mayor de edad.")
 	(duracio 45)
-	(edatRecomanada 18)
+	(edatRecomanada 16)
 	(ferirSensibilitat FALSE)
 	(format COLOR)
-	(genere [TVornoTV_Class50001])
-	(nacionalitat "Angles")
+	(genere
+		[TVornoTV_Class50001]
+		[TVornoTV_Class50002])
+	(nacionalitat "Francesa")
 	(subtitols FALSE)
-	(titol "110 por ciento natural")
+	(titol "Los amigos")
 	(versioOriginal FALSE))
 
 ([TVornoTV_Class70008] of  Cine
@@ -2906,9 +2920,7 @@
 	(titol "Sortida BWR 2011"))
 
 
-
 )
-
 ;;FI INSTANCIES
 
 
@@ -3014,6 +3026,27 @@
 	?res
 )
 
+;;Funcio que retorna TRUE si cap element de la llista1 es dins la llista2.
+(deffunction algun-de-llista1-esdins-llista2 (?llista1 ?llista2)
+    (bind ?result FALSE)
+    (bind ?i 1)
+    (while (<= ?i (length$ $?llista1))
+	do
+		(bind ?llista1Actual (nth$ ?i $?llista1))
+		(bind ?j 1)
+		(while (<= ?j (length$ $?llista2))
+			(bind ?llista2Actual (nth$ ?j $?llista2))
+			(if (eq (str-compare llista1Actual llista2Actual) 0)
+				then
+				(bind ?result TRUE)
+				(break))	
+			(bind ?j (+ ?j 1))	
+		)
+		(bind ?i (+ ?i 1))
+    )
+    ?result
+)
+
 ;;; Fa una pregunta a la qual se li ha de respondre un numero en un rang
 ;;; Obte una llista de continguts de una categoria determinada
 ;;; Obte una llista de continguts d'una duració determinada
@@ -3083,9 +3116,6 @@
 		)
 	)
 )
-
-
-
 
 ;;; Quina edat tens? (0-120)
 (defrule determinar-edat
@@ -3416,7 +3446,9 @@
 )
 ;;Si XXX no esta permes eliminem tot XXX
 (defrule esborrar-xxx-no-permes
-    (xxx-permes FALSE)
+    (or (xxx-permes FALSE)
+	(usuari (edat ?e&: (< ?e 18)))
+    )
     (or
 		?contingut <- (object (is-a Contingut) (genere $?generes))
 		?contingut <- (object (is-a Contingut) (genere_serie $?generes))
@@ -3434,16 +3466,85 @@
 		)
 		(bind ?i (+ ?i 1))
     )
-
 )
 ;;Si no vol continguts que pugin ferir sensibilitat, eliminar tots els que tinguin contingut dur.
 (defrule esborrar-ferir-sensibilitat-no-permes
-	(contingut-sensible-permes FALSE)
+	(or (contingut-sensible-permes FALSE)
+   	    (usuari (edat ?e&: (< ?e 16)))
+	)
 	?contingut <- (object (is-a Contingut) (ferirSensibilitat TRUE))
 	=>
 	(printout t "S'ha esborrat, per ferir sensibilitat: " (send ?contingut get-titol) crlf)
 	(send ?contingut delete)
 	
+)
+
+;;Funcio a repassar!----------------------------------------------------------------------------------------------------------------------------------------------
+(defrule esborrar-versio-original-no-permes-i-no-lenten
+	?vopermes <- (versio-original-permes)
+	?u <- (usuari (idiomes $?llistaIdiomesUsr))
+	?contingut <- (object (is-a Contingut) (idioma $?llistaIdiomesCont))
+	=>
+	(bind ?algunsubset (algun-de-llista1-esdins-llista2 $?llistaIdiomesUsr $?llistaIdiomesCont))
+	(if (eq ?algunsubset FALSE)
+	then
+		(
+		if (eq ?vopermes TRUE)
+		then
+		   (if (eq (send ?contingut get-versioOriginal) FALSE)
+		   then
+		       (printout t "S'ha esborrat, per no voler continguts en V.O.: " (send ?contingut get-titol) crlf)
+		       (send ?contingut delete)
+		   )
+		else	
+		       (printout t "S'ha esborrat, per no voler continguts en V.O.: " (send ?contingut get-titol) crlf)
+		       (send ?contingut delete)
+		)
+	)
+)
+
+(defrule esborrar-musicals-discapacitat-auditiva
+	(discapacitat-audiovisual "auditiva")
+	?contingut <- (object (is-a Contingut) (genere $?generes))
+	=>
+   (bind ?i 1)
+    (while (<= ?i (length$ $?generes))
+	do
+		(bind ?genereActual (nth$ ?i $?generes))
+		(if (eq (str-compare (send (instance-address * ?genereActual) get-nomGenere) "Musical") 0)
+		then
+			(printout t "S'ha esborrat, perque es un musical i l'usuari es sord : " (send ?contingut get-titol) crlf)
+			(send ?contingut delete)
+			(break)
+		)
+		(bind ?i (+ ?i 1))
+    )	
+)
+
+(defrule esborrar-sense-subtitols-discapacitat-auditiva
+	(discapacitat-audiovisual "auditiva")
+	?contingut <- (object (is-a Contingut) (subtitols FALSE))
+	=>
+	(printout t "S'ha esborrat, per no tenir subtitols i ser l'usuari sord: " (send ?contingut get-titol) crlf)
+	(send ?contingut delete)
+)
+
+(defrule esborrar-contingut-homo-si-hetero
+	(usuari (orientacio-sexual ?o&: (eq (str-compare ?o "heterosexual") 0)))
+	?contingut <- (object (is-a Contingut) (genere $?generes))
+	=>
+  (bind ?i 1)
+    (while (<= ?i (length$ $?generes))
+	do
+		(bind ?genereActual (nth$ ?i $?generes))
+		(if (eq (str-compare (send (instance-address * ?genereActual) get-nomGenere) "Homosexual") 0)
+		then
+			(printout t "S'ha esborrat, per ser contingut homosex. i usuari heterosex.: " (send ?contingut get-titol) crlf)
+			(send ?contingut delete)
+			(break)
+		)
+		(bind ?i (+ ?i 1))
+    )	
 )
 
 (defrule a-assumpcions-incondicionals

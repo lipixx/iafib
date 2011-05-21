@@ -1,4 +1,4 @@
-; Tue May 17 11:09:29 CEST 2011
+; Sat May 21 19:04:18 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -2218,6 +2218,20 @@
 	(subtitols FALSE)
 	(titol "Titanic"))
 
+([TVornoTV_Class60000] of  Cine
+
+	(any 2003)
+	(descripcio "Esta Pelicula contiene imagenes explicitas de sexo, para su visionado debes ser mayor de edad.")
+	(duracio 45)
+	(edatRecomanada 18)
+	(ferirSensibilitat FALSE)
+	(format COLOR)
+	(genere [TVornoTV_Class50001])
+	(nacionalitat "Angles")
+	(subtitols FALSE)
+	(titol "110 por ciento natural")
+	(versioOriginal FALSE))
+
 ([TVornoTV_Class60001] of  Serie
 
 	(any 2003)
@@ -2383,13 +2397,15 @@
 	(any 2003)
 	(descripcio "Esta Pelicula contiene imagenes explicitas de sexo, para su visionado debes ser mayor de edad.")
 	(duracio 45)
-	(edatRecomanada 18)
+	(edatRecomanada 16)
 	(ferirSensibilitat FALSE)
 	(format COLOR)
-	(genere [TVornoTV_Class50001])
-	(nacionalitat "Angles")
+	(genere
+		[TVornoTV_Class50001]
+		[TVornoTV_Class50002])
+	(nacionalitat "Francesa")
 	(subtitols FALSE)
-	(titol "110 por ciento natural")
+	(titol "Los amigos")
 	(versioOriginal FALSE))
 
 ([TVornoTV_Class70008] of  Cine
