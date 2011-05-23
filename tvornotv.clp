@@ -3530,7 +3530,7 @@
 )
 
 (defrule esborrar-contingut-homo-si-hetero
-	(usuari (orientacio-sexual ?o&: (eq (str-compare ?o "heterosexual") 0)))
+	(usuari (orientacio-sexual "heterosexual"))
 	?contingut <- (object (is-a Contingut) (genere $?generes))
 	=>
   (bind ?i 1)
