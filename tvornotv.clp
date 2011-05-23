@@ -2977,6 +2977,11 @@
     (slot puntuacio)
 )
 
+;;; Template que emmagatzema un contingut de tipus documental i la seva puntuacio
+(deftemplate genere-amb-puntuacio
+    (slot nom-genere)
+    (slot puntuacio)
+)
 
 
 ;;; FUNCIONS
@@ -3105,6 +3110,19 @@
 	)
 )
 (defrule inicialitza-documental-puntuacions
+	(declare (salience 10))
+	?contingut <- (object (is-a Documental))
+	=>
+	(assert
+		(documental-amb-puntuacio
+			(titol (send ?contingut get-titol))
+			(descripcio (send ?contingut get-descripcio))
+			(puntuacio 0)
+		)
+	)
+)
+
+(defrule inicialitza-generes-puntuacions
 	(declare (salience 10))
 	?contingut <- (object (is-a Documental))
 	=>
