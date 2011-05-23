@@ -3124,15 +3124,45 @@
 
 (defrule inicialitza-generes-puntuacions
 	(declare (salience 10))
-	?contingut <- (object (is-a Documental))
+	?genere <- (object (is-a Genere))
 	=>
 	(assert
-		(documental-amb-puntuacio
-			(titol (send ?contingut get-titol))
-			(descripcio (send ?contingut get-descripcio))
+		(genere-amb-puntuacio
+			(nom-genere (send ?genere get-nomGenere))
 			(puntuacio 0)
 		)
 	)
+)
+
+(defrule inicialitza-tipus-docus-puntuacions
+	(declare (salience 10))
+	?docus <- (object (is-a Documental))
+	=>
+;; 	(printout t (str-cat (class ?docus)) crlf)
+	(assert
+		(genere-amb-puntuacio
+			(nom-genere (str-cat (class ?docus)))
+			(puntuacio 0)
+		)
+	)
+)
+;; ;; BUCLE infinit si no es comprova que ja s'ha fet l'increment!!!
+(defrule prova
+	(declare (salience 9))
+	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
+	(not(provafet ?nomG TRUE))
+    =>
+	(modify ?genere (puntuacio (+ ?punts 1)))
+	(assert (provafet ?nomG TRUE))
+)
+(defrule prova2
+	(declare (salience 8))
+	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
+	(not(prova2fet ?nomG TRUE))
+    =>
+	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
+	(assert (prova2fet ?nomG TRUE))
+;; 	(focus solucions)????
 )
 
 ;;; Quina edat tens? (0-120)
@@ -3571,7 +3601,7 @@
 	(focus assumpcions-incondicionals)
 )
 
-;;; 2.2 MODUL D'ASSUMPCIONS
+;;; 2.2 MODUL D'ASSUMPCIONS (puntuacions!!!!!!!!!!!!!!!!!!!!!)
 (defmodule assumpcions-incondicionals "Modul d'assignacions incondicionals"
     (import preguntes-especifiques ?ALL)
     (export ?ALL)
@@ -3579,13 +3609,23 @@
 
 ;;****************************************************************************************************************************************ASSUMPCIONS
 ;;Si l'usuari te menys de 13 anys, li interessa molt "Animacio"
-(defrule infantil
-    (usuari (edat ?e&: (< ?e 13)))
-    =>
-    (assert
-        (interesaMolt Animacio)
-    )
-)
+;;   if (edat < 13) 
+;;   {
+;;    +3: Animacio, Fantasia
+;;    +1: Comedia, Ciencia Ficcio, Aventura
+;;    -1: Catastrofe, Suspense, Policiaca, 
+;;    -3: Drama, Terror, Homosexual, Belic, Culte, DO_Actualitat, DO_Art, DO_Economia, DO_Politica
+;;   }
+;; (defrule infantil
+;;     (genere-amb-puntuacio ?genere)
+;;     =>
+;;     (if (eq (str-compare ?genere(send (instance-address * ?genereActual) get-nomGenere) "Homosexual") 0)
+;; 		then
+;; 			(printout t "S'ha esborrat, per ser contingut homosex. i usuari heterosex.: " (send ?contingut get-titol) crlf)
+;; 			(send ?contingut delete)
+;; 			(break)
+;; 		)
+;; )
 
 (defrule prob-xxx
     (usuari (sexe dona))
