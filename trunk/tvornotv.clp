@@ -3096,6 +3096,7 @@
 		)
 	)
 )
+
 (defrule inicialitza-serie-puntuacions
 	(declare (salience 10))
 	?contingut <- (object (is-a Serie))
@@ -3146,23 +3147,45 @@
 		)
 	)
 )
-;; ;; BUCLE infinit si no es comprova que ja s'ha fet l'increment!!!
-(defrule prova
+
+(defrule prova;;prova de la regla infantil, ha d'anar a modul 2.2
 	(declare (salience 9))
+	(usuari (edat ?e&: (< ?e 13)))
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
-	(not(provafet ?nomG TRUE))
+	(not(provafet ?nomG TRUE));; per evitar BUCLE infinit
     =>
-	(modify ?genere (puntuacio (+ ?punts 1)))
+	(switch ?nomG
+		(case "Animacio" then (modify ?genere (puntuacio (+ ?punts 3))))
+		(case "Fantasia" then (modify ?genere (puntuacio (+ ?punts 3))))
+		
+		(case "Comedia" then (modify ?genere (puntuacio (+ ?punts 1))))
+		(case "Ciencia Ficcio" then (modify ?genere (puntuacio (+ ?punts 1))))
+		(case "Aventura" then (modify ?genere (puntuacio (+ ?punts 1))))
+		
+		(case "Catastrofe" then (modify ?genere (puntuacio (+ ?punts -1))))
+		(case "Suspense" then (modify ?genere (puntuacio (+ ?punts -1))))
+		(case "Policiaca" then (modify ?genere (puntuacio (+ ?punts -1))))
+		
+		(case "Drama" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Terror" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Homosexual" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Belic" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Culte" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Actualitat" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Art" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Economia" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Politica" then (modify ?genere (puntuacio (+ ?punts -3))))
+	)
 	(assert (provafet ?nomG TRUE))
 )
-(defrule prova2
-	(declare (salience 8))
-	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
-	(not(prova2fet ?nomG TRUE))
+
+(defrule prova3;;imprimeix generes amb punts diferents de 0, per debug
+	(declare (salience 7))
+	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts&: (not(= ?punts 0))))
+	(not(prova3fet ?nomG TRUE))
     =>
 	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
-	(assert (prova2fet ?nomG TRUE))
-;; 	(focus solucions)????
+	(assert (prova3fet ?nomG TRUE))
 )
 
 ;;; Quina edat tens? (0-120)
@@ -3494,8 +3517,9 @@
 )
 ;;Si XXX no esta permes eliminem tot XXX
 (defrule esborrar-xxx-no-permes
-    (or (xxx-permes FALSE)
-	(usuari (edat ?e&: (< ?e 18)))
+    (or
+		(xxx-permes FALSE)
+		(usuari (edat ?e&: (< ?e 18)))
     )
     (or
 		?contingut <- (object (is-a Contingut) (genere $?generes))
