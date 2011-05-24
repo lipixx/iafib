@@ -3712,12 +3712,37 @@
 	(assert (titol-solucio-pintada TRUE))
 )
 
-(defrule escriu-adequades
-	(declare (salience 5))
-	?contingut <- (object (is-a Contingut))
-	=>
-	(printout t (send ?contingut get-titol) crlf)
+(defrule imprimeix-cines
+	(declare (salience 7))
+	?cines <- (cine-amb-puntuacio (titol ?titol-cine) (descripcio ?desc-cine) (puntuacio ?punts-cine&: (not(= ?punts-cine -10))))
+	(not(cont-impres ?titol-cine TRUE))
+    =>
+	(printout t "Cine,  Titol: " ?titol-cine  " Punts: " ?punts-cine crlf)
+	(assert (cont-impres ?titol-cine TRUE))
 )
+(defrule imprimeix-series
+	(declare (salience 6))
+	?series <- (serie-amb-puntuacio (titol ?titol-serie)(num-capitol ?capitol)(resum ?resum-serie) (puntuacio ?punts-serie&: (not(= ?punts-serie -10))))
+	(not(cont-impres ?titol-serie TRUE))
+    =>
+	(printout t "Serie, Titol: " ?titol-serie  " Punts: " ?punts-serie crlf)
+	(assert (cont-impres ?titol-serie TRUE))
+)
+(defrule imprimeix-docus
+	(declare (salience 5))
+	?documentals <- (documental-amb-puntuacio (titol ?titol-docu) (descripcio ?desc-docu) (puntuacio ?punts-docu&: (not(= ?punts-docu -10))))
+	(not(cont-impres ?titol-docu TRUE))
+    =>
+	(printout t "Documental, Titol: " ?titol-docu  " Punts: " ?punts-docu crlf)
+	(assert (cont-impres ?titol-docu TRUE))
+)
+
+;;(defrule escriu-adequades
+;;	(declare (salience 5))
+;;	?contingut <- (object (is-a Contingut))
+;;	=>
+;;	(printout t (send ?contingut get-titol) crlf)
+;;)
 
 
 
