@@ -3129,45 +3129,24 @@
 	)
 )
 
-(defrule prova;;prova de la regla infantil, ha d'anar a modul 2.2
-	(declare (salience 9))
-	(usuari (edat ?e&: (< ?e 13)))
-	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
-	(not(provafet ?nomG TRUE));; per evitar BUCLE infinit
-    =>
-	(switch ?nomG
-		(case "Animacio" then (modify ?genere (puntuacio (+ ?punts 3))))
-		(case "Fantasia" then (modify ?genere (puntuacio (+ ?punts 3))))
-		
-		(case "Comedia" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Ciencia Ficcio" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Aventura" then (modify ?genere (puntuacio (+ ?punts 1))))
-		
-		(case "Catastrofe" then (modify ?genere (puntuacio (+ ?punts -1))))
-		(case "Suspense" then (modify ?genere (puntuacio (+ ?punts -1))))
-		(case "Policiaca" then (modify ?genere (puntuacio (+ ?punts -1))))
-		
-		(case "Drama" then (modify ?genere (puntuacio (+ ?punts -3))))
-		(case "Terror" then (modify ?genere (puntuacio (+ ?punts -3))))
-		(case "Homosexual" then (modify ?genere (puntuacio (+ ?punts -3))))
-		(case "Belic" then (modify ?genere (puntuacio (+ ?punts -3))))
-		(case "Culte" then (modify ?genere (puntuacio (+ ?punts -3))))
-		(case "Actualitat" then (modify ?genere (puntuacio (+ ?punts -3))))
-		(case "Art" then (modify ?genere (puntuacio (+ ?punts -3))))
-		(case "Economia" then (modify ?genere (puntuacio (+ ?punts -3))))
-		(case "Politica" then (modify ?genere (puntuacio (+ ?punts -3))))
-	)
-	(assert (provafet ?nomG TRUE))
-)
+;; (defrule prova;;prova de la regla infantil, ha d'anar a modul 2.2
+;; 	(declare (salience 9))
+;; 	
+;; )
 
-(defrule prova3;;imprimeix generes amb punts diferents de 0, per debug
-	(declare (salience 7))
-	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts&: (not(= ?punts 0))))
-	(not(prova3fet ?nomG TRUE))
-    =>
-	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
-	(assert (prova3fet ?nomG TRUE))
-)
+;; (defrule prova2;;prova de la regla infantil, ha d'anar a modul 2.2
+;; 	(declare (salience 8))
+;; 	
+;; )
+
+;; (defrule prova3;;imprimeix generes amb punts diferents de 0, per debug
+;; 	(declare (salience 7))
+;; 	(not(usuari (sexe desconegut)))
+;; 	(not(usuari (edat ?e&:(= ?e -1)) (sexe desconegut)))
+;; 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts&: (not(= ?punts 0))))
+;;     =>
+;; 	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
+;; )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PROVES PROVES PROVES
 (defrule puntuacions-de-prova1
 	(declare (salience 9))
@@ -3222,6 +3201,7 @@
     =>
     (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
     (modify ?u (edat ?edatLlegida))
+	(assert(edat-ja-preguntada TRUE))
 
 ;;PROVES PROVES PROVES-->> PER PROVES DE ESBORRAR XXX
 ;;     (assert (xxx-permes FALSE))
@@ -3230,10 +3210,12 @@
 )
 ;;; Ets home o dona? (home, dona)
 (defrule determinar-sexe
+	(edat-ja-preguntada TRUE)
     ?u <- (usuari (sexe desconegut))
     =>
     (bind ?sexeLlegit (pregunta (str-cat "Ets home o dona? (home/dona) ") home dona))
     (modify ?u (sexe ?sexeLlegit))
+	(assert(sexe-ja-preguntat TRUE))
 )
 ;;; Quin és el teu estat civil? (casat, separat, divorciat, solter, ajuntat)
 (defrule determinar-estat-civil
@@ -3661,31 +3643,53 @@
 
 ;;****************************************************************************************************************************************ASSUMPCIONS
 ;;Si l'usuari te menys de 13 anys, li interessa molt "Animacio"
-;;   if (edat < 13) 
-;;   {
-;;    +3: Animacio, Fantasia
-;;    +1: Comedia, Ciencia Ficcio, Aventura
-;;    -1: Catastrofe, Suspense, Policiaca, 
-;;    -3: Drama, Terror, Homosexual, Belic, Culte, DO_Actualitat, DO_Art, DO_Economia, DO_Politica
-;;   }
-;; (defrule infantil
-;;     (genere-amb-puntuacio ?genere)
-;;     =>
-;;     (if (eq (str-compare ?genere(send (instance-address * ?genereActual) get-nomGenere) "Homosexual") 0)
-;; 		then
-;; 			(printout t "S'ha esborrat, per ser contingut homosex. i usuari heterosex.: " (send ?contingut get-titol) crlf)
-;; 			(send ?contingut delete)
-;; 			(break)
-;; 		)
-;; )
-
-(defrule prob-xxx
-    (usuari (sexe dona))
+(defrule infantil
+	(usuari (edat ?e&: (< ?e 13)))
+	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
+	(not(infantil ?nomG TRUE));; per evitar BUCLE infinit
     =>
-    (assert
-        (interesaMolt Romantiques)
-        (interesaPoc XXX)
-    )
+	(switch ?nomG
+		(case "Animacio" then (modify ?genere (puntuacio (+ ?punts 3))))
+		(case "Fantasia" then (modify ?genere (puntuacio (+ ?punts 3))))
+		
+		(case "Comedia" then (modify ?genere (puntuacio (+ ?punts 1))))
+		(case "Ciencia Ficcio" then (modify ?genere (puntuacio (+ ?punts 1))))
+		(case "Aventura" then (modify ?genere (puntuacio (+ ?punts 1))))
+		
+		(case "Catastrofe" then (modify ?genere (puntuacio (+ ?punts -1))))
+		(case "Suspense" then (modify ?genere (puntuacio (+ ?punts -1))))
+		(case "Policiaca" then (modify ?genere (puntuacio (+ ?punts -1))))
+		
+		(case "Drama" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Terror" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Homosexual" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Belic" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Culte" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Actualitat" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Art" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Economia" then (modify ?genere (puntuacio (+ ?punts -3))))
+		(case "Politica" then (modify ?genere (puntuacio (+ ?punts -3))))
+	)
+	(assert (infantil ?nomG TRUE))
+)
+
+(defrule dona
+	(usuari (sexe dona))
+	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
+	(not(dona ?nomG TRUE));; per evitar BUCLE infinit
+    =>
+	(switch ?nomG
+		(case "Romantic" then (modify ?genere (puntuacio (+ ?punts 2))))
+		
+		(case "Drama" then (modify ?genere (puntuacio (+ ?punts 1))))
+		
+		(case "Accio" then (modify ?genere (puntuacio (+ ?punts -1))))
+		(case "Oest" then (modify ?genere (puntuacio (+ ?punts -1))))
+		(case "XXX" then (modify ?genere (puntuacio (+ ?punts -1))))
+		(case "Belic" then (modify ?genere (puntuacio (+ ?punts -1))))
+		(case "Esports" then (modify ?genere (puntuacio (+ ?punts -1))))
+	)
+	(assert (dona ?nomG TRUE))
 )
 
 (defrule a-associacio-heuristica
