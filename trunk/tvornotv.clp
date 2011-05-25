@@ -3052,6 +3052,7 @@
     ?result
 )
 
+
 ;;; Fa una pregunta a la qual se li ha de respondre un numero en un rang
 ;;; Obte una llista de continguts de una categoria determinada
 ;;; Obte una llista de continguts d'una duració determinada
@@ -3187,6 +3188,46 @@
 	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
 	(assert (prova3fet ?nomG TRUE))
 )
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PROVES PROVES PROVES
+(defrule puntuacions-de-prova1
+	(declare (salience 9))
+	?cine <- (cine-amb-puntuacio (titol ?titol-cine&: (eq ?titol-cine "El orfanato" )))
+	(not (puntua-prova ?titol-cine TRUE))
+    =>
+	(modify ?cine (puntuacio 3))
+	(assert (puntua-prova ?titol-cine TRUE))
+)
+(defrule puntuacions-de-prova2
+	(declare (salience 9))
+	?cine <- (cine-amb-puntuacio (titol ?titol-cine&: (eq ?titol-cine "Los Otros" )))
+	(not (puntua-prova ?titol-cine TRUE))
+    =>
+	(modify ?cine (puntuacio -1))
+	(assert (puntua-prova ?titol-cine TRUE))
+)
+(defrule puntuacions-de-prova3
+	(declare (salience 9))
+	?cine <- (cine-amb-puntuacio (titol ?titol-cine&: (eq ?titol-cine "REC" )))
+	(not (puntua-prova ?titol-cine TRUE))
+    =>
+	(modify ?cine (puntuacio 6))
+	(assert (puntua-prova ?titol-cine TRUE))
+)
+
+(defglobal ?*maxi* =  0)
+(defglobal ?*mini* = 0)
+(defrule ordena
+	(declare (salience 9))
+	?cines <- (cine-amb-puntuacio (titol ?titol-cine) (puntuacio ?punts-cine&: (> ?punts-cine ?*maxi*))) 
+	;$?series <- (serie-amb-puntuacio (titol ?titol-serie)(num-capitol ?capitol)(resum ?resum-serie) (puntuacio ?punts-serie&: (not(= ?punts-serie -10))))
+	;$?documentals <- (documental-amb-puntuacio (titol ?titol-docu) (descripcio ?desc-docu) (puntuacio ?punts-docu&: (not(= ?punts-docu -10))))
+	(not(ordenat TRUE))
+    =>
+	;;Agafem maxims i minims
+    	(bind ?*maxi* ?punts-cine)
+	(printout t ?titol-cine ?*maxi* crlf)
+)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PROVES PROVES PROVES
 
 ;;; Quina edat tens? (0-120)
 (defrule determinar-edat
