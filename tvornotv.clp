@@ -2956,24 +2956,8 @@
     )
 )
 ;;; Template que emmagatzema un contingut de tipus cine i la seva puntuacio
-(deftemplate cine-amb-puntuacio
+(deftemplate contingut-amb-puntuacio
     (slot titol)
-    (slot descripcio)
-    (slot puntuacio)
-)
-
-;;; Template que emmagatzema un contingut de tipus serie i la seva puntuacio
-(deftemplate serie-amb-puntuacio
-    (slot titol)
-    (slot resum)
-	(slot num-capitol)
-    (slot puntuacio)
-)
-
-;;; Template que emmagatzema un contingut de tipus documental i la seva puntuacio
-(deftemplate documental-amb-puntuacio
-    (slot titol)
-    (slot descripcio)
     (slot puntuacio)
 )
 
@@ -3090,9 +3074,8 @@
 	?contingut <- (object (is-a Cine))
 	=>
 	(assert
-		(cine-amb-puntuacio
+		(contingut-amb-puntuacio
 			(titol (send ?contingut get-titol))
-			(descripcio (send ?contingut get-descripcio))
 			(puntuacio 0)
 		)
 	)
@@ -3103,10 +3086,8 @@
 	?contingut <- (object (is-a Serie))
 	=>
 	(assert
-		(serie-amb-puntuacio
+		(contingut-amb-puntuacio
 			(titol (send ?contingut get-titol))
-			(resum (send ?contingut get-resum))
-			(num-capitol (send ?contingut get-num_capitol))
 			(puntuacio 0)
 		)
 	)
@@ -3116,9 +3097,8 @@
 	?contingut <- (object (is-a Documental))
 	=>
 	(assert
-		(documental-amb-puntuacio
+		(contingut-amb-puntuacio
 			(titol (send ?contingut get-titol))
-			(descripcio (send ?contingut get-descripcio))
 			(puntuacio 0)
 		)
 	)
@@ -3191,42 +3171,49 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PROVES PROVES PROVES
 (defrule puntuacions-de-prova1
 	(declare (salience 9))
-	?cine <- (cine-amb-puntuacio (titol ?titol-cine&: (eq ?titol-cine "El orfanato" )))
-	(not (puntua-prova ?titol-cine TRUE))
+	?cont <- (contingut-amb-puntuacio (titol ?titol-cont&: (eq ?titol-cont "El orfanato" )))
+	(not (puntua-prova ?titol-cont TRUE))
     =>
-	(modify ?cine (puntuacio 3))
-	(assert (puntua-prova ?titol-cine TRUE))
+	(modify ?cont (puntuacio 3))
+	(assert (puntua-prova ?titol-cont TRUE))
 )
 (defrule puntuacions-de-prova2
 	(declare (salience 9))
-	?cine <- (cine-amb-puntuacio (titol ?titol-cine&: (eq ?titol-cine "Los Otros" )))
-	(not (puntua-prova ?titol-cine TRUE))
+	?cont <- (contingut-amb-puntuacio (titol ?titol-cont&: (eq ?titol-cont "Los Otros" )))
+	(not (puntua-prova ?titol-cont TRUE))
     =>
-	(modify ?cine (puntuacio -1))
-	(assert (puntua-prova ?titol-cine TRUE))
+	(modify ?cont (puntuacio -1))
+	(assert (puntua-prova ?titol-cont TRUE))
 )
 (defrule puntuacions-de-prova3
 	(declare (salience 9))
-	?cine <- (cine-amb-puntuacio (titol ?titol-cine&: (eq ?titol-cine "REC" )))
-	(not (puntua-prova ?titol-cine TRUE))
+	?cont <- (contingut-amb-puntuacio (titol ?titol-cont&: (eq ?titol-cont "REC" )))
+	(not (puntua-prova ?titol-cont TRUE))
     =>
-	(modify ?cine (puntuacio 6))
-	(assert (puntua-prova ?titol-cine TRUE))
+	(modify ?cont (puntuacio 6))
+	(assert (puntua-prova ?titol-cont TRUE))
 )
 
 (defglobal ?*maxi* =  0)
 (defglobal ?*mini* = 0)
-(defrule ordena
+
+(defrule getMax
 	(declare (salience 9))
-	?cines <- (cine-amb-puntuacio (titol ?titol-cine) (puntuacio ?punts-cine&: (> ?punts-cine ?*maxi*))) 
-	;$?series <- (serie-amb-puntuacio (titol ?titol-serie)(num-capitol ?capitol)(resum ?resum-serie) (puntuacio ?punts-serie&: (not(= ?punts-serie -10))))
-	;$?documentals <- (documental-amb-puntuacio (titol ?titol-docu) (descripcio ?desc-docu) (puntuacio ?punts-docu&: (not(= ?punts-docu -10))))
-	(not(ordenat TRUE))
+	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts-cont&: (> ?punts-cont ?*maxi*))) 
     =>
 	;;Agafem maxims i minims
-    	(bind ?*maxi* ?punts-cine)
-	(printout t ?titol-cine ?*maxi* crlf)
+    	(bind ?*maxi* ?punts-cont)
+	(printout t ?titol-cont ?*maxi* crlf)
 )
+(defrule getMin
+	(declare (salience 9))
+	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts-cont&: (< ?punts-cont ?*mini*))) 
+    =>
+	;;Agafem maxims i minims
+    	(bind ?*mini* ?punts-cont)
+	(printout t ?titol-cont ?*mini* crlf)
+)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PROVES PROVES PROVES
 
 ;;; Quina edat tens? (0-120)
@@ -3753,29 +3740,13 @@
 	(assert (titol-solucio-pintada TRUE))
 )
 
-(defrule imprimeix-cines
+(defrule imprimeix-cont
 	(declare (salience 7))
-	?cines <- (cine-amb-puntuacio (titol ?titol-cine) (descripcio ?desc-cine) (puntuacio ?punts-cine&: (not(= ?punts-cine -10))))
-	(not(cont-impres ?titol-cine TRUE))
+	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts-cont&: (not(= ?punts-cont -10))))
+	(not(cont-impres ?titol-cont TRUE))
     =>
-	(printout t "Cine,  Titol: " ?titol-cine  " Punts: " ?punts-cine crlf)
-	(assert (cont-impres ?titol-cine TRUE))
-)
-(defrule imprimeix-series
-	(declare (salience 6))
-	?series <- (serie-amb-puntuacio (titol ?titol-serie)(num-capitol ?capitol)(resum ?resum-serie) (puntuacio ?punts-serie&: (not(= ?punts-serie -10))))
-	(not(cont-impres ?titol-serie TRUE))
-    =>
-	(printout t "Serie, Titol: " ?titol-serie  " Punts: " ?punts-serie crlf)
-	(assert (cont-impres ?titol-serie TRUE))
-)
-(defrule imprimeix-docus
-	(declare (salience 5))
-	?documentals <- (documental-amb-puntuacio (titol ?titol-docu) (descripcio ?desc-docu) (puntuacio ?punts-docu&: (not(= ?punts-docu -10))))
-	(not(cont-impres ?titol-docu TRUE))
-    =>
-	(printout t "Documental, Titol: " ?titol-docu  " Punts: " ?punts-docu crlf)
-	(assert (cont-impres ?titol-docu TRUE))
+	(printout t "Titol: " ?titol-cont  " Punts: " ?punts-cont crlf)
+	(assert (cont-impres ?titol-cont TRUE))
 )
 
 ;;(defrule escriu-adequades
