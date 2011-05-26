@@ -3185,22 +3185,24 @@
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	?contingut <- (object (is-a Cine) (titol ?titolC) (genere $?generes))
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?puntsGenere))
-	(not(provafet3 ?contingutAmbPunts ?genere TRUE));; per evitar BUCLE infinit
+	(not(provafet3 ?titolC ?nomG));; per evitar BUCLE infinit
 	=>
+;; 	(printout t ?contingutAmbPunts ?genere crlf)
+	
 	(loop-for-count (?i 1 (length$ $?generes)) do
 		(bind ?genereActual (nth$ ?i $?generes))
 		(if (eq (str-compare ?nomG (send (instance-address * ?genereActual) get-nomGenere)) 0)
 		then
-			(printout t "titol: " ?titolC crlf)
-			(printout t "gen: " ?nomG crlf)
-			(printout t "--punts gen: " ?puntsGenere crlf)
-			(printout t "--punts contingut: " ?puntsContingut crlf)
+;; 			(printout t "titol: " ?titolC crlf)
+;; 			(printout t "gen: " ?nomG crlf)
+;; 			(printout t "--punts gen: " ?puntsGenere crlf)
+;; 			(printout t "--punts contingut: " ?puntsContingut crlf)
 			(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut ?puntsGenere)))
-			(printout t "--NOU punts contingut: " (+ ?puntsContingut ?puntsGenere) crlf)
+;; 			(printout t "--NOU punts contingut: " (+ ?puntsContingut ?puntsGenere) crlf)
 ;; 			(printout t "titol: " ?titolC " gen: " (send (instance-address * ?genereActual) get-nomGenere) crlf)
 		)
 	)
-	(assert(provafet3 ?contingutAmbPunts ?genere TRUE))
+	(assert(provafet3 ?titolC ?nomG))
 	;;TODO 1: mirar si ?genere esta dins $?generes de ?contingut,
 	;;        si ho esta incrementar la puntuacio de ?contingutAmbPunts
 	;;TODO 2: pels docus: mirar si la classe de ?contingut == ?genere
@@ -3226,16 +3228,26 @@
 ;; 	(printout t "ontologia: " (send ?contingut get-titol) crlf)
 ;; )
 
-(defrule prova4;;imprimeix generes amb punts diferents de 0, per debug
+(defrule prova4;;imprimeix continguts amb punts per debug
 	(declare (salience 6))
 	(not(usuari (sexe desconegut)))
-	(not(usuari (edat ?e&:(= ?e -1)) (sexe desconegut)))
-	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts&: (not(= ?punts 0))))
+	(not(usuari (edat ?e&:(= ?e -1))))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 ;; 	(not(prova4fet ?nomG TRUE))
     =>
-;;	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
+	(printout t ?titolC  " punts: " ?puntsContingut crlf)
 ;; 	(assert (prova4fet ?nomG TRUE))
 )
+;; (defrule prova5;;imprimeix generes amb punts diferents de 0, per debug
+;; 	(declare (salience 6))
+;; 	(not(usuari (sexe desconegut)))
+;; 	(not(usuari (edat ?e&:(= ?e -1))))
+;; 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts&: (not(= ?punts 0))))
+;; ;; 	(not(provafet5 ?nomG TRUE))
+;;     =>
+;; 	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
+;; ;; 	(assert (provafet5 ?nomG TRUE))
+;; )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PROVES PROVES PROVES
 (defrule puntuacions-de-prova1
 	(declare (salience 9))
