@@ -3180,22 +3180,51 @@
 	(assert (provafet2 ?nomG TRUE))
 )
 
-(defrule prova3;;prova de puntuacio de continguts a partir de puntuacions dels generes
+(defrule prova3;;prova de puntuacio de CINE a partir de puntuacions dels generes
 	(declare (salience 7))
-	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?punts))
-	(or
-		?contingut <- (object (is-a Contingut) (titol ?titolC) (genere $?generes))
-		?contingut <- (object (is-a Contingut) (titol ?titolC) (genere_serie $?generes))
-	)
-	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+	?contingut <- (object (is-a Cine) (titol ?titolC) (genere $?generes))
+	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?puntsGenere))
+	(not(provafet3 ?contingutAmbPunts ?genere TRUE));; per evitar BUCLE infinit
 	=>
+	(loop-for-count (?i 1 (length$ $?generes)) do
+		(bind ?genereActual (nth$ ?i $?generes))
+		(if (eq (str-compare ?nomG (send (instance-address * ?genereActual) get-nomGenere)) 0)
+		then
+			(printout t "titol: " ?titolC crlf)
+			(printout t "gen: " ?nomG crlf)
+			(printout t "--punts gen: " ?puntsGenere crlf)
+			(printout t "--punts contingut: " ?puntsContingut crlf)
+			(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut ?puntsGenere)))
+			(printout t "--NOU punts contingut: " (+ ?puntsContingut ?puntsGenere) crlf)
+;; 			(printout t "titol: " ?titolC " gen: " (send (instance-address * ?genereActual) get-nomGenere) crlf)
+		)
+	)
+	(assert(provafet3 ?contingutAmbPunts ?genere TRUE))
 	;;TODO 1: mirar si ?genere esta dins $?generes de ?contingut,
 	;;        si ho esta incrementar la puntuacio de ?contingutAmbPunts
 	;;TODO 2: pels docus: mirar si la classe de ?contingut == ?genere
 	;;        si ho esta incrementar la puntuacio de ?contingutAmbPunts
-	(printout t "amb punts: " ?titolC crlf)
-	(printout t "ontologia: " (send ?contingut get-titol) crlf)
+;; 	(printout t "amb punts: " ?titolC crlf)
+;; 	(printout t "ontologia: " (send ?contingut get-titol) crlf)
 )
+
+;; (defrule prova3;;prova de puntuacio de CINE a partir de puntuacions dels generes
+;; 	(declare (salience 7))
+;; 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?punts))
+;; 	(or
+;; 		?contingut <- (object (is-a Contingut) (titol ?titolC) (genere $?generes))
+;; 		?contingut <- (object (is-a Contingut) (titol ?titolC) (genere_serie $?generes))
+;; 	)
+;; 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
+;; 	=>
+;; 	;;TODO 1: mirar si ?genere esta dins $?generes de ?contingut,
+;; 	;;        si ho esta incrementar la puntuacio de ?contingutAmbPunts
+;; 	;;TODO 2: pels docus: mirar si la classe de ?contingut == ?genere
+;; 	;;        si ho esta incrementar la puntuacio de ?contingutAmbPunts
+;; 	(printout t "amb punts: " ?titolC crlf)
+;; 	(printout t "ontologia: " (send ?contingut get-titol) crlf)
+;; )
 
 (defrule prova4;;imprimeix generes amb punts diferents de 0, per debug
 	(declare (salience 6))
