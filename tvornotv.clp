@@ -3233,7 +3233,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts&: (not(= ?punts 0))))
 ;; 	(not(prova4fet ?nomG TRUE))
     =>
-	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
+;;	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
 ;; 	(assert (prova4fet ?nomG TRUE))
 )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PROVES PROVES PROVES
@@ -3262,16 +3262,18 @@
 	(assert (puntua-prova ?titol-cont TRUE))
 )
 
-(defglobal ?*maxi* =  0)
-(defglobal ?*mini* = 0)
-
+(defglobal 
+	?*maxi* =  0
+	?*mini* = 0
+	?*llista-cont-puntuat* = (create$)
+)
 (defrule getMax
 	(declare (salience 9))
 	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts-cont&: (> ?punts-cont ?*maxi*))) 
     =>
 	;;Agafem maxims i minims
     	(bind ?*maxi* ?punts-cont)
-	(printout t ?titol-cont ?*maxi* crlf)
+;;	(printout t ?titol-cont ?*maxi* crlf)
 )
 (defrule getMin
 	(declare (salience 9))
@@ -3279,7 +3281,23 @@
     =>
 	;;Agafem maxims i minims
     	(bind ?*mini* ?punts-cont)
-	(printout t ?titol-cont ?*mini* crlf)
+;;	(printout t ?titol-cont ?*mini* crlf)
+)
+
+(defrule posa-a-llista
+	(declare (salience 10))
+	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts))
+    =>
+	(bind ?us 10)
+    	(insert$ ?*llista-cont-puntuat* 1 ?us)
+)
+
+(defrule pinta-llista
+	(declare (salience 9))
+     =>
+   ;; 	(progn$ (?var ?*llista-cont-puntuat*))
+	(bind ?var (length$ ?*llista-cont-puntuat*))
+	(printout t "-->" ?var "<--" crlf)
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PROVES PROVES PROVES
