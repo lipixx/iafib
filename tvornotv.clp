@@ -3226,10 +3226,10 @@
 	(declare (salience 10))
 	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts))
     =>
-	(printout t "llista ABANS: " ?*llista-cont-puntuat* crlf)
+;; 	(printout t "llista ABANS: " ?*llista-cont-puntuat* crlf)
 	(bind ?us 10)
 	(bind ?*llista-cont-puntuat* (insert$ ?*llista-cont-puntuat* 1 ?us))
-	(printout t "llista DESPRES: " ?*llista-cont-puntuat* crlf)
+;; 	(printout t "llista DESPRES: " ?*llista-cont-puntuat* crlf)
 	
 )
 
@@ -3501,12 +3501,17 @@
 	(assert (passio-per (pregunta-llista "Dels temes seguents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, homosexual, oest, policiaca, terror, suspense, melodrama, fantasia, romantic, musical, xxx")))
 )
 
-;;Tens cap actor(s)/director(s) preferit(s)? Si no en tens cap, escriu "cap".
-(defrule pregunta-actors
+;;Tens cap actor preferit? Si no en tens cap, escriu "cap".
+(defrule pregunta-actor-favorit
 	=>
-	(assert (actors-preferits (pregunta-llista "Tens cap actor(s)/director(s) preferit(s)? Si no en tens cap, escriu cap.")))
+	(assert (actor-preferit (pregunta-llista "Tens cap actor preferit? Si no en tens cap, escriu cap.")))
 )
 
+;;Tens cap director preferit? Si no en tens cap, escriu "cap".
+(defrule pregunta-director-favorit
+	=>
+	(assert (director-preferit (pregunta-llista "Tens cap director preferit? Si no en tens cap, escriu cap.")))
+)
 
 ;;(Si edat > 18) Vols permetre cap contingut XXX? (si,no)
 (defrule pregunta-xxx
@@ -3601,7 +3606,8 @@
 )
 ;;Si no vol continguts que pugin ferir sensibilitat, eliminar tots els que tinguin contingut dur.
 (defrule esborrar-ferir-sensibilitat-no-permes
-	(or (contingut-sensible-permes FALSE)
+	(or
+		(contingut-sensible-permes FALSE)
    	    (usuari (edat ?e&: (< ?e 16)))
 	)
 	?contingut <- (object (is-a Contingut) (ferirSensibilitat TRUE))
@@ -4319,17 +4325,113 @@
 )
 
 (defrule puntuacio-actor-favorit
-	(contingut-preferit cine)
-	?contingut <- (object (is-a Cine) (titol ?titolC) (genere $?generes))
+	(actor-preferit ?actorFav)
+	(or
+		?contingut <- (object (is-a Contingut) (titol ?titolC) (actors $?actorsC))
+		?contingut <- (object (is-a Contingut) (titol ?titolC) (actorsS $?actorsC))
+	)
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
-	(not(punts-cine-favorit ?titolC));; per evitar BUCLE infinit
+	(not(punts-actor-favorit ?titolC));; per evitar BUCLE infinit
 	=>
-	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
-	(assert(punts-cine-favorit ?titolC))
+	(loop-for-count (?i 1 (length$ $?actorsC)) do
+		(bind ?actorActual (nth$ ?i $?actorsC))
+		(if (eq (str-compare ?actorFav (send (instance-address * ?actorActual) get-nom)) 0)
+		then
+			(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 3)))
+		)
+	)
+	(assert(punts-actor-favorit ?titolC))
 )
 
+(defrule puntuacio-director-favorit
+	(director-preferit ?directorFav)
+	?contingut <- (object (is-a Contingut) (titol ?titolC) (director $?directorsC))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+	(not(punts-director-favorit ?titolC));; per evitar BUCLE infinit
+	=>
+	(loop-for-count (?i 1 (length$ $?directorsC)) do
+		(bind ?directorActual (nth$ ?i $?directorsC))
+		(if (eq (str-compare ?directorFav (send (instance-address * ?directorActual) get-nom)) 0)
+		then
+			(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 3)))
+		)
+	)
+	(assert(punts-director-favorit ?titolC))
+)
 
+(defrule puntuacio-blanc-i-negre
+	(blanc-negre TRUE)
+	?contingut <- (object (is-a Cine) (titol ?titolC) (format BiN))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+	(not(punts-blanc-i-negre ?titolC));; per evitar BUCLE infinit
+	=>
+	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 3)))
+	(assert(punts-blanc-i-negre ?titolC))
+)
 
+(defrule puntuacio-pelis-antigues
+	(pelis-antigues TRUE)
+	?contingut <- (object (is-a Cine) (titol ?titolC) (any ?a&: (< ?a 1990)))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+	(not(punts-pelis-antigues ?titolC));; per evitar BUCLE infinit
+	=>
+	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 2)))
+	(assert(punts-pelis-antigues ?titolC))
+)
+
+(defrule puntuacio-documentals-per-generes
+	?contingut <- (object (is-a Documental) (titol ?titolC))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+	?gen <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?puntsGenere))
+	(not(punts-documental-gen ?titolC ?nomG));; per evitar BUCLE infinit
+	=>
+	(bind ?tipusDocu (str-cat (class ?contingut)))
+	(if (eq (str-compare ?nomG ?tipusDocu) 0)
+	then
+		(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut ?puntsGenere)))
+	)
+	(assert(punts-documental-gen ?titolC ?nomG))
+)
+
+(defrule puntuacio-documentals-favorit
+	(contingut-preferit documentals)
+	?contingut <- (object (is-a Documental) (titol ?titolC))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+	(not(punts-documentals-favorit ?titolC));; per evitar BUCLE infinit
+	=>
+	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
+	(assert(punts-documentals-favorit ?titolC))
+)
+
+(defrule puntuacio-documentals-naturalesa-te-mascota
+	(te-mascota TRUE)
+	?contingut <- (object (is-a Naturalesa) (titol ?titolC) (tema Mamifers|Peixos|Insectes|Aus|Reptils|AnimalsGeneral))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+	(not(punts-documentals-natu-te-mascota ?titolC));; per evitar BUCLE infinit
+	=>
+	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
+	(assert(punts-documentals-natu-te-mascota ?titolC))
+)
+
+(defrule puntuacio-documentals-aficio-mar
+	(aficions mar)
+	?contingut <- (object (is-a Naturalesa) (titol ?titolC) (tema Peixos))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+	(not(punts-documentals-aficio-mar ?titolC));; per evitar BUCLE infinit
+	=>
+	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 2)))
+	(assert(punts-documentals-aficio-mar ?titolC))
+)
+
+(defrule puntuacio-documentals-aficio-muntanya
+	(aficions muntanya)
+	?contingut <- (object (is-a Naturalesa) (titol ?titolC) (tema Geologia|Clima))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+	(not(punts-documentals-aficio-muntanya ?titolC));; per evitar BUCLE infinit
+	=>
+	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 2)))
+	(assert(punts-documentals-aficio-muntanya ?titolC))
+)
 
 (defrule puntuacio-series-per-generes
 	?contingut <- (object (is-a Serie) (titol ?titolC) (genere_serie $?generes))
@@ -4347,19 +4449,16 @@
 	(assert(punts-serie-gen ?titolC ?nomG))
 )
 
-(defrule puntuacio-documentals-per-generes
-	?contingut <- (object (is-a Documental) (titol ?titolC))
+(defrule puntuacio-series-favorit
+	(contingut-preferit series)
+	?contingut <- (object (is-a Serie) (titol ?titolC) (genere_serie $?generes))
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
-	?gen <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?puntsGenere))
-	(not(punts-documental-gen ?titolC ?nomG));; per evitar BUCLE infinit
+	(not(punts-series-favorit ?titolC));; per evitar BUCLE infinit
 	=>
-	(bind ?tipusDocu (str-cat (class ?contingut)))
-	(if (eq (str-compare ?nomG ?tipusDocu) 0)
-	then
-		(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut ?puntsGenere)))
-	)
-	(assert(punts-documental-gen ?titolC ?nomG))
+	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
+	(assert(punts-series-favorit ?titolC))
 )
+
 
 (defrule a-associacio-heuristica
 	(declare (salience -1))
