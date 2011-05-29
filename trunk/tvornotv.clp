@@ -3932,140 +3932,200 @@
 )
 
 (defrule puntuacio-agrada-treball-grup1;;grup1: lletres|legal|politic|economic
-	(agrada-treball normal);;FER "SI O NO"??
+	(agrada-treball ?nivellAgradaFeina)
 	(treball-relacionat-amb lletres|legal|politic|economic)
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(agrada-treball-grup1 ?nomG TRUE));; per evitar BUCLE infinit
     =>
-	(switch ?nomG
-		(case "Politica" then (modify ?genere (puntuacio (+ ?punts 2))))
-		(case "Economia" then (modify ?genere (puntuacio (+ ?punts 2))))
-		(case "Historia" then (modify ?genere (puntuacio (+ ?punts 2))))
-		(case "Culte" then (modify ?genere (puntuacio (+ ?punts 2))))
-		(case "Historic" then (modify ?genere (puntuacio (+ ?punts 2))))
-		
-		(case "Actualitat" then (modify ?genere (puntuacio (+ ?punts 1))))
-		
-		(case "Naturalesa" then (modify ?genere (puntuacio (+ ?punts -1))))
-		(case "Ciencia Ficcio" then (modify ?genere (puntuacio (+ ?punts -1))))
-		
-		(case "Art" then (modify ?genere (puntuacio (+ ?punts -2))))
-		(case "Ciencia" then (modify ?genere (puntuacio (+ ?punts -2))))
-		(case "Tecnologia" then (modify ?genere (puntuacio (+ ?punts -2))))
+	(bind ?suma 0)
+	(bind ?multi 0)
+	(switch ?nivellAgradaFeina
+		(case "gens" then (bind ?multi -2))
+		(case "poc" then (bind ?multi -1))
+		(case "normal" then (bind ?multi 1))
+		(case "molt" then (bind ?multi 2))
+		(case "extrem" then (bind ?multi 3))
 	)
+	(switch ?nomG
+		(case "Politica" then (bind ?suma (+ ?suma 2)))
+		(case "Economia" then (bind ?suma (+ ?suma 2)))
+		(case "Historia" then (bind ?suma (+ ?suma 2)))
+		(case "Culte" then (bind ?suma (+ ?suma 2)))
+		(case "Historic" then (bind ?suma (+ ?suma 2)))
+		
+		(case "Actualitat" then (bind ?suma (+ ?suma 1)))
+		
+		(case "Naturalesa" then (bind ?suma (+ ?suma -1)))
+		(case "Ciencia Ficcio" then (bind ?suma (+ ?suma -1)))
+		
+		(case "Art" then (bind ?suma (+ ?suma -2)))
+		(case "Ciencia" then (bind ?suma (+ ?suma -2)))
+		(case "Tecnologia" then (bind ?suma (+ ?suma -2)))
+	)
+	(modify ?genere (puntuacio (* ?suma ?multi)))
 	(assert (agrada-treball-grup1 ?nomG TRUE))
 )
 
 (defrule puntuacio-agrada-treball-grup2;;grup2: ciencia
-	(agrada-treball normal);;FER "SI O NO"??
+	(agrada-treball ?nivellAgradaFeina)
 	(treball-relacionat-amb ciencia)
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(agrada-treball-grup2 ?nomG TRUE));; per evitar BUCLE infinit
     =>
-	(switch ?nomG
-		(case "Ciencia" then (modify ?genere (puntuacio (+ ?punts 2))))
-		(case "Ciencia Ficcio" then (modify ?genere (puntuacio (+ ?punts 2))))
-		
-		(case "Actualitat" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Culte" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Naturalesa" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Tecnologia" then (modify ?genere (puntuacio (+ ?punts 1))))
-		
-		(case "Historic" then (modify ?genere (puntuacio (+ ?punts -1))))
-		(case "Politica" then (modify ?genere (puntuacio (+ ?punts -1))))
-		
-		(case "Economia" then (modify ?genere (puntuacio (+ ?punts -2))))
-		(case "Historia" then (modify ?genere (puntuacio (+ ?punts -2))))
-		(case "Art" then (modify ?genere (puntuacio (+ ?punts -2))))
+	(bind ?suma 0)
+	(bind ?multi 0)
+	(switch ?nivellAgradaFeina
+		(case "gens" then (bind ?multi -2))
+		(case "poc" then (bind ?multi -1))
+		(case "normal" then (bind ?multi 1))
+		(case "molt" then (bind ?multi 2))
+		(case "extrem" then (bind ?multi 3))
 	)
+	(switch ?nomG
+		(case "Ciencia" then (bind ?suma (+ ?suma 2)))
+		(case "Ciencia Ficcio" then (bind ?suma (+ ?suma 2)))
+		
+		(case "Actualitat" then (bind ?suma (+ ?suma 1)))
+		(case "Culte" then (bind ?suma (+ ?suma 1)))
+		(case "Naturalesa" then (bind ?suma (+ ?suma 1)))
+		(case "Tecnologia" then (bind ?suma (+ ?suma 1)))
+		
+		(case "Historic" then (bind ?suma (+ ?suma -1)))
+		(case "Politica" then (bind ?suma (+ ?suma -1)))
+		
+		(case "Economia" then (bind ?suma (+ ?suma -2)))
+		(case "Historia" then (bind ?suma (+ ?suma -2)))
+		(case "Art" then (bind ?suma (+ ?suma -2)))
+	)
+	(modify ?genere (puntuacio (* ?suma ?multi)))
 	(assert (agrada-treball-grup2 ?nomG TRUE))
 )
 
 (defrule puntuacio-agrada-treball-grup3;;grup3: tecnologia|construccio
-	(agrada-treball normal);;FER "SI O NO"??
+	(agrada-treball ?nivellAgradaFeina)
 	(treball-relacionat-amb tecnologia|construccio)
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(agrada-treball-grup3 ?nomG TRUE));; per evitar BUCLE infinit
     =>
-	(switch ?nomG
-		(case "Ciencia Ficcio" then (modify ?genere (puntuacio (+ ?punts 2))))
-		(case "Tecnologia" then (modify ?genere (puntuacio (+ ?punts 2))))
-		
-		(case "Actualitat" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Culte" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Naturalesa" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Ciencia" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Animacio" then (modify ?genere (puntuacio (+ ?punts 1))))
-		
-		(case "Historic" then (modify ?genere (puntuacio (+ ?punts -1))))
-		(case "Politica" then (modify ?genere (puntuacio (+ ?punts -1))))
-		
-		(case "Economia" then (modify ?genere (puntuacio (+ ?punts -2))))
-		(case "Historia" then (modify ?genere (puntuacio (+ ?punts -2))))
-		(case "Art" then (modify ?genere (puntuacio (+ ?punts -2))))
+	(bind ?suma 0)
+	(bind ?multi 0)
+	(switch ?nivellAgradaFeina
+		(case "gens" then (bind ?multi -2))
+		(case "poc" then (bind ?multi -1))
+		(case "normal" then (bind ?multi 1))
+		(case "molt" then (bind ?multi 2))
+		(case "extrem" then (bind ?multi 3))
 	)
+	(switch ?nomG
+		(case "Ciencia Ficcio" then (bind ?suma (+ ?suma 2)))
+		(case "Tecnologia" then (bind ?suma (+ ?suma 2)))
+		
+		(case "Actualitat" then (bind ?suma (+ ?suma 1)))
+		(case "Culte" then (bind ?suma (+ ?suma 1)))
+		(case "Naturalesa" then (bind ?suma (+ ?suma 1)))
+		(case "Ciencia" then (bind ?suma (+ ?suma 1)))
+		(case "Animacio" then (bind ?suma (+ ?suma 1)))
+		
+		(case "Historic" then (bind ?suma (+ ?suma -1)))
+		(case "Politica" then (bind ?suma (+ ?suma -1)))
+		
+		(case "Economia" then (bind ?suma (+ ?suma -2)))
+		(case "Historia" then (bind ?suma (+ ?suma -2)))
+		(case "Art" then (bind ?suma (+ ?suma -2)))
+	)
+	(modify ?genere (puntuacio (* ?suma ?multi)))
 	(assert (agrada-treball-grup3 ?nomG TRUE))
 )
 
 (defrule puntuacio-agrada-treball-grup4;;grup3: art
-	(agrada-treball normal);;FER "SI O NO"??
+	(agrada-treball ?nivellAgradaFeina)
 	(treball-relacionat-amb art)
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(agrada-treball-grup4 ?nomG TRUE));; per evitar BUCLE infinit
     =>
-	(switch ?nomG
-		(case "Art" then (modify ?genere (puntuacio (+ ?punts 2))))
-		(case "Culte" then (modify ?genere (puntuacio (+ ?punts 2))))
-		(case "Animacio" then (modify ?genere (puntuacio (+ ?punts 2))))
-		
-		(case "Historic" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Historia" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Politica" then (modify ?genere (puntuacio (+ ?punts 1))))
-		
-		(case "Actualitat" then (modify ?genere (puntuacio (+ ?punts -1))))
-		(case "Naturalesa" then (modify ?genere (puntuacio (+ ?punts -1))))
-		(case "Ciencia" then (modify ?genere (puntuacio (+ ?punts -1))))
-		
-		(case "Economia" then (modify ?genere (puntuacio (+ ?punts -2))))
-		(case "Tecnologia" then (modify ?genere (puntuacio (+ ?punts -2))))
-		(case "Ciencia Ficcio" then (modify ?genere (puntuacio (+ ?punts -2))))
+	(bind ?suma 0)
+	(bind ?multi 0)
+	(switch ?nivellAgradaFeina
+		(case "gens" then (bind ?multi -2))
+		(case "poc" then (bind ?multi -1))
+		(case "normal" then (bind ?multi 1))
+		(case "molt" then (bind ?multi 2))
+		(case "extrem" then (bind ?multi 3))
 	)
+	(switch ?nomG
+		(case "Art" then (bind ?suma (+ ?suma 2)))
+		(case "Culte" then (bind ?suma (+ ?suma 2)))
+		(case "Animacio" then (bind ?suma (+ ?suma 2)))
+		
+		(case "Historic" then (bind ?suma (+ ?suma 1)))
+		(case "Historia" then (bind ?suma (+ ?suma 1)))
+		(case "Politica" then (bind ?suma (+ ?suma 1)))
+		
+		(case "Actualitat" then (bind ?suma (+ ?suma -1)))
+		(case "Naturalesa" then (bind ?suma (+ ?suma -1)))
+		(case "Ciencia" then (bind ?suma (+ ?suma -1)))
+		
+		(case "Economia" then (bind ?suma (+ ?suma -2)))
+		(case "Tecnologia" then (bind ?suma (+ ?suma -2)))
+		(case "Ciencia Ficcio" then (bind ?suma (+ ?suma -2)))
+	)
+	(modify ?genere (puntuacio (* ?suma ?multi)))
 	(assert (agrada-treball-grup4 ?nomG TRUE))
 )
 
 (defrule puntuacio-interessa-gadafi
-	(interessat-gadafi normal);;FER "SI O NO"??
+	(interessat-gadafi ?nivellInteresGadafi)
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(interessa-gadafi ?nomG TRUE));; per evitar BUCLE infinit
     =>
-	(switch ?nomG
-		(case "Politica" then (modify ?genere (puntuacio (+ ?punts 2))))
-		(case "Actualitat" then (modify ?genere (puntuacio (+ ?punts 2))))
-		
-		(case "Belic" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Accio" then (modify ?genere (puntuacio (+ ?punts 1))))
+	(bind ?suma 0)
+	(bind ?multi 0)
+	(switch ?nivellInteresGadafi
+		(case "gens" then (bind ?multi -2))
+		(case "poc" then (bind ?multi -1))
+		(case "normal" then (bind ?multi 1))
+		(case "molt" then (bind ?multi 2))
+		(case "extrem" then (bind ?multi 3))
 	)
+	(switch ?nomG
+		(case "Politica" then (bind ?suma (+ ?suma 2)))
+		(case "Actualitat" then (bind ?suma (+ ?suma 2)))
+		
+		(case "Belic" then (bind ?suma (+ ?suma 1)))
+		(case "Accio" then (bind ?suma (+ ?suma 1)))
+	)
+	(modify ?genere (puntuacio (* ?suma ?multi)))
 	(assert (interessa-gadafi ?nomG TRUE))
 )
 
 (defrule puntuacio-interessa-fukushima
-	(interessat-fukushima normal);;FER "SI O NO"??
+	(interessat-fukushima ?nivellInteresFukushima)
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(interessa-fukushima ?nomG TRUE));; per evitar BUCLE infinit
     =>
-	(switch ?nomG
-		(case "Politica" then (modify ?genere (puntuacio (+ ?punts 2))))
-		(case "Actualitat" then (modify ?genere (puntuacio (+ ?punts 2))))
-		
-		(case "Tecnologia" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Ciencia" then (modify ?genere (puntuacio (+ ?punts 1))))
-		(case "Catastrofe" then (modify ?genere (puntuacio (+ ?punts 1))))
+	(bind ?suma 0)
+	(bind ?multi 0)
+	(switch ?nivellInteresFukushima
+		(case "gens" then (bind ?multi -2))
+		(case "poc" then (bind ?multi -1))
+		(case "normal" then (bind ?multi 1))
+		(case "molt" then (bind ?multi 2))
+		(case "extrem" then (bind ?multi 3))
 	)
+	(switch ?nomG
+		(case "Politica" then (bind ?suma (+ ?suma 2)))
+		(case "Actualitat" then (bind ?suma (+ ?suma 2)))
+		
+		(case "Tecnologia" then (bind ?suma (+ ?suma 1)))
+		(case "Ciencia" then (bind ?suma (+ ?suma 1)))
+		(case "Catastrofe" then (bind ?suma (+ ?suma 1)))
+	)
+	(modify ?genere (puntuacio (* ?suma ?multi)))
 	(assert (interessa-fukushima ?nomG TRUE))
 )
 
 (defrule puntuacio-interessa-boda-real
-	(interessat-boda-real normal);;FER "SI O NO"??
+	(interessat-boda-real TRUE)
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-interessa-boda-real ?nomG TRUE));; per evitar BUCLE infinit
     =>
@@ -4079,7 +4139,7 @@
 )
 
 (defrule puntuacio-coneix-belen-esteban
-	(coneix-belen-esteban normal);;FER "SI O NO"??
+	(coneix-belen-esteban TRUE)
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-coneix-belen-esteban ?nomG TRUE));; per evitar BUCLE infinit
     =>
