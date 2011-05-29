@@ -3226,8 +3226,11 @@
 	(declare (salience 10))
 	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts))
     =>
+	(printout t "llista ABANS: " ?*llista-cont-puntuat* crlf)
 	(bind ?us 10)
-    	(insert$ ?*llista-cont-puntuat* 1 ?us)
+	(bind ?*llista-cont-puntuat* (insert$ ?*llista-cont-puntuat* 1 ?us))
+	(printout t "llista DESPRES: " ?*llista-cont-puntuat* crlf)
+	
 )
 
 (defrule pinta-llista
@@ -4249,7 +4252,7 @@
 )
 
 
-
+;;PUNTUACIO DE CONTINGUTS
 
 (defrule puntuacio-cine-per-generes
 	?contingut <- (object (is-a Cine) (titol ?titolC) (genere $?generes))
@@ -4266,6 +4269,67 @@
 	)
 	(assert(punts-cine-gen ?titolC ?nomG))
 )
+
+(defrule puntuacio-cine-favorit
+	(contingut-preferit cine)
+	?contingut <- (object (is-a Cine) (titol ?titolC) (genere $?generes))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+	(not(punts-cine-favorit ?titolC));; per evitar BUCLE infinit
+	=>
+	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
+	(assert(punts-cine-favorit ?titolC))
+)
+
+(defrule puntuacio-duracio-contingut
+	(duracio-prefer ?duracioPreferida)
+	?contingut <- (object (is-a Contingut) (titol ?titolC) (duracio ?duracioContingut))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+	(not(punts-duracio-contingut ?titolC));; per evitar BUCLE infinit
+	=>
+	(if (<= ?duracioContingut 30)
+	then
+		(if (eq ?duracioPreferida curt)
+		then
+			(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
+		else
+			(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut -1)))
+		)
+	else
+		(if (< ?duracioContingut 60)
+		then
+			(if (eq ?duracioPreferida mig)
+			then
+				(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
+			else
+				(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut -1)))
+			)
+		else
+			(if (>= ?duracioContingut 60)
+			then
+				(if (eq ?duracioPreferida llarg)
+				then
+					(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
+				else
+					(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut -1)))
+				)
+			)
+		)
+	)
+	(assert(punts-duracio-contingut ?titolC))
+)
+
+(defrule puntuacio-actor-favorit
+	(contingut-preferit cine)
+	?contingut <- (object (is-a Cine) (titol ?titolC) (genere $?generes))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+	(not(punts-cine-favorit ?titolC));; per evitar BUCLE infinit
+	=>
+	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
+	(assert(punts-cine-favorit ?titolC))
+)
+
+
+
 
 (defrule puntuacio-series-per-generes
 	?contingut <- (object (is-a Serie) (titol ?titolC) (genere_serie $?generes))
