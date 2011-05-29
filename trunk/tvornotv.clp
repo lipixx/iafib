@@ -3203,7 +3203,7 @@
 (defglobal 
 	?*maxi* =  0
 	?*mini* = 0
-	?*llista-cont-puntuat* = (create$)
+	?*llista-CP* = (create$)
 )
 (defrule getMax
 	(declare (salience 9))
@@ -3226,18 +3226,19 @@
 	(declare (salience 10))
 	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts))
     =>
-;; 	(printout t "llista ABANS: " ?*llista-cont-puntuat* crlf)
-	(bind ?us 10)
-	(bind ?*llista-cont-puntuat* (insert$ ?*llista-cont-puntuat* 1 ?us))
-;; 	(printout t "llista DESPRES: " ?*llista-cont-puntuat* crlf)
+;; 	(printout t "llista ABANS: " ?*llista-CP* crlf)
+;; 	(bind ?us 10)
+	(bind ?*llista-CP* (insert$ ?*llista-CP* (+ (length$ ?*llista-CP*) 1) ?titol-cont ?punts))
+	(printout t "llista DESPRES: " ?*llista-CP* crlf)
+;; 	(printout t "afegim: " ?cont " " ?pepe crlf)
 	
 )
 
 (defrule pinta-llista
 	(declare (salience 9))
      =>
-   ;; 	(progn$ (?var ?*llista-cont-puntuat*))
-	(bind ?var (length$ ?*llista-cont-puntuat*))
+   ;; 	(progn$ (?var ?*llista-CP*))
+	(bind ?var (length$ ?*llista-CP*))
 	(printout t "-->" ?var "<--" crlf)
 )
 
