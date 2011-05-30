@@ -3129,76 +3129,18 @@
 	)
 )
 ;;PROVANT........
-;; (defrule pregunta-passions
-;; 	(declare (salience 8))
-;; 	=>
-;; 	(assert (passio-per (pregunta-llista "Dels temes seguents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, homosexual, oest, policiaca, terror, suspense, melodrama, fantasia, romantic, musical, xxx")))
-;; )
-;; (defrule prova3;;prova de puntuacio de GENERES per passio
-;; 	(declare (salience 7))
-;; 	(passio-per $?generesPassio)
-;; 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
-;; 	(not(puntuacio-genere-passio ?nomG TRUE));; per evitar BUCLE infinit
-;;     =>
-;; 	(loop-for-count (?i 1 (length$ $?generesPassio)) do
-;; 		(bind ?genereActualPassio (nth$ ?i $?generesPassio))
-;; 		(if (eq (str-compare ?genereActualPassio ?nomG) 0)
-;; 		then
-;; 			(modify ?genere (puntuacio (+ ?punts 2)))
-;; 		)
-;; 	)
-;; ;; 	(printout t ?generesPassio crlf)
-;; 	
-;; 	(assert (puntuacio-genere-passio ?nomG TRUE))
-;; )
 
-
-;; (defrule prova4;;imprimeix continguts amb punts per debug
+;; (defrule prova5;;imprimeix generes amb punts diferents de 0, per debug
 ;; 	(declare (salience 6))
 ;; 	(not(usuari (sexe desconegut)))
 ;; 	(not(usuari (edat ?e&:(= ?e -1))))
-;; 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
-;; 	?contingut <- (object (titol ?titolC))
-;; ;; 	(not(prova4fet ?nomG TRUE))
+;; 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts&: (not(= ?punts 0))))
+;; ;; 	(not(provafet5 ?nomG TRUE))
 ;;     =>
-;; 	(printout t (str-cat (class ?contingut)) " -> PUNTS: " ?puntsContingut "  " ?titolC crlf)
-;; ;; 	(assert (prova4fet ?nomG TRUE))
+;; 	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
+;; ;; 	(assert (provafet5 ?nomG TRUE))
 ;; )
-(defrule prova5;;imprimeix generes amb punts diferents de 0, per debug
-	(declare (salience 6))
-	(not(usuari (sexe desconegut)))
-	(not(usuari (edat ?e&:(= ?e -1))))
-	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts&: (not(= ?punts 0))))
-;; 	(not(provafet5 ?nomG TRUE))
-    =>
-	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
-;; 	(assert (provafet5 ?nomG TRUE))
-)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PROVES PROVES PROVES
-;; (defrule puntuacions-de-prova1
-;; 	(declare (salience 9))
-;; 	?cont <- (contingut-amb-puntuacio (titol ?titol-cont&: (eq ?titol-cont "El orfanato" )))
-;; 	(not (puntua-prova ?titol-cont TRUE))
-;;     =>
-;; 	(modify ?cont (puntuacio 3))
-;; 	(assert (puntua-prova ?titol-cont TRUE))
-;; )
-;; (defrule puntuacions-de-prova2
-;; 	(declare (salience 9))
-;; 	?cont <- (contingut-amb-puntuacio (titol ?titol-cont&: (eq ?titol-cont "Los Otros" )))
-;; 	(not (puntua-prova ?titol-cont TRUE))
-;;     =>
-;; 	(modify ?cont (puntuacio -1))
-;; 	(assert (puntua-prova ?titol-cont TRUE))
-;; )
-;; (defrule puntuacions-de-prova3
-;; 	(declare (salience 9))
-;; 	?cont <- (contingut-amb-puntuacio (titol ?titol-cont&: (eq ?titol-cont "REC" )))
-;; 	(not (puntua-prova ?titol-cont TRUE))
-;;     =>
-;; 	(modify ?cont (puntuacio 6))
-;; 	(assert (puntua-prova ?titol-cont TRUE))
-;; )
 
 (defglobal 
 	?*maxi* =  0
@@ -3222,25 +3164,25 @@
 ;;	(printout t ?titol-cont ?*mini* crlf)
 )
 
-(defrule posa-a-llista
-	(declare (salience 10))
-	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts))
-    =>
-;; 	(printout t "llista ABANS: " ?*llista-CP* crlf)
-;; 	(bind ?us 10)
-	(bind ?*llista-CP* (insert$ ?*llista-CP* (+ (length$ ?*llista-CP*) 1) ?titol-cont ?punts))
-	(printout t "llista DESPRES: " ?*llista-CP* crlf)
-;; 	(printout t "afegim: " ?cont " " ?pepe crlf)
-	
-)
+;; (defrule posa-a-llista
+;; 	(declare (salience 10))
+;; 	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts))
+;;     =>
+;; ;; 	(printout t "llista ABANS: " ?*llista-CP* crlf)
+;; ;; 	(bind ?us 10)
+;; 	(bind ?*llista-CP* (insert$ ?*llista-CP* (+ (length$ ?*llista-CP*) 1) ?titol-cont ?punts))
+;; 	(printout t "llista DESPRES: " ?*llista-CP* crlf)
+;; ;; 	(printout t "afegim: " ?cont " " ?pepe crlf)
+;; 	
+;; )
 
-(defrule pinta-llista
-	(declare (salience 9))
-     =>
-   ;; 	(progn$ (?var ?*llista-CP*))
-	(bind ?var (length$ ?*llista-CP*))
-	(printout t "-->" ?var "<--" crlf)
-)
+;; (defrule pinta-llista
+;; 	(declare (salience 9))
+;;      =>
+;;    ;; 	(progn$ (?var ?*llista-CP*))
+;; 	(bind ?var (length$ ?*llista-CP*))
+;; 	(printout t "-->" ?var "<--" crlf)
+;; )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PROVES PROVES PROVES
 
@@ -3251,11 +3193,6 @@
     (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
     (modify ?u (edat ?edatLlegida))
 	(assert(edat-ja-preguntada TRUE))
-
-;;PROVES PROVES PROVES-->> PER PROVES DE ESBORRAR XXX
-;;     (assert (xxx-permes FALSE))
-;; 	(assert (contingut-sensible-permes FALSE))
-;;     (focus esborrar-instancies)
 )
 ;;; Ets home o dona? (home, dona)
 (defrule determinar-sexe
@@ -3488,10 +3425,11 @@
 ;;Vols que cada contingut sigui mes be llarg (1), curt (2), o t'es igual (3)? (1,2,3)
 (defrule pregunta-temps
 	=>
-	(bind ?valor (obte-nombre "Vols que cada contingut sigui mes be llarg (1), curt (2), o t'es igual (3)? "))
+	(bind ?valor (obte-nombre "Vols que cada contingut sigui mes be llarg (1), mig (2), curt (3) o t'es igual (4)? "))
 	(if (eq ?valor 1) then (assert (duracio-prefer llarg)))
-	(if (eq ?valor 2) then (assert (duracio-prefer curt)))
-	(if (eq ?valor 3) then (assert (duracio-prefer esigual)))
+	(if (eq ?valor 2) then (assert (duracio-prefer mig)))
+	(if (eq ?valor 3) then (assert (duracio-prefer curt)))
+	(if (eq ?valor 4) then (assert (duracio-prefer esigual)))
 )
 
 ;;PROBLEMES:
@@ -3499,7 +3437,7 @@
 ;;   2  que passa amb generes que son 2 paraules com "espai exterior"?????
 (defrule pregunta-passions
 	=>
-	(assert (passio-per (pregunta-llista "Dels temes seguents, n'hi ha cap que t'apasioni?: belic, culte, espai, esportiu, historic, homosexual, oest, policiaca, terror, suspense, melodrama, fantasia, romantic, musical, xxx")))
+	(assert (passio-per (pregunta-llista "Dels temes seguents, quin t'apassiona mes?: Belic, Culte, Espai, Esportiu, Historic, Homosexual, Oest, Policiaca, Terror, Suspense, Melodrama, Fantasia, Romantic, Musical, XXX")))
 )
 
 ;;Tens cap actor preferit? Si no en tens cap, escriu "cap".
@@ -3704,6 +3642,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(punts-infantil ?nomG TRUE));; per evitar BUCLE infinit
     =>
+    (printout t "PUNT edat infantil"crlf)
 	(switch ?nomG
 		(case "Animacio" then (modify ?genere (puntuacio (+ ?punts 3))))
 		(case "Fantasia" then (modify ?genere (puntuacio (+ ?punts 3))))
@@ -4575,12 +4514,25 @@
 
 (defrule imprimeix-cont
 	(declare (salience 7))
-	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts-cont&: (not(= ?punts-cont -10))))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts-cont))
+	?contingut <- (object (titol ?titolC))
 	(not(cont-impres ?titol-cont TRUE))
     =>
-	(printout t "Titol: " ?titol-cont  " Punts: " ?punts-cont crlf)
+	(printout t (str-cat (class ?contingut)) " PUNTS: " ?punts-cont  " TITOL: " ?titol-cont  crlf)
 	(assert (cont-impres ?titol-cont TRUE))
 )
+
+;; (defrule prova4;;imprimeix continguts amb punts per debug
+;; 	(declare (salience 6))
+;; 	(not(usuari (sexe desconegut)))
+;; 	(not(usuari (edat ?e&:(= ?e -1))))
+;; 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
+;; 	?contingut <- (object (titol ?titolC))
+;; ;; 	(not(prova4fet ?nomG TRUE))
+;;     =>
+;; 	(printout t (str-cat (class ?contingut)) " -> PUNTS: " ?puntsContingut "  " ?titolC crlf)
+;; ;; 	(assert (prova4fet ?nomG TRUE))
+;; )
 
 ;;(defrule escriu-adequades
 ;;	(declare (salience 5))
