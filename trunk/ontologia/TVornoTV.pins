@@ -1,4 +1,4 @@
-; Sat May 21 19:04:18 CEST 2011
+; Mon May 30 10:49:52 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -2329,7 +2329,7 @@
 
 ([TVornoTV_Class60016] of  Ambientacio
 
-	(nomGenere "Espai exterior"))
+	(nomGenere "Espai"))
 
 ([TVornoTV_Class62] of  Persona
 
