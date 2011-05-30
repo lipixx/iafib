@@ -3025,7 +3025,7 @@
 		(bind ?j 1)
 		(while (<= ?j (length$ $?llista2))
 			(bind ?llista2Actual (nth$ ?j $?llista2))
-			(if (eq (str-compare llista1Actual llista2Actual) 0)
+			(if (= (str-compare llista1Actual llista2Actual) 0)
 				then
 				(bind ?result TRUE)
 				(break))	
@@ -3581,7 +3581,7 @@
 )
 
 (defrule esborrar-musicals-discapacitat-auditiva
-	(discapacitat-audiovisual "auditiva")
+	(usuari (discapacitat-audiovisual ?os&: (= (str-compare ?os "auditiva") 0)))
 	?contingut <- (object (is-a Contingut) (genere $?generes))
 	=>
    (bind ?i 1)
@@ -3599,7 +3599,7 @@
 )
 
 (defrule esborrar-sense-subtitols-discapacitat-auditiva
-	(discapacitat-audiovisual "auditiva")
+	(usuari (discapacitat-audiovisual ?os&: (= (str-compare ?os "auditiva") 0)))
 	?contingut <- (object (is-a Contingut) (subtitols FALSE))
 	=>
 	(printout t "S'ha esborrat, per no tenir subtitols i ser l'usuari sord: " (send ?contingut get-titol) crlf)
