@@ -3642,7 +3642,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(punts-infantil ?nomG TRUE));; per evitar BUCLE infinit
     =>
-    (printout t "PUNT edat infantil"crlf)
+;;     (printout t "PUNT edat infantil"crlf)
 	(switch ?nomG
 		(case "Animacio" then (modify ?genere (puntuacio (+ ?punts 3))))
 		(case "Fantasia" then (modify ?genere (puntuacio (+ ?punts 3))))
@@ -3673,6 +3673,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(punts-dona ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT sexe dona"crlf)
 	(switch ?nomG
 		(case "Romantic" then (modify ?genere (puntuacio (+ ?punts 2))))
 		
@@ -3692,6 +3693,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(punts-home ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT sexe home"crlf)
 	(switch ?nomG
 		(case "Accio" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Belic" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -3710,6 +3712,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(punts-sep-div-sol ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT separat divorciat solter" crlf)
 	(switch ?nomG
 		(case "XXX" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Esports" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -3731,6 +3734,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(punts-cas-aju ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT casat ajuntat" crlf)
 	(switch ?nomG
 		(case "Romantic" then (modify ?genere (puntuacio (+ ?punts 1))))
 		
@@ -3744,6 +3748,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(punts-homosexual ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT homosexual"crlf)
 	(switch ?nomG
 		(case "Homosexual" then (modify ?genere (puntuacio (+ ?punts 1))))
 	)
@@ -3755,6 +3760,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(no-estudia ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT no estudia" crlf)
 	(switch ?nomG
 		(case "Show" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Rosa" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -3775,6 +3781,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(estudia-lletres ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT estudia lletres" crlf)
 	(switch ?nomG
 		(case "Politica" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Economia" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -3800,6 +3807,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(estudia-ciencia ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT estudia ciencia" crlf)
 	(switch ?nomG
 		(case "Ciencia" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Ciencia Ficcio" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -3825,6 +3833,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(estudia-tecnologia ?nomG TRUE));; per evitar BUCLE infinit
     =>
+    ;;     (printout t "PUNT estudia tecnología" crlf)
 	(switch ?nomG
 		(case "Ciencia Ficcio" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Tecnologia" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -3851,6 +3860,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(estudia-art ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT estudia art" crlf)
 	(switch ?nomG
 		(case "Art" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Culte" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -3877,6 +3887,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(agrada-treball-grup1 ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT agrada feina grup 1" crlf)
 	(bind ?suma 0)
 	(bind ?multi 0)
 	(switch ?nivellAgradaFeina
@@ -3902,7 +3913,7 @@
 		(case "Ciencia" then (bind ?suma (+ ?suma -2)))
 		(case "Tecnologia" then (bind ?suma (+ ?suma -2)))
 	)
-	(modify ?genere (puntuacio (* ?suma ?multi)))
+	(modify ?genere (puntuacio (+ ?punts (* ?suma ?multi))))
 	(assert (agrada-treball-grup1 ?nomG TRUE))
 )
 
@@ -3912,6 +3923,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(agrada-treball-grup2 ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT agrada feina grup 2" crlf)
 	(bind ?suma 0)
 	(bind ?multi 0)
 	(switch ?nivellAgradaFeina
@@ -3937,7 +3949,7 @@
 		(case "Historia" then (bind ?suma (+ ?suma -2)))
 		(case "Art" then (bind ?suma (+ ?suma -2)))
 	)
-	(modify ?genere (puntuacio (* ?suma ?multi)))
+	(modify ?genere (puntuacio (+ ?punts (* ?suma ?multi))))
 	(assert (agrada-treball-grup2 ?nomG TRUE))
 )
 
@@ -3947,6 +3959,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(agrada-treball-grup3 ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT agrada feina grup 3" crlf)
 	(bind ?suma 0)
 	(bind ?multi 0)
 	(switch ?nivellAgradaFeina
@@ -3973,7 +3986,7 @@
 		(case "Historia" then (bind ?suma (+ ?suma -2)))
 		(case "Art" then (bind ?suma (+ ?suma -2)))
 	)
-	(modify ?genere (puntuacio (* ?suma ?multi)))
+	(modify ?genere (puntuacio (+ ?punts (* ?suma ?multi))))
 	(assert (agrada-treball-grup3 ?nomG TRUE))
 )
 
@@ -3983,6 +3996,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(agrada-treball-grup4 ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT agrada feina grup 4" crlf)
 	(bind ?suma 0)
 	(bind ?multi 0)
 	(switch ?nivellAgradaFeina
@@ -4009,7 +4023,7 @@
 		(case "Tecnologia" then (bind ?suma (+ ?suma -2)))
 		(case "Ciencia Ficcio" then (bind ?suma (+ ?suma -2)))
 	)
-	(modify ?genere (puntuacio (* ?suma ?multi)))
+	(modify ?genere (puntuacio (+ ?punts (* ?suma ?multi))))
 	(assert (agrada-treball-grup4 ?nomG TRUE))
 )
 
@@ -4018,6 +4032,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(interessa-gadafi ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT interessa gadafi" crlf)
 	(bind ?suma 0)
 	(bind ?multi 0)
 	(switch ?nivellInteresGadafi
@@ -4034,7 +4049,7 @@
 		(case "Belic" then (bind ?suma (+ ?suma 1)))
 		(case "Accio" then (bind ?suma (+ ?suma 1)))
 	)
-	(modify ?genere (puntuacio (* ?suma ?multi)))
+	(modify ?genere (puntuacio (+ ?punts (* ?suma ?multi))))
 	(assert (interessa-gadafi ?nomG TRUE))
 )
 
@@ -4043,6 +4058,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(interessa-fukushima ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT interessa fukushima" crlf)
 	(bind ?suma 0)
 	(bind ?multi 0)
 	(switch ?nivellInteresFukushima
@@ -4060,7 +4076,7 @@
 		(case "Ciencia" then (bind ?suma (+ ?suma 1)))
 		(case "Catastrofe" then (bind ?suma (+ ?suma 1)))
 	)
-	(modify ?genere (puntuacio (* ?suma ?multi)))
+	(modify ?genere (puntuacio (+ ?punts (* ?suma ?multi))))
 	(assert (interessa-fukushima ?nomG TRUE))
 )
 
@@ -4069,6 +4085,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-interessa-boda-real ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT interessa boda real" crlf)
 	(switch ?nomG
 		(case "Actualitat" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Rosa" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -4083,6 +4100,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-coneix-belen-esteban ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT coneix belen esteban" crlf)
 	(switch ?nomG
 		(case "Rosa" then (modify ?genere (puntuacio (+ ?punts 3))))
 		(case "Show" then (modify ?genere (puntuacio (+ ?punts 3))))
@@ -4105,6 +4123,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-es-practic ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT es practic" crlf)
 	(switch ?nomG
 		(case "Actualitat" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Tecnologia" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -4124,6 +4143,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-oci-festa ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT oci festa" crlf)
 	(switch ?nomG
 		(case "Comedia" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Accio" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -4137,6 +4157,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-oci-natura ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT oci natura" crlf)
 	(switch ?nomG
 		(case "Naturalesa" then (modify ?genere (puntuacio (+ ?punts 2))))
 	)
@@ -4148,6 +4169,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-oci-estudiar ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT oci estudiar" crlf)
 	(switch ?nomG
 		(case "Culte" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Drama" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -4162,6 +4184,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-jugava-pistoles-aigua ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT jugava pistoles aigua" crlf)
 	(switch ?nomG
 		(case "Accio" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Oest" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -4175,6 +4198,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-aficions-mar-muntanya ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT aficions mar muntanya" crlf)
 	(switch ?nomG
 		(case "Naturalesa" then (modify ?genere (puntuacio (+ ?punts 1))))
 	)
@@ -4186,6 +4210,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-aficions-tecnologia ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT aficions tecnologia" crlf)
 	(switch ?nomG
 		(case "Tecnologia" then (modify ?genere (puntuacio (+ ?punts 2))))
 	)
@@ -4197,6 +4222,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-aficions-lectura ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT aficions lectura" crlf)
 	(switch ?nomG
 		(case "Art" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Economia" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -4211,6 +4237,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-aficions-societat ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT aficions societat" crlf)
 	(switch ?nomG
 		(case "Historia" then (modify ?genere (puntuacio (+ ?punts 2))))
 		(case "Politica" then (modify ?genere (puntuacio (+ ?punts 2))))
@@ -4223,6 +4250,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?puntsGenere))
 	(not(interes ?numInteres ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT interes (llista pelis)" crlf)
 	(switch ?numInteres
 		(case 1 then
 			(if (eq (str-compare ?nomG "Animacio") 0) then(modify ?genere (puntuacio (+ ?puntsGenere 3)))))
@@ -4247,6 +4275,7 @@
 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts))
 	(not(puntuacio-genere-passio ?nomG TRUE));; per evitar BUCLE infinit
     =>
+;;     (printout t "PUNT passio per generes" crlf)
 	(loop-for-count (?i 1 (length$ $?generesPassio)) do
 		(bind ?genereActualPassio (nth$ ?i $?generesPassio))
 		(if (eq (str-compare ?genereActualPassio ?nomG) 0)
@@ -4264,8 +4293,9 @@
 	?contingut <- (object (is-a Cine) (titol ?titolC) (genere $?generes))
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	?gen <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?puntsGenere))
-	(not(punts-cine-gen ?titolC ?nomG));; per evitar BUCLE infinit
+	(not(punts-cine-gen ?titolC ?nomG TRUE));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT cine per generes" crlf)
 	(loop-for-count (?i 1 (length$ $?generes)) do
 		(bind ?genereActual (nth$ ?i $?generes))
 		(if (eq (str-compare ?nomG (send (instance-address * ?genereActual) get-nomGenere)) 0)
@@ -4273,7 +4303,7 @@
 			(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut ?puntsGenere)))
 		)
 	)
-	(assert(punts-cine-gen ?titolC ?nomG))
+	(assert(punts-cine-gen ?titolC ?nomG TRUE))
 )
 
 (defrule puntuacio-cine-favorit
@@ -4282,6 +4312,7 @@
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	(not(punts-cine-favorit ?titolC));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT cine favorit" crlf)
 	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
 	(assert(punts-cine-favorit ?titolC))
 )
@@ -4292,6 +4323,7 @@
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	(not(punts-duracio-contingut ?titolC));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT duracio contingut" crlf)
 	(if (<= ?duracioContingut 30)
 	then
 		(if (eq ?duracioPreferida curt)
@@ -4333,6 +4365,7 @@
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	(not(punts-actor-favorit ?titolC));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT actor favorit" crlf)
 	(loop-for-count (?i 1 (length$ $?actorsC)) do
 		(bind ?actorActual (nth$ ?i $?actorsC))
 		(if (eq (str-compare ?actorFav (send (instance-address * ?actorActual) get-nom)) 0)
@@ -4349,6 +4382,7 @@
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	(not(punts-director-favorit ?titolC));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT director favorit" crlf)
 	(loop-for-count (?i 1 (length$ $?directorsC)) do
 		(bind ?directorActual (nth$ ?i $?directorsC))
 		(if (eq (str-compare ?directorFav (send (instance-address * ?directorActual) get-nom)) 0)
@@ -4365,6 +4399,7 @@
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	(not(punts-blanc-i-negre ?titolC));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT blanc i negre" crlf)
 	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 3)))
 	(assert(punts-blanc-i-negre ?titolC))
 )
@@ -4375,6 +4410,7 @@
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	(not(punts-pelis-antigues ?titolC));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT pelis antigues" crlf)
 	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 2)))
 	(assert(punts-pelis-antigues ?titolC))
 )
@@ -4385,6 +4421,7 @@
 	?gen <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?puntsGenere))
 	(not(punts-documental-gen ?titolC ?nomG));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT docus per generes" crlf)
 	(bind ?tipusDocu (str-cat (class ?contingut)))
 	(if (eq (str-compare ?nomG ?tipusDocu) 0)
 	then
@@ -4399,6 +4436,7 @@
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	(not(punts-documentals-favorit ?titolC));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT docus favorits" crlf)
 	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
 	(assert(punts-documentals-favorit ?titolC))
 )
@@ -4409,6 +4447,7 @@
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	(not(punts-documentals-natu-te-mascota ?titolC));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT naturalesa te mascota" crlf)
 	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
 	(assert(punts-documentals-natu-te-mascota ?titolC))
 )
@@ -4419,6 +4458,7 @@
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	(not(punts-documentals-aficio-mar ?titolC));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT docu aficio mar" crlf)
 	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 2)))
 	(assert(punts-documentals-aficio-mar ?titolC))
 )
@@ -4429,6 +4469,7 @@
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	(not(punts-documentals-aficio-muntanya ?titolC));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT docu aficio muntanya" crlf)
 	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 2)))
 	(assert(punts-documentals-aficio-muntanya ?titolC))
 )
@@ -4439,6 +4480,7 @@
 	?gen <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?puntsGenere))
 	(not(punts-serie-gen ?titolC ?nomG));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT serie per generes" crlf)
 	(loop-for-count (?i 1 (length$ $?generes)) do
 		(bind ?genereActual (nth$ ?i $?generes))
 		(if (eq (str-compare ?nomG (send (instance-address * ?genereActual) get-nomGenere)) 0)
@@ -4455,25 +4497,10 @@
 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
 	(not(punts-series-favorit ?titolC));; per evitar BUCLE infinit
 	=>
+;; 	(printout t "PUNT series favorit" crlf)
 	(modify ?contingutAmbPunts (puntuacio (+ ?puntsContingut 1)))
 	(assert(punts-series-favorit ?titolC))
 )
-
-
-(defrule a-associacio-heuristica
-	(declare (salience -1))
-	=>
-	(focus associacio-heuristica)
-)
-
-;;;
-;;; 3.1 MODUL QUE FA L'ASSOCIACIO HEURISTICA***********************************************************************************************HEURISTICA
-;;;
-(defmodule associacio-heuristica "Modul associació heurística"
-    (import assumpcions-incondicionals ?ALL)
-    (export ?ALL)
-)
-
 
 
 (defrule a-solucions
@@ -4481,7 +4508,7 @@
 	=>
 	(focus solucions)
 )
-;;****************************************************************************************************************************************************
+
 
 ;;;
 ;;;MODUL DE REFINAMENT
@@ -4512,14 +4539,25 @@
 	(assert (titol-solucio-pintada TRUE))
 )
 
+(defrule prova5;;imprimeix generes amb punts diferents de 0, per debug
+	(declare (salience 6))
+;; 	(not(usuari (sexe desconegut)))
+;; 	(not(usuari (edat ?e&:(= ?e -1))))
+	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts&: (not(= ?punts 0))))
+;; 	(not(provafet5 ?nomG TRUE))
+    =>
+	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
+;; 	(assert (provafet5 ?nomG TRUE))
+)
+
 (defrule imprimeix-cont
 	(declare (salience 7))
-	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts-cont))
 	?contingut <- (object (titol ?titolC))
-	(not(cont-impres ?titol-cont TRUE))
+	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?punts-cont))
+	(not(cont-impres ?titolC TRUE))
     =>
-	(printout t (str-cat (class ?contingut)) " PUNTS: " ?punts-cont  " TITOL: " ?titol-cont  crlf)
-	(assert (cont-impres ?titol-cont TRUE))
+	(printout t (str-cat (class ?contingut)) " PUNTS: " ?punts-cont  " TITOL: " ?titolC  crlf)
+	(assert (cont-impres ?titolC TRUE))
 )
 
 ;; (defrule prova4;;imprimeix continguts amb punts per debug
