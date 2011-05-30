@@ -1,4 +1,4 @@
-; Mon May 30 10:49:52 CEST 2011
+; Mon May 30 12:35:38 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -20,23 +20,23 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[TVornoTV_ProjectKB_Class86]
-		[TVornoTV_ProjectKB_Class87]
-		[TVornoTV_ProjectKB_Class88]
-		[TVornoTV_ProjectKB_Class89]
-		[TVornoTV_ProjectKB_Class90]
-		[TVornoTV_ProjectKB_Class91]
-		[TVornoTV_ProjectKB_Class92]
-		[TVornoTV_ProjectKB_Class93]
-		[TVornoTV_ProjectKB_Class94]
-		[TVornoTV_ProjectKB_Class95]
-		[TVornoTV_ProjectKB_Class96]
-		[TVornoTV_ProjectKB_Class97]
-		[TVornoTV_ProjectKB_Class98]
-		[TVornoTV_ProjectKB_Class99]
-		[TVornoTV_ProjectKB_Class100]
-		[TVornoTV_ProjectKB_Class101]
-		[TVornoTV_ProjectKB_Class102]))
+		[TVornoTV_ProjectKB_Class41]
+		[TVornoTV_ProjectKB_Class42]
+		[TVornoTV_ProjectKB_Class43]
+		[TVornoTV_ProjectKB_Class44]
+		[TVornoTV_ProjectKB_Class45]
+		[TVornoTV_ProjectKB_Class46]
+		[TVornoTV_ProjectKB_Class47]
+		[TVornoTV_ProjectKB_Class48]
+		[TVornoTV_ProjectKB_Class49]
+		[TVornoTV_ProjectKB_Class50]
+		[TVornoTV_ProjectKB_Class51]
+		[TVornoTV_ProjectKB_Class52]
+		[TVornoTV_ProjectKB_Class53]
+		[TVornoTV_ProjectKB_Class54]
+		[TVornoTV_ProjectKB_Class55]
+		[TVornoTV_ProjectKB_Class56]
+		[TVornoTV_ProjectKB_Class57]))
 
 ([CLSES_TAB] of  Widget
 
@@ -80,9 +80,6 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_210823_Class3] of  Map
-)
-
 ([KB_392334_Class0] of  String
 
 	(name "factory_class_name")
@@ -91,9 +88,9 @@
 ([KB_392334_Class1] of  Map
 
 	(entries
-		[TVornoTV_ProjectKB_Class103]
-		[TVornoTV_ProjectKB_Class104]
-		[TVornoTV_ProjectKB_Class105]))
+		[TVornoTV_ProjectKB_Class58]
+		[TVornoTV_ProjectKB_Class59]
+		[TVornoTV_ProjectKB_Class60]))
 
 ([KB_392334_Class10] of  Property_List
 )
@@ -547,6 +544,9 @@
 ([KB_392334_Class99] of  Property_List
 )
 
+([KB_690903_Class3] of  Map
+)
+
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
@@ -631,8 +631,8 @@
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[STANDARD_SLOT_FORM_WIDGET]
 		[STANDARD_FACET_FORM_WIDGET]
+		[STANDARD_SLOT_FORM_WIDGET]
 		[PAL_FORM_WIDGET]
 		[STANDARD_CLASS_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")
@@ -1013,115 +1013,115 @@
 		[STANDARD_SLOT_TYPE_WIDGET]
 		[KB_392334_Class92]))
 
-([TVornoTV_ProjectKB_Class100] of  String
+([TVornoTV_ProjectKB_Class107] of  String
+
+	(name "SearchTab_Query"))
+
+([TVornoTV_ProjectKB_Class41] of  String
+
+	(name "Persona")
+	(string_value "nom"))
+
+([TVornoTV_ProjectKB_Class42] of  String
+
+	(name "Economia")
+	(string_value "{DO_ECO_}titol"))
+
+([TVornoTV_ProjectKB_Class43] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([TVornoTV_ProjectKB_Class44] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([TVornoTV_ProjectKB_Class45] of  String
+
+	(name "Esports")
+	(string_value "{DO_ES_}titol"))
+
+([TVornoTV_ProjectKB_Class46] of  String
+
+	(name "Ciencia")
+	(string_value "{DO_CI_}titol"))
+
+([TVornoTV_ProjectKB_Class47] of  String
+
+	(name "Tecnologia")
+	(string_value "{DO_T_}titol"))
+
+([TVornoTV_ProjectKB_Class48] of  String
+
+	(name "Actualitat")
+	(string_value "{DO_AC_}titol"))
+
+([TVornoTV_ProjectKB_Class49] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([TVornoTV_ProjectKB_Class50] of  String
+
+	(name "Historia")
+	(string_value "{DO_HI_}titol"))
+
+([TVornoTV_ProjectKB_Class51] of  String
+
+	(name "Cine")
+	(string_value "{CI_}titol"))
+
+([TVornoTV_ProjectKB_Class52] of  String
+
+	(name "Serie")
+	(string_value "{SE}titol{-}num_temporada{x}num_capitol"))
+
+([TVornoTV_ProjectKB_Class53] of  String
+
+	(name "Genere")
+	(string_value "nomGenere"))
+
+([TVornoTV_ProjectKB_Class54] of  String
+
+	(name "Documental")
+	(string_value "{DO}titol"))
+
+([TVornoTV_ProjectKB_Class55] of  String
 
 	(name "Politica")
 	(string_value "{DO_PO_}titol"))
 
-([TVornoTV_ProjectKB_Class101] of  String
+([TVornoTV_ProjectKB_Class56] of  String
 
 	(name "Naturalesa")
 	(string_value "{DO_NA_}titol"))
 
-([TVornoTV_ProjectKB_Class102] of  String
+([TVornoTV_ProjectKB_Class57] of  String
 
 	(name "Art")
 	(string_value "{DO_AR_}titol"))
 
-([TVornoTV_ProjectKB_Class103] of  Map_Entry
+([TVornoTV_ProjectKB_Class58] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([TVornoTV_ProjectKB_Class104] of  Map_Entry
+([TVornoTV_ProjectKB_Class59] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([TVornoTV_ProjectKB_Class105] of  Map_Entry
+([TVornoTV_ProjectKB_Class60] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
-
-([TVornoTV_ProjectKB_Class107] of  String
-
-	(name "SearchTab_Query"))
-
-([TVornoTV_ProjectKB_Class86] of  String
-
-	(name "Persona")
-	(string_value "nom"))
-
-([TVornoTV_ProjectKB_Class87] of  String
-
-	(name "Economia")
-	(string_value "{DO_ECO_}titol"))
-
-([TVornoTV_ProjectKB_Class88] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([TVornoTV_ProjectKB_Class89] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([TVornoTV_ProjectKB_Class90] of  String
-
-	(name "Esports")
-	(string_value "{DO_ES_}titol"))
-
-([TVornoTV_ProjectKB_Class91] of  String
-
-	(name "Ciencia")
-	(string_value "{DO_CI_}titol"))
-
-([TVornoTV_ProjectKB_Class92] of  String
-
-	(name "Tecnologia")
-	(string_value "{DO_T_}titol"))
-
-([TVornoTV_ProjectKB_Class93] of  String
-
-	(name "Actualitat")
-	(string_value "{DO_AC_}titol"))
-
-([TVornoTV_ProjectKB_Class94] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([TVornoTV_ProjectKB_Class95] of  String
-
-	(name "Historia")
-	(string_value "{DO_HI_}titol"))
-
-([TVornoTV_ProjectKB_Class96] of  String
-
-	(name "Cine")
-	(string_value "{CI_}titol"))
-
-([TVornoTV_ProjectKB_Class97] of  String
-
-	(name "Serie")
-	(string_value "{SE}titol{-}num_temporada{x}num_capitol"))
-
-([TVornoTV_ProjectKB_Class98] of  String
-
-	(name "Documental")
-	(string_value "{DO}titol"))
-
-([TVornoTV_ProjectKB_Class99] of  String
-
-	(name "Genere")
-	(string_value "nomGenere"))
 
 ([VERTICAL_STRETCHER] of  String
 

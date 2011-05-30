@@ -6,7 +6,7 @@
 ;;****************
 
 
-; Sat May 21 19:04:18 CEST 2011
+; Mon May 30 12:35:37 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -457,7 +457,7 @@
 
 (definstances instancies
 
-; Sat May 21 19:04:18 CEST 2011
+; Mon May 30 12:35:37 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -1739,7 +1739,9 @@
 	(edatRecomanada 16)
 	(ferirSensibilitat FALSE)
 	(format COLOR)
-	(genere [TVornoTV_Class17])
+	(genere
+		[TVornoTV_Class17]
+		[TVornoTV_Class60011])
 	(idioma Espanyol Angles Catala)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
@@ -2788,7 +2790,7 @@
 
 ([TVornoTV_Class60016] of  Ambientacio
 
-	(nomGenere "Espai exterior"))
+	(nomGenere "Espai"))
 
 ([TVornoTV_Class62] of  Persona
 
@@ -2918,7 +2920,6 @@
 	(idioma Espanyol Angles Catala Frances)
 	(subtitols FALSE)
 	(titol "Sortida BWR 2011"))
-
 
 )
 ;;FI INSTANCIES

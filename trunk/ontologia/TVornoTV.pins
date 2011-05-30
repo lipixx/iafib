@@ -1,4 +1,4 @@
-; Mon May 30 10:49:52 CEST 2011
+; Mon May 30 12:35:37 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -1280,7 +1280,9 @@
 	(edatRecomanada 16)
 	(ferirSensibilitat FALSE)
 	(format COLOR)
-	(genere [TVornoTV_Class17])
+	(genere
+		[TVornoTV_Class17]
+		[TVornoTV_Class60011])
 	(idioma Espanyol Angles Catala)
 	(nacionalitat "EEUU")
 	(subtitols TRUE)
