@@ -3191,7 +3191,7 @@
 (defrule determinar-edat
     ?u <- (usuari (edat -1))
     =>
-    (bind ?edatLlegida (obte-nombre "Quina edat tens? "))
+    (bind ?edatLlegida (obte-nombre "(01/29) Quina edat tens? "))
     (modify ?u (edat ?edatLlegida))
 	(assert(edat-ja-preguntada TRUE))
 )
@@ -3200,7 +3200,7 @@
 	(edat-ja-preguntada TRUE)
     ?u <- (usuari (sexe desconegut))
     =>
-    (bind ?sexeLlegit (pregunta (str-cat "Ets home o dona? (home/dona) ") home dona))
+    (bind ?sexeLlegit (pregunta (str-cat "(02/29) Ets home o dona? (home/dona) ") home dona))
     (modify ?u (sexe ?sexeLlegit))
 	(assert(sexe-ja-preguntat TRUE))
 )
@@ -3208,7 +3208,7 @@
 (defrule determinar-estat-civil
     ?u <- (usuari (estat-civil desconegut))
     =>
-    (bind ?estatCivilLlegit(pregunta (str-cat "Quin es el teu estat civil? (casat/separat/divorciat/solter/ajuntat) ") casat separat divorciat solter ajuntat))
+    (bind ?estatCivilLlegit(pregunta (str-cat "(03/29) Quin es el teu estat civil? (casat/separat/divorciat/solter/ajuntat) ") casat separat divorciat solter ajuntat))
     (modify ?u (estat-civil ?estatCivilLlegit))
 )
 ;;; Posa en ordre els idiomes que entenguis? (cat, esp, fra, it, en, jp)
@@ -3216,7 +3216,7 @@
 	?u <- (usuari (idiomes $?llistaIdiomes))
 	(test (= 0 (length$ $?llistaIdiomes)))
 	=>
-	(bind ?llista (pregunta-llista "Posa en ordre de mes a menys els idiomes que entenguis: (cat, esp, fra, it, en, jp) "))
+	(bind ?llista (pregunta-llista "(04/29) Posa en ordre de mes a menys els idiomes que entenguis: (cat, esp, fra, it, en, jp) "))
 	(modify ?u (idiomes ?llista))
 )
 
@@ -3224,14 +3224,14 @@
 (defrule determinar-discapacitat-audiovisual
     ?u <- (usuari (discapacitat-audiovisual desconegut))
     =>
-    (bind ?discapacitatLlegida(pregunta (str-cat "Tens alguna discapacitat audiovisual? (no/auditiva/visual)") no auditiva visual))
+    (bind ?discapacitatLlegida(pregunta (str-cat "(05/29) Tens alguna discapacitat audiovisual? (no/auditiva/visual)") no auditiva visual))
     (modify ?u (discapacitat-audiovisual ?discapacitatLlegida))
 )
 ;;; Orientació sexual? (homosexual, heterosexual)
 (defrule determinar-orientacio-sexual
     ?u <- (usuari (orientacio-sexual desconegut))
     =>
-    (bind ?orientSexualLlegida (pregunta (str-cat "Orientacio sexual? (homosexual/heterosexual) ") homosexual heterosexual))
+    (bind ?orientSexualLlegida (pregunta (str-cat "(06/29) Orientacio sexual? (homosexual/heterosexual) ") homosexual heterosexual))
     (modify ?u (orientacio-sexual ?orientSexualLlegida))
 )
 ;;; Saltem al modul de les preguntes comunes
@@ -3254,14 +3254,14 @@
 ;;Tens estudis o estudies? (si,no)
 (defrule pregunta-estudia
 	=>
-	(assert (te-estudis ( si-o-no "Tens estudis o estudies? " )))
+	(assert (te-estudis ( si-o-no "(07/29) Tens estudis o estudies? " )))
 )
 
 ;;;;Si->I els teus estudis que son, de lletres, de ciencia, de tecnologia o d'art? (lletres, ciencia, tecnologia, art)
 (defrule pregunta-estudis-de-que-son
 	(te-estudis TRUE)
 	=>
-	(assert (que-estudia (pregunta "Els teus estudis de que tracten, de lletres, ciencia, tecnologia o art? " lletres ciencia tecnologia art)))
+	(assert (que-estudia (pregunta "(07.1/29) Els teus estudis de que tracten, de lletres, ciencia, tecnologia o art? " lletres ciencia tecnologi art)))
 )
 
 
@@ -3271,7 +3271,7 @@
 	=>
 	(if (< ?e 16) then (assert (te-treball FALSE))
 	else
-	(assert (te-treball ( si-o-no "Treballes actualment? " )))
+	(assert (te-treball ( si-o-no "(8/29) Treballes actualment? " )))
 	)
 )
 
@@ -3280,41 +3280,41 @@
 (defrule pregunta-tipus-treball
 	(te-treball TRUE)
 	=>
-	(assert (treball-relacionat-amb (pregunta "Quin tipus de treball es? (construccio,legal,politic,economic,lletres,tecnologia,ciencia,art,altres) " construccio legal politic economic lletres tecnologia ciencia art altres)))
+	(assert (treball-relacionat-amb (pregunta "(08.1/29) Quin tipus de treball es? (construccio,legal,politic,economic,lletres,tecnologia,ciencia,art,altres) " construccio legal politic economic lletres tecnologia ciencia art altres)))
 )
 
 ;;T'agrada el que fas? (si,no)
 (defrule pregunta-agrada-treball
 	(te-treball TRUE)
 	=>
-	(assert (agrada-treball ( pregunta-sino-multiple "Quant t'agrada la teva feina? " )))
+	(assert (agrada-treball ( pregunta-sino-multiple "(08.2/29) Quant t'agrada la teva feina? " )))
 )
 
 ;;De la seguent pregunta podem deduir si li agrada la politica, l'actualitat, les noticies.
 ;;Recentment hi ha un conflicte belic amb les tropes de Muamar el Gadafi, t'ha interesat el tema? (gens, poc, normal, molt, extremis)
 (defrule pregunta-gadafi
 	=>
-	(assert (interessat-gadafi ( pregunta-sino-multiple "Recentment hi ha un conflicte belic amb les tropes de Muamar el Gadafi, t'ha interesat el tema? " )))
+	(assert (interessat-gadafi ( pregunta-sino-multiple "(09/29) Recentment hi ha un conflicte belic amb les tropes de Muamar el Gadafi, t'ha interesat el tema? " )))
 )
 
 ;;;Podem posar-hi documentals de ciencia i medi ambient
 ;;Et preocupa la radiacio deguda a la fuga de Fukushima? (si, no, ns)
 (defrule pregunta-fukushima
 	=>
-	(assert (interessat-fukushima ( pregunta-sino-multiple "Et preocupa la radiacio deguda a la fuga de Fukushima? " )))
+	(assert (interessat-fukushima ( pregunta-sino-multiple "(10/29) Et preocupa la radiacio deguda a la fuga de Fukushima? " )))
 )
 
 ;;;Sabem que te temps i que li agraden els "cotilleos", corazon, i programes amb poc contingut intel·lectual.
 ;;Has seguit la boda real de Guillermo i Kate? (si,no)
 (defrule pregunta-bodareal
 	=>
-	(assert (interessat-boda-real ( si-o-no "Has seguit la boda real de Guillermo i Kate? " )))
+	(assert (interessat-boda-real ( si-o-no "(11/29) Has seguit la boda real de Guillermo i Kate? " )))
 )
 
 ;;Saps qui és la Princesa del Pueblo? (si,no.. resposta: es la belen esteban)
 (defrule pregunta-belenesteban
 	=>
-	(assert (coneix-belen-esteban ( si-o-no "Saps qui es la Princesa del Pueblo? " )))
+	(assert (coneix-belen-esteban ( si-o-no "(12/29) Saps qui es la Princesa del Pueblo? " )))
 )
 
 ;;;D'aqui podem deduir si es una persona mes practica o teorica i per tant si li interessa mes per exemple les lletres o la tecnologia.
@@ -3324,7 +3324,7 @@
 	=>
 	(if (< ?e 14) then (assert (te-vehicle FALSE))
 	else
-	(assert (te-vehicle ( si-o-no "Tens vehicle propi? " )))
+	(assert (te-vehicle ( si-o-no "(13/29) Tens vehicle propi? " )))
 	)
 )
 
@@ -3332,7 +3332,7 @@
 (defrule pregunta-vehicle-reparacio
 	(te-vehicle TRUE)
 	=>
-	(if (eq (obte-nombre "Si aquest vehicle te algun problema no molt greu, faries mai cap reparacio tu mateix (1), o el portaries al mecanic (2)? ") 1)
+	(if (eq (obte-nombre "(13.1/29) Si aquest vehicle te algun problema no molt greu, faries mai cap reparacio tu mateix (1), o el portaries al mecanic (2)? ") 1)
 	  then
 	  (assert (es-practic TRUE))
 	  else
@@ -3344,7 +3344,7 @@
 ;;Els caps de semana, habitualment... surts de festa (1), disfrutes de la natura (2), aprofites per estudiar o aprendre coses pel teu compte (3), una mica de tot (4)
 (defrule pregunta-oci
 	=>
-	(bind ?valorOci (obte-nombre "Els caps de semana, habitualment... surts de festa (1), disfrutes de la natura (2), aprofites per estudiar o aprendre coses pel teu compte (3), una mica de tot (4)? "))
+	(bind ?valorOci (obte-nombre "(14/29) Els caps de semana, habitualment... surts de festa (1), disfrutes de la natura (2), aprofites per estudiar o aprendre coses pel teu compte (3), una mica de tot (4)? "))
 	(if (eq ?valorOci 1) then (assert (oci festa)))
 	(if (eq ?valorOci 2) then (assert (oci natura)))
 	(if (eq ?valorOci 3) then (assert (oci estudiar)))
@@ -3356,21 +3356,21 @@
 ;;De petit, a l'estiu, jugaves amb pistoles d'aigua?(si,no)
 (defrule pregunta-pistolesaigua
 	=>
-	(assert (jugava-pistoles-aigua ( si-o-no "De petit, a l'estiu, jugaves o jugues amb pistoles d'aigua? " )))
+	(assert (jugava-pistoles-aigua ( si-o-no "(15/29) De petit, a l'estiu, jugaves o jugues amb pistoles d'aigua? " )))
 )
 
 ;;;Te certa aficio pels animals.
 ;;Tens mascotes?
 (defrule pregunta-mascotes
 	=>
-	(assert (te-mascota ( si-o-no "Tens mascotes? " )))
+	(assert (te-mascota ( si-o-no "(16/29) Tens mascotes? " )))
 )
 
 ;;;;Refinem el contingut dels documentals
 ;;Les teves aficions, es centren en temes de mar, de muntanya, tecnologia, lectura, societat, altres?
 (defrule pregunta-aficions
 	=>
-	(assert (aficions (pregunta "Les teves aficions, es centren en temes de mar, muntanya, tecnologia, lectura, societat, altres? " mar muntanya tecnologia lectura societat altres)))
+	(assert (aficions (pregunta "(17/29) Les teves aficions, es centren en temes de mar, muntanya, tecnologia, lectura, societat, altres? " mar muntanya tecnologia lectura societat altres)))
 )
 
 ;;;;Refinem encara més les preferencies de Animacio, Accio, Politica, Economia, Oci->Ciencia ficcio, Oci->Comedia, Romantica, etc.
@@ -3378,7 +3378,7 @@
 ;;les col·locaries? (1,2,3,4,5,6,7)
 (defrule pregunta-ordre-pelis
 	=>
-	(bind ?llista (pregunta-llista "Si et dono a triar entre 1:Bambi, 2:Terminator II, 3:El discurso del Rei, 4:Perdidos, 5:Buenafuente, 6:Sexo en nueva york, 7:Brokeback Mountain, amb quin ordre de preferencia les col.locaries? "))
+	(bind ?llista (pregunta-llista "(18/29) Si et dono a triar entre 1:Bambi, 2:Terminator II, 3:El discurso del Rei, 4:Perdidos, 5:Buenafuente, 6:Sexo en nueva york, 7:Brokeback Mountain, amb quin ordre de preferencia les col.locaries? "))
 	(bind ?i 1)
 	(while (<= ?i 7)
 		do
@@ -3407,7 +3407,7 @@
 (defrule pregunta-tipus
 
 	=>
-	(bind ?valor (obte-nombre "Vols mes series (1), pel.licules (2), o documentals (3)? "))
+	(bind ?valor (obte-nombre "(19/29) Vols mes series (1), pel.licules (2), o documentals (3)? "))
 	(if (eq ?valor 1) then (assert (contingut-preferit series)))
 	(if (eq ?valor 2) then (assert (contingut-preferit cine)))
 	(if (eq ?valor 3) then (assert (contingut-preferit documentals)))
@@ -3416,7 +3416,7 @@
 ;;Quantes hores de televisio al dia veus normalment? (0-24)
 (defrule pregunta-hores
 	=>
-	(bind ?valor (obte-nombre "Quantes hores de televisio al dia veus normalment (0-24)?"))
+	(bind ?valor (obte-nombre "(20/29) Quantes hores de televisio al dia veus normalment (0-24)?"))
 	(if (eq ?valor 1) then (assert (hores-tv 1)))
 	(if (eq ?valor 2) then (assert (hores-tv 2)))
 	(if (>= ?valor 3) then (assert (hores-tv 3)))
@@ -3426,7 +3426,7 @@
 ;;Vols que cada contingut sigui mes be llarg (1), curt (2), o t'es igual (3)? (1,2,3)
 (defrule pregunta-temps
 	=>
-	(bind ?valor (obte-nombre "Vols que cada contingut sigui mes be llarg (1), mig (2), curt (3) o t'es igual (4)? "))
+	(bind ?valor (obte-nombre "(21/29) Vols que cada contingut sigui mes be llarg (1), mig (2), curt (3) o t'es igual (4)? "))
 	(if (eq ?valor 1) then (assert (duracio-prefer llarg)))
 	(if (eq ?valor 2) then (assert (duracio-prefer mig)))
 	(if (eq ?valor 3) then (assert (duracio-prefer curt)))
@@ -3438,19 +3438,19 @@
 ;;   2  que passa amb generes que son 2 paraules com "espai exterior"?????
 (defrule pregunta-passions
 	=>
-	(assert (passio-per (pregunta-llista "Dels temes seguents, quin t'apassiona mes?: Belic, Culte, Espai, Esportiu, Historic, Homosexual, Oest, Policiaca, Terror, Suspense, Melodrama, Fantasia, Romantic, Musical, XXX")))
+	(assert (passio-per (pregunta-llista "(22/29) Dels temes seguents, quin t'apassiona mes?: Belic, Culte, Espai, Esportiu, Historic, Homosexual, Oest, Policiaca, Terror, Suspense, Melodrama, Fantasia, Romantic, Musical, XXX: ")))
 )
 
 ;;Tens cap actor preferit? Si no en tens cap, escriu "cap".
 (defrule pregunta-actor-favorit
 	=>
-	(assert (actor-preferit (pregunta-llista "Tens cap actor preferit? Si no en tens cap, escriu cap.")))
+	(assert (actor-preferit (pregunta-llista "(23/29) Tens cap actor preferit? Si no en tens cap, escriu cap. ")))
 )
 
 ;;Tens cap director preferit? Si no en tens cap, escriu "cap".
 (defrule pregunta-director-favorit
 	=>
-	(assert (director-preferit (pregunta-llista "Tens cap director preferit? Si no en tens cap, escriu cap.")))
+	(assert (director-preferit (pregunta-llista "(24/29) Tens cap director preferit? Si no en tens cap, escriu cap. ")))
 )
 
 ;;(Si edat > 18) Vols permetre cap contingut XXX? (si,no)
@@ -3459,7 +3459,7 @@
 	=>
 	(if (< ?e 18) then (assert (xxx-permes FALSE))
 	else
-	(assert (xxx-permes ( si-o-no "Vols permetre cap contingut XXX? " )))
+	(assert (xxx-permes ( si-o-no "(25/29) Vols permetre cap contingut XXX? " )))
 	)
 )
 
@@ -3469,7 +3469,7 @@
 	=>
 	(if (< ?e 16) then (assert (contingut-sensible-permes FALSE))
 	else
-	(assert (contingut-sensible-permes ( si-o-no "Vols permetre continguts que puguin ferir la sensibilitat de les persones? " )))
+	(assert (contingut-sensible-permes ( si-o-no "(26/29) Vols permetre continguts que puguin ferir la sensibilitat de les persones? " )))
 	)
 )
 
@@ -3477,19 +3477,19 @@
 ;;T'agradaria veure alguns continguts amb versio original?
 (defrule pregunta-vo
 	=>
-	(assert (versio-original-permes ( si-o-no "T'agradaria veure alguns continguts amb versio original? " )))
+	(assert (versio-original-permes ( si-o-no "(27/29) T'agradaria veure alguns continguts amb versio original? " )))
 )
 
 ;;T'agraden les pelicules en blanc i negre? (si,no)
 (defrule pregunta-bin
 	=>
-	(assert (blanc-negre ( si-o-no "T'agraden les pelicules en blanc i negre? " )))
+	(assert (blanc-negre ( si-o-no "(28/29) T'agraden les pelicules en blanc i negre? " )))
 )
 
 ;;Voldries veure pelicules antigues? (si,no)
 (defrule pregunta-antigues
 	=>
-	(assert (pelis-antigues ( si-o-no "Voldries veure pelicules antigues? " )))
+	(assert (pelis-antigues ( si-o-no "(29/29) Voldries veure pelicules antigues? " )))
 )
 
 ;;; Saltem al modul de les assumpcions
