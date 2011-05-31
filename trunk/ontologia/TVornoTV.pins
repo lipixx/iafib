@@ -1,4 +1,4 @@
-; Mon May 30 12:35:37 CEST 2011
+; Tue May 31 20:30:36 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -1324,6 +1324,8 @@
 	(any 2010)
 	(descripcio "Documental no sólo sobre las causas, sino también sobre los responsables de la crisis económica mundial de 2008, que signíficó la ruina de millones de personas que perdieron sus hogares y empleos, y, además, puso en peligro la estabilidad económica de los países desarrollados. A través de una extensa investigación y de entrevistas a financieros, políticos y periodistas, se muestra el auge de empresarios sin escrúpulos y la degradación de la política y la educación.")
 	(director [TVornoTV_Class20001])
+	(duracio 50)
+	(edatRecomanada 13)
 	(ferirSensibilitat FALSE)
 	(idioma Angles)
 	(subtitols FALSE)
@@ -2343,6 +2345,37 @@
 	(nom "Billy Zane")
 	(sexe home))
 
+([TVornoTV_Class70001] of  Tecnologia
+
+	(ambit Informatica)
+	(any 2008)
+	(descripcio "Dedicado a la empresa de Apple y su creacion")
+	(director [TVornoTV_Class70002])
+	(duracio 83)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles)
+	(subtitols FALSE)
+	(titol "Welcome to Macintosh"))
+
+([TVornoTV_Class70002] of  Persona
+
+	(nom "Baca Productions")
+	(sexe home))
+
+([TVornoTV_Class70003] of  Naturalesa
+
+	(any 2009)
+	(descripcio "Frente el calentamiento climatico, nos habla del futuro de la energia nuclear delante de la importancia de las energias renovables")
+	(director [TVornoTV_Class80004])
+	(duracio 80)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Frances Espanyol Angles)
+	(subtitols FALSE)
+	(tema Clima)
+	(titol "Energia Nuclear ¿el fin de un tabu?"))
+
 ([TVornoTV_Class70004] of  Serie
 
 	(any 2003)
@@ -2461,3 +2494,767 @@
 	(idioma Espanyol Angles Catala Frances)
 	(subtitols FALSE)
 	(titol "Sortida BWR 2011"))
+
+([TVornoTV_Class80004] of  Persona
+
+	(nom "Ana Kwak")
+	(sexe dona))
+
+([TVornoTV_Class80005] of  Actualitat
+
+	(any 2008)
+	(descripcio "Gigantes corporativos y gobiernos corruptos compiten ya hoy por el control de nuestros suministros de agua que cada vez son mas escasos; nos habla de la crisi mundial por el agua.")
+	(duracio 51)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Angles Espanyol)
+	(subtitols FALSE)
+	(titol "Oro azul, la guerra del agua"))
+
+([TVornoTV_Class80006] of  Actualitat
+
+	(any 2008)
+	(descripcio "viene a ser algo así como un curso acelerado sobre los nuevos paradigmas que enfrenta nuestra especie, ante la gran anomalía planetaria denominada Pico del Petróleo y sus implicancias en el futuro de la humanidad")
+	(director [TVornoTV_Class80008])
+	(duracio 86)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Angles)
+	(subtitols TRUE)
+	(titol "Punto ciego"))
+
+([TVornoTV_Class80008] of  Persona
+
+	(nom "Adolfo Doring")
+	(sexe home))
+
+([TVornoTV_Class80010] of  Actualitat
+
+	(any 2011)
+	(descripcio "mostra la perillosa feina dels treballadors que desmunten vaixells a la ciutat portuària de Chittagong, al sud de Blangadesh")
+	(director [TVornoTV_Class80011])
+	(duracio 80)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Catala Espanyol)
+	(subtitols FALSE)
+	(titol "Corbs de Ferro"))
+
+([TVornoTV_Class80011] of  Persona
+
+	(nom "Bong- Nam Park")
+	(sexe home))
+
+([TVornoTV_Class80012] of  Actualitat
+
+	(any 2004)
+	(descripcio "És la història de Basilio Vargas, de 14 anys, i del seu germà Bernardino, de 12, que treballen a les mines de plata de Cerro Rico, a Potosí, Bolívia, que van començar a ser explotades al segle XVI")
+	(director
+		[TVornoTV_Class80013]
+		[TVornoTV_Class80014])
+	(duracio 80)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Angles Espanyol Catala)
+	(subtitols TRUE)
+	(titol "La mina del diable"))
+
+([TVornoTV_Class80013] of  Persona
+
+	(nom "Richard Ladkani")
+	(sexe home))
+
+([TVornoTV_Class80014] of  Persona
+
+	(nom "Kief Davidson")
+	(sexe home))
+
+([TVornoTV_Class80015] of  Ciencia
+
+	(any 2010)
+	(descripcio "El profesor Brian Cox nos invita un viaje a lo largo del Sistema Solar, mostrándonos las maravillas escondidas en cada planeta, satélite, o incluso en el Sol.")
+	(director [TVornoTV_Class80017])
+	(duracio 75)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Angles Espanyol)
+	(subtitols FALSE)
+	(titol "Maravillas del Sistema Solar"))
+
+([TVornoTV_Class80016] of  Ciencia
+
+	(any 2006)
+	(descripcio "Marcus du Sautoy, Catedrático de Matemáticas de la Universidad de Oxford y uno de los científicos más prestigiosos de Inglaterra nos acerca al fascinante mundo de las matemáticas, a su belleza y a sus secretos.")
+	(director [TVornoTV_Class80017])
+	(duracio 30)
+	(edatRecomanada 15)
+	(ferirSensibilitat FALSE)
+	(idioma Angles Espanyol Frances)
+	(subtitols FALSE)
+	(titol "La música de los números primos"))
+
+([TVornoTV_Class80017] of  Persona
+
+	(nom "BBC"))
+
+([TVornoTV_Class80018] of  Ciencia
+
+	(any 2008)
+	(descripcio "Los virus han sido considerados grandes amenazas para la humanidad, pero un sorprendente descubrimiento ha puesto de manifiesto su extraordinaria capacidad creadora.")
+	(director [TVornoTV_Class80019])
+	(duracio 50)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Angles Espanyol Frances)
+	(subtitols FALSE)
+	(titol "Virus, el origen"))
+
+([TVornoTV_Class80019] of  Persona
+
+	(nom "David Elisco")
+	(sexe home))
+
+([TVornoTV_Class80020] of  Naturalesa
+
+	(any 2009)
+	(descripcio "nos mostrará qué ocurre cuando las fuerzas de la naturaleza entran en conflicto con el hombre, siendo testigos de sus efectos devastadores.")
+	(director [TVornoTV_Class80017])
+	(duracio 60)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles)
+	(subtitols FALSE)
+	(tema Clima)
+	(titol "Los peores desastres del mundo: Tsunamis, olas asesinas"))
+
+([TVornoTV_Class80021] of  Ciencia
+
+	(any 2007)
+	(descripcio "Este documental de la BBC muestra los esfuerzos de la comunidad científica por controlar las supertormentas y minimizar sus riesgos, así como el fracaso de algunos intentos de alterar el clima llevados a cabo en el pasado.")
+	(director [TVornoTV_Class80017])
+	(duracio 50)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles Frances)
+	(subtitols FALSE)
+	(titol "La ciencia de las supertormentas"))
+
+([TVornoTV_Class80022] of  Ciencia
+
+	(any 2008)
+	(descripcio "nos mostrará los secretos de las partículas, su naturaleza y cómo todo lo que nos rodea está formado por átomos.")
+	(director [TVornoTV_Class80017])
+	(duracio 54)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles Frances Italia)
+	(subtitols FALSE)
+	(titol "La ilusion de la realidad"))
+
+([TVornoTV_Class80023] of  Ciencia
+
+	(any 2007)
+	(descripcio "National Geographic ha viajado por distintos lugares del mundo para mostrarnos las nuevas y gigantescas instalaciones que aprovechan el potencial energético del Sol.")
+	(duracio 50)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles Frances)
+	(subtitols FALSE)
+	(titol "Energía solar: limpia e inagotable"))
+
+([TVornoTV_Class80024] of  Ciencia
+
+	(any 2004)
+	(descripcio "Se trata del rascacielos Turning Torso, un edificio que contará con 54 plantas cuando esté acabado y que se retuerce como una barra de regaliz a medida que alcanza altura.")
+	(director [TVornoTV_Class80025])
+	(duracio 65)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles)
+	(subtitols FALSE)
+	(titol "Ingeniería extrema: residencia sueca Turning Torso"))
+
+([TVornoTV_Class80025] of  Persona
+
+	(nom "Peter Frumkin")
+	(sexe home))
+
+([TVornoTV_Class80026] of  Ciencia
+
+	(any 1996)
+	(descripcio "Este es un viaje fascinante por la generosidad de los mares y por los desiertos de dos mundos increíblemente diferentes, pero intrínsecamente unidos.")
+	(director [TVornoTV_Class80027])
+	(duracio 40)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles Frances)
+	(subtitols FALSE)
+	(titol "Un Oasis en el Océano"))
+
+([TVornoTV_Class80027] of  Persona
+
+	(nom "James Neihouse")
+	(sexe home))
+
+([TVornoTV_Class80028] of  Economia
+
+	(any 2008)
+	(descripcio "Uno de los bancos de inversión más antiguos de Wall Street. En septiembre de 2008 colapsó debido a la crisis hipotecaria del mercado estadounidense arrastrando en su caí­da a otras instituciones financieras.")
+	(director [TVornoTV_Class80017])
+	(duracio 50)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Angles Espanyol)
+	(subtitols FALSE)
+	(titol "Los últimos días de Lehman Brothers"))
+
+([TVornoTV_Class80029] of  Economia
+
+	(any 2002)
+	(descripcio "Describe y analiza la influencia de la psicología de masas y la propaganda en la creación de la sociedad de consumo del poder político y empresarial del siglo XX.")
+	(director [TVornoTV_Class80017])
+	(duracio 60)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles Frances Italia)
+	(subtitols FALSE)
+	(titol "El siglo del individualismo"))
+
+([TVornoTV_Class80030] of  Economia
+
+	(any 2008)
+	(descripcio "Para algunos el dinero es la raíz de todo mal, otros en cambio sueñan con que algún día crezca en los árboles. Todo el mundo habla de dinero, la mayoría sueña con tenerlo y sólo algunos pueden malgastarlo.")
+	(director [TVornoTV_Class80031])
+	(duracio 47)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles)
+	(subtitols TRUE)
+	(titol "El poder del dinero"))
+
+([TVornoTV_Class80031] of  Persona
+
+	(nom "Adrian Pennink")
+	(sexe home))
+
+([TVornoTV_Class80032] of  Economia
+
+	(any 2011)
+	(descripcio "Trata de comprender los orígenes de la crisis financiera.")
+	(director [TVornoTV_Class80033])
+	(duracio 60)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Angles)
+	(subtitols FALSE)
+	(titol "The Flaw"))
+
+([TVornoTV_Class80033] of  Persona
+
+	(nom "David Sington")
+	(sexe home))
+
+([TVornoTV_Class80034] of  Esports
+
+	(any 2008)
+	(descripcio "Indaga en la violencia en el mundo del deporte. Tras una investigación minuciosa del fenómeno y múltiples entrevistas con expertos y afectados, el documental desvela la parte más desconocida de ésta violencia que tiene como escenario final los grandes estadios.")
+	(duracio 50)
+	(edatRecomanada 13)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles Frances Italia)
+	(subtitols FALSE)
+	(titol "Violencia en el deporte."))
+
+([TVornoTV_Class80035] of  Esports
+
+	(any 2007)
+	(descripcio "Hugo Sánchez nos lleva de la mano a través de la historia de los ‘Merengues Galáctivos’ del Real Madrid.")
+	(director [TVornoTV_Class80036])
+	(duracio 50)
+	(edatRecomanada 10)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(titol "El nuevo siglo Blanco"))
+
+([TVornoTV_Class80036] of  Persona
+
+	(nom "Hugo Sánchez")
+	(sexe home))
+
+([TVornoTV_Class80037] of  Esports
+
+	(any 2008)
+	(descripcio "Trata sobre la vida y la ficción del baloncesto de Michael Jordan")
+	(duracio 50)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles)
+	(subtitols FALSE)
+	(titol "Michael Jordan"))
+
+([TVornoTV_Class80038] of  Serie
+
+	(actorsS
+		[TVornoTV_Class80040]
+		[TVornoTV_Class80041])
+	(any 2009)
+	(descripcio "La serie gira en torno a tres familias que están relacionadas entre sí a través de Jay Pritchett, su hijo Mitchell Pritchett y su hija Claire Dunphy. Cada uno de los tres núcleos familiares responde a un modelo de familia diferente")
+	(director [TVornoTV_Class80039])
+	(duracio 22)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(genere_serie [TVornoTV_Class10072])
+	(idioma Espanyol Angles)
+	(num_capitol 5)
+	(num_temporada 1)
+	(resum "Coal Digger")
+	(subtitols FALSE)
+	(titol "Modern Family"))
+
+([TVornoTV_Class80039] of  Persona
+
+	(nom "Christopher Lloyd")
+	(sexe home))
+
+([TVornoTV_Class80040] of  Persona
+
+	(nom "Ed O'Neill")
+	(sexe home))
+
+([TVornoTV_Class80041] of  Persona
+
+	(nom "Sofia Vergara")
+	(sexe dona))
+
+([TVornoTV_Class80042] of  Serie
+
+	(actorsS
+		[TVornoTV_Class80040]
+		[TVornoTV_Class80041])
+	(any 2009)
+	(descripcio "La serie gira en torno a tres familias que están relacionadas entre sí a través de Jay Pritchett, su hijo Mitchell Pritchett y su hija Claire Dunphy. Cada uno de los tres núcleos familiares responde a un modelo de familia diferente")
+	(director [TVornoTV_Class80039])
+	(duracio 22)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(genere_serie [TVornoTV_Class10072])
+	(idioma Espanyol Angles)
+	(num_capitol 3)
+	(num_temporada 2)
+	(resum "The Kiss")
+	(subtitols FALSE)
+	(titol "Modern Family"))
+
+([TVornoTV_Class80043] of  Serie
+
+	(actorsS
+		[TVornoTV_Class80040]
+		[TVornoTV_Class80041])
+	(any 2009)
+	(descripcio "La serie gira en torno a tres familias que están relacionadas entre sí a través de Jay Pritchett, su hijo Mitchell Pritchett y su hija Claire Dunphy. Cada uno de los tres núcleos familiares responde a un modelo de familia diferente")
+	(director [TVornoTV_Class80039])
+	(duracio 22)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(genere_serie [TVornoTV_Class10072])
+	(idioma Espanyol Angles)
+	(num_capitol 24)
+	(num_temporada 1)
+	(resum "Family Portrait")
+	(subtitols FALSE)
+	(titol "Modern Family"))
+
+([TVornoTV_Class80044] of  Serie
+
+	(actorsS
+		[TVornoTV_Class80045]
+		[TVornoTV_Class80046])
+	(any 2005)
+	(descripcio "un delincuente de poca monta sin respeto por nada ni por nadie, que nada más ganar $100.000 en la lotería de un boleto comprado con dinero robado, pierde el boleto al ser atropellado por un coche. Mientras se encuentra convaleciente en el hospital su mujer le hace firmar el divorcio, y es entonces cuando, a través de la televisión, descubre el karma")
+	(director [TVornoTV_Class80047])
+	(duracio 21)
+	(edatRecomanada 10)
+	(ferirSensibilitat FALSE)
+	(genere_serie [TVornoTV_Class10072])
+	(idioma Angles Espanyol)
+	(num_capitol 2)
+	(num_temporada 1)
+	(resum "Quit Smoking")
+	(subtitols TRUE)
+	(titol "My name is Earl"))
+
+([TVornoTV_Class80045] of  Persona
+
+	(nom "Jason Lee")
+	(sexe home))
+
+([TVornoTV_Class80046] of  Persona
+
+	(nom "Ethan Suplee")
+	(sexe home))
+
+([TVornoTV_Class80047] of  Persona
+
+	(nom "Greg Garcia")
+	(sexe home))
+
+([TVornoTV_Class80048] of  Serie
+
+	(actorsS
+		[TVornoTV_Class80045]
+		[TVornoTV_Class80046])
+	(any 2005)
+	(descripcio "un delincuente de poca monta sin respeto por nada ni por nadie, que nada más ganar $100.000 en la lotería de un boleto comprado con dinero robado, pierde el boleto al ser atropellado por un coche. Mientras se encuentra convaleciente en el hospital su mujer le hace firmar el divorcio, y es entonces cuando, a través de la televisión, descubre el karma")
+	(director [TVornoTV_Class80047])
+	(duracio 21)
+	(edatRecomanada 10)
+	(ferirSensibilitat FALSE)
+	(genere_serie [TVornoTV_Class10072])
+	(idioma Angles Espanyol)
+	(num_capitol 4)
+	(num_temporada 1)
+	(resum "Faked My Own Death")
+	(subtitols TRUE)
+	(titol "My name is Earl"))
+
+([TVornoTV_Class80049] of  Serie
+
+	(actorsS
+		[TVornoTV_Class80045]
+		[TVornoTV_Class80046])
+	(any 2005)
+	(descripcio "un delincuente de poca monta sin respeto por nada ni por nadie, que nada más ganar $100.000 en la lotería de un boleto comprado con dinero robado, pierde el boleto al ser atropellado por un coche. Mientras se encuentra convaleciente en el hospital su mujer le hace firmar el divorcio, y es entonces cuando, a través de la televisión, descubre el karma")
+	(director [TVornoTV_Class80047])
+	(duracio 21)
+	(edatRecomanada 10)
+	(ferirSensibilitat FALSE)
+	(genere_serie [TVornoTV_Class10072])
+	(idioma Angles Espanyol)
+	(num_capitol 8)
+	(num_temporada 1)
+	(resum "Joy's Wedding")
+	(subtitols TRUE)
+	(titol "My name is Earl"))
+
+([TVornoTV_Class80050] of  Serie
+
+	(actorsS
+		[TVornoTV_Class80053]
+		[TVornoTV_Class80054]
+		[TVornoTV_Class80055])
+	(any 2007)
+	(descripcio "La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino que comparten Sheldon y Leonard, dos físicos, que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.")
+	(director [TVornoTV_Class80052])
+	(duracio 21)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(genere_serie [TVornoTV_Class10072])
+	(idioma Espanyol Angles)
+	(num_capitol 3)
+	(num_temporada 1)
+	(resum "The Fuzzy Boots Corollary")
+	(subtitols FALSE)
+	(titol "The Big Bang Theory"))
+
+([TVornoTV_Class80052] of  Persona
+
+	(nom "Chuck Lorre")
+	(sexe home))
+
+([TVornoTV_Class80053] of  Persona
+
+	(nom "Johnny Galecki")
+	(sexe home))
+
+([TVornoTV_Class80054] of  Persona
+
+	(nom "Jim Parsons")
+	(sexe home))
+
+([TVornoTV_Class80055] of  Persona
+
+	(nom "Kaley Cuoco")
+	(sexe home))
+
+([TVornoTV_Class80056] of  Serie
+
+	(actorsS
+		[TVornoTV_Class80053]
+		[TVornoTV_Class80054]
+		[TVornoTV_Class80055])
+	(any 2007)
+	(descripcio "La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino que comparten Sheldon y Leonard, dos físicos, que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.")
+	(director [TVornoTV_Class80052])
+	(duracio 21)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(genere_serie [TVornoTV_Class10072])
+	(idioma Espanyol Angles)
+	(num_capitol 8)
+	(num_temporada 1)
+	(resum "The Grasshopper Experiment")
+	(subtitols FALSE)
+	(titol "The Big Bang Theory"))
+
+([TVornoTV_Class80057] of  Serie
+
+	(actorsS
+		[TVornoTV_Class80053]
+		[TVornoTV_Class80054]
+		[TVornoTV_Class80055])
+	(any 2007)
+	(descripcio "La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino que comparten Sheldon y Leonard, dos físicos, que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.")
+	(director [TVornoTV_Class80052])
+	(duracio 21)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(genere_serie [TVornoTV_Class10072])
+	(idioma Espanyol Angles)
+	(num_capitol 16)
+	(num_temporada 1)
+	(resum "The Peanut Reaction")
+	(subtitols FALSE)
+	(titol "The Big Bang Theory"))
+
+([TVornoTV_Class80058] of  Serie
+
+	(actorsS
+		[TVornoTV_Class80061]
+		[TVornoTV_Class80062])
+	(any 2005)
+	(descripcio "La trama de la serie gira en torno a un hombre sentenciado a la pena de muerte y el elaborado plan de su hermano para salvarlo de la misma")
+	(director [TVornoTV_Class80059])
+	(duracio 45)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(genere_serie
+		[TVornoTV_Class5]
+		[TVornoTV_Class17]
+		[TVornoTV_Class60008])
+	(idioma Espanyol Angles)
+	(num_capitol 6)
+	(num_temporada 2)
+	(resum "Subdivision")
+	(subtitols FALSE)
+	(titol "Prison Break"))
+
+([TVornoTV_Class80059] of  Persona
+
+	(nom "Paul Scheuring")
+	(sexe home))
+
+([TVornoTV_Class80061] of  Persona
+
+	(nom "Dominic Purcell")
+	(sexe home))
+
+([TVornoTV_Class80062] of  Persona
+
+	(nom "Wentworth Miller")
+	(sexe home))
+
+([TVornoTV_Class80063] of  Serie
+
+	(actorsS
+		[TVornoTV_Class80064]
+		[TVornoTV_Class80065])
+	(any 2004)
+	(descripcio "Debido a diversos problemas ocurridos durante el vuelo, el avión tuvo que desviar su trayectoria después de haber perdido las comunicaciones. Esto deja a un grupo de supervivientes en una isla en medio de la nada.")
+	(director [TVornoTV_Class80066])
+	(duracio 43)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(genere_serie
+		[TVornoTV_Class50003]
+		[TVornoTV_Class5]
+		[TVornoTV_Class33])
+	(idioma Angles Espanyol)
+	(num_capitol 10)
+	(num_temporada 1)
+	(resum "All The Best Cowboys Have Daddy Issues")
+	(subtitols FALSE)
+	(titol "Lost"))
+
+([TVornoTV_Class80064] of  Persona
+
+	(nom "Adewale Akinnuoye")
+	(sexe home))
+
+([TVornoTV_Class80065] of  Persona
+
+	(nom "Matthew Fox")
+	(sexe home))
+
+([TVornoTV_Class80066] of  Persona
+
+	(nom "Jeffrey Lieber")
+	(sexe home))
+
+([TVornoTV_Class80067] of  Serie
+
+	(any 1987)
+	(descripcio "La serie es una sátira de la sociedad estadounidense que narra la vida y el día a día de una familia de clase media de ese país (cuyos miembros son Homer, Marge, Bart, Lisa y Maggie Simpson) que vive en un pueblo ficticio llamado Springfield.")
+	(director [TVornoTV_Class80068])
+	(duracio 24)
+	(edatRecomanada 8)
+	(ferirSensibilitat FALSE)
+	(genere_serie
+		[TVornoTV_Class10071]
+		[TVornoTV_Class10072])
+	(idioma Espanyol Angles Frances Italia Japones)
+	(num_capitol 8)
+	(num_temporada 4)
+	(resum "Marge se va de casa.")
+	(subtitols FALSE)
+	(titol "Los Simpson"))
+
+([TVornoTV_Class80068] of  Persona
+
+	(nom "Matt Groening")
+	(sexe home))
+
+([TVornoTV_Class80069] of  Persona
+
+	(nom "Dan Castellaneta")
+	(sexe home))
+
+([TVornoTV_Class80070] of  Historia
+
+	(any 1985)
+	(descripcio "La Guerra de Yom Kipur, un episodio más del conflicto arabo-israelí. La última guerra total entre Israel, Egipto y Siria. Egipto y Siria lanzaron una ofensiva militar por sorpresa contra Israel coincidiendo con la festividad hebrea del Yom Kipur.")
+	(director [TVornoTV_Class80017])
+	(duracio 45)
+	(edatRecomanada 12)
+	(epoca Moderna)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles)
+	(subtitols TRUE)
+	(titol "La Guerra de Yom Kippur"))
+
+([TVornoTV_Class80071] of  Historia
+
+	(any 1996)
+	(descripcio "Se nos suele enseñar, y transmitimos los horrores del nazismo. Pero no siempre somos conscientes que este movimiento procede de una lenta cocción desde la génesis de la modernidad, si no antes ya que las divisiones en la historia suelen ser arbitrarias.")
+	(director [TVornoTV_Class30012])
+	(duracio 60)
+	(edatRecomanada 18)
+	(epoca Actual)
+	(ferirSensibilitat TRUE)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(titol "La Industrializacion de la guerra"))
+
+([TVornoTV_Class80072] of  Historia
+
+	(any 1999)
+	(descripcio "Un repaso a 42 casos documentados de intentos y planes de asesinar a una de las personas más temidas y despreciadas del siglo XX, un recorrido a los más extravagantes e ingeniosos intentos de asesinatos al Führer de Alemania.")
+	(duracio 45)
+	(edatRecomanada 15)
+	(epoca SegleXX)
+	(ferirSensibilitat TRUE)
+	(idioma Espanyol Angles)
+	(subtitols TRUE)
+	(titol "42 formas de matar a Hitler"))
+
+([TVornoTV_Class80073] of  Historia
+
+	(any 1960)
+	(descripcio "Las maravillas de China")
+	(duracio 45)
+	(edatRecomanada 12)
+	(epoca Romanticisme)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles Frances Italia)
+	(subtitols FALSE)
+	(titol "La belleza en la Antigüedad: China"))
+
+([TVornoTV_Class80074] of  Politica
+
+	(any 2006)
+	(descripcio "El muro de hierro es un documental realizado en 2006 sobre el establecimiento de asentamientos por parte de Israel en Cisjordania. El documental afirma que es una estrategia para la ocupación permanente del territorio.")
+	(duracio 52)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles)
+	(subtitols FALSE)
+	(titol "El muro de hierro"))
+
+([TVornoTV_Class80075] of  Politica
+
+	(any 2003)
+	(descripcio "El hilo conductor del programa son las entrevistas a personajes con capacidad para conocer lo que ocurriría si una tragedia golpease a alguna de las ciudades más importantes de EE UU. Altos mandos militares, científicos, políticos o policías de calle, ellos son quienes deben trabajar codo con codo para llevar a cabo el plan.")
+	(duracio 90)
+	(edatRecomanada 13)
+	(ferirSensibilitat TRUE)
+	(idioma Espanyol Angles)
+	(subtitols FALSE)
+	(titol "El dia despues del desastre"))
+
+([TVornoTV_Class80076] of  Art
+
+	(any 2002)
+	(descripcio "Desvela como el arte barroco inglés tuvo su clímax con Christopher Wren y la icónica Catedral de San Pablo.")
+	(duracio 74)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles)
+	(subtitols TRUE)
+	(titol "El Barroco"))
+
+([TVornoTV_Class80077] of  Art
+
+	(any 1997)
+	(descripcio "Seguiremos el robo de algunas reliquias egipcias del Museo Británico de Londres y la desaparición de dos Rubens de una galería del norte de España.")
+	(duracio 30)
+	(edatRecomanada 10)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol)
+	(subtitols FALSE)
+	(titol "Los grandes robos de arte"))
+
+([TVornoTV_Class80078] of  Art
+
+	(any 1995)
+	(descripcio "Gran pintor del mundo")
+	(duracio 45)
+	(edatRecomanada 6)
+	(ferirSensibilitat FALSE)
+	(idioma Angles)
+	(subtitols FALSE)
+	(titol "Picasso"))
+
+([TVornoTV_Class80079] of  Art
+
+	(any 1992)
+	(descripcio "La iglesa de Santa Sofia")
+	(duracio 40)
+	(edatRecomanada 12)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles)
+	(subtitols FALSE)
+	(titol "Antiguas superestructuras"))
+
+([TVornoTV_Class80080] of  Tecnologia
+
+	(ambit Telecomunicacions)
+	(any 2006)
+	(descripcio "La fantasia se hace realidad")
+	(duracio 45)
+	(edatRecomanada 10)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles)
+	(subtitols FALSE)
+	(titol "Tecnologia del futuro"))
+
+([TVornoTV_Class80081] of  Tecnologia
+
+	(ambit Mecanica)
+	(any 1998)
+	(descripcio "Avances tecnologicos de entretenimiento, productividad y antomatizacion en la industria automotriz.")
+	(duracio 40)
+	(edatRecomanada 10)
+	(ferirSensibilitat FALSE)
+	(idioma Espanyol Angles)
+	(subtitols FALSE)
+	(titol "El automovil"))

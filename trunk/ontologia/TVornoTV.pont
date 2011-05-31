@@ -1,4 +1,4 @@
-; Mon May 30 12:35:37 CEST 2011
+; Tue May 31 20:30:36 CEST 2011
 ; 
 ;+ (version "3.4.6")
 ;+ (build "Build 613")
@@ -29,15 +29,15 @@
 		(allowed-values Informatica Telecomunicacions Aviacio Nautica Construccio Mecanica)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot nacionalitat
-;+		(comment "Defineix el pais de produccio de la pel·licula. Pot ser Espanyola, Francesa, EEUU, etc.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot rol
 ;+		(comment "Rol que tindra la persona en un contingut determinat.")
 		(type SYMBOL)
 		(allowed-values actor director)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nacionalitat
+;+		(comment "Defineix el pais de produccio de la pel·licula. Pot ser Espanyola, Francesa, EEUU, etc.")
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot tematica
@@ -89,17 +89,17 @@
 		(range 1 1000)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot duracio
-;+		(comment "Duracio en minuts del contingut. Ex. 60', 90', 120', etc.")
-		(type INTEGER)
-		(range 0 600)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot num_capitol
 ;+		(comment "Nombre del capitol de la serie.")
 		(type INTEGER)
 		(range 1 1000)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot duracio
+;+		(comment "Duracio en minuts del contingut. Ex. 60', 90', 120', etc.")
+		(type INTEGER)
+		(range 0 600)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot sexe
 ;+		(comment "Sexe de la persona")
@@ -220,16 +220,16 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot director
-;+		(comment "Relacio que indica que una Persona te com a rol director per un Contingut determinat.")
-		(type INSTANCE)
-;+		(allowed-classes Persona)
-		(create-accessor read-write))
 	(single-slot any
 ;+		(comment "Any en que el contingut s'ha realitzat. P.ex. correspondria a la data de filmacio d'una pel·licula.")
 		(type INTEGER)
 		(range 1895 2012)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot director
+;+		(comment "Relacio que indica que una Persona te com a rol director per un Contingut determinat.")
+		(type INSTANCE)
+;+		(allowed-classes Persona)
 		(create-accessor read-write))
 	(single-slot titol
 ;+		(comment "Nom o titol del contingut, per exemple \"Terminator 3\" o \"Doraemon\"")
@@ -270,10 +270,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes Persona)
 		(create-accessor read-write))
-	(single-slot format
-;+		(comment "Descriu el format en que s'emet la pel·licula. Pot ser en color, blanc i negre o en 3D.")
+	(single-slot versioOriginal
+;+		(comment "Indica si aquesta pel·licula pot ser emesa en versio original. (Si inclou l'idioma original en que es grava).")
 		(type SYMBOL)
-		(allowed-values 3D BiN COLOR)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot nacionalitat
@@ -281,11 +282,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot versioOriginal
-;+		(comment "Indica si aquesta pel·licula pot ser emesa en versio original. (Si inclou l'idioma original en que es grava).")
+	(single-slot format
+;+		(comment "Descriu el format en que s'emet la pel·licula. Pot ser en color, blanc i negre o en 3D.")
 		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-		(default FALSE)
+		(allowed-values 3D BiN COLOR)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -297,17 +297,17 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot genere_serie
-;+		(comment "Genere del contingut de tipus Serie.")
-		(type INSTANCE)
-;+		(allowed-classes Genere)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
 	(single-slot num_temporada
 ;+		(comment "Temporada de la serie.")
 		(type INTEGER)
 		(range 1 1000)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot genere_serie
+;+		(comment "Genere del contingut de tipus Serie.")
+		(type INSTANCE)
+;+		(allowed-classes Genere)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot num_capitol
 ;+		(comment "Nombre del capitol de la serie.")
@@ -387,15 +387,15 @@
 		(type SYMBOL)
 		(allowed-values Angles Frances Catala Espanyol Italia)
 		(create-accessor read-write))
-	(single-slot nom
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot orientacioSexual
 ;+		(comment "Orientacio sexual de la persona.")
 		(type SYMBOL)
 		(allowed-values heterosexual homosexual bisexual)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nom
+		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot estatCivil
 ;+		(comment "La persona esta casada, divorciada, etc?")
@@ -403,16 +403,16 @@
 		(allowed-values casada divorciada soltera separada)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot edat
-;+		(comment "Edat de la persona")
-		(type INTEGER)
-		(range 0 120)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot sexe
 ;+		(comment "Sexe de la persona")
 		(type SYMBOL)
 		(allowed-values home dona)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot edat
+;+		(comment "Edat de la persona")
+		(type INTEGER)
+		(range 0 120)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot nivellEconomic
