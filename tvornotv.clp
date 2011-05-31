@@ -3925,24 +3925,17 @@
 		)
 	)
 )
-;;PROVANT........
 
-;; (defrule prova5;;imprimeix generes amb punts diferents de 0, per debug
-;; 	(declare (salience 6))
-;; 	(not(usuari (sexe desconegut)))
-;; 	(not(usuari (edat ?e&:(= ?e -1))))
-;; 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts&: (not(= ?punts 0))))
-;; ;; 	(not(provafet5 ?nomG TRUE))
-;;     =>
-;; 	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
-;; ;; 	(assert (provafet5 ?nomG TRUE))
-;; )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PROVES PROVES PROVES
 
 (defglobal 
+	?*llista-CP* = (create$)
+	;;provant...millor amb una instància??
+	?*llista-dies* = (create$  (create$ a b)(create$ c d)(create$ e f)(create$)(create$)(create$)(create$))
+	
 	?*maxi* =  0
 	?*mini* = 0
-	?*llista-CP* = (create$)
+	
 )
 (defrule getMax
 	(declare (salience 9))
@@ -3961,25 +3954,7 @@
 ;;	(printout t ?titol-cont ?*mini* crlf)
 )
 
-;; (defrule posa-a-llista
-;; 	(declare (salience 10))
-;; 	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts))
-;;     =>
-;; ;; 	(printout t "llista ABANS: " ?*llista-CP* crlf)
-;; ;; 	(bind ?us 10)
-;; 	(bind ?*llista-CP* (insert$ ?*llista-CP* (+ (length$ ?*llista-CP*) 1) ?titol-cont ?punts))
-;; 	(printout t "llista DESPRES: " ?*llista-CP* crlf)
-;; ;; 	(printout t "afegim: " ?cont " " ?pepe crlf)
-;; 	
-;; )
 
-;; (defrule pinta-llista
-;; 	(declare (salience 9))
-;;      =>
-;;    ;; 	(progn$ (?var ?*llista-CP*))
-;; 	(bind ?var (length$ ?*llista-CP*))
-;; 	(printout t "-->" ?var "<--" crlf)
-;; )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PROVES PROVES PROVES
 
@@ -5345,46 +5320,47 @@
 	(assert (titol-solucio-pintada TRUE))
 )
 
-(defrule prova5;;imprimeix generes amb punts diferents de 0, per debug
-	(declare (salience 6))
-;; 	(not(usuari (sexe desconegut)))
-;; 	(not(usuari (edat ?e&:(= ?e -1))))
-	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts&: (not(= ?punts 0))))
-;; 	(not(provafet5 ?nomG TRUE))
-    =>
-	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
-;; 	(assert (provafet5 ?nomG TRUE))
-)
-
-(defrule imprimeix-cont
-	(declare (salience 7))
-	?contingut <- (object (titol ?titolC))
-	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?punts-cont))
-	(not(cont-impres ?titolC TRUE))
-    =>
-	(printout t (str-cat (class ?contingut)) " PUNTS: " ?punts-cont  " TITOL: " ?titolC  crlf)
-;; 	(printout t "PUNTS: " ?punts-cont  " TITOL: " ?titolC  crlf)
-	(assert (cont-impres ?titolC TRUE))
-)
-
-;; (defrule prova4;;imprimeix continguts amb punts per debug
+;; (defrule prova5;;imprimeix generes amb punts diferents de 0, per debug
 ;; 	(declare (salience 6))
-;; 	(not(usuari (sexe desconegut)))
-;; 	(not(usuari (edat ?e&:(= ?e -1))))
-;; 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?puntsContingut))
-;; 	?contingut <- (object (titol ?titolC))
-;; ;; 	(not(prova4fet ?nomG TRUE))
+;; ;; 	(not(usuari (sexe desconegut)))
+;; ;; 	(not(usuari (edat ?e&:(= ?e -1))))
+;; 	?genere <- (genere-amb-puntuacio (nom-genere ?nomG) (puntuacio ?punts&: (not(= ?punts 0))))
+;; ;; 	(not(provafet5 ?nomG TRUE))
 ;;     =>
-;; 	(printout t (str-cat (class ?contingut)) " -> PUNTS: " ?puntsContingut "  " ?titolC crlf)
-;; ;; 	(assert (prova4fet ?nomG TRUE))
+;; 	(printout t "nom: " ?nomG  " punts: " ?punts crlf)
+;; ;; 	(assert (provafet5 ?nomG TRUE))
 ;; )
 
-;;(defrule escriu-adequades
-;;	(declare (salience 5))
-;;	?contingut <- (object (is-a Contingut))
-;;	=>
-;;	(printout t (send ?contingut get-titol) crlf)
-;;)
+;; (defrule imprimeix-cont
+;; 	(declare (salience 7))
+;; 	?contingut <- (object (titol ?titolC))
+;; 	?contingutAmbPunts <- (contingut-amb-puntuacio (titol ?titolC) (puntuacio ?punts-cont))
+;; 	(not(cont-impres ?titolC TRUE))
+;;     =>
+;; 	(printout t (str-cat (class ?contingut)) " PUNTS: " ?punts-cont  " TITOL: " ?titolC  crlf)
+;; ;; 	(printout t "PUNTS: " ?punts-cont  " TITOL: " ?titolC  crlf)
+;; 	(assert (cont-impres ?titolC TRUE))
+;; )
+
+(defrule posa-a-llista
+	(declare (salience 5))
+	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts))
+    =>
+;; 	(printout t "llista ABANS: " ?*llista-CP* crlf)
+;; 	(bind ?us 10)
+	(bind ?*llista-CP* (insert$ ?*llista-CP* (+ (length$ ?*llista-CP*) 1) ?titol-cont ?punts))
+;; 	(printout t "llista DESPRES: " ?*llista-CP* crlf)
+;; 	(printout t "afegim: " ?cont " " ?pepe crlf)
+	
+)
+
+
+(defrule escriu-adequades
+	(declare (salience 5))
+	=>
+	
+	(printout t ?*llista-CP* crlf)
+)
 
 
 
