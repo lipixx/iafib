@@ -4287,7 +4287,16 @@
 	(assert (puntuacio-genere-passio ?nomG TRUE))
 )
 
+(defrule a-assumpcions-incondicionals2
+	(declare (salience -1))
+	=>
+	(focus assumpcions-incondicionals2)
+)
 
+(defmodule assumpcions-incondicionals2 "Modul d'assignacions incondicionals2"
+    (import assumpcions-incondicionals ?ALL)
+    (export ?ALL)
+)
 ;;PUNTUACIO DE CONTINGUTS
 
 (defrule puntuacio-cine-per-generes
@@ -4558,6 +4567,7 @@
 	(not(cont-impres ?titolC TRUE))
     =>
 	(printout t (str-cat (class ?contingut)) " PUNTS: " ?punts-cont  " TITOL: " ?titolC  crlf)
+;; 	(printout t "PUNTS: " ?punts-cont  " TITOL: " ?titolC  crlf)
 	(assert (cont-impres ?titolC TRUE))
 )
 
