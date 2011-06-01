@@ -4032,7 +4032,7 @@
 (defrule pregunta-estudis-de-que-son
 	(te-estudis TRUE)
 	=>
-	(assert (que-estudia (pregunta "Els teus estudis de que tracten, de lletres, ciencia, tecnologia o art? " lletres ciencia tecnologi art)))
+	(assert (que-estudia (pregunta "Els teus estudis de que tracten, de lletres, ciencia, tecnologia o art? " lletres ciencia tecnologia art)))
 )
 
 
