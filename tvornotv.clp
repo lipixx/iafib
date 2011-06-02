@@ -5383,7 +5383,6 @@
 	(declare (salience 5))
 	=>
 	
-;; 	;;falta ordena llista continguts per punts...fer amb max.. de +a-
 	(make-instance dia1 of dia) (send (instance-address * [dia1]) put-num-dia 1)
 	(make-instance dia2 of dia) (send (instance-address * [dia2]) put-num-dia 2)
 	(make-instance dia3 of dia) (send (instance-address * [dia3]) put-num-dia 3)
