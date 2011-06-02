@@ -5125,12 +5125,10 @@
 					)
 					(bind ?titolPerInserir (nth$ ?iContingutActual ?*llista-CP*))
 					(send ?diaActual put-llistaCPdia (insert$ $?contingutsDia ?posAInserir ?titolPerInserir));;insertem el contingut que toca a la llista del dia
-;; 					(printout t "abans" crlf)
 					(bind ?posElementLlista 0)
 					(bind ?j 1)
 					(while (<= ?j (length$ ?*llista-CP*))
 					do
-;; 						(printout t "weeee: " ?j crlf)
 						(bind ?titolActual (nth$ ?j ?*llista-CP*))
 						(if (eq (str-compare ?titolActual ?titolPerInserir) 0)
 						then
@@ -5141,11 +5139,7 @@
 					
 					(bind ?*llista-CP* (delete$ ?*llista-CP* ?posElementLlista ?posElementLlista))
 					(bind ?*llista-CP* (delete$ ?*llista-CP* ?posElementLlista ?posElementLlista))
-;; 					(delete$ ?*llista-CP* (+ ?posElementLlista 1) (+ ?posElementLlista 1))
-;; 					(delete$ (create$ a b c d e f) 3 5) −→ (a b f)
-;; 					(printout t "despres" crlf)
 					(bind ?instanciaPerInserir (find-instance ((?instC Contingut)) (eq (str-compare ?instC:titol ?titolPerInserir) 0)))
-;; 					(bind ?c1 (find-instance ((?inst Carrer)) (eq (str-compare ?inst:nom ?resposta) 0)))
 					(bind ?instanciaPerInserir (nth$ 1 ?instanciaPerInserir))
 					(send ?diaActual put-temps-ocupat (+ ?tempsDia (send ?instanciaPerInserir get-duracio)))
 					(if (>= (send ?diaActual get-temps-ocupat) 180)
@@ -5154,7 +5148,6 @@
 					)
 					
 				)
-;; 				(printout t (send ?diaActual get-num-dia) crlf)
 			)
 			
 			
@@ -5165,8 +5158,11 @@
 	
 	(do-for-all-instances
 		((?diaSetmana dia))
-		(printout t (send ?diaSetmana get-num-dia) crlf)
-		(printout t (send ?diaSetmana get-llistaCPdia) crlf)
+		(printout t "Dia " (send ?diaSetmana get-num-dia) ":" crlf)
+		(progn$ (?diaS (send ?diaSetmana get-llistaCPdia))
+			(printout t ?diaS crlf)
+		)
+		(printout t crlf)
 	)
 	
 	
