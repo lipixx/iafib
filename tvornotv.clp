@@ -5111,12 +5111,23 @@
 						(bind ?compatible true)
 						(bind ?posAInserir 1)
 					else
-;; 						(bind ?titolUltimAfegitDia (nth$ (- ?midaLlistaDia 1) $?contingutsDia))
-;; 						(bind ?contingutUltimAfegitDia (find-instance ((?contUAD Contingut)) (eq (str-compare ?contUAD:titol ?titolUltimAfegitDia) 0)))
-;; 						(bind ?titolPerInserir (nth$ ?iContingutActual ?*llista-CP*))
-;; 						(bind $?generesUltimAfegirDia (send ?contingutUltimAfegitDia get-) (send ?diaActual get-num-dia)) 0)
+						(bind ?titolUltimAfegitDia (nth$ (- ?midaLlistaDia 1) $?contingutsDia))
+						(bind ?contingutUltimAfegitDia (find-instance ((?contUAD Contingut)) (eq (str-compare ?contUAD:titol ?titolUltimAfegitDia) 0)))
+						(bind ?titolPerInserir (nth$ ?iContingutActual ?*llista-CP*))
+						(bind ?contingutPerAfegir (find-instance ((?contUAD2 Contingut)) (eq (str-compare ?contUAD2:titol ?titolPerInserir) 0)))
+						(if (eq (str-compare (str-cat (class ?contingutUltimAfegitDia)) (str-cat (class ?contingutPerAfegir))) 0)
+						then
+							(bind ?compatible false)
+						else
+							(bind ?compatible true)
+						)
+						
+						
+						
+					
+					
 						;;magia per saber si son compatibles i llavors compatible a true
-						(bind ?compatible true)
+						
 						(bind ?posAInserir (length$ $?contingutsDia))
 					)
 					(if (eq ?compatible fals)
