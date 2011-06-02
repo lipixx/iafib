@@ -5437,8 +5437,10 @@
 	(do-for-all-instances
 		((?diaSetmana dia))
 		(printout t "Dia " (send ?diaSetmana get-num-dia) ":" crlf)
-		(progn$ (?diaS (send ?diaSetmana get-llistaCPdia))
-			(printout t ?diaS crlf)
+		(progn$ (?contingutDia (send ?diaSetmana get-llistaCPdia))?contingutDia
+			(bind ?contActual (find-instance ((?cont Contingut)) (eq (str-compare ?contingutDia ?cont:titol) 0)))
+			(bind ?contActual (nth$ 1 ?contActual))
+			(printout t "Titol: " ?contingutDia " - Duracio: "(send ?contActual get-duracio) crlf)
 		)
 		(printout t crlf)
 	)
