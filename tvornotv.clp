@@ -5059,10 +5059,10 @@
 	(declare (salience 7))
     =>
 	(bind ?niteracions 0)
-	(bind ?iteracionsLimit (length$ ?*llista-CP*))
-	(while (<= ?niteracions ?iteracionsLimit)
+;; 	(bind ?iteracionsLimit (length$ ?*llista-CP*))
+	(while (> (length$ ?*llista-CP*) 0)
 	do
-		(printout t "buc 1" crlf)
+;; 		(printout t "buc 1" crlf)
 		(bind ?j 1)
 		(bind ?max -1000)
 		(bind ?titolMax "res")
@@ -5071,7 +5071,6 @@
 		(while (<= ?j (length$ ?*llista-CP*))
 		do
 ;; 			(printout t "buc 2" crlf)
-			(printout t crlf)
 			(bind ?titolActual (nth$ ?j ?*llista-CP*))
 			(bind ?puntsActual (nth$ (+ ?j 1) ?*llista-CP*))
 			(bind ?contActual (find-instance ((?cont Contingut)) (eq (str-compare ?titolActual ?cont:titol) 0)))
@@ -5088,7 +5087,7 @@
 		(bind ?*llista-CP-ordenada* (insert$ ?*llista-CP-ordenada* (+ (length$ ?*llista-CP-ordenada*) 1) ?puntsMax))
 		(bind ?*llista-CP* (delete$ ?*llista-CP* ?jmax ?jmax))
 		(bind ?*llista-CP* (delete$ ?*llista-CP* ?jmax ?jmax))
-		(bind ?niteracions (+ ?niteracions 2))
+;; 		(bind ?niteracions (+ ?niteracions 2))
 	)
 )
 
