@@ -5067,7 +5067,7 @@
 ;; )
 
 (defrule posa-a-llista
-	(declare (salience 5))
+	(declare (salience 6))
 	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts))
     =>
 ;; 	(printout t "llista ABANS: " ?*llista-CP* crlf)
@@ -5105,21 +5105,56 @@
 					(bind ?iContingutActual (+ ?iContingutActual 2));;iContingutActual+=2
 					(bind $?contingutsDia (send ?diaActual get-llistaCPdia))
 					(bind ?midaLlistaDia (length$ $?contingutsDia))
+					(bind ?posAInserir 1)
 					(if (= ?midaLlistaDia 0);;si el dia no tenia res assignat el nou contingut serà compatible
 					then
 						(bind ?compatible true)
+						(bind ?posAInserir 1)
 					else
-						(bind ?titolUltimAfegitDia (nth$ (- ?midaLlistaDia 1) $?contingutsDia))
-						(bind ?contingutUltimAfegitDia (find-instance ((?contUAD Contingut)) (eq (str-compare ?contUAD:titol ?titolUltimAfegitDia) 0)))
-						(bind ?contingutPerInserir (nth$ ?iContingutActual ?*llista-CP*))
-						(if (eq (str-compare (send ?contingutUltimAfegitDia get-) (send ?diaActual get-num-dia)) 0)
+;; 						(bind ?titolUltimAfegitDia (nth$ (- ?midaLlistaDia 1) $?contingutsDia))
+;; 						(bind ?contingutUltimAfegitDia (find-instance ((?contUAD Contingut)) (eq (str-compare ?contUAD:titol ?titolUltimAfegitDia) 0)))
+;; 						(bind ?titolPerInserir (nth$ ?iContingutActual ?*llista-CP*))
+;; 						(bind $?generesUltimAfegirDia (send ?contingutUltimAfegitDia get-) (send ?diaActual get-num-dia)) 0)
+						;;magia per saber si son compatibles i llavors compatible a true
+						(bind ?compatible true)
+						(bind ?posAInserir (length$ $?contingutsDia))
+					)
+					(if (eq ?compatible fals)
+					then
+						(bind ?iContingutActual 0)
+					)
+					(bind ?titolPerInserir (nth$ ?iContingutActual ?*llista-CP*))
+					(send ?diaActual put-llistaCPdia (insert$ $?contingutsDia ?posAInserir ?titolPerInserir));;insertem el contingut que toca a la llista del dia
+;; 					(printout t "abans" crlf)
+					(bind ?posElementLlista 0)
+					(bind ?j 1)
+					(while (<= ?j (length$ ?*llista-CP*))
+					do
+;; 						(printout t "weeee: " ?j crlf)
+						(bind ?titolActual (nth$ ?j ?*llista-CP*))
+						(if (eq (str-compare ?titolActual ?titolPerInserir) 0)
 						then
-							
+							(bind ?posElementLlista ?j)
 						)
+						(bind ?j (+ ?j 2))
+					)
+					
+					(bind ?*llista-CP* (delete$ ?*llista-CP* ?posElementLlista ?posElementLlista))
+					(bind ?*llista-CP* (delete$ ?*llista-CP* ?posElementLlista ?posElementLlista))
+;; 					(delete$ ?*llista-CP* (+ ?posElementLlista 1) (+ ?posElementLlista 1))
+;; 					(delete$ (create$ a b c d e f) 3 5) −→ (a b f)
+;; 					(printout t "despres" crlf)
+					(bind ?instanciaPerInserir (find-instance ((?instC Contingut)) (eq (str-compare ?instC:titol ?titolPerInserir) 0)))
+;; 					(bind ?c1 (find-instance ((?inst Carrer)) (eq (str-compare ?inst:nom ?resposta) 0)))
+					(bind ?instanciaPerInserir (nth$ 1 ?instanciaPerInserir))
+					(send ?diaActual put-temps-ocupat (+ ?tempsDia (send ?instanciaPerInserir get-duracio)))
+					(if (>= (send ?diaActual get-temps-ocupat) 180)
+					then
+						(send ?diaActual put-complet si)
 					)
 					
 				)
-				(printout t (send ?diaActual get-num-dia) crlf)
+;; 				(printout t (send ?diaActual get-num-dia) crlf)
 			)
 			
 			
@@ -5128,6 +5163,11 @@
 		(bind ?diesComplets (+ ?diesComplets 1))
 	)
 	
+	(do-for-all-instances
+		((?diaSetmana dia))
+		(printout t (send ?diaSetmana get-num-dia) crlf)
+		(printout t (send ?diaSetmana get-llistaCPdia) crlf)
+	)
 	
 	
 	
