@@ -3764,6 +3764,14 @@
     (slot puntuacio)
 )
 
+(defclass dia (is-a USER)
+	(role concrete)
+	(slot num-dia (create-accessor read-write))
+	(slot complet (create-accessor read-write) (default no))
+	(slot temps-ocupat (create-accessor read-write) (default 0))
+	(multislot llistaCPdia (create-accessor read-write) (default (create$)))
+)
+
 
 ;;; FUNCIONS
 ;;; Obte una resposta a la pregunta d'entre un conjunt de possibles valors
@@ -3825,7 +3833,8 @@
 			(if (= (str-compare llista1Actual llista2Actual) 0)
 				then
 				(bind ?result TRUE)
-				(break))	
+				(break)
+			)
 			(bind ?j (+ ?j 1))	
 		)
 		(bind ?i (+ ?i 1))
@@ -3975,293 +3984,7 @@
     (modify ?u (sexe ?sexeLlegit))
 	(assert(sexe-ja-preguntat TRUE))
 )
-;;; Quin és el teu estat civil? (casat, separat, divorciat, solter, ajuntat)
-(defrule determinar-estat-civil
-    ?u <- (usuari (estat-civil desconegut))
-    =>
-    (bind ?estatCivilLlegit(pregunta (str-cat "Quin es el teu estat civil? (casat/separat/divorciat/solter/ajuntat) ") casat separat divorciat solter ajuntat))
-    (modify ?u (estat-civil ?estatCivilLlegit))
-)
-;;; Posa en ordre els idiomes que entenguis? (cat, esp, fra, it, en, jp)
-(defrule determinar-ordre-idiomes
-	?u <- (usuari (idiomes $?llistaIdiomes))
-	(test (= 0 (length$ $?llistaIdiomes)))
-	=>
-	(bind ?llista (pregunta-llista "Posa en ordre de mes a menys els idiomes que entenguis: (cat, esp, fra, it, en, jp) "))
-	(modify ?u (idiomes ?llista))
-)
 
-;;; Tens alguna discapacitat audiovisual? (no, auditiva, visual)
-(defrule determinar-discapacitat-audiovisual
-    ?u <- (usuari (discapacitat-audiovisual desconegut))
-    =>
-    (bind ?discapacitatLlegida(pregunta (str-cat "Tens alguna discapacitat audiovisual? (no/auditiva/visual)") no auditiva visual))
-    (modify ?u (discapacitat-audiovisual ?discapacitatLlegida))
-)
-;;; Orientació sexual? (homosexual, heterosexual)
-(defrule determinar-orientacio-sexual
-    ?u <- (usuari (orientacio-sexual desconegut))
-    =>
-    (bind ?orientSexualLlegida (pregunta (str-cat "Orientacio sexual? (homosexual/heterosexual) ") homosexual heterosexual))
-    (modify ?u (orientacio-sexual ?orientSexualLlegida))
-)
-;;; Saltem al modul de les preguntes comunes
-(defrule a-preguntes-comunes
-	(declare (salience -1))
-	=>
-	(focus preguntes-comunes)
-)
-;;;
-;;; 1.2 MODUL DE PREGUNTES COMUNES
-;;;
-(defmodule preguntes-comunes "Modul de preguntes comunes"
-    (import preguntes-definir-usuari ?ALL)
-    (export ?ALL)
-)
-;;Mitjançant les seguents preguntes, podrem deduir el nivell intelectual de l'usuari, aixi com la seva vocacio
-;;i treball. Gracies a aixo podrem saber per exemple alguns documentals que li podrien agradar, tot i que no
-;;haurem d'abusar molt, si es que no li agrada el que fa.
-;;**********************************************************************************************************************************************COMUNES
-;;Tens estudis o estudies? (si,no)
-(defrule pregunta-estudia
-	=>
-	(assert (te-estudis ( si-o-no "Tens estudis o estudies? " )))
-)
-
-;;;;Si->I els teus estudis que son, de lletres, de ciencia, de tecnologia o d'art? (lletres, ciencia, tecnologia, art)
-(defrule pregunta-estudis-de-que-son
-	(te-estudis TRUE)
-	=>
-	(assert (que-estudia (pregunta "Els teus estudis de que tracten, de lletres, ciencia, tecnologia o art? " lletres ciencia tecnologia art)))
-)
-
-
-;;Treballes? (si,no)
-(defrule pregunta-treballa
-        (usuari (edat ?e))
-	=>
-	(if (< ?e 16) then (assert (te-treball FALSE))
-	else
-	(assert (te-treball ( si-o-no "Treballes actualment? " )))
-	)
-)
-
-;;;;Si no té estudis
-;;;;En quin sector treballes? (construccio, legal, politic, economic, tecnologic, cientific, artistic, altres)
-(defrule pregunta-tipus-treball
-	(te-treball TRUE)
-	=>
-	(assert (treball-relacionat-amb (pregunta "Quin tipus de treball es? (construccio,legal,politic,economic,lletres,tecnologia,ciencia,art,altres) " construccio legal politic economic lletres tecnologia ciencia art altres)))
-)
-
-;;T'agrada el que fas? (si,no)
-(defrule pregunta-agrada-treball
-	(te-treball TRUE)
-	=>
-	(assert (agrada-treball ( pregunta-sino-multiple "Quant t'agrada la teva feina? " )))
-)
-
-;;De la seguent pregunta podem deduir si li agrada la politica, l'actualitat, les noticies.
-;;Recentment hi ha un conflicte belic amb les tropes de Muamar el Gadafi, t'ha interesat el tema? (gens, poc, normal, molt, extremis)
-(defrule pregunta-gadafi
-	=>
-	(assert (interessat-gadafi ( pregunta-sino-multiple "Recentment hi ha un conflicte belic amb les tropes de Muamar el Gadafi, t'ha interesat el tema? " )))
-)
-
-;;;Podem posar-hi documentals de ciencia i medi ambient
-;;Et preocupa la radiacio deguda a la fuga de Fukushima? (si, no, ns)
-(defrule pregunta-fukushima
-	=>
-	(assert (interessat-fukushima ( pregunta-sino-multiple "Et preocupa la radiacio deguda a la fuga de Fukushima? " )))
-)
-
-;;;Sabem que te temps i que li agraden els "cotilleos", corazon, i programes amb poc contingut intel·lectual.
-;;Has seguit la boda real de Guillermo i Kate? (si,no)
-(defrule pregunta-bodareal
-	=>
-	(assert (interessat-boda-real ( si-o-no "Has seguit la boda real de Guillermo i Kate? " )))
-)
-
-;;Saps qui és la Princesa del Pueblo? (si,no.. resposta: es la belen esteban)
-(defrule pregunta-belenesteban
-	=>
-	(assert (coneix-belen-esteban ( si-o-no "Saps qui es la Princesa del Pueblo? " )))
-)
-
-;;;D'aqui podem deduir si es una persona mes practica o teorica i per tant si li interessa mes per exemple les lletres o la tecnologia.
-;;Tens vehicle propi? (si,no)
-(defrule pregunta-vehicle
-	(usuari (edat ?e))
-	=>
-	(if (< ?e 14) then (assert (te-vehicle FALSE))
-	else
-	(assert (te-vehicle ( si-o-no "Tens vehicle propi? " )))
-	)
-)
-
-;;Si te algun problema no molt greu, faries mai cap reparacio tu mateix (1), o el portaries al mecanic (2)? (1,2)
-(defrule pregunta-vehicle-reparacio
-	(te-vehicle TRUE)
-	=>
-	(if (eq (obte-nombre "Si aquest vehicle te algun problema no molt greu, faries mai cap reparacio tu mateix (1), o el portaries al mecanic (2)? ") 1)
-	  then
-	  (assert (es-practic TRUE))
-	  else
-  	  (assert (es-practic FALSE)))
-)
-
-
-;;;D'aquesta pregunta podem deduir si 1:Interessat en oci in-door (xbox, pelicules, callejeros), 2:Interessat en oci out-of-door, 3:Molt estudios, in-door, 4:varietat
-;;Els caps de semana, habitualment... surts de festa (1), disfrutes de la natura (2), aprofites per estudiar o aprendre coses pel teu compte (3), una mica de tot (4)
-(defrule pregunta-oci
-	=>
-	(bind ?valorOci (obte-nombre "Els caps de semana, habitualment... surts de festa (1), disfrutes de la natura (2), aprofites per estudiar o aprendre coses pel teu compte (3), una mica de tot (4)? "))
-	(if (eq ?valorOci 1) then (assert (oci festa)))
-	(if (eq ?valorOci 2) then (assert (oci natura)))
-	(if (eq ?valorOci 3) then (assert (oci estudiar)))
-	(if (eq ?valorOci 4) then (assert (oci general)))
-)
-
-
-;;;Li agrada l'acció.
-;;De petit, a l'estiu, jugaves amb pistoles d'aigua?(si,no)
-(defrule pregunta-pistolesaigua
-	=>
-	(assert (jugava-pistoles-aigua ( si-o-no "De petit, a l'estiu, jugaves o jugues amb pistoles d'aigua? " )))
-)
-
-;;;Te certa aficio pels animals.
-;;Tens mascotes?
-(defrule pregunta-mascotes
-	=>
-	(assert (te-mascota ( si-o-no "Tens mascotes? " )))
-)
-
-;;;;Refinem el contingut dels documentals
-;;Les teves aficions, es centren en temes de mar, de muntanya, tecnologia, lectura, societat, altres?
-(defrule pregunta-aficions
-	=>
-	(assert (aficions (pregunta "Les teves aficions, es centren en temes de mar, muntanya, tecnologia, lectura, societat, altres? " mar muntanya tecnologia lectura societat altres)))
-)
-
-;;;;Refinem encara més les preferencies de Animacio, Accio, Politica, Economia, Oci->Ciencia ficcio, Oci->Comedia, Romantica, etc.
-;;Si et dono a triar entre 1:Bambi, 2:Terminator II, 3:El discurso del Rei, 4:Perdidos, 5:Buenafuente, 6:Sexo en nueva york, 7:Brokeback Mountain, amb quin ordre de preferencia
-;;les col·locaries? (1,2,3,4,5,6,7)
-(defrule pregunta-ordre-pelis
-	=>
-	(bind ?llista (pregunta-llista "Si et dono a triar entre 1:Bambi, 2:Terminator II, 3:El discurso del Rei, 4:Perdidos, 5:Buenafuente, 6:Sexo en nueva york, 7:Brokeback Mountain, amb quin ordre de preferencia les col.locaries? "))
-	(bind ?i 1)
-	(while (<= ?i 7)
-		do
-		   (bind ?ival (nth$ ?i $?llista))
-		   (assert (interes ?i ?ival))
-		   (bind ?i (+ ?i 1))
-	)
-)
-
-;; Saltem al modul de les preguntes especifiques
-
-(defrule a-preguntes-especifiques
-    (declare (salience -1))
-    =>
-    (focus preguntes-especifiques)
-)
-;;;
-;;; 1.3 MODUL DE PREGUNTES ESPECIFIQUES
-;;;
-(defmodule preguntes-especifiques "Modul de preguntes especifiques"
-    (import preguntes-comunes ?ALL)
-    (export ?ALL)
-)
-;;****************************************************************************************************************************************ESPECIFIQUES
-;;Vols mes series (1), pel·licules (2), o documentals (3)?
-(defrule pregunta-tipus
-
-	=>
-	(bind ?valor (obte-nombre "Vols mes series (1), pel.licules (2), o documentals (3)? "))
-	(if (eq ?valor 1) then (assert (contingut-preferit series)))
-	(if (eq ?valor 2) then (assert (contingut-preferit cine)))
-	(if (eq ?valor 3) then (assert (contingut-preferit documentals)))
-)
-
-;;Quantes hores de televisio al dia veus normalment? (0-24)
-(defrule pregunta-hores
-	=>
-	(bind ?valor (obte-nombre "Quantes hores de televisio al dia veus normalment (0-24)?"))
-	(if (eq ?valor 1) then (assert (hores-tv 1)))
-	(if (eq ?valor 2) then (assert (hores-tv 2)))
-	(if (>= ?valor 3) then (assert (hores-tv 3)))
-)
-
-
-;;Vols que cada contingut sigui mes be llarg (1), curt (2), o t'es igual (3)? (1,2,3)
-(defrule pregunta-temps
-	=>
-	(bind ?valor (obte-nombre "Vols que cada contingut sigui mes be llarg (1), mig (2), curt (3) o t'es igual (4)? "))
-	(if (eq ?valor 1) then (assert (duracio-prefer llarg)))
-	(if (eq ?valor 2) then (assert (duracio-prefer mig)))
-	(if (eq ?valor 3) then (assert (duracio-prefer curt)))
-	(if (eq ?valor 4) then (assert (duracio-prefer esigual)))
-)
-
-;;PROBLEMES:
-;;   1  noms de genere ha de començar en majuscules
-;;   2  que passa amb generes que son 2 paraules com "espai exterior"?????
-(defrule pregunta-passions
-	=>
-	(assert (passio-per (pregunta-llista "Dels temes seguents, quin t'apassiona mes?: Belic, Culte, Espai, Esportiu, Historic, Homosexual, Oest, Policiaca, Terror, Suspense, Melodrama, Fantasia, Romantic, Musical, XXX: ")))
-)
-
-;;Tens cap actor preferit? Si no en tens cap, escriu "cap".
-(defrule pregunta-actor-favorit
-	=>
-	(assert (actor-preferit (pregunta-llista "Tens cap actor preferit? Si no en tens cap, escriu cap. ")))
-)
-
-;;Tens cap director preferit? Si no en tens cap, escriu "cap".
-(defrule pregunta-director-favorit
-	=>
-	(assert (director-preferit (pregunta-llista "Tens cap director preferit? Si no en tens cap, escriu cap. ")))
-)
-
-;;(Si edat > 18) Vols permetre cap contingut XXX? (si,no)
-(defrule pregunta-xxx
-        (usuari (edat ?e))
-	=>
-	(if (< ?e 18) then (assert (xxx-permes FALSE))
-	else
-	(assert (xxx-permes ( si-o-no "Vols permetre cap contingut XXX? " )))
-	)
-)
-
-;;(Si edat > 18) Vols permetre continguts que puguin ferir la sensibilitat de les persones? (si,no)
-(defrule pregunta-sensibilitat
-        (usuari (edat ?e))
-	=>
-	(if (< ?e 16) then (assert (contingut-sensible-permes FALSE))
-	else
-	(assert (contingut-sensible-permes ( si-o-no "Vols permetre continguts que puguin ferir la sensibilitat de les persones? " )))
-	)
-)
-
-
-;;T'agradaria veure alguns continguts amb versio original?
-(defrule pregunta-vo
-	=>
-	(assert (versio-original-permes ( si-o-no "T'agradaria veure alguns continguts amb versio original? " )))
-)
-
-;;T'agraden les pelicules en blanc i negre? (si,no)
-(defrule pregunta-bin
-	=>
-	(assert (blanc-negre ( si-o-no "T'agraden les pelicules en blanc i negre? " )))
-)
-
-;;Voldries veure pelicules antigues? (si,no)
-(defrule pregunta-antigues
-	=>
-	(assert (pelis-antigues ( si-o-no "Voldries veure pelicules antigues? " )))
-)
 
 ;;; Saltem al modul de les assumpcions
 
@@ -4275,7 +3998,8 @@
 ;;;
 ;;*************************************************************************************************************************************ESBORRAR INSTANCIES
 (defmodule esborrar-instancies "Modul d'esborrar instances"
-    (import preguntes-especifiques ?ALL)
+;;     (import preguntes-especifiques ?ALL)
+	(import preguntes-definir-usuari ?ALL)
     (export ?ALL)
 )
 
@@ -5359,8 +5083,67 @@
 	(declare (salience 5))
 	=>
 	
-	(printout t ?*llista-CP* crlf)
+;; 	;;falta ordena llista continguts per punts...fer amb max.. de +a-
+	(make-instance dia1 of dia) (send (instance-address * [dia1]) put-num-dia 1)
+	(make-instance dia2 of dia) (send (instance-address * [dia2]) put-num-dia 2)
+	(make-instance dia3 of dia) (send (instance-address * [dia3]) put-num-dia 3)
+	(make-instance dia4 of dia) (send (instance-address * [dia4]) put-num-dia 4)
+	(make-instance dia5 of dia) (send (instance-address * [dia5]) put-num-dia 5)
+	(make-instance dia6 of dia) (send (instance-address * [dia6]) put-num-dia 6)
+	(make-instance dia7 of dia) (send (instance-address * [dia7]) put-num-dia 7)
+	(bind ?diesComplets 0)
+	(while (< ?diesComplets 7) do
+		(loop-for-count (?i 1 7) do
+			(bind ?diaActual (find-instance ((?diaI dia)) (= ?diaI:num-dia ?i)))
+			(bind ?diaActual (nth$ 1 ?diaActual))
+			(if (eq (send ?diaActual get-complet) no)
+			then
+				(bind ?tempsDia (send ?diaActual get-temps-ocupat))
+				(bind ?iContingutActual -1);; -1 ja que sumarem de 2 en 2 ,a pos 1 3 5 hi ha els titols, a 2 4 6 els punts
+				(bind ?compatible fals)
+				(while (and (eq ?compatible fals) (not(= ?iContingutActual (length$ ?*llista-CP*)))) do
+					(bind ?iContingutActual (+ ?iContingutActual 2));;iContingutActual+=2
+					(bind $?contingutsDia (send ?diaActual get-llistaCPdia))
+					(bind ?midaLlistaDia (length$ $?contingutsDia))
+					(if (= ?midaLlistaDia 0);;si el dia no tenia res assignat el nou contingut serà compatible
+					then
+						(bind ?compatible true)
+					else
+						(bind ?titolUltimAfegitDia (nth$ (- ?midaLlistaDia 1) $?contingutsDia))
+						(bind ?contingutUltimAfegitDia (find-instance ((?contUAD Contingut)) (eq (str-compare ?contUAD:titol ?titolUltimAfegitDia) 0)))
+						(bind ?contingutPerInserir (nth$ ?iContingutActual ?*llista-CP*))
+						(if (eq (str-compare (send ?contingutUltimAfegitDia get-) (send ?diaActual get-num-dia)) 0)
+						then
+							
+						)
+					)
+					
+				)
+				(printout t (send ?diaActual get-num-dia) crlf)
+			)
+			
+			
+			
+		)
+		(bind ?diesComplets (+ ?diesComplets 1))
+	)
+	
+	
+	
+	
+;; 	(printout t ?*llista-CP* crlf)
 )
 
+
+;; >(make-instance a of avion)
+;; ;Creación de una instancia de avion
+;; [a]
+;; >(send [a] get-precio-billete)
+;; ;Obtención de un slot
+;; 34
+;; ;Resultado obtenido
+;; >(send [a] put-plazas-ocupadas 100) ; Modificación de un slot
+;; >(send [a] delete)
+;; ; Eliminación de la instancia
 
 
