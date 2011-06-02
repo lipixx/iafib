@@ -3937,6 +3937,7 @@
 
 (defglobal 
 	?*llista-CP* = (create$)
+	?*llista-CP-ordenada* = (create$)
 	;;provant...millor amb una instància??
 	?*llista-dies* = (create$  (create$ a b)(create$ c d)(create$ e f)(create$)(create$)(create$)(create$))
 	
@@ -5334,15 +5335,45 @@
 ;; )
 
 (defrule posa-a-llista
-	(declare (salience 6))
+	(declare (salience 9))
 	?cont <- (contingut-amb-puntuacio (titol ?titol-cont) (puntuacio ?punts))
     =>
-;; 	(printout t "llista ABANS: " ?*llista-CP* crlf)
-;; 	(bind ?us 10)
 	(bind ?*llista-CP* (insert$ ?*llista-CP* (+ (length$ ?*llista-CP*) 1) ?titol-cont ?punts))
-;; 	(printout t "llista DESPRES: " ?*llista-CP* crlf)
-;; 	(printout t "afegim: " ?cont " " ?pepe crlf)
-	
+)
+
+
+(defrule ordena-llista
+	(declare (salience 7))
+    =>
+	(bind ?niteracions 0)
+	(bind ?iteracionsLimit (length$ ?*llista-CP*))
+	(bind ?j 1)
+	(bind ?max -1000)
+	(while (<= ?niteracions ?iteracionsLimit)
+	do
+		(bind ?titolMax "res")
+		(bind ?puntsMax 0)
+		(bind ?jmax 0)
+		(while (<= ?j (length$ ?*llista-CP*))
+		do
+			(bind ?titolActual (nth$ ?j ?*llista-CP*))
+			(bind ?puntsActual (nth$ (+ ?j 1) ?*llista-CP*))
+			(bind ?contActual (find-instance ((?cont Contingut)) (eq (str-compare ?titolActual ?cont:titol) 0)))
+			(if (>= ?puntsActual ?max)
+			then
+				(bind ?max ?puntsActual)
+				(bind ?titolMax ?titolActual)
+				(bind ?puntsMax ?puntsActual)
+				(bind ?jmax ?j)
+			)
+			(bind ?j (+ ?j 2))
+		)
+		(bind ?*llista-CP-ordenada* (insert$ ?*llista-CP-ordenada* (length$ ?*llista-CP-ordenada*) ?titolMax))
+		(bind ?*llista-CP-ordenada* (insert$ ?*llista-CP-ordenada* (length$ ?*llista-CP-ordenada*) ?puntsMax))
+		(bind ?*llista-CP* (delete$ ?*llista-CP* ?jmax ?jmax))
+		(bind ?*llista-CP* (delete$ ?*llista-CP* ?jmax ?jmax))
+		(bind ?niteracions (+ ?niteracions 2))
+	)
 )
 
 
@@ -5368,7 +5399,7 @@
 				(bind ?tempsDia (send ?diaActual get-temps-ocupat))
 				(bind ?iContingutActual -1);; -1 ja que sumarem de 2 en 2 ,a pos 1 3 5 hi ha els titols, a 2 4 6 els punts
 				(bind ?compatible fals)
-				(while (and (eq ?compatible fals) (not(= ?iContingutActual (length$ ?*llista-CP*)))) do
+				(while (and (eq ?compatible fals) (not(= ?iContingutActual (length$ ?*llista-CP-ordenada*)))) do
 					(bind ?iContingutActual (+ ?iContingutActual 2));;iContingutActual+=2
 					(bind $?contingutsDia (send ?diaActual get-llistaCPdia))
 					(bind ?midaLlistaDia (length$ $?contingutsDia))
@@ -5380,7 +5411,7 @@
 					else
 						(bind ?titolUltimAfegitDia (nth$ (- ?midaLlistaDia 1) $?contingutsDia))
 						(bind ?contingutUltimAfegitDia (find-instance ((?contUAD Contingut)) (eq (str-compare ?contUAD:titol ?titolUltimAfegitDia) 0)))
-						(bind ?titolPerInserir (nth$ ?iContingutActual ?*llista-CP*))
+						(bind ?titolPerInserir (nth$ ?iContingutActual ?*llista-CP-ordenada*))
 						(bind ?contingutPerAfegir (find-instance ((?contUAD2 Contingut)) (eq (str-compare ?contUAD2:titol ?titolPerInserir) 0)))
 						(if (eq (str-compare (str-cat (class ?contingutUltimAfegitDia)) (str-cat (class ?contingutPerAfegir))) 0)
 						then
@@ -5389,25 +5420,19 @@
 							(bind ?compatible true)
 						)
 						
-						
-						
-					
-					
-						;;magia per saber si son compatibles i llavors compatible a true
-						
 						(bind ?posAInserir (length$ $?contingutsDia))
 					)
 					(if (eq ?compatible fals)
 					then
 						(bind ?iContingutActual 0)
 					)
-					(bind ?titolPerInserir (nth$ ?iContingutActual ?*llista-CP*))
+					(bind ?titolPerInserir (nth$ ?iContingutActual ?*llista-CP-ordenada*))
 					(send ?diaActual put-llistaCPdia (insert$ $?contingutsDia ?posAInserir ?titolPerInserir));;insertem el contingut que toca a la llista del dia
 					(bind ?posElementLlista 0)
 					(bind ?j 1)
-					(while (<= ?j (length$ ?*llista-CP*))
+					(while (<= ?j (length$ ?*llista-CP-ordenada*))
 					do
-						(bind ?titolActual (nth$ ?j ?*llista-CP*))
+						(bind ?titolActual (nth$ ?j ?*llista-CP-ordenada*))
 						(if (eq (str-compare ?titolActual ?titolPerInserir) 0)
 						then
 							(bind ?posElementLlista ?j)
@@ -5415,8 +5440,8 @@
 						(bind ?j (+ ?j 2))
 					)
 					
-					(bind ?*llista-CP* (delete$ ?*llista-CP* ?posElementLlista ?posElementLlista))
-					(bind ?*llista-CP* (delete$ ?*llista-CP* ?posElementLlista ?posElementLlista))
+					(bind ?*llista-CP-ordenada* (delete$ ?*llista-CP-ordenada* ?posElementLlista ?posElementLlista))
+					(bind ?*llista-CP-ordenada* (delete$ ?*llista-CP-ordenada* ?posElementLlista ?posElementLlista))
 					(bind ?instanciaPerInserir (find-instance ((?instC Contingut)) (eq (str-compare ?instC:titol ?titolPerInserir) 0)))
 					(bind ?instanciaPerInserir (nth$ 1 ?instanciaPerInserir))
 					(send ?diaActual put-temps-ocupat (+ ?tempsDia (send ?instanciaPerInserir get-duracio)))
@@ -5447,19 +5472,9 @@
 	
 	
 	
-;; 	(printout t ?*llista-CP* crlf)
 )
 
 
-;; >(make-instance a of avion)
-;; ;Creación de una instancia de avion
-;; [a]
-;; >(send [a] get-precio-billete)
-;; ;Obtención de un slot
-;; 34
-;; ;Resultado obtenido
-;; >(send [a] put-plazas-ocupadas 100) ; Modificación de un slot
-;; >(send [a] delete)
-;; ; Eliminación de la instancia
+
 
 
