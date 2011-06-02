@@ -4404,7 +4404,7 @@
 
 ;;; 2.2 MODUL D'ASSUMPCIONS (puntuacions!!!!!!!!!!!!!!!!!!!!!)
 (defmodule assumpcions-incondicionals "Modul d'assignacions incondicionals"
-    (import preguntes-especifiques ?ALL)
+    (import esborrar-instancies ?ALL)
     (export ?ALL)
 )
 
@@ -5303,7 +5303,7 @@
 ;;Imprimeix totes les recomanacions
 (defmodule solucions
 ;; 	(import refinament ?ALL)
-	(import assumpcions-incondicionals ?ALL)
+	(import assumpcions-incondicionals2 ?ALL)
 	(export ?ALL)
 )
 
